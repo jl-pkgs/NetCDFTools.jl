@@ -21,25 +21,25 @@ d_RH <- lst$hurs
 
 overwrite <- FALSE
 varnames <- c("tasmin", "tasmax") %>% set_names(., .)
-varname = varnames[2]
+# varname = varnames[2]
 # temp <- foreach(varname = varnames) %do% {
-d_tair <- lst[[varname]]
-l <- list(d_RH, d_tair) %>%
-    map(~ .[, .(model, ensemble, start, end, file)])
-d <- c(l, list(suffixes = c(".rh", ".tair"), by = c("model", "ensemble"))) %>%
-    do.call(merge, .)
+get_fileInfo <- function(varname = "tasmax"){
+    d_tair <- lst[[varname]]
+    l <- list(d_RH, d_tair) %>%
+        map(~ .[, .(model, ensemble, start, end, file)])
+    d <- c(l, list(suffixes = c(".rh", ".tair"), by = c("model", "ensemble"))) %>%
+        do.call(merge, .)
 
-varname.new <- paste0("HI", varname)
-filename <- basename(d$file.rh) %>% gsub("hurs", varname.new, .)
-d$outfile <- glue("{dir_data}/{varname.new}/{filename}")
-d
-# i = 1
-# file_rh <- d$file.rh[i]
-# file_tair <- d$file.tair[i]
+    varname.new <- paste0("HI", varname)
+    filename <- basename(d$file.rh) %>% gsub("hurs", varname.new, .)
+    d$outfile <- glue("{dir_data}/{varname.new}/{filename}")
+    d
+}
 """
 
 ## Julia PART ------------------------------------------------------------------
-d = @rget d
+d = R"get_fileInfo('tasmax')" |> rcopy
+
 nrow = length(d[:, 1])
 for i = 1:nrow
     println("[$i]: $(d.model[i])")
