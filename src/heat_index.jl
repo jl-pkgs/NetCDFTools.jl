@@ -65,7 +65,7 @@ function CMIP6_heat_index(file_tair, file_rh, outfile;
 
         println("saving ...")
         dims = nc_dims(file_tair)
-        @time nc_write(arr_HI, outfile, dims, "HI"; compress = compress)
+        @time nc_write(arr_HI, outfile, dims; varname = "HI", compress = compress)
     end
 end
 

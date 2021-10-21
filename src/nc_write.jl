@@ -1,5 +1,8 @@
-function nc_write(data, outfile, dims, varname = "HI"; overwrite = false, compress = 1)
-    var = NcVar(varname, dims; t = Float32, compress = compress)
+function nc_write(data::AbstractArray{T}, outfile, dims; 
+    varname = "HI", type = nothing, compress = 1, overwrite = false) where T <: Real
+    
+    if type === nothing; type = T; end
+    var = NcVar(varname, dims; t = type, compress = compress)
 
     if !isfile(outfile) || overwrite
         if isfile(outfile); rm(outfile); end
