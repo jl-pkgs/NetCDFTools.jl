@@ -10,7 +10,9 @@ include("nc_info.jl")
 include("nc_date.jl")
 include("nc_read.jl")
 include("nc_write.jl")
-include("heat_index.jl")
+
+# CMIP
+include("CMIP/CMIP.jl")
 
 export nc_read, nc_write
 

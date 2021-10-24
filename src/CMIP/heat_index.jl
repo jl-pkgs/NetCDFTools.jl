@@ -1,11 +1,4 @@
 
-function Tem_F2C(T_degF::AbstractFloat)
-    (T_degF .- 32) ./ (9 / 5) 
-end
-
-function Tem_C2F(T_degC::AbstractFloat)
-    T_degC .* (9 / 5) .+ 32 # T_degF
-end
 
 # t: degF
 # rh: %
@@ -49,7 +42,7 @@ end
 
 
 function CMIP6_heat_index(file_tair, file_rh, outfile; 
-    overwrite = false, raw = false, compress = 1)
+    overwrite = false, raw = true, compress = 1)
 
     if !isfile(outfile) || overwrite
         if isfile(outfile); rm(outfile); end

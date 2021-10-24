@@ -3,8 +3,9 @@ nc_open(file::String) = NCDataset(file)
 nc_close(ds::NCDataset) = close(ds)
 
 function nc_bands(ds::NCDataset) 
-    v_id = NCDatasets.nc_inq_varids(ds.ncid)
-    vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
+    # v_id = NCDatasets.nc_inq_varids(ds.ncid)
+    # vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
+    vars = keys(ds)
     setdiff(vars, ["lon", "lat", "time", "time_bnds", "height"])
 end
 

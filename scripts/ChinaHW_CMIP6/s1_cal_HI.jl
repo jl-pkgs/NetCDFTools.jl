@@ -1,10 +1,16 @@
 using nctools
-using RCall
+# using RCall
 
-pan = "/media/kong/GitHub"
-pan = "/mnt/i"
-# dir_prj  = "$pan/Research/cmip6/ChinaHW_cluster"
-dir_data = "$pan/Research/cmip6/CMIP6_ChinaHW_mergedFiles"
+# pan = "/media/kong/GitHub"
+# pan = "/mnt/k"
+pan = "K:"
+dir_prj  = "$pan/Researches/CMIP6/ChinaHW_cluster"
+dir_data = "$pan/Researches/CMIP6/CMIP6_ChinaHW_mergedFiles"
+
+
+dirs = dir(dir_data)
+files = dir(dirs[1], "nc", recursive = true)
+CMIPFiles_info(files)
 
 ## R PART ----------------------------------------------------------------------
 R"""
