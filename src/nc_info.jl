@@ -24,6 +24,3 @@ function nc_info(file::String)
         nc_info(ds)
     end 
 end
-
-export nc_open, nc_close, 
-    nc_bands, nc_date, nc_info

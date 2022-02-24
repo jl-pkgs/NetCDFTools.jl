@@ -35,12 +35,13 @@ end
     nc_cellsize(ds::NCDataset)
 """
 function nc_cellsize(ds::NCDataset)
-    lon = ncdim_get(ds, "lon").vals |> diff 
-    lat = ncdim_get(ds, "lat").vals |> diff
+    diflon = ncdim_get(ds, "lon").vals |> diff 
+    diflat = ncdim_get(ds, "lat").vals |> diff
     
-    cell_x = mode(lon)
-    cell_y = mode(lat)
-    regular = length(unique(lon)) == 1 && length(unique(lat)) == 1
+    cell_x = mode(diflon)
+    cell_y = mode(diflat)
+    # regular or complex grid
+    regular = length(unique(diflon)) == 1 && length(unique(diflat)) == 1
     cell_x, cell_y, regular
 end
 
@@ -58,5 +59,3 @@ function nc_cellsize(files::Vector{<:AbstractString})
     end
     cell_x, cell_y, regular
 end
-
-export ncdim_get, nc_dims, nc_size, nc_cellsize

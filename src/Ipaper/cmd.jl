@@ -15,6 +15,3 @@ function path_mnt(path = ".")
     end
     path
 end
-
-
-export path_mnt
