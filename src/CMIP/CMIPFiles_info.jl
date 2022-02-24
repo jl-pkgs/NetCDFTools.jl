@@ -2,11 +2,15 @@ using DataFrames
 
 
 # match(Regex(), basename(file)).match
-function get_model(file; prefix = "day_", postfix = "_historical")
+function get_model(file; prefix = "day_", postfix = "_hist|_ssp")
     str_extract(basename(file), "(?<=$prefix).*(?=$postfix)")
 end
 
 function get_ensemble(file, pattern::AbstractString = "(?<=_)r\\d.*(?=_\\d{4,8})")
+    str_extract(basename(file), pattern)
+end
+
+function get_scenario(file, pattern::AbstractString = "[a-z,A-Z,0-9]*(?=_r\\d)")
     str_extract(basename(file), pattern)
 end
 
@@ -24,6 +28,8 @@ end
 """
     CMIPFiles_info(files)
     
+> Note: currently, only works for daily scale
+
 # Return
 - `model`:
 - `ensemble`:
@@ -34,13 +40,16 @@ function CMIPFiles_info(files)
     date_begin, date_end = get_date(files)
     calender = nc_calendar.(files)
     cell_x, cell_y, regular = nc_cellsize(files)
-    
-    DataFrame(model = get_model.(files), ensemble = get_ensemble.(files), 
+
+    DataFrame(
+        model = get_model.(files),
+        ensemble = get_ensemble.(files),
+        scenario = get_scenario.(files),
         cell_x = cell_x, cell_y = cell_y, grid_regular = regular,
         date_begin = date_begin, date_end = date_end,
-        calender = calender, 
+        calender = calender,
         file = files)
 end
 
 
-export get_model, get_ensemble, get_date, CMIPFiles_info
+export get_model, get_ensemble, get_scenario, get_date, CMIPFiles_info
