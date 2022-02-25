@@ -1,23 +1,20 @@
 import StatsBase: mode
 
 
-function ncdim_get(ds::NCDataset, name = "time") 
+function nc_dim(ds::NCDataset, name = "time") 
     x = ds[name]
     NcDim(name, x.var[:], Dict(x.attrib))
 end
 
-function ncdim_get(file::String, name = "time") 
+function nc_dim(file::String, name = "time") 
     NCDataset(file) do ds; 
-        ncdim_get(ds, name)
+        nc_dim(ds, name)
     end
 end
 
 function nc_dims(ds::NCDataset)
-    lon = ncdim_get(ds, "lon")
-    lat = ncdim_get(ds, "lat")
-    time = ncdim_get(ds, "time")
-    # Dict("lon" => lon, "lat" => lat, "time" => time)
-    [lon, lat, time]
+    items = keys(ds.dim) |> reverse
+    map(x -> nc_dim(ds, x), items)
 end
 
 function nc_dims(file::String)
@@ -35,9 +32,9 @@ end
     nc_cellsize(ds::NCDataset)
 """
 function nc_cellsize(ds::NCDataset)
-    diflon = ncdim_get(ds, "lon").vals |> diff 
-    diflat = ncdim_get(ds, "lat").vals |> diff
-    
+    diflon = nc_dim(ds, "lon").vals |> diff
+    diflat = nc_dim(ds, "lat").vals |> diff
+
     cell_x = mode(diflon)
     cell_y = mode(diflat)
     # regular or complex grid

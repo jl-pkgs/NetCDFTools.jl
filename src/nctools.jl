@@ -16,7 +16,7 @@ include("Ipaper/Ipaper.jl")
 include("CMIP/CMIP.jl")
 
 export nc_open, nc_close, nc_bands, nc_date, nc_info
-export ncdim_get, nc_dims, nc_size, nc_cellsize
+export nc_dim, nc_dims, nc_size, nc_cellsize
 export nc_read, nc_write
 export nc_date, nc_calendar
 

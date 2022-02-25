@@ -4,7 +4,7 @@
     nc_read(file; band = nothing, period = nothing, raw = false)
 
 # Parameters
-- `raw`: boolean.
+- `raw`: boolean. 
 - `period`: `[year_start, year_end]`
 """
 function nc_read(file; band = nothing, period = nothing, raw = false)
