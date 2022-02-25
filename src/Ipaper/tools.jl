@@ -1,7 +1,10 @@
-
 import DataFrames: DataFrame
-import StatsBase: countmap
+import StatsBase: countmap, weights, mean
 table = countmap
+
+
+weighted_mean(x, w) = mean(x, weights(w))
+weighted_sum(x, w) = sum(x, weights(w))
 
 
 function nth(x, n)
@@ -33,4 +36,14 @@ function match2(x, y)
     DataFrame(value = x[I_x], I_x = I_x, I_y = I_y)
 end
 
-export table, which_isna, which_notna, match2
+uniqueN(x) = length(unique(x))
+
+# TODO: need to test
+function CartesianIndex2Int(x, ind)
+    # I = 1:prod(size(x))
+    I = LinearIndices(x)
+    I[ind]
+end
+
+
+export table, which_isna, which_notna, match2, uniqueN, weighted_mean, weighted_sum

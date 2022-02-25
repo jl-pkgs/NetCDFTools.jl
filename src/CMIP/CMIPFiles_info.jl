@@ -2,6 +2,9 @@ import nctools.Ipaper: str_extract, str_extract_all
 
 
 # match(Regex(), basename(file)).match
+"""
+    get_model(file; prefix = "day_", postfix = "_hist|_ssp")
+"""
 function get_model(file; prefix = "day_", postfix = "_hist|_ssp")
     str_extract(basename(file), "(?<=$prefix).*(?=$postfix)")
 end
