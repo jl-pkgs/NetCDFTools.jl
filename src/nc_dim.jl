@@ -2,7 +2,7 @@ import StatsBase: mode
 
 mutable struct NcDim
     name::String
-    dimlen::UInt
+    dimlen::Int
     vals::AbstractArray
     atts::Dict
 end
@@ -15,10 +15,24 @@ Represents a NetCDF dimension of name `name` optionally holding the dimension va
 NcDim(name::AbstractString, vals::AbstractArray, atts::Dict = Dict()) =
     NcDim(name, length(vals), vals, atts)
 
-
 function Ipaper.names(dims::Vector{NcDim})
     map(x -> x.name, dims)
 end
+
+function Base.getindex(dims::Vector{NcDim}, name::AbstractString)
+    names = Ipaper.names(dims)
+    ind = indexin([name], names)
+    dims[ind]
+end
+
+# function Base.getindex(dims::Vector{NcDim}, name::Vector{AbstractString})
+#     names = Ipaper.names(dims)
+#     ind = indexin(name, names)
+#     print(ind)
+#     dims[ind]
+# end
+# Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
+
 
 function nc_dim(ds::NCDataset, name = "time")
     x = ds[name]

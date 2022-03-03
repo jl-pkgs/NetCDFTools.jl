@@ -30,7 +30,7 @@ function nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}
         if isfile(f)
             rm(f)
         end
-        
+
         ds = nc_open(f, mode)
         ncdim_def(ds, dims)
     
@@ -42,7 +42,7 @@ function nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}
     end
 end
 
-function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
+function nc_write!(data, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
     varname = "x", compress = 1, kwargs...) where {T<:Real}
 
     ds = nc_open(f, "a")
@@ -50,7 +50,7 @@ function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim
     close(ds)
 end
 
-function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{<:AbstractString}, attrib = Dict();
+function nc_write!(data, f::AbstractString, dims::Vector{<:AbstractString}, attrib = Dict();
     varname = "x", compress = 1, kwargs...) where {T<:Real}
 
     ds = nc_open(f, "a")
