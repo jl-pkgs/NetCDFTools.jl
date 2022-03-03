@@ -1,4 +1,4 @@
-nc_open(file::String) = NCDataset(file)
+nc_open = NCDataset
 
 nc_close(ds::NCDataset) = close(ds)
 
@@ -13,9 +13,9 @@ function nc_bands(file::String)
     NCDataset(file) do ds; nc_bands(ds); end 
 end
 
-function nc_info(ds::NCDataset) 
-    vars = nc_bands(ds)[1]
-    println(ds[vars])
+function nc_info(ds::NCDataset)
+    # vars = nc_bands(ds)[1]
+    println(ds)
 end
 
 function nc_info(file::String)

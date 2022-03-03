@@ -1,6 +1,10 @@
 import StatsBase: mode
 
 
+function Ipaper.names(dims::Vector{NcDim})
+    map(x -> x.name, dims)
+end
+
 function nc_dim(ds::NCDataset, name = "time") 
     x = ds[name]
     NcDim(name, x.var[:], Dict(x.attrib))
@@ -13,7 +17,7 @@ function nc_dim(file::String, name = "time")
 end
 
 function nc_dims(ds::NCDataset)
-    items = keys(ds.dim) |> reverse
+    items = keys(ds.dim) #|> reverse
     map(x -> nc_dim(ds, x), items)
 end
 

@@ -27,7 +27,7 @@ docs/site/
 OUTPUT/
 */temp/
 gdal/
-test/
+# test/
 
 ## Figures
 *.pdf

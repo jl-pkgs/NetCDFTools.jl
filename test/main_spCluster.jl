@@ -5,7 +5,7 @@ using Statistics
 using nctools.Ipaper
 
 
-probs = factor2([0.90, 0.95, 0.99, 0.999, 0.9999])
+probs = factor([0.90, 0.95, 0.99, 0.999, 0.9999])
 
 # get yearly cluster data 
 # # Arguments

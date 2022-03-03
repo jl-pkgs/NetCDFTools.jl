@@ -52,7 +52,9 @@ end
 function dt_merge(x::DataFrame, y::DataFrame; by = nothing,
     all = false, all_x = all, all_y = all, makeunique = true, kwargs...)
 
-    if by === nothing; by = intersect(names(x), names(y)); end
+    if by === nothing
+        by = intersect(names(x), names(y))
+    end
     if !all
         if all_x
             leftjoin(x, y; on = by, makeunique = true, kwargs...)
@@ -74,4 +76,5 @@ fwrite(df, file) = begin
 end
 
 export rbind, cbind, abind, melt_list,
-    fread, fwrite, dt_merge
+    fread, fwrite, dt_merge, 
+    DataFrame, names

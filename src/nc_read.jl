@@ -7,7 +7,7 @@
 - `raw`: boolean. It `true`, not replace na values.
 - `period`: `[year_start, year_end]`
 """
-function nc_read(file; band = nothing, period = nothing, raw = false)
+function nc_read(file, band = nothing; period = nothing, raw = false)
 
     ds = Dataset(file)
     dates = ds["time"]

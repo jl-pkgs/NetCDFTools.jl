@@ -3,6 +3,6 @@
 using CategoricalArrays
 
 
-factor2(args...) = CategoricalArray(args...) |> compress
+factor(args...) = CategoricalArray(args...) |> compress
 
-export factor2, CategoricalArrays
+export factor, CategoricalArrays
