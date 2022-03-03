@@ -1,7 +1,4 @@
 # using DataFrames
-using nctools
-using nctools.Ipaper
-using nctools.CMIP
 include("main_spCluster.jl")
 
 function get_modelInfo(files)
@@ -9,6 +6,7 @@ function get_modelInfo(files)
   model = get_model.(files_id; prefix = "TRS_", postfix = ".nc")
   DataFrame(I = 1:length(model), model = model, scenario = scenario, file = files)
 end
+
 
 ## local grid info -------------------------------------------------------------
 f = "/mnt/i/Research/cmip6/CMIP6_ChinaHW_scripts/data-raw/China_05deg_FractionArea.csv"
@@ -40,7 +38,7 @@ check_dir(ODIR)
   arr_anorm = nc_read(f_anorm; raw = true)
 
   include("main_spCluster.jl")
-  df = get_ClusterData_all(arr_id, arr_anorm)
+  df = cluster2df_GCM(arr_id, arr_anorm)
 
   # only select the grids in China
   df2 = dt_merge(df, d_coord, by = :gridId)
@@ -51,10 +49,6 @@ check_dir(ODIR)
   @time fwrite(info_temporal, "$ODIR/char_temporal/char_temporal_$prefix.csv")
   @time fwrite(info_spatial, "$ODIR/char_spatial/char_spatial_$prefix.csv")
 end
-
-# Int16 : 2 beers/bytes, -32768 to 32767
-# Int32 : 4 beers/bytes, -2147483648 to 2147483647 (21*1e8)
-# Int64 : 8 beers/bytes, -9223372036854775808 to 9223372036854775807
 
 # variable = "HItasmax"
 # files = dir("/mnt/k/Researches/CMIP6/CMIP6_ChinaHW_mergedFiles/$variable", ".nc\$", recursive = true)

@@ -22,7 +22,7 @@
   # timatts = Dict("longname" => "Time",
   #           "units"    => "hours since 01-01-2000 00:00:00");
   # ntime = size(dat)[3]
-  fn = "data/temp_HI.nc"
+  fn = "temp_HI.nc"
   # isfile(fn) && rm(fn)
 
   nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index"); varname = "HI", overwrite = true)

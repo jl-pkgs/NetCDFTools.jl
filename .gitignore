@@ -39,3 +39,5 @@ gdal/
 
 ## data
 *.nc
+
+*/*/deprecated

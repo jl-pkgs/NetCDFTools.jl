@@ -72,4 +72,3 @@ function ncvar_def(ds, name, val, dims::Vector{NcDim}, attrib = Dict();
     # var = NcVar(varname, dims; t = type, compress = compress)
 end
 
-export ncdim_def, ncvar_def;
