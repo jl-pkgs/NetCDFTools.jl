@@ -2,7 +2,7 @@ nc_open = NCDataset
 
 nc_close(ds::NCDataset) = close(ds)
 
-function nc_bands(ds::NCDataset) 
+function nc_bands(ds::NCDataset)
     # v_id = NCDatasets.nc_inq_varids(ds.ncid)
     # vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
     vars = keys(ds)
@@ -10,7 +10,9 @@ function nc_bands(ds::NCDataset)
 end
 
 function nc_bands(file::String)
-    NCDataset(file) do ds; nc_bands(ds); end 
+    NCDataset(file) do ds
+        nc_bands(ds)
+    end
 end
 
 function nc_info(ds::NCDataset)
@@ -20,7 +22,9 @@ end
 
 function nc_info(file::String)
     println(basename(file))
-    NCDataset(file) do ds; 
+    NCDataset(file) do ds
         nc_info(ds)
-    end 
+    end
 end
+
+ncinfo = nc_info

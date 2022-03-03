@@ -26,17 +26,19 @@ function nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}
     varname = "x", compress = 1, overwrite = false, mode = "c", kwargs...) where {T<:Real}
 
     # check whether variable defined
-    if !isfile(f) || overwrite
+    if !check_file(f) || overwrite
         if isfile(f)
             rm(f)
         end
-    
+        
         ds = nc_open(f, mode)
         ncdim_def(ds, dims)
     
         dimnames = names(dims)
         ncvar_def(ds, varname, data, dimnames, attrib; compress = compress, kwargs...)
         close(ds)
+    else
+        println("[file exist]: $(basename(f))")
     end
 end
 

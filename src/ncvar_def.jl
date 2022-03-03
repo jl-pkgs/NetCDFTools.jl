@@ -58,7 +58,7 @@ function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib = Dict(
         @warn "Variable `$name`: exist!"
         return
     end
-    defDim(ds, name, length(val))
+    # defDim(ds, name, length(val))
     defVar(ds, name, val, dims; attrib = attrib, deflatelevel = compress, kwargs...)
 end
 
@@ -66,7 +66,7 @@ function ncvar_def(ds, name, val, dims::Vector{NcDim}, attrib = Dict();
     compress = 1, kwargs...)
 
     # attrib["deflatelevel"] = compress
-    ncdim_def(ds, dims)
+    ncdim_def(ds, dims) # define dimensions if previous not exist
     dimnames = map(x -> x.name, dims)
     ncvar_def(ds, name, val, dimnames; attrib = attrib, deflatelevel = compress, kwargs...)
     # var = NcVar(varname, dims; t = type, compress = compress)

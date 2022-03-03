@@ -1,17 +1,32 @@
 import StatsBase: mode
 
+mutable struct NcDim
+    name::String
+    dimlen::UInt
+    vals::AbstractArray
+    atts::Dict
+end
+
+"""
+    NcDim(name::AbstractString, vals::AbstractArray, atts::Dict = Dict())
+    
+Represents a NetCDF dimension of name `name` optionally holding the dimension values.
+"""
+NcDim(name::AbstractString, vals::AbstractArray, atts::Dict = Dict()) =
+    NcDim(name, length(vals), vals, atts)
+
 
 function Ipaper.names(dims::Vector{NcDim})
     map(x -> x.name, dims)
 end
 
-function nc_dim(ds::NCDataset, name = "time") 
+function nc_dim(ds::NCDataset, name = "time")
     x = ds[name]
     NcDim(name, x.var[:], Dict(x.attrib))
 end
 
-function nc_dim(file::String, name = "time") 
-    NCDataset(file) do ds; 
+function nc_dim(file::String, name = "time")
+    NCDataset(file) do ds
         nc_dim(ds, name)
     end
 end
@@ -22,12 +37,14 @@ function nc_dims(ds::NCDataset)
 end
 
 function nc_dims(file::String)
-    NCDataset(file) do ds; nc_dims(ds); end
+    NCDataset(file) do ds
+        nc_dims(ds)
+    end
 end
 
 function nc_dimsize(file::String)
-    NCDataset(file) do ds 
-        var = nc_bands(ds)[1]    
+    NCDataset(file) do ds
+        var = nc_bands(ds)[1]
         size(ds[var])
     end
 end
@@ -47,12 +64,14 @@ function nc_cellsize(ds::NCDataset)
 end
 
 function nc_cellsize(file::String)
-    NCDataset(file) do ds; nc_cellsize(ds); end
+    NCDataset(file) do ds
+        nc_cellsize(ds)
+    end
 end
 
 function nc_cellsize(files::Vector{<:AbstractString})
     n = length(files)
-    cell_x = zeros(n) 
+    cell_x = zeros(n)
     cell_y = zeros(n)
     regular = zeros(Bool, n)
     for i = 1:n

@@ -6,8 +6,9 @@ using nctools.Ipaper
 # println(pwd())
 
 # cd(dirname(@__FILE__)) do
-    include("test-nc_write.jl")
-    include("test-Ipaper.jl")
+include("test-nc_write.jl")
+include("test-nc_dims.jl")
+include("test-Ipaper.jl")
     # include("test-smooth_whit.jl")
     # include("test-smooth_SG.jl")
     # include("test_wTSM.jl")

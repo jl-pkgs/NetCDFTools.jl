@@ -23,11 +23,11 @@ ncdim_def(ds, "time",
 close(ds)
 ```
 """
-function ncdim_def(ds, name, val, attrib = Dict())
+function ncdim_def(ds, name, val, attrib = Dict(); verbose = false)
     # x = NcDim(name, val, attrib)
     # val = val |> collect
     if name in keys(ds.dim)
-        @warn "Dimension `$name`: exist!"
+        verbose && @warn "Dimension `$name`: exist!"
         return
     end
     defDim(ds, name, length(val))
