@@ -15,3 +15,6 @@ NCDatasets = "85f8d34a-cbdd-5861-8df4-14fed0d494ab"
 Pipe = "b98c9c47-44ae-5843-9183-064241ee97a0"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+LambdaFn = "0.3"
