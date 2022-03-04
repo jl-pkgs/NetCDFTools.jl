@@ -36,6 +36,20 @@ end
 end
 
 
+@testset "Ipaper dir" begin
+  files = dir(".", "\\.jl\$")
+  @test length(files) > 0
+end
+
+# using Test
+@testset "Ipaper stringr" begin
+  x = "hello world!"
+  @test gsub(x, "hello", "Hello") == "Hello world!"
+  @test grepl(x, "!\$")
+  @test grep(x, "!\$") == grep(x, "!\$")
+end
+
+
 # using StatsBase
 # x = 1:4 |> collect
 # w = [1 1 0.5 0.5]

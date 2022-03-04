@@ -4,6 +4,8 @@ export glob
 
 """
     str_extract(x::AbstractString, pattern::AbstractString)
+    str_extract_all(x::AbstractString, pattern::AbstractString)
+
 """
 function str_extract(x::AbstractString, pattern::AbstractString)
     r = match(Regex(pattern), basename(x))
@@ -15,23 +17,38 @@ function str_extract_all(x::AbstractString, pattern::AbstractString)
     [x === nothing ? "" : x.match for x in eachmatch(Regex(pattern), basename(x))]
 end
 
+"""
+    str_replace(x::AbstractString, pattern::AbstractString, replacement::AbstractString = "")
+"""
 function str_replace(x::AbstractString, pattern::AbstractString, replacement::AbstractString = "")
     replace(x, pattern => replacement)
 end
 
-function grep(x::AbstractString, pattern::AbstractString)
+gsub = str_replace
+
+
+"""
+    grep(x::Union{AbstractString,Vector{<:AbstractString}},
+        pattern::AbstractString)::AbstractArray{Int,1}
+    grepl(x::Vector{<:AbstractString}, pattern::AbstractString)::AbstractArray{Bool,1}
+    grepl(x::AbstractString, pattern::AbstractString)
+
+"""
+function grepl(x::AbstractString, pattern::AbstractString)
     r = match(Regex(pattern), x)
     r === nothing ? false : true
 end
 
-function grep(x::Vector{<:AbstractString}, pattern::AbstractString)::AbstractArray{Bool,1}
+function grepl(x::Vector{<:AbstractString}, pattern::AbstractString)::AbstractArray{Bool,1}
     map(x) do x
-        grep(x, pattern)
+        grepl(x, pattern)
     end
 end
 
-function grepl(x::Vector{<:AbstractString}, pattern::AbstractString)::AbstractArray{Int,1}
-    grep(x, pattern) |> findall
+function grep(x::Union{AbstractString,Vector{<:AbstractString}},
+    pattern::AbstractString)::AbstractArray{Int,1}
+
+    grepl(x, pattern) |> findall
 end
 
 
@@ -46,7 +63,9 @@ end
 - `recursive`
 
 # Example
-dir(".", "\\.md\$")
+```julia
+dir("src", "\\.jl\$")
+```
 """
 function dir(path = ".", pattern = ""; full_names = true, include_dirs = true, recursive = false)
     res = readdir(path, join = true) # also include directory
@@ -65,12 +84,12 @@ function dir(path = ".", pattern = ""; full_names = true, include_dirs = true, r
         files = [dirs; files]
     end
     if pattern != ""
-        files = files[grepl(files, pattern)]
+        files = files[grep(files, pattern)]
     end
     files
 end
 
 
 export str_extract, str_extract_all, str_replace,
-    grep, grepl,
+    grep, grepl, gsub,
     dir
