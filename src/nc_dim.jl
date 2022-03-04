@@ -32,11 +32,15 @@ end
 #     dims[ind]
 # end
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
-
-
 function nc_dim(ds::NCDataset, name = "time")
-    x = ds[name]
-    NcDim(name, x.var[:], Dict(x.attrib))
+    if haskey(ds, name)
+        x = ds[name]
+        NcDim(name, x.var[:], Dict(x.attrib))
+    else
+        n = ds.dim[name]
+        vals = 1:n
+        NcDim(name, vals, Dict())
+    end
 end
 
 function nc_dim(file::String, name = "time")
@@ -46,7 +50,7 @@ function nc_dim(file::String, name = "time")
 end
 
 function nc_dims(ds::NCDataset)
-    items = keys(ds.dim) #|> reverse
+    items = keys(ds.dim) #|> reverse    
     map(x -> nc_dim(ds, x), items)
 end
 
