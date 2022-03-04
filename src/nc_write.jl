@@ -55,7 +55,7 @@ function nc_write!(data, f::AbstractString, dims::Vector{<:AbstractString}, attr
     varname = "x", compress = 1, kwargs...) where {T<:Real}
 
     mode = check_file(f) ? "a" : "c";
-    # ds = nc_open(f, "a")
+    ds = nc_open(f, mode)
     ncvar_def(ds, varname, data, dims, attrib; compress = compress, kwargs...)
     close(ds)
 end
