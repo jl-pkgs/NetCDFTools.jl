@@ -3,7 +3,7 @@ import StatsBase: mode
 mutable struct NcDim
     name::String
     dimlen::Int
-    vals::AbstractArray
+    vals::Union{AbstractArray, Nothing}
     atts::Dict
 end
 
@@ -39,7 +39,8 @@ function nc_dim(ds::NCDataset, name = "time")
     else
         n = ds.dim[name]
         vals = 1:n
-        NcDim(name, vals, Dict())
+        NcDim(name, n, vals, Dict())
+        # NcDim(name, n, nothing, Dict()) # TODO
     end
 end
 
