@@ -11,7 +11,6 @@ include("unit_convert.jl")
 include("heat_index.jl")
 
 
-export Tem_F2C, Tem_C2F,
-    heat_index, CMIP6_heat_index
+export Tem_F2C, Tem_C2F, heat_index
 
 end

@@ -25,7 +25,7 @@ include("ncatt_put.jl")
 include("CMIP/CMIP.jl")
 
 export nc_open, nc_close, nc_bands, nc_date, nc_info, ncinfo
-export nc_dim, nc_dims, nc_size, nc_cellsize
+export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize
 export nc_read, nc_write, nc_write!
 export nc_date, nc_calendar
 

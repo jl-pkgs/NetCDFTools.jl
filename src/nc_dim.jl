@@ -3,7 +3,7 @@ import StatsBase: mode
 mutable struct NcDim
     name::String
     dimlen::Int
-    vals::Union{AbstractArray, Nothing}
+    vals::Union{AbstractArray,Nothing}
     atts::Dict
 end
 
@@ -97,4 +97,21 @@ function nc_cellsize(files::Vector{<:AbstractString})
         cell_x[i], cell_y[i], regular[i] = nc_cellsize(files[i])
     end
     cell_x, cell_y, regular
+end
+
+function ncvar_dim(ds::NCDataset, varname::Union{String, Nothing} = nothing; varid = 1)
+    if varname === nothing
+        varname = nc_bands(ds)[varid]
+    end
+
+    dims = nc_dims(ds)
+    ids = ds[varname].var.dimids
+    ids = collect(ids) .+ 1
+    dims[ids]
+end
+
+function ncvar_dim(file::String, varname::Union{String,Nothing} = nothing; kwargs...)
+    NCDataset(file) do ds
+        ncvar_dim(ds, varname; kwargs...)
+    end
 end
