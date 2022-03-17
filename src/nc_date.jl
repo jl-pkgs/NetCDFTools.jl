@@ -1,6 +1,6 @@
-nc_date(ds::NCDataset) = ds["time"][:]
+nc_date(ds::NCdata) = ds["time"][:]
 
-function nc_date(file::AbstractString)
+function nc_date(file::NCfiles)
     nc_open(file) do ds
         nc_date(ds)
     end
@@ -12,4 +12,3 @@ function nc_calendar(file::AbstractString)
         ds["time"].attrib["calendar"]
     end
 end
-

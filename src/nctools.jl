@@ -12,8 +12,8 @@ using Dates
 include("Ipaper/Ipaper.jl")
 using nctools.Ipaper
 
-include("nc_dim.jl")
 include("nc_info.jl")
+include("nc_dim.jl")
 include("nc_date.jl")
 include("nc_read.jl")
 include("nc_write.jl")

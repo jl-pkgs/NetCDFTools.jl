@@ -25,6 +25,9 @@ include("data.frame.jl")
 dim = size
 # whos = varinfo
 
+using Printf
+export @sprintf
+
 export dim
 export path_mnt, is_wsl, is_windows, is_linux, @pipe
 

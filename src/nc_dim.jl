@@ -21,7 +21,7 @@ end
 
 function Base.getindex(dims::Vector{NcDim}, name::AbstractString)
     names = Ipaper.names(dims)
-    ind = indexin([name], names)
+    ind = indexin([name], names)[1]
     dims[ind]
 end
 
@@ -32,14 +32,14 @@ end
 #     dims[ind]
 # end
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
-function nc_dim_shape(ds::NCDataset, name = "time")
+function nc_dim_shape(ds::NCdata, name = "time")
     n = ds.dim[name]
     vals = 1:n
     NcDim(name, n, vals, Dict())
     # NcDim(name, n, nothing, Dict()) # TODO
 end
 
-function nc_dim(ds::NCDataset, name = "time")
+function nc_dim(ds::NCdata, name = "time")
     if haskey(ds, name)
         try
             x = ds[name]
@@ -52,24 +52,24 @@ function nc_dim(ds::NCDataset, name = "time")
     end
 end
 
-function nc_dim(file::String, name = "time")
+function nc_dim(file::NCfiles, name = "time")
     nc_open(file) do ds
         nc_dim(ds, name)
     end
 end
 
-function nc_dims(ds::NCDataset)
+function nc_dims(ds::NCdata)
     items = keys(ds.dim) #|> reverse    
     map(x -> nc_dim(ds, x), items)
 end
 
-function nc_dims(file::String)
+function nc_dims(file::NCfiles)
     nc_open(file) do ds
         nc_dims(ds)
     end
 end
 
-function nc_dimsize(file::String)
+function nc_dimsize(file::NCfiles)
     nc_open(file) do ds
         var = nc_bands(ds)[1]
         size(ds[var])
@@ -77,9 +77,9 @@ function nc_dimsize(file::String)
 end
 
 """
-    nc_cellsize(ds::NCDataset)
+    nc_cellsize(ds::NCdata)
 """
-function nc_cellsize(ds::NCDataset)
+function nc_cellsize(ds::NCdata)
     diflon = nc_dim(ds, "lon").vals |> diff
     diflat = nc_dim(ds, "lat").vals |> diff
 
@@ -90,7 +90,7 @@ function nc_cellsize(ds::NCDataset)
     cell_x, cell_y, regular
 end
 
-function nc_cellsize(file::String)
+function nc_cellsize(file::AbstractString)
     nc_open(file) do ds
         nc_cellsize(ds)
     end
@@ -107,7 +107,7 @@ function nc_cellsize(files::Vector{<:AbstractString})
     cell_x, cell_y, regular
 end
 
-function ncvar_dim(ds::NCDataset, varname::Union{String, Nothing} = nothing; varid = 1)
+function ncvar_dim(ds::NCdata, varname::Union{String, Nothing} = nothing; varid = 1)
     if varname === nothing
         varname = nc_bands(ds)[varid]
     end
@@ -118,7 +118,7 @@ function ncvar_dim(ds::NCDataset, varname::Union{String, Nothing} = nothing; var
     dims[ids]
 end
 
-function ncvar_dim(file::String, varname::Union{String,Nothing} = nothing; kwargs...)
+function ncvar_dim(file::NCfiles, varname::Union{String,Nothing} = nothing; kwargs...)
     nc_open(file) do ds
         ncvar_dim(ds, varname; kwargs...)
     end

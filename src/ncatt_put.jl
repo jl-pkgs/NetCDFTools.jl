@@ -4,7 +4,7 @@
     
 add or delete global attributes
 """
-function ncatt_put(f::AbstractString, atts = Dict())
+function ncatt_put(f::NCfiles, atts = Dict())
     nc_open(f, "a") do nc
         names = keys(atts) |> collect
         vals = values(atts) |> collect
@@ -15,7 +15,7 @@ function ncatt_put(f::AbstractString, atts = Dict())
     # close(nc)
 end
 
-function ncatt_del(f::AbstractString, keys::Vector{<:AbstractString})
+function ncatt_del(f::NCfiles, keys::Vector{<:AbstractString})
     nc_open(f, "a") do nc
         for i = 1:length(keys)
             delete!(nc.attrib, keys[i])
@@ -23,7 +23,7 @@ function ncatt_del(f::AbstractString, keys::Vector{<:AbstractString})
     end
 end
 
-function nc_atts(f::AbstractString)
+function nc_atts(f::NCfiles)
     nc_open(f) do nc
         nc.attrib |> collect
     end
