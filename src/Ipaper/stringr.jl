@@ -68,8 +68,8 @@ dir("src", "\\.jl\$")
 ```
 """
 function dir(path = ".", pattern = ""; full_names = true, include_dirs = true, recursive = false)
-    res = readdir(path, join = true) # also include directory
-
+    res = readdir(path_mnt(path), join = true) # also include directory
+    
     dirs = filter(isdir, res)
     files = filter(isfile, res)
 

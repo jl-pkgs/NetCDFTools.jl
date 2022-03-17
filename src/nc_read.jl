@@ -9,7 +9,7 @@
 """
 function nc_read(file, band = nothing; period = nothing, raw = false)
 
-    ds = Dataset(file)
+    ds = Dataset(path_mnt(file))
     dates = ds["time"]
     if band === nothing
         band = nc_bands(file)[1]

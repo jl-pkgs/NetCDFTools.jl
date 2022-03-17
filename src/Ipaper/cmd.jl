@@ -3,6 +3,11 @@ is_wsl() = Sys.islinux() && isfile("/mnt/c/Windows/System32/cmd.exe")
 is_windows() = Sys.iswindows()
 is_linux() = Sys.islinux()
 
+"""
+    path_mnt(path = ".")
+
+Relative path will kept the original format.
+"""
 function path_mnt(path = ".")
     # path = realpath(path)
     n = length(path)

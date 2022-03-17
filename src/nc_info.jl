@@ -1,6 +1,24 @@
-nc_open = NCDataset
+# nc_open = NCDataset
+"""
+    nc_open is same as NCDataset
+
+@seealso [NCDatasets.NCDataset()]
+"""
+function nc_open(f::AbstractString, args...; kwargs...)
+    NCDataset(path_mnt(f), args...; kwargs...)
+end
+function nc_open(f::Function, args...; kwargs...)
+    ds = nc_open(args...; kwargs...)
+    try
+        f(ds)
+    finally
+        @debug "closing netCDF NCDataset $(ds.ncid) $(NCDatasets.path(ds))"
+        close(ds)
+    end
+end
 
 nc_close(ds::NCDataset) = close(ds)
+
 
 function nc_bands(ds::NCDataset)
     # v_id = NCDatasets.nc_inq_varids(ds.ncid)
@@ -10,7 +28,7 @@ function nc_bands(ds::NCDataset)
 end
 
 function nc_bands(file::String)
-    NCDataset(file) do ds
+    nc_open(file) do ds
         nc_bands(ds)
     end
 end
@@ -22,7 +40,7 @@ end
 
 function nc_info(file::String)
     println(basename(file))
-    NCDataset(file) do ds
+    nc_open(file) do ds
         nc_info(ds)
     end
 end

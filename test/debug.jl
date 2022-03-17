@@ -9,10 +9,3 @@ nc = nc_open(f)
 fid = NCDatasets.NCDataset(f)
 # nc_dims(f)
 @time data = nc["HI"][:];
-
-
-
-# fid.dim["lon"]
-# fid.dim
-# haskey(fid, "time")
-# f = "/mnt/f/HItasmax_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-20141231.nc"

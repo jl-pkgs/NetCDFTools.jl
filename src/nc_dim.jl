@@ -45,7 +45,7 @@ function nc_dim(ds::NCDataset, name = "time")
 end
 
 function nc_dim(file::String, name = "time")
-    NCDataset(file) do ds
+    nc_open(file) do ds
         nc_dim(ds, name)
     end
 end
@@ -56,13 +56,13 @@ function nc_dims(ds::NCDataset)
 end
 
 function nc_dims(file::String)
-    NCDataset(file) do ds
+    nc_open(file) do ds
         nc_dims(ds)
     end
 end
 
 function nc_dimsize(file::String)
-    NCDataset(file) do ds
+    nc_open(file) do ds
         var = nc_bands(ds)[1]
         size(ds[var])
     end
@@ -83,7 +83,7 @@ function nc_cellsize(ds::NCDataset)
 end
 
 function nc_cellsize(file::String)
-    NCDataset(file) do ds
+    nc_open(file) do ds
         nc_cellsize(ds)
     end
 end
@@ -111,7 +111,7 @@ function ncvar_dim(ds::NCDataset, varname::Union{String, Nothing} = nothing; var
 end
 
 function ncvar_dim(file::String, varname::Union{String,Nothing} = nothing; kwargs...)
-    NCDataset(file) do ds
+    nc_open(file) do ds
         ncvar_dim(ds, varname; kwargs...)
     end
 end

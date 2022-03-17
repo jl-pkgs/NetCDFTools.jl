@@ -23,4 +23,4 @@ files = dir(dirs[1], "nc", recursive = true)
 d = CMIPFiles_info(files)
 
 # file = files[1]
-# fid = NCDataset(file)
+# fid = nc_open(file)

@@ -24,7 +24,7 @@ function ncatt_del(f::AbstractString, keys::Vector{<:AbstractString})
 end
 
 function nc_atts(f::AbstractString)
-    NCDataset(f) do nc
+    nc_open(f) do nc
         nc.attrib |> collect
     end
 end
