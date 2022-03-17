@@ -4,9 +4,12 @@
 
 @seealso [NCDatasets.NCDataset()]
 """
+# nc_open = NCDataset
+
 function nc_open(f::AbstractString, args...; kwargs...)
     NCDataset(path_mnt(f), args...; kwargs...)
 end
+
 function nc_open(f::Function, args...; kwargs...)
     ds = nc_open(args...; kwargs...)
     try
@@ -24,7 +27,8 @@ function nc_bands(ds::NCDataset)
     # v_id = NCDatasets.nc_inq_varids(ds.ncid)
     # vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
     vars = keys(ds)
-    setdiff(vars, ["lon", "lat", "time", "time_bnds", "height"])
+    dims = ["lon", "lat", "time"]
+    setdiff(vars, [dims; dims .* "_bnds"; "height"])
 end
 
 function nc_bands(file::String)

@@ -32,15 +32,23 @@ end
 #     dims[ind]
 # end
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
+function nc_dim_shape(ds::NCDataset, name = "time")
+    n = ds.dim[name]
+    vals = 1:n
+    NcDim(name, n, vals, Dict())
+    # NcDim(name, n, nothing, Dict()) # TODO
+end
+
 function nc_dim(ds::NCDataset, name = "time")
     if haskey(ds, name)
-        x = ds[name]
-        NcDim(name, x.var[:], Dict(x.attrib))
+        try
+            x = ds[name]
+            NcDim(name, x.var[:], Dict(x.attrib))
+        catch
+            nc_dim_shape(ds, name)
+        end
     else
-        n = ds.dim[name]
-        vals = 1:n
-        NcDim(name, n, vals, Dict())
-        # NcDim(name, n, nothing, Dict()) # TODO
+        nc_dim_shape(ds, name)
     end
 end
 
