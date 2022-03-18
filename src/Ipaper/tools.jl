@@ -1,6 +1,5 @@
 import DataFrames: DataFrame
 import StatsBase: countmap, weights, mean
-table = countmap
 
 
 weighted_mean(x, w) = mean(x, weights(w))
@@ -46,4 +45,35 @@ function CartesianIndex2Int(x, ind)
 end
 
 
-export table, which_isna, which_notna, match2, uniqueN, weighted_mean, weighted_sum
+table = countmap
+
+"""
+    duplicated(x::Vector{<:Real})
+
+```julia
+x = [1, 2, 3, 4, 1]
+duplicated(x)
+# [0, 0, 0, 0, 1]
+```
+"""
+function duplicated(x::Vector)
+    grps = table(x)
+    grps = filter(x -> x[2] > 1, grps)
+
+    n = length(x)
+    res = BitArray(undef, n)
+    for (key, val) in grps
+        k = 0
+        for i = 1:n
+            if x[i] == key
+                k = k + 1
+                if k >= 2; res[i] = true; end
+                if k == val; break; end
+            end
+        end
+    end
+    res
+end
+
+
+export table, which_isna, which_notna, match2, uniqueN, duplicated, weighted_mean, weighted_sum

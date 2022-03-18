@@ -77,4 +77,4 @@ end
 
 export rbind, cbind, abind, melt_list,
     fread, fwrite, dt_merge, 
-    DataFrame, names
+    DataFrame, names, nrow

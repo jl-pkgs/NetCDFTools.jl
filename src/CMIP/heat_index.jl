@@ -1,3 +1,15 @@
+"""
+    Tem_F2C(T_degF::Real)
+    Tem_C2F(T_degC::Real)
+"""
+function Tem_F2C(T_degF::Real)
+    (T_degF .- 32) ./ (9 / 5)
+end
+
+function Tem_C2F(T_degC::Real)
+    T_degC .* (9 / 5) .+ 32 # T_degF
+end
+
 function heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing})
     t = Tem_C2F(t)
     # if (ismissing(t) || ismissing(rh)); return(NaN64); end
@@ -9,8 +21,8 @@ function heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing})
         if (hi > 79)
             hi = -42.379 + 2.04901523 * t + 10.14333127 * rh -
                  0.22475541 * t * rh - 6.83783 * 10^-3 * t^2 -
-                 5.481717 * 10^-2 * rh^2 + 1.22874 * 10^-3 * t^2 * rh + 
-                8.5282 * 10^-4 * t * rh^2 - 1.99 * 10^-6 * t^2 * rh^2
+                 5.481717 * 10^-2 * rh^2 + 1.22874 * 10^-3 * t^2 * rh +
+                 8.5282 * 10^-4 * t * rh^2 - 1.99 * 10^-6 * t^2 * rh^2
             if (rh <= 13 && t >= 80 && t <= 112)
                 adjustment1 = (13 - rh) / 4
                 adjustment2 = sqrt((17 - abs(t - 95)) / 17)
@@ -34,7 +46,7 @@ end
 """
     heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing})
     heat_index(t::AbstractArray{T}, rh::AbstractArray{T}) where {T<:Union{Missing,Real}}
-    heat_index(f_tair::String, f_rh::String, outfile::String; 
+    heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString; 
         overwrite = false, raw = true, compress = 1)
 
 # Arguments
@@ -46,24 +58,24 @@ end
 heat_index(f_tair, f_rh, outfile; overwrite = false, raw = true, compress = 1)
 ```
 """
-function heat_index(f_tair::String, f_rh::String, outfile::String;
-    overwrite = false, raw = true, compress = 1)
+function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString;
+    overwrite=false, raw=true, compress=1)
 
     if !isfile(outfile) || overwrite
         isfile(outfile) && rm(outfile)
 
         println("reading Tair ...")
-        arr_tair = nc_read(f_tair; raw = raw) .- 273.15
+        arr_tair = nc_read(f_tair; raw=raw) .- 273.15
 
         println("reading RH ...")
-        arr_rh = nc_read(f_rh; raw = raw)
+        arr_rh = nc_read(f_rh; raw=raw)
 
         println("calculating HI ...")
         @time arr_HI = heat_index.(arr_tair, arr_rh)
 
         println("saving ...")
         dims = ncvar_dim(f_tair)
-        @time nc_write(arr_HI, outfile, dims; varname = "HI", compress = compress)
+        @time nc_write(arr_HI, outfile, dims; varname="HI", compress=compress)
     end
 end
 
