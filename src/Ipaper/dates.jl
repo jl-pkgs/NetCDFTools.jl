@@ -23,7 +23,14 @@ year = Dates.year
 month = Dates.month
 day = Dates.day
 
+Year = Dates.Year
+Month = Dates.Month
+Day = Dates.Day
+
 make_datetime = DateTime
+make_date = DateTime
 
 export dates_miss, dates_nmiss,
-    year, month, day, make_datetime
+    year, month, day,
+    Year, Month, Day,
+    make_datetime, make_date
