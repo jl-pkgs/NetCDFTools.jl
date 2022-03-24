@@ -1,4 +1,5 @@
 """
+    ncatt_get(f::NCfiles, key)
     ncatt_put(f::AbstractString, attrib = Dict())
     ncatt_del(f::AbstractString, keys::Vector{<:AbstractString})
     
@@ -15,16 +16,24 @@ function ncatt_put(f::NCfiles, atts = Dict())
     # close(nc)
 end
 
+
+function ncatt_get(f::NCfiles)
+    nc_open(f) do nc
+        nc.attrib |> collect
+    end
+end
+
+function ncatt_get(f::NCfiles, key)
+    nc_open(f) do nc
+        nc.attrib[key]
+    end
+end
+
+
 function ncatt_del(f::NCfiles, keys::Vector{<:AbstractString})
     nc_open(f, "a") do nc
         for i = 1:length(keys)
             delete!(nc.attrib, keys[i])
         end
-    end
-end
-
-function nc_atts(f::NCfiles)
-    nc_open(f) do nc
-        nc.attrib |> collect
     end
 end

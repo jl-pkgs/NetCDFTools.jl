@@ -36,7 +36,7 @@ export nc_read, nc_write, nc_write!
 export nc_date, nc_calendar
 
 export ncdim_def, ncvar_def
-export ncatt_put, ncatt_del, nc_atts
+export ncatt_put, ncatt_get, ncatt_del
 
 export names
 
