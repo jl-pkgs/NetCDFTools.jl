@@ -1,3 +1,7 @@
+# Copyright (c) 2022 Dongdong Kong. All rights reserved.
+# This work is licensed under the terms of the MIT license.  
+# For a copy, see <https://opensource.org/licenses/MIT>.
+
 module Ipaper
 
 # Reexport
@@ -12,6 +16,7 @@ using LambdaFn
 export @λ, @lf, @f
 
 
+include("plyr.jl")
 include("cmd.jl")
 include("dates.jl")
 include("file_operation.jl")
@@ -21,6 +26,7 @@ include("stringr.jl")
 include("tools.jl")
 include("factor.jl")
 include("data.frame.jl")
+include("DimensionalData.jl")
 
 dim = size
 # whos = varinfo

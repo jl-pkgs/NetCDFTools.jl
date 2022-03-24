@@ -1,3 +1,7 @@
+# Copyright (c) 2022 Dongdong Kong. All rights reserved.
+# This work is licensed under the terms of the MIT license.  
+# For a copy, see <https://opensource.org/licenses/MIT>.
+
 module nctools
 
 # using NetCDF
