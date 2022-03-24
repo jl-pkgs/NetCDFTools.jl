@@ -30,8 +30,9 @@ function cbind(df::DataFrame; kwargs...)
     df
 end
 
-# for data.frame
-# by reference operation
+is_dataframe(d) = d isa DataFrame
+
+# for data.frame by reference operation
 function melt_list(list; kwargs...)
     if length(kwargs) > 0
         by = keys(kwargs)[1]
@@ -43,9 +44,12 @@ function melt_list(list; kwargs...)
 
     for i = 1:length(list)
         d = list[i]
-        d[:, by] .= vals[i]
+        if (d isa DataFrame)
+            d[:, by] .= vals[i]
+        end
     end
-    rbind(list...)
+    ind = map(is_dataframe, list)
+    rbind(list[ind]...)
 end
 
 # seealso: leftjoin, rightjoin, innerjoin, outerjoin
@@ -77,4 +81,5 @@ end
 
 export rbind, cbind, abind, melt_list,
     fread, fwrite, dt_merge, 
+    is_dataframe,
     DataFrame, names, nrow

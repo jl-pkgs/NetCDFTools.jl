@@ -1,8 +1,8 @@
 using DimensionalData
 import Statistics: quantile
 
-const DD = DimensionalData
 
+const DD = DimensionalData
 const TYPE_dimname = Union{Symbol,AbstractString}
 const dimnames_default = ["x", "y", "z", "t"]
 

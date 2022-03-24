@@ -10,7 +10,6 @@
 function nc_read(file, band = nothing; period = nothing, raw = false)
 
     ds = Dataset(path_mnt(file))
-    dates = ds["time"]
     if band === nothing
         band = nc_bands(file)[1]
     end
@@ -20,6 +19,7 @@ function nc_read(file, band = nothing; period = nothing, raw = false)
     @time if period === nothing
         data = data[:]
     else
+        dates = ds["time"]
         years = Dates.year.(dates)
         ind = (years .>= period[1] .&& years .<= period[2]) |> findall
         # `ind` is continuous, but reading speed is faster when converting to `unitRange`
