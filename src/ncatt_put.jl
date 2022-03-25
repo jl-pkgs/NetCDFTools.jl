@@ -23,10 +23,23 @@ function ncatt_get(f::NCfiles)
     end
 end
 
-function ncatt_get(f::NCfiles, key)
-    nc_open(f) do nc
-        nc.attrib[key]
-    end
+function ncatt_get(f::NCfiles, keys::Vector)
+    nc = nc_open(f)
+    res = map(key -> begin
+        if haskey(nc.attrib, key) 
+            nc.attrib[key] 
+        else 
+            @warn("`$key` not exits in file '$(basename(f))'")
+            nothing
+        end
+    end, keys)
+    nc_close(nc)
+    # filter(not_empty, res)
+    res
+end
+
+function ncatt_get(f::NCfiles, key::AbstractString)
+    ncatt_get(f, [key])[1]
 end
 
 

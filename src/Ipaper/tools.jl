@@ -2,6 +2,12 @@ import DataFrames: DataFrame
 import StatsBase: countmap, weights, mean
 
 
+# import Base: length
+Base.length(x::Nothing) = 0
+is_empty(x) = length(x) == 0
+not_empty(x) = length(x) > 0
+
+
 weighted_mean(x, w) = mean(x, weights(w))
 weighted_sum(x, w) = sum(x, weights(w))
 
@@ -61,7 +67,8 @@ function duplicated(x::Vector)
     grps = filter(x -> x[2] > 1, grps)
 
     n = length(x)
-    res = BitArray(undef, n)
+    res  = BitArray(undef, n)
+    res .= false
     for (key, val) in grps
         k = 0
         for i = 1:n
@@ -80,5 +87,6 @@ seq_len(n) = 1:n
 
 
 export table, which_isna, which_notna, match2, uniqueN, duplicated, 
+    is_empty, not_empty,
     weighted_mean, weighted_sum, 
     seq_along, seq_len
