@@ -13,8 +13,8 @@ export nc_open, close
 using CFTime
 using Dates
 
-include("Ipaper/Ipaper.jl")
-using nctools.Ipaper
+# include("Ipaper/Ipaper.jl")
+using Ipaper
 export Ipaper
 
 include("nc_info.jl")
@@ -29,6 +29,7 @@ include("ncatt_put.jl")
 # CMIP
 include("CMIP/CMIP.jl")
 export CMIP
+
 
 export nc_open, nc_close, nc_bands, nc_date, nc_info, ncinfo
 export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize
