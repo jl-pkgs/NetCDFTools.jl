@@ -11,7 +11,7 @@
   nlon = length(lon)
   nlat = length(lat)
   ntime = 10
-  dat = rand(Int32, nlon, nlat, ntime)
+  dat = rand(Float64, nlon, nlat, ntime)
 
   # time = 1:size(dat2, 3)
   dims = [
@@ -23,15 +23,24 @@
   #           "units"    => "hours since 01-01-2000 00:00:00");
   # ntime = size(dat)[3]
   fn = "temp_HI.nc"
-  # isfile(fn) && rm(fn)
+  isfile(fn) && rm(fn)
 
+  ## test for nc_write `type`
+  nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index"); 
+    varname = "HI", overwrite = true, 
+    type = Float32)
+  @test nc_read(fn) |> eltype == Float32
+  @test nc_read(fn, type = Float64) |> eltype == Float64
+
+  ## test for overwrite
   nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index"); varname = "HI", overwrite = true)
-  nc_write!(dat, fn, dims; varname = "HI2")
+  nc_write!(dat, fn, dims; varname = "HI2") # test for multiple variables
 
   nc_info(fn)
   @test nc_bands(fn) == ["HI", "HI2"]
 
   data = nc_read(fn, "HI")
   @test data == dat
-  # rm()
+
+  isfile(fn) && rm(fn)
 end

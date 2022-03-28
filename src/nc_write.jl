@@ -7,7 +7,29 @@
         varname = "x", compress = 1, kwargs...) where {T<:Real}
 
 # Arguments
-- `kwargs`: Parameters passed to [ncvar_def]
+
+- `type`: which type to save? Julia variable types.
+
+- `kwargs`: Parameters passed to `ncvar_def`, and further to [`NCDatasets.defVar`]. 
+   For examples:
+
+    + fillvalue: A value filled in the NetCDF file to indicate missing data. It
+       will be stored in the _FillValue attribute.
+
+    + chunksizes: Vector integers setting the chunk size. The total size of a
+       chunk must be less than 4 GiB.
+
+    + shuffle: If true, the shuffle filter is activated which can improve the
+       compression ratio.
+
+    + checksum: The checksum method can be :fletcher32 or :nochecksum
+       (checksumming is disabled, which is the default)
+
+    + attrib: An iterable of attribute name and attribute value pairs, for
+       example a Dict, DataStructures.OrderedDict or simply a vector of pairs
+       (see example below)
+
+
 - `mode`(not used): one of "r", "c", "w", see [NCDatasets.nc_open()] for details
 
 # Examples:
@@ -42,7 +64,7 @@ function nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}
     end
 end
 
-function nc_write!(data, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
+function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
     varname = "x", compress = 1, kwargs...) where {T<:Real}
 
     mode = check_file(f) ? "a" : "c";
@@ -51,7 +73,7 @@ function nc_write!(data, f::AbstractString, dims::Vector{NcDim}, attrib = Dict()
     close(ds)
 end
 
-function nc_write!(data, f::AbstractString, dims::Vector{<:AbstractString}, attrib = Dict();
+function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{<:AbstractString}, attrib = Dict();
     varname = "x", compress = 1, kwargs...) where {T<:Real}
 
     mode = check_file(f) ? "a" : "c";

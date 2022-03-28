@@ -46,8 +46,10 @@ end
 """
     heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing})
     heat_index(t::AbstractArray{T}, rh::AbstractArray{T}) where {T<:Union{Missing,Real}}
-    heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString; 
-        overwrite = false, raw = true, compress = 1, offset = -273.15)
+    heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString;
+        raw=true, offset = -273.15,
+        varname="HI", type = Float32, compress=1, 
+        overwrite=false)
 
 # Arguments
 - `t`: degF
@@ -59,7 +61,9 @@ heat_index(f_tair, f_rh, outfile; overwrite = false, raw = true, compress = 1)
 ```
 """
 function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString;
-    overwrite=false, raw=true, compress=1, offset = -273.15)
+    raw=true, offset = -273.15,
+    varname="HI", type = Float32, compress=1, 
+    overwrite=false)
 
     if !isfile(outfile) || overwrite
         isfile(outfile) && rm(outfile)
@@ -75,6 +79,6 @@ function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::Abstr
 
         println("saving ...")
         dims = ncvar_dim(f_tair)
-        @time nc_write(arr_HI, outfile, dims; varname="HI", compress=compress)
+        @time nc_write(arr_HI, outfile, dims; varname=varname, type=type, compress=compress)
     end
 end

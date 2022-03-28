@@ -6,23 +6,29 @@
 
 # Arguments
 
-- `compress`: Compression level: 0
-    (default) means no compression and 9 means maximum compression. Each chunk
-    will be compressed individually.
+- `compress`: Compression level: 0 (default) means no compression and 9 means
+    maximum compression. Each chunk will be compressed individually.
+
+- `type`: which type to save? Julia variable types (not string), e.g., `Float32`.
+
 - `options`: Dictionary object, 
-    - `fillvalue`: A value filled in the NetCDF file to indicate missing data. It
-        will be stored in the _FillValue attribute.
+
+    - `fillvalue`: A value filled in the NetCDF file to indicate missing data.
+        It will be stored in the _FillValue attribute.
+
     - `chunksizes`: Vector integers setting the chunk size. The total size of a
         chunk must be less than 4 GiB. 
-    - `shuffle`: If true, the shuffle filter is activated which can improve the
-    compression ratio.
-    - `checksum`: The checksum method can be :fletcher32 or :nochecksum
-    (checksumming is disabled, which is the default)
-    - `attrib`: An iterable of attribute name and attribute value pairs, for example
-    a Dict, DataStructures.OrderedDict or simply a vector of pairs (see example
-    below)
-    - `typename` (string): The name of the NetCDF type required for vlen arrays
 
+    - `shuffle`: If true, the shuffle filter is activated which can improve the
+        compression ratio.
+
+    - `checksum`: The checksum method can be :fletcher32 or :nochecksum
+        (checksumming is disabled, which is the default)
+
+    - `attrib`: An iterable of attribute name and attribute value pairs, for
+        example a Dict, DataStructures.OrderedDict or simply a vector of pairs
+        (see example below)
+    
 # Examples
 
 ```julia
@@ -50,13 +56,17 @@ nc_info(f)
 @seealso [ncdim_def](ref)
 """
 function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib = Dict();
-    compress = 1, kwargs...)
+    compress = 1, type = nothing, kwargs...)
 
     # attrib["deflatelevel"] = compress
     if name in keys(ds)
         # println(options)
         @warn "Variable `$name`: exist!"
         return
+    end
+    # change datatype
+    if type !== nothing && eltype(val) != type
+        val = @.(type(val))
     end
     # defDim(ds, name, length(val))
     defVar(ds, name, val, dims; attrib = attrib, deflatelevel = compress, kwargs...)
