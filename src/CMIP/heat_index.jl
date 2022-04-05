@@ -52,13 +52,20 @@ end
         overwrite=false)
 
 # Arguments
-- `t`: degF
+- `t`: degC
 - `rh`: %
 
 # Examples
 ```julia
 heat_index(f_tair, f_rh, outfile; overwrite = false, raw = true, compress = 1)
 ```
+
+# References
+1. https://www.wpc.ncep.noaa.gov/html/heatindex_equationbody.html
+2. Kong, D., Gu, X., Li, J., Ren, G., & Liu, J. (2020). Contributions of Global 
+    Warming and Urbanization to the Intensification of Human‐Perceived Heatwaves 
+    Over China. Journal of Geophysical Research: Atmospheres, 125(18), 1–16. 
+    https://doi.org/10.1029/2019JD032175.
 """
 function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString;
     raw=true, offset = -273.15,
