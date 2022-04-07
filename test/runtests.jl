@@ -1,6 +1,6 @@
 using Test
 using nctools
-using nctools.Ipaper
+using Ipaper
 
 # println(dirname(@__FILE__))
 # println(pwd())
@@ -8,7 +8,7 @@ using nctools.Ipaper
 # cd(dirname(@__FILE__)) do
 include("test-nc_write.jl")
 include("test-nc_dims.jl")
-include("test-Ipaper.jl")
+# include("test-Ipaper.jl")
 
     # include("test-smooth_whit.jl")
     # include("test-smooth_SG.jl")
