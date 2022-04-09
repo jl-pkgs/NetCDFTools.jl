@@ -26,11 +26,18 @@ end
 nc_close(ds::NCdata) = close(ds)
 
 
+# https://github.com/rafaqz/Rasters.jl/blob/master/src/sources/ncdatasets.jl
 function nc_bands(ds::NCdata)
     # v_id = NCDatasets.nc_inq_varids(ds.ncid)
     # vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
     vars = keys(ds)
-    dims = ["lon", "lat", "time"]
+    dims = ["lon", "long", "longitude",
+        "lat", "latitude", 
+        "lev", "level", "mlev", 
+        "crs",
+        # "vertical", 
+        # "x", "y", "z",
+        "time"]
     setdiff(vars, [dims; dims .* "_bnds"; "height"])
 end
 
