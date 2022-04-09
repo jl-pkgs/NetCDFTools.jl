@@ -10,7 +10,8 @@ function Tem_C2F(T_degC::Real)
     T_degC .* (9 / 5) .+ 32 # T_degF
 end
 
-function heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing})
+function heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing}; missval = -9999)
+    if t == missval || rh == missval; return(missing); end
     t = Tem_C2F(t)
     # if (ismissing(t) || ismissing(rh)); return(NaN64); end
     if (t <= 40)
@@ -39,8 +40,8 @@ function heat_index(t::Union{<:Real,Missing}, rh::Union{<:Real,Missing})
     Tem_F2C(hi)
 end
 
-function heat_index(t::AbstractArray{T}, rh::AbstractArray{T}) where {T<:Union{Missing,Real}}
-    heat_index.(t, rh)
+function heat_index(t::AbstractArray{T}, rh::AbstractArray{T}; missval = -9999) where {T<:Union{Missing,Real}}
+    heat_index.(t, rh; missval = missval)
 end
 
 """
@@ -70,6 +71,7 @@ heat_index(f_tair, f_rh, outfile; overwrite = false, raw = true, compress = 1)
 function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString;
     raw=true, offset = -273.15,
     varname="HI", type = Float32, compress=1, 
+    missval = -9999.0,
     overwrite=false)
 
     if !isfile(outfile) || overwrite
@@ -82,7 +84,7 @@ function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::Abstr
         arr_rh = nc_read(f_rh; raw=raw)
 
         println("calculating HI ...")
-        @time arr_HI = heat_index.(arr_tair, arr_rh)
+        @time arr_HI = heat_index.(arr_tair, arr_rh; missval = missval)
 
         println("saving ...")
         dims = ncvar_dim(f_tair)
