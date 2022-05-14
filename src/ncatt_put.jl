@@ -50,3 +50,8 @@ function ncatt_del(f::NCfiles, keys::Vector{<:AbstractString})
         end
     end
 end
+
+function ncatt_del(f::NCfiles)
+    keys = map(x -> x.first, ncatt_get(f))
+    ncatt_del(f, keys)
+end
