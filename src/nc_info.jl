@@ -1,14 +1,25 @@
-NCdata = Union{NCDataset, NCDatasets.MFDataset}
-NCfiles = Union{Vector{<:AbstractString}, AbstractString}
+NCdata = Union{NCDataset,NCDatasets.MFDataset}
+NCfiles = Union{Vector{<:AbstractString},AbstractString}
 
 # nc_open = NCDataset
 """
-    nc_open is same as NCDataset
+    open netcdf file, `nc_open` is alias of `NCDataset`
+
+$(TYPEDSIGNATURES)
+
+# Arguments
+
+- `mode`:
+
+    + "a": append
+    + "c": create
+
+# Examples
+
+$(METHODLIST)
 
 @seealso [NCDatasets.NCDataset()]
 """
-# nc_open = NCDataset
-
 function nc_open(f::NCfiles, args...; kwargs...)
     NCDataset(path_mnt.(f), args...; kwargs...)
 end
@@ -32,8 +43,8 @@ function nc_bands(ds::NCdata)
     # vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
     vars = keys(ds)
     dims = ["lon", "long", "longitude",
-        "lat", "latitude", 
-        "lev", "level", "mlev", 
+        "lat", "latitude",
+        "lev", "level", "mlev",
         "crs",
         # "vertical", 
         # "x", "y", "z",

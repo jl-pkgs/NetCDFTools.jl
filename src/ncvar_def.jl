@@ -6,6 +6,8 @@
 
 # Arguments
 
+- `val`: can be `data` or vtype
+
 - `compress`: Compression level: 0 (default) means no compression and 9 means
     maximum compression. Each chunk will be compressed individually.
 
@@ -55,8 +57,8 @@ nc_info(f)
 
 @seealso [ncdim_def](ref)
 """
-function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib = Dict();
-    compress = 1, type = nothing, kwargs...)
+function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib=Dict();
+    compress=1, type=nothing, kwargs...)
 
     # attrib["deflatelevel"] = compress
     if name in keys(ds)
@@ -69,16 +71,16 @@ function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib = Dict(
         val = @.(type(val))
     end
     # defDim(ds, name, length(val))
-    defVar(ds, name, val, dims; attrib = attrib, deflatelevel = compress, kwargs...)
+    defVar(ds, name, val, dims; attrib=attrib, deflatelevel=compress, kwargs...)
 end
 
-function ncvar_def(ds, name, val, dims::Vector{NcDim}, attrib = Dict();
-    compress = 1, kwargs...)
+function ncvar_def(ds, name, val, dims::Vector{NcDim}, attrib=Dict();
+    compress=1, kwargs...)
 
     # attrib["deflatelevel"] = compress
     ncdim_def(ds, dims) # define dimensions if previous not exist
     dimnames = map(x -> x.name, dims)
-    ncvar_def(ds, name, val, dimnames; attrib = attrib, deflatelevel = compress, kwargs...)
+    ncvar_def(ds, name, val, dimnames; attrib=attrib, deflatelevel=compress, kwargs...)
     # var = NcVar(varname, dims; t = type, compress = compress)
 end
 

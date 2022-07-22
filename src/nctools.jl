@@ -13,6 +13,9 @@ export nc_open, close
 using CFTime
 using Dates
 
+# using DocStringExtensions: TYPEDFIELDS, TYPEDEF
+using DocStringExtensions
+
 # include("Ipaper/Ipaper.jl")
 using Ipaper
 export Ipaper

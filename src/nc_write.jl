@@ -1,10 +1,5 @@
 """
-    nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
-        varname = "x", compress = 1, kwargs..., overwrite = false, mode = "c") where {T<:Real}
-    nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
-        varname = "x", compress = 1, kwargs...) where {T<:Real}
-    nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{<:AbstractString}, attrib = Dict();
-        varname = "x", compress = 1, kwargs...) where {T<:Real}
+    $(TYPEDSIGNATURES)
 
 # Arguments
 
@@ -39,14 +34,15 @@ dims = [
     NcDim("lat", lat, Dict("longname" => "Latitude", "units" => "degrees north"))
     NcDim("time", 1:ntime)
 ]
-nc_write(data, f, dims; varname = "x", opt...)
-
-seealso ncvar_def
 ```
-"""
-function nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
-    varname = "x", compress = 1, overwrite = false, mode = "c", kwargs...) where {T<:Real}
 
+$(METHODLIST)
+
+@seealso `ncvar_def`
+"""
+function nc_write(val, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
+    varname="x", compress=1, overwrite=false, mode="c", kwargs...) where {T<:Real}
+    
     # check whether variable defined
     if !check_file(f) || overwrite
         if isfile(f)
@@ -55,29 +51,25 @@ function nc_write(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}
 
         ds = nc_open(f, mode)
         ncdim_def(ds, dims)
-    
+
         dimnames = names(dims)
-        ncvar_def(ds, varname, data, dimnames, attrib; compress = compress, kwargs...)
+        ncvar_def(ds, varname, val, dimnames, attrib; compress=compress, kwargs...)
         close(ds)
     else
         println("[file exist]: $(basename(f))")
     end
 end
 
-function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{NcDim}, attrib = Dict();
-    varname = "x", compress = 1, kwargs...) where {T<:Real}
+"""
+$(TYPEDSIGNATURES)
 
-    mode = check_file(f) ? "a" : "c";
+$(METHODLIST)
+"""
+function nc_write!(val, f::AbstractString, dims::Vector{<:Union{NcDim,<:AbstractString}}, attrib=Dict();
+    varname="x", compress=1, kwargs...) where {T<:Real}
+
+    mode = check_file(f) ? "a" : "c"
     ds = nc_open(f, mode)
-    ncvar_def(ds, varname, data, dims, attrib; compress = compress, kwargs...)
-    close(ds)
-end
-
-function nc_write!(data::AbstractArray{T}, f::AbstractString, dims::Vector{<:AbstractString}, attrib = Dict();
-    varname = "x", compress = 1, kwargs...) where {T<:Real}
-
-    mode = check_file(f) ? "a" : "c";
-    ds = nc_open(f, mode)
-    ncvar_def(ds, varname, data, dims, attrib; compress = compress, kwargs...)
+    ncvar_def(ds, varname, val, dims, attrib; compress=compress, kwargs...)
     close(ds)
 end
