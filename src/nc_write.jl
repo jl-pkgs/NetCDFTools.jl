@@ -40,9 +40,8 @@ $(METHODLIST)
 
 @seealso `ncvar_def`
 """
-function nc_write(val, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
-    varname="x", compress=1, overwrite=false, mode="c", kwargs...) where {T<:Real}
-    
+function nc_write(f::AbstractString, varname::AbstractString, val, dims::Vector{NcDim}, attrib::Dict=Dict();
+    compress=1, overwrite=false, mode="c", kw...)
     # check whether variable defined
     if !check_file(f) || overwrite
         if isfile(f)
@@ -53,23 +52,45 @@ function nc_write(val, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
         ncdim_def(ds, dims)
 
         dimnames = names(dims)
-        ncvar_def(ds, varname, val, dimnames, attrib; compress=compress, kwargs...)
+        ncvar_def(ds, varname, val, dimnames, attrib; compress=compress, kw...)
         close(ds)
     else
         println("[file exist]: $(basename(f))")
     end
 end
 
+
+function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
+    varname="x", kw...)
+
+    printstyled("Deprecated function! ", color=:red)
+    nc_write(f, varname, val, dims, attrib; kw...)
+end
+
+
 """
 $(TYPEDSIGNATURES)
 
 $(METHODLIST)
 """
-function nc_write!(val, f::AbstractString, dims::Vector{<:Union{NcDim,<:AbstractString}}, attrib=Dict();
-    varname="x", compress=1, kwargs...) where {T<:Real}
+function nc_write!(f::AbstractString, varname::AbstractString, val, dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
+    compress=1, kw...)
 
     mode = check_file(f) ? "a" : "c"
     ds = nc_open(f, mode)
-    ncvar_def(ds, varname, val, dims, attrib; compress=compress, kwargs...)
+    ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
     close(ds)
+end
+
+
+"""
+$(TYPEDSIGNATURES)
+
+$(METHODLIST)
+"""
+function nc_write!(val::AbstractArray, f::AbstractString, dims::Vector{<:Union{NcDim,AbstractString}}, attrib=Dict();
+    varname="x", kw...)
+
+    printstyled("Deprecated function! ", color=:red)
+    nc_write!(f, varname, val, dims, attrib; kw...)
 end

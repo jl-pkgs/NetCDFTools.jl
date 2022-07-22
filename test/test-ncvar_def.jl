@@ -10,7 +10,7 @@ function create_nc()
   ds
 end
 
-f = "f5.nc"
+f = "f1.nc"
 compress = 0
 cellsize = 1
 lon = 70+cellsize/2:cellsize:140
@@ -21,7 +21,7 @@ dat = ones(length(lon), length(lat), ntime);
 
 begin
   ds = create_nc()
-  ncvar_def(ds, "HI", dat, ["lon", "lat", "time"]; compress=compress, longname="hello")
+  ncvar_def(ds, "HI", dat, ["lon", "lat", "time"], Dict("longname" => "hello"); compress=compress)
   close(ds)
 
   # append a variable
@@ -39,16 +39,23 @@ end
 
 ## a modern way to define variable
 begin
-  f = "f6.nc"
+  attr = Dict(
+    "units" => "degree_Celsius",
+    "add_offset" => -273.15,
+    "scale_factor" => 0.1,
+    "long_name" => "Temperature"
+  )
+
+  f = "f1.nc"
   ds = create_nc()
   nc_close(ds)
-  nc_write!(dat, f, ["lon", "lat", "time"]; varname="HI", compress=compress, longname="hello")
+  nc_write!(dat, f, ["lon", "lat", "time"]; varname="HI", compress=compress)
 
   # append a variable
-  nc_write!(dat, f, ["lon", "lat", "time"]; varname="HI2", compress=compress, longname="hello")
+  nc_write!(dat, f, ["lon", "lat", "time"], Dict("longname" => "hello"); varname="HI2", compress=compress)
 
   # add a blank data
-  nc_write!(Float64, f, ["lon", "lat", "time"]; varname="HI2", compress=compress, longname="hello")
+  nc_write!(f, "HI3", Float64, ["lon", "lat", "time"], attr; compress=compress)
 
   nc_info(f)
 end

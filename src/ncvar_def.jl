@@ -43,7 +43,7 @@ ncdim_def(ds, "lon", lon, Dict("longname" => "Longitude", "units" => "degrees ea
 ncdim_def(ds, "lat", lat, Dict("longname" => "Latitude", "units" => "degrees north"))
 ncdim_def(ds, "time", 1:ntime)
 
-ncvar_def(ds, "HI", dat, ["lon", "lat", "time"]; compress = compress, longname = "hello")
+ncvar_def(ds, "HI", dat, ["lon", "lat", "time"], Dict("longname" => "hello"); compress = compress)
 close(ds)
 
 # append a variable
