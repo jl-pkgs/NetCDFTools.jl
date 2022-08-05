@@ -19,3 +19,4 @@ Pkg.add(url = "https://github.com/jl-spatial/nctools.jl")
 - add support for [Rasters.jl](https://github.com/rafaqz/Rasters.jl)
 - update [Stars.jl](https://github.com/jl-spatial/Stars.jl)
 - 学习julia写注释的方法
+- 添加multi-files读取的支持，添加CMIP6数据截取和拼接函数
