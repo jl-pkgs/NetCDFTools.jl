@@ -70,24 +70,26 @@ heat_index(f_tair, f_rh, outfile; overwrite = false, raw = true, compress = 1)
 """
 function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::AbstractString;
     raw=true, offset = -273.15,
-    varname="HI", type = Float32, compress=1, 
+    varname="HI", FT = Float32, compress=1, 
     missval = -9999.0,
     overwrite=false)
 
     if !isfile(outfile) || overwrite
         isfile(outfile) && rm(outfile)
-
+        
         println("reading Tair ...")
-        arr_tair = nc_read(f_tair; raw=raw) .+ offset
-
+        arr_tair = nc_read(f_tair; type=FT, raw=raw) .+ FT(offset)
+        
         println("reading RH ...")
-        arr_rh = nc_read(f_rh; raw=raw)
+        arr_rh = nc_read(f_rh; type=FT, raw=raw)
 
         println("calculating HI ...")
         @time arr_HI = heat_index.(arr_tair, arr_rh; missval = missval)
 
         println("saving ...")
         dims = ncvar_dim(f_tair)
-        @time nc_write(arr_HI, outfile, dims; varname=varname, type=type, compress=compress)
+        
+        @time nc_write(outfile, varname, arr_HI, dims; type=FT, compress=compress)
+        # @time nc_write(arr_HI, outfile, dims; varname=varname, type=type, compress=compress)
     end
 end

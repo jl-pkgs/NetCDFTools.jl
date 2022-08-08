@@ -63,7 +63,7 @@ end
 function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
     varname="x", kw...)
 
-    printstyled("Deprecated function! ", color=:red)
+    printstyled("Deprecated nc_write function! ", color=:red)
     nc_write(f, varname, val, dims, attrib; kw...)
 end
 
@@ -91,6 +91,6 @@ $(METHODLIST)
 function nc_write!(val::AbstractArray, f::AbstractString, dims::Vector{<:Union{NcDim,AbstractString}}, attrib=Dict();
     varname="x", kw...)
 
-    printstyled("Deprecated function! ", color=:red)
+    printstyled("Deprecated nc_write! function! ", color=:red)
     nc_write!(f, varname, val, dims, attrib; kw...)
 end
