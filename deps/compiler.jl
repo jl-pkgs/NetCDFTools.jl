@@ -1,4 +1,5 @@
 using PackageCompiler
 
-PackageCompiler.create_sysimage(["nctools"]; sysimage_path="/opt/julia/libnctools.so",
+pkg = "Ipaper"
+PackageCompiler.create_sysimage([pkg]; sysimage_path="/opt/julia/lib$pkg.so",
                                        precompile_execution_file="init.jl")

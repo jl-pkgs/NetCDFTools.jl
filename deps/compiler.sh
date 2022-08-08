@@ -6,5 +6,5 @@ time julia compiler.jl
 #         "--sysimage",
 #         "/opt/julia/libnctools.so"
 #     ],
-time julia --sysimage /opt/julia/libnctools.so init.jl
+time julia --sysimage /opt/julia/libIpaper.so init.jl
 time julia init.jl
