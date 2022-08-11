@@ -12,47 +12,57 @@ end
     
 Represents a NetCDF dimension of name `name` optionally holding the dimension values.
 """
-NcDim(name::AbstractString, vals::AbstractArray, atts::Dict = Dict()) =
+NcDim(name::AbstractString, vals::AbstractArray, atts::Dict=Dict()) =
     NcDim(name, length(vals), vals, atts)
 
 function Ipaper.names(dims::Vector{NcDim})
     map(x -> x.name, dims)
 end
 
+"""
+    $(TYPEDSIGNATURES)
+# Examples
+```julia
+f = "test/data/temp_HI.nc"
+dims = nc_dims(f)
+dims[["lon", "lat"]]
+```
+"""
 function Base.getindex(dims::Vector{NcDim}, name::AbstractString)
     names = Ipaper.names(dims)
     ind = indexin([name], names)[1]
     dims[ind]
 end
 
-# function Base.getindex(dims::Vector{NcDim}, name::Vector{AbstractString})
-#     names = Ipaper.names(dims)
-#     ind = indexin(name, names)
-#     print(ind)
-#     dims[ind]
-# end
+function Base.getindex(dims::Vector{NcDim}, name::Vector{<:AbstractString})
+    names = Ipaper.names(dims)
+    ind = indexin(name, names)
+    # print(ind)
+    dims[ind]
+end
+
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
-function nc_dim_shape(ds::NCdata, name = "time")
+function get_nc_dim(ds::NCdata, name="time")
     n = ds.dim[name]
     vals = 1:n
     NcDim(name, n, vals, Dict())
     # NcDim(name, n, nothing, Dict()) # TODO
 end
 
-function nc_dim(ds::NCdata, name = "time")
+function nc_dim(ds::NCdata, name="time")
     if haskey(ds, name)
         try
             x = ds[name]
             NcDim(name, x.var[:], Dict(x.attrib))
         catch
-            nc_dim_shape(ds, name)
+            get_nc_dim(ds, name)
         end
     else
-        nc_dim_shape(ds, name)
+        get_nc_dim(ds, name)
     end
 end
 
-function nc_dim(file::NCfiles, name = "time")
+function nc_dim(file::NCfiles, name="time")
     nc_open(file) do ds
         nc_dim(ds, name)
     end
@@ -107,7 +117,7 @@ function nc_cellsize(files::Vector{<:AbstractString})
     cell_x, cell_y, regular
 end
 
-function ncvar_dim(ds::NCdata, varname::Union{String, Nothing} = nothing; varid = 1)
+function ncvar_dim(ds::NCdata, varname::Union{String,Nothing}=nothing; varid=1)
     if varname === nothing
         varname = nc_bands(ds)[varid]
     end
@@ -118,7 +128,7 @@ function ncvar_dim(ds::NCdata, varname::Union{String, Nothing} = nothing; varid 
     dims[ids]
 end
 
-function ncvar_dim(file::NCfiles, varname::Union{String,Nothing} = nothing; kwargs...)
+function ncvar_dim(file::NCfiles, varname::Union{String,Nothing}=nothing; kwargs...)
     nc_open(file) do ds
         ncvar_dim(ds, varname; kwargs...)
     end

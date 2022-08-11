@@ -58,6 +58,10 @@ function nc_bands(file::NCfiles)
     end
 end
 
+get_bandName(file, band::Integer) = nc_bands(file)[band]
+get_bandName(file, band::AbstractString) = band
+
+
 function nc_info(ds::NCdata)
     # vars = nc_bands(ds)[1]
     println(ds)
@@ -69,5 +73,15 @@ function nc_info(file::NCfiles)
         nc_info(ds)
     end
 end
+
+function ncvar_info(file::NCfiles, band = 1)
+    println(basename(file))
+    # band = nc_bands(file)[1]
+    bandName = get_bandName(file, band)
+    nc_open(file) do ds
+        print(ds[bandName])
+    end
+end
+
 
 ncinfo = nc_info

@@ -1,6 +1,8 @@
 # using nctools
 # using Test
 
+import Random: seed!
+
 @testset "nc_write" begin
   cellsize = 2
   range = [70, 140, 15, 55]
@@ -11,6 +13,7 @@
   nlon = length(lon)
   nlat = length(lat)
   ntime = 10
+  seed!(1)
   dat = rand(Float64, nlon, nlat, ntime)
 
   # time = 1:size(dat2, 3)
@@ -26,15 +29,15 @@
   isfile(fn) && rm(fn)
 
   ## test for nc_write `type`
-  nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index"); 
-    varname = "HI", overwrite = true, 
-    type = Float32)
+  nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index");
+    varname="HI", overwrite=true,
+    type=Float32)
   @test nc_read(fn) |> eltype == Float32
-  @test nc_read(fn, type = Float64) |> eltype == Float64
+  @test nc_read(fn, type=Float64) |> eltype == Float64
 
   ## test for overwrite
-  nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index"); varname = "HI", overwrite = true)
-  nc_write!(dat, fn, dims; varname = "HI2") # test for multiple variables
+  nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index"); varname="HI", overwrite=true)
+  nc_write!(dat, fn, dims; varname="HI2") # test for multiple variables
 
   nc_info(fn)
   @test nc_bands(fn) == ["HI", "HI2"]

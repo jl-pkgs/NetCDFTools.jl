@@ -4,15 +4,16 @@
 
 module CMIP
 
-using DataFrames
-# import nctools: nc_calendar | not work
 using nctools
-import nctools.Ipaper: dates_miss, dates_nmiss
+# import nctools: nc_calendar | not work
+using DataFrames: DataFrame
+import Ipaper: str_extract, str_extract_all,
+  dates_miss, dates_nmiss, 
+  dt_merge
 
 include("CMIPFiles_info.jl")
-
-# include("unit_convert.jl")
 include("heat_index.jl")
+# include("unit_convert.jl")
 
 
 export Tem_F2C, Tem_C2F, heat_index

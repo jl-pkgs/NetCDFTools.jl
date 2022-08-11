@@ -44,6 +44,3 @@ function nc_read(file, band = 1; type = nothing, period = nothing,
     data
     # data = SharedArray(data)
 end
-
-get_bandName(file, band::Integer) = nc_bands(file)[band]
-get_bandName(file, band::AbstractString) = band

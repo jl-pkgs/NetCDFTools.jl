@@ -1,7 +1,7 @@
 # Copyright (c) 2022 Dongdong Kong. All rights reserved.
 # This work is licensed under the terms of the MIT license.  
 # For a copy, see <https://opensource.org/licenses/MIT>.
-
+# using nctools
 module nctools
 
 # using NetCDF
@@ -17,8 +17,9 @@ using Dates
 using DocStringExtensions
 
 # include("Ipaper/Ipaper.jl")
-using Ipaper
-export Ipaper
+import Ipaper
+import Ipaper: names, path_mnt, check_file
+# export Ipaper
 
 include("nc_info.jl")
 include("nc_dim.jl")
@@ -34,7 +35,8 @@ include("CMIP/CMIP.jl")
 export CMIP
 
 
-export nc_open, nc_close, nc_bands, nc_date, nc_info, ncinfo
+export nc_open, nc_close
+export nc_bands, get_bandName, nc_info, ncinfo, ncvar_info
 export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize
 export nc_read, nc_write, nc_write!
 export nc_date, nc_calendar

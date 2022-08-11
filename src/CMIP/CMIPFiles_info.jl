@@ -1,7 +1,3 @@
-import nctools.Ipaper: str_extract, str_extract_all
-
-
-# match(Regex(), basename(file)).match
 """
     get_model(file; prefix = "day_", postfix = "_hist|_ssp|_piControl")
 """
@@ -13,7 +9,7 @@ function get_ensemble(file, pattern::AbstractString = "(?<=_)r\\d.*(?=_\\d{4,8})
     str_extract(basename(file), pattern)
 end
 
-function get_scenario(file, pattern::AbstractString = "[a-z,A-Z,0-9]*(?=_r\\d)")
+function get_scenario(file, pattern::AbstractString = "[a-z,A-Z,0-9,-]*(?=_r\\d)")
     str_extract(basename(file), pattern)
 end
 
@@ -45,19 +41,20 @@ end
 - `date_begin`, `date_end`:
 - `file`:
 """
-function CMIPFiles_info(files)
+function CMIPFiles_info(files; include_nmiss=false)
     date_begin, date_end = get_date(files)
     calender = nc_calendar.(files)
     cell_x, cell_y, regular = nc_cellsize(files)
 
-    DataFrame(
+    nmiss = include_nmiss ? get_date_nmiss.(files) : NaN;
+    DataFrame(;
         model = get_model.(files),
         ensemble = get_ensemble.(files),
         scenario = get_scenario.(files),
         date_begin = date_begin, date_end = date_end,
-        calender = calender,
-        nmiss = get_date_nmiss.(files), # v0.1.2
-        cell_x = cell_x, cell_y = cell_y, grid_regular = regular, file = files)
+        calender,
+        nmiss, # v0.1.2, low efficient
+        cell_x, cell_y, grid_regular = regular, file = files)
 end
 
 
