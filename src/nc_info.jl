@@ -46,6 +46,7 @@ function nc_bands(ds::NCdata)
         "lat", "latitude",
         "lev", "level", "mlev",
         "crs",
+        "prob", "probs",
         # "vertical", 
         # "x", "y", "z",
         "time"]
