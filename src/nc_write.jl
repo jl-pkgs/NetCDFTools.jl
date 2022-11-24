@@ -69,6 +69,8 @@ end
 
 
 """
+Append Variable to netcdf
+
 $(TYPEDSIGNATURES)
 
 $(METHODLIST)
@@ -80,8 +82,24 @@ function nc_write!(f::AbstractString, varname::AbstractString, val, dims::Vector
     ds = nc_open(f, mode)
     ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
     close(ds)
+    nothing
 end
 
+"""
+$(TYPEDSIGNATURES)
+
+$(METHODLIST)
+"""
+function nc_write!(f::AbstractString, varname::AbstractString, val)
+    # mode = check_file(f) ? "a" : "c"
+    mode = "a"
+    ds = nc_open(f, mode)
+    ds[varname][:] = val
+    # @time data = ds[bandName].var[:] # not replace na values at here
+    # ds[bandName].var = val 
+    close(ds)
+    nothing
+end
 
 """
 $(TYPEDSIGNATURES)
