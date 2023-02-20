@@ -44,3 +44,5 @@ function heat_index_q(f_tair::AbstractString, f_q::AbstractString, outfile::Abst
     # @time nc_write(arr_HI, outfile, dims; varname=varname, type=type, compress=compress)
   end
 end
+
+precompile(heat_index_q, (String, String, String))

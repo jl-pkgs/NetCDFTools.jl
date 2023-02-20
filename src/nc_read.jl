@@ -56,3 +56,6 @@ function nc_read(file, band=1;
     close(ds)
   end
 end
+
+
+precompile(nc_read, (String, Int))

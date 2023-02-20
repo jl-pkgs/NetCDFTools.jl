@@ -68,6 +68,7 @@ function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, at
 end
 
 
+
 """
 Append Variable to netcdf
 
@@ -112,3 +113,7 @@ function nc_write!(val::AbstractArray, f::AbstractString, dims::Vector{<:Union{N
     printstyled("Deprecated nc_write! function!\n", color=:red)
     nc_write!(f, varname, val, dims, attrib; kw...)
 end
+
+
+precompile(nc_write, (Array{Float32,3}, String, Vector{NcDim}))
+precompile(nc_write!, (Array{Float32,3}, String, Vector{NcDim}))

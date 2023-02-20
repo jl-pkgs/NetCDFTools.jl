@@ -12,3 +12,6 @@ function nc_calendar(file::AbstractString)
         ds["time"].attrib["calendar"]
     end
 end
+
+precompile(nc_date, (NCfiles,))
+precompile(nc_calendar, (String,))

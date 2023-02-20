@@ -58,4 +58,6 @@ function CMIPFiles_info(files; include_nmiss=false)
 end
 
 
+precompile(CMIPFiles_info, (Vector{String}, ))
+
 export get_model, get_ensemble, get_scenario, get_date, get_date_nmiss, CMIPFiles_info

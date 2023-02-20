@@ -84,5 +84,10 @@ function ncvar_info(file::NCfiles, band = 1)
     end
 end
 
-
 ncinfo = nc_info
+
+
+precompile(nc_open, (NCfiles, ))
+precompile(nc_info, (NCfiles, ))
+precompile(nc_bands, (NCfiles, ))
+precompile(nc_close, (NCdata, ))

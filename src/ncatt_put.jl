@@ -55,3 +55,8 @@ function ncatt_del(f::NCfiles)
     keys = map(x -> x.first, ncatt_get(f))
     ncatt_del(f, keys)
 end
+
+
+precompile(ncatt_put, (NCfiles, Dict))
+precompile(ncatt_get, (NCfiles,))
+precompile(ncatt_del, (NCfiles,))

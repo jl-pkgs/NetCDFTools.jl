@@ -1,0 +1,69 @@
+# 说明
+
+> 2023-02-17
+该脚本用于生成 CMIP6 `HI_tmax`。
+
+
+```{julia}
+using Pkg
+Pkg.activate(".")
+
+using nctools
+using nctools.CMIP
+using Ipaper
+```
+
+```{julia}
+function get_fileInfo(indir, pattern="\\.nc"; prefix="day_", postfix="_hist|_ssp|_piControl")
+  fs = dir(indir, pattern)
+  model = @pipe basename.(fs) |> get_model.(_, prefix, postfix)
+  # scenario = @pipe basename.(fs) |> get_scenario.(_, prefix, postfix)
+  DataFrame(model=model, f=fs)
+end
+
+scenarios = ["hist-aer", "hist-GHG", "hist-nat", "historical",
+  "piControl", "ssp126", "ssp245", "ssp370", "ssp460", "ssp585"] # 
+
+dirs = [
+  "Z:/ChinaHW/CMIP6_mergedFiles/ChinaHW_CMIP6_raw/tasmax",
+  "Z:/ChinaHW/CMIP6_mergedFiles/ChinaHW_CMIP6_raw/huss"
+]
+
+dir_tmax = dirs[1]
+dir_huss = dirs[2]
+```
+
+> 获取模型信息
+
+```{julia}
+# i = 1[图片]
+for i = 1:length(scenarios)
+  scenario = scenarios[i]
+  printstyled("$scenario:\n\n"; bold=true, underline=true, color=:blue)
+
+  indir_tmax = "$dir_tmax/$scenario"
+  indir_huss = "$dir_huss/$scenario"
+
+  d_tmax = get_fileInfo(indir_tmax)
+  d_huss = get_fileInfo(indir_huss)
+
+  d_tmax, d_huss
+  info = dt_merge(d_tmax, d_huss; by="model", suffixes=["_tmax", "_huss"])
+  
+  # 变量的转换运算
+  for j = 1:nrow(info)
+    f_tmax = info.f_tmax[j]
+    f_huss = info.f_huss[j]
+    outfile = gsub(f_tmax, "tasmax", "HI_tasmax")
+
+    check_dir(dirname(outfile))
+    # println("[$j] $(basename(outfile))")
+
+    try
+      heat_index_q(f_tmax, f_huss, outfile; overwrite=false, compress=1)
+    catch
+      @warn "[e] :\n $f_tmax \n $f_huss\n" #\n $outfile
+    end
+  end
+end
+```

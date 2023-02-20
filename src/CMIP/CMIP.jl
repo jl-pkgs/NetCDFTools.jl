@@ -8,8 +8,7 @@ using nctools
 # import nctools: nc_calendar | not work
 using DataFrames: DataFrame
 import Ipaper: str_extract, str_extract_all,
-  dates_miss, dates_nmiss,
-  dt_merge
+  dates_miss, dates_nmiss
 
 include("CMIPFiles_info.jl")
 include("heat_index.jl")
