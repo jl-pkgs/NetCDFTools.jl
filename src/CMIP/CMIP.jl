@@ -11,12 +11,12 @@ import Ipaper: str_extract, str_extract_all,
   dates_miss, dates_nmiss
 
 include("CMIPFiles_info.jl")
-include("heat_index.jl")
 include("q2RH.jl")
+include("heat_index.jl")
 # include("unit_convert.jl")
 
 
-export Tem_F2C, Tem_C2F, heat_index
-export q2RH, heat_index_q
+export Tem_F2C, Tem_C2F, q2RH
+export heat_index, heat_index_q
 
 end
