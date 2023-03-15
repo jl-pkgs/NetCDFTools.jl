@@ -2,7 +2,7 @@
 
 julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "3ffe6d615edc6e87bb8281f575ed062142070f17"
+project_hash = "0382cbd2f936d11f377fbee53f349c49a03c8c64"
 
 [[deps.Adapt]]
 deps = ["LinearAlgebra", "Requires"]
@@ -215,7 +215,7 @@ version = "1.3.0"
 
 [[deps.Ipaper]]
 deps = ["CategoricalArrays", "Dates", "DocStringExtensions", "Glob", "LambdaFn", "MutableNamedTuples", "NaNStatistics", "Printf", "Random", "Reexport", "Statistics", "StatsBase", "Test"]
-git-tree-sha1 = "19facd02a6f41ade2fa7f5865d9a58c6a18e0019"
+git-tree-sha1 = "4635f0b9ac8e8097dabffde751214aef1aa5d8b1"
 repo-rev = "master"
 repo-url = "https://github.com/jl-spatial/Ipaper.jl"
 uuid = "e58298cb-69f7-4186-aecd-5834b6793426"
