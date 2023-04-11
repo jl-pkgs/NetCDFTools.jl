@@ -50,7 +50,8 @@ function nc_read(file, band=1;
       data = @.(type(data))
     end
     return data
-  catch
+  catch e
+    showerror(stdout, e)
     @warn "failed to read file: $file"
   finally
     close(ds)

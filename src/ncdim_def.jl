@@ -1,3 +1,11 @@
+function NcDim_time(dates)
+  vals = CFTime.timeencode.(dates, "days since 1970-01-01", eltype(dates))
+  attrib = Dict("units" => "days since 1970-01-01",
+        "calendar" => "proleptic_gregorian", "long_name" => "time")
+  NcDim("time", length(vals), vals, attrib)
+end
+
+
 """
     ncdim_def(ds, name, val, attrib = Dict())
     ncdim_def(ds, dim::NcDim)
@@ -16,10 +24,8 @@ close(ds)
 ## 2. by assigned variables
 # dates = nc_date(ds)
 ds = nc_open("f3.nc", "c")
-ncdim_def(ds, "time",
-    CFTime.timeencode.(dates, "days since 1970-01-01", eltype(dates)),
-    Dict("units" => "days since 1970-01-01",
-        "calendar" => "proleptic_gregorian", "long_name" => "time"))
+dim_t = NcDim_time(dates)
+ncdim_def(ds, dim_t)
 close(ds)
 ```
 """

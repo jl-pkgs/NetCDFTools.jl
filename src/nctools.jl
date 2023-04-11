@@ -41,6 +41,7 @@ export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize
 export nc_read, nc_write, nc_write!
 export nc_date, nc_calendar
 
+export NcDim_time
 export ncdim_def, ncvar_def
 export ncatt_put, ncatt_get, ncatt_del
 
