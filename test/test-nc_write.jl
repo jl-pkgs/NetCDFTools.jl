@@ -15,7 +15,8 @@ import Random: seed!
   ntime = 10
   seed!(1)
   dat = rand(Float64, nlon, nlat, ntime)
-
+  dat[1] = NaN
+  
   # time = 1:size(dat2, 3)
   dims = [
     NcDim("lon", lon, Dict("longname" => "Longitude", "units" => "degrees east"))
@@ -32,6 +33,10 @@ import Random: seed!
   nc_write(dat, fn, dims, Dict("longname" => "Heatwave Index");
     varname="HI", overwrite=true,
     type=Float32)
+  
+  dat2 = nc_read(fn; ind = (:, :, 1), raw=false)
+  @test dat2[1] === NaN32
+
   @test nc_read(fn) |> eltype == Float32
   @test nc_read(fn, type=Float64) |> eltype == Float64
 
@@ -43,21 +48,6 @@ import Random: seed!
   @test nc_bands(fn) == ["HI", "HI2"]
 
   data = nc_read(fn, "HI")
-  @test data == dat
+  @test data[:, :, 2:10] == dat[:, :, 2:10] # skip NA
   isfile(fn) && rm(fn)
-
-  ## 测试第二种数据写入方法
-  fn = "temp_HI2.nc"
-  isfile(fn) && rm(fn)
-  # 1. 写入一个空间文件
-  type = Float32
-  nc_write(fn, "HI", type, dims, Dict("longname" => "Heatwave Index"); overwrite=true)
-
-  # 2. 后续填入数据
-  nc_write!(fn, "HI", dat)
-  # `nc_write!`会自动进行变量类型的转换
-  # 此处dat被自动转为了`Float32`
-  dat2 = nc_read(fn, "HI")
-  @test eltype(dat2) == Float32
-  @test maximum(abs.(dat2 - dat)) <= 1e-6
 end

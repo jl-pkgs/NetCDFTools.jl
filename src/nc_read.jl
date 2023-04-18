@@ -22,6 +22,7 @@ function nc_read(file, band=1;
   ds = Dataset(path_mnt(file))
   bandName = get_bandName(file, band)
   # @time data = ds[bandName].var[:] # not replace na values at here
+  data = raw ? ds[bandName].var : ds[bandName]
 
   if ind === nothing && period !== nothing
     if length(period) == 1
@@ -39,24 +40,15 @@ function nc_read(file, band=1;
   if ind === nothing
     ind = (:,)
   end
+  verbose && @show(data, ind)
 
-  try
-    data = raw ? ds[bandName].var : ds[bandName]
-    
-    verbose && @show(data, ind) # debug mode
-    data = data[ind...]
+  data = data[ind...]
+  close(ds)
+  
+  if !raw; replace_miss!(data, NaN); end  
 
-    if type !== nothing && eltype(data) != type
-      data = @.(type(data))
-    end
-    return data
-  catch e
-    showerror(stdout, e)
-    @warn "failed to read file: $file"
-  finally
-    close(ds)
+  if type !== nothing && eltype(data) != type
+    data = @.(type(data))
   end
+  data
 end
-
-
-precompile(nc_read, (String, Int))

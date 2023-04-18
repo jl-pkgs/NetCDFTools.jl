@@ -40,67 +40,52 @@ $(METHODLIST)
 
 @seealso `ncvar_def`
 """
-function nc_write(f::AbstractString, varname::AbstractString, val, dims::Vector{NcDim}, attrib::Dict=Dict();
-    compress=1, overwrite=false, mode="c", kw...)
-    # check whether variable defined
-    if !check_file(f) || overwrite
-        if isfile(f)
-            rm(f)
-        end
+function nc_write(f::AbstractString, varname::AbstractString, val,
+  dims::Vector{NcDim}, attrib::Dict=Dict();
+  compress=1, overwrite=false, mode="c", kw...)
 
-        ds = nc_open(f, mode)
-        ncdim_def(ds, dims)
-
-        dimnames = names(dims)
-        ncvar_def(ds, varname, val, dimnames, attrib; compress=compress, kw...)
-        close(ds)
-    else
-        println("[file exist]: $(basename(f))")
+  # check whether variable defined
+  if !check_file(f) || overwrite
+    if isfile(f)
+      rm(f)
     end
+
+    ds = nc_open(f, mode)
+    ncdim_def(ds, dims)
+
+    dimnames = names(dims)
+    ncvar_def(ds, varname, val, dimnames, attrib; compress=compress, kw...)
+    close(ds)
+  else
+    println("[file exist]: $(basename(f))")
+  end
 end
 
 
 function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
-    varname="x", kw...)
+  varname="x", kw...)
 
-    printstyled("Deprecated nc_write function!\n", color=:red)
-    nc_write(f, varname, val, dims, attrib; kw...)
+  printstyled("Deprecated nc_write function!\n", color=:red)
+  printstyled("latest: nc_write(f, varname, val, dims, attrib; kw...)\n", color=:red)
+
+  nc_write(f, varname, val, dims, attrib; kw...)
 end
 
 
-
 """
-Append Variable to netcdf
-
 $(TYPEDSIGNATURES)
 
 $(METHODLIST)
 """
 function nc_write!(f::AbstractString, varname::AbstractString, val, dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
-    compress=1, kw...)
+  compress=1, kw...)
 
-    mode = check_file(f) ? "a" : "c"
-    ds = nc_open(f, mode)
-    ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
-    close(ds)
-    nothing
+  mode = check_file(f) ? "a" : "c"
+  ds = nc_open(f, mode)
+  ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
+  close(ds)
 end
 
-"""
-$(TYPEDSIGNATURES)
-
-$(METHODLIST)
-"""
-function nc_write!(f::AbstractString, varname::AbstractString, val)
-    # mode = check_file(f) ? "a" : "c"
-    mode = "a"
-    ds = nc_open(f, mode)
-    ds[varname][:] = val
-    # @time data = ds[bandName].var[:] # not replace na values at here
-    # ds[bandName].var = val 
-    close(ds)
-    nothing
-end
 
 """
 $(TYPEDSIGNATURES)
@@ -108,12 +93,8 @@ $(TYPEDSIGNATURES)
 $(METHODLIST)
 """
 function nc_write!(val::AbstractArray, f::AbstractString, dims::Vector{<:Union{NcDim,AbstractString}}, attrib=Dict();
-    varname="x", kw...)
+  varname="x", kw...)
 
-    printstyled("Deprecated nc_write! function!\n", color=:red)
-    nc_write!(f, varname, val, dims, attrib; kw...)
+  printstyled("Deprecated nc_write! function!\n", color=:red)
+  nc_write!(f, varname, val, dims, attrib; kw...)
 end
-
-
-precompile(nc_write, (Array{Float32,3}, String, Vector{NcDim}))
-precompile(nc_write!, (Array{Float32,3}, String, Vector{NcDim}))
