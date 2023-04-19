@@ -12,12 +12,15 @@
 
 - `ind`   : If `ind` provided, `period` will be ignored.
 
-- `raw`   : Boolean. It `true`, not replace na values.
+- `raw`   : Boolean. 
+  + `true`: raw data.
+  + `false` (default): `missing` will be replaced with `nodata`
 
 - `verbose`: Boolean. It `true`, `data` and `ind` will be printed on the console.
 """
 function nc_read(file, band=1;
-  type=nothing, period=nothing, ind=nothing, raw=false, verbose=false)
+  type=nothing, period=nothing, ind=nothing, 
+  raw=false, nodata = NaN, verbose=false)
 
   ds = Dataset(path_mnt(file))
   bandName = get_bandName(file, band)
@@ -45,7 +48,11 @@ function nc_read(file, band=1;
   data = data[ind...]
   close(ds)
   
-  if !raw; replace_miss!(data, NaN); end  
+  if !raw; 
+    # - `AbstractMissArray`: missing will replaced
+    # - `AbstractArray`: no missing, no operation
+    Ipaper.drop_missing!(data, nodata)
+  end
 
   if type !== nothing && eltype(data) != type
     data = @.(type(data))
