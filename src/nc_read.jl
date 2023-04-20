@@ -51,7 +51,8 @@ function nc_read(file, band=1;
   if !raw; 
     # - `AbstractMissArray`: missing will replaced
     # - `AbstractArray`: no missing, no operation
-    Ipaper.drop_missing!(data, nodata)
+    # Ipaper.drop_missing!(data, nodata) # alternative option
+    data = Ipaper.drop_missing(data, nodata)
   end
 
   if type !== nothing && eltype(data) != type
