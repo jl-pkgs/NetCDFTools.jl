@@ -47,3 +47,6 @@ gdal/
 
 # CMIP6 project
 ChinaHW_cluster_CMIP6
+
+*debug*
+*.vdoc.jl
