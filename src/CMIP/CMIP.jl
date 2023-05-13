@@ -4,12 +4,12 @@
 
 module CMIP
 
+using DocStringExtensions
 using nctools
 # import nctools: nc_calendar | not work
 using DataFrames: DataFrame, AbstractDataFrame
 import Ipaper: str_extract, str_extract_all,
   dates_miss, dates_nmiss
-
 
 
 # by reference
