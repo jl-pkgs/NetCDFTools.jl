@@ -3,6 +3,10 @@
 
 # Arguments
 
+- `check_vals`: If download failed, `length(unique(vals)) = 1`. Default check
+  the length of data unique values
+
+
 # Example
 
 ```julia
@@ -16,7 +20,9 @@ delta = 5
 ```
 """
 function nc_subset(f, range::Vector, fout=nothing; 
-  delta=5, outdir=".", overwrite=false)
+    delta=5, 
+    check_vals=true,
+    outdir=".", overwrite=false)
 
   fout === nothing && (fout = "$outdir/$(basename(f))")
   if isfile(fout) && !overwrite
@@ -41,6 +47,11 @@ function nc_subset(f, range::Vector, fout=nothing;
 
   printstyled("Reading data...\n")
   @time vals = v.var[:, :, :] # 三维数据
+  
+  if check_vals && length(unique(vals)) == 1
+    printstyled("[error] downloaded file failed: $f \n", color=:red)
+    return
+  end
   
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims2, Dict(v.attrib); compres=1, goal_attrib=Dict(nc.attrib))

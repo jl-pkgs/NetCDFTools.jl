@@ -49,6 +49,8 @@ end
 - `date_begin`, `date_end`:
 - `file`:
 
+$(METHODLIST)
+
 # Example
 ```julia
 fs = [
