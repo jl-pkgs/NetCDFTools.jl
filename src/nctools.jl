@@ -8,6 +8,8 @@ module nctools
 export NcDim
 
 using NCDatasets
+using NCDatasets: @select
+
 export nc_open, close
 
 using CFTime
@@ -29,12 +31,14 @@ include("nc_write.jl")
 include("ncvar_def.jl")
 include("ncdim_def.jl")
 include("ncatt_put.jl")
+include("nc_subset.jl")
 
 # CMIP
 include("CMIP/CMIP.jl")
 export CMIP
 
 
+export @select
 export nc_open, nc_close
 export nc_bands, get_bandName, nc_info, ncinfo, ncvar_info
 export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize

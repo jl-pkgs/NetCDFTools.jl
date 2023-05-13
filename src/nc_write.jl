@@ -3,10 +3,14 @@
 
 # Arguments
 
++ attrib: An iterable of attribute name and attribute value pairs, for example a
+  Dict, DataStructures.OrderedDict or simply a vector of pairs (see example
+  below)
+  
 - `type`: which type to save? Julia variable types.
 
-- `kwargs`: Parameters passed to `ncvar_def`, and further to [`NCDatasets.defVar`]. 
-   For examples:
+- `kwargs`: Parameters passed to `ncvar_def`, and further to
+   [`NCDatasets.defVar`]. For examples:
 
     + fillvalue: A value filled in the NetCDF file to indicate missing data. It
        will be stored in the _FillValue attribute.
@@ -19,11 +23,6 @@
 
     + checksum: The checksum method can be :fletcher32 or :nochecksum
        (checksumming is disabled, which is the default)
-
-    + attrib: An iterable of attribute name and attribute value pairs, for
-       example a Dict, DataStructures.OrderedDict or simply a vector of pairs
-       (see example below)
-
 
 - `mode`(not used): one of "r", "c", "w", see [NCDatasets.nc_open()] for details
 
@@ -42,7 +41,9 @@ $(METHODLIST)
 """
 function nc_write(f::AbstractString, varname::AbstractString, val,
   dims::Vector{NcDim}, attrib::Dict=Dict();
-  compress=1, overwrite=false, mode="c", kw...)
+  compress=1, overwrite=false, mode="c", 
+  global_attrib = Dict(),
+  kw...)
 
   # check whether variable defined
   if !check_file(f) || overwrite
@@ -51,6 +52,7 @@ function nc_write(f::AbstractString, varname::AbstractString, val,
     end
 
     ds = nc_open(f, mode)
+    ncatt_put(ds, global_attrib)
     ncdim_def(ds, dims)
 
     dimnames = names(dims)

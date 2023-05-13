@@ -41,6 +41,11 @@ function Base.getindex(dims::Vector{NcDim}, name::Vector{<:AbstractString})
     dims[ind]
 end
 
+function Base.getindex(dim::NcDim, inds)
+  vals = dim.vals[inds]
+  NcDim(dim.name, length(vals), vals, dim.atts)
+end
+
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
 function get_nc_dim(ds::NCdata, name="time")
     n = ds.dim[name]
