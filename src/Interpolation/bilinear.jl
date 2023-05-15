@@ -1,5 +1,3 @@
-include("bilinear_helper.jl")
-
 """
   $(TYPEDSIGNATURES)
 
