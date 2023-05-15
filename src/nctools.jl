@@ -8,7 +8,9 @@ module nctools
 export NcDim
 
 using NCDatasets
-using NCDatasets: @select
+import NCDatasets: @select, NCDataset, MFDataset
+
+using DataFrames: DataFrame, AbstractDataFrame
 
 export nc_open, close
 
@@ -35,6 +37,7 @@ include("nc_subset.jl")
 
 # CMIP
 include("CMIP/CMIP.jl")
+include("tools.jl")
 
 include("precompile.jl")
 

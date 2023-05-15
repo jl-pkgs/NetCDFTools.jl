@@ -32,7 +32,8 @@ function nc_subset(f, range::Vector, fout=nothing;
 
   nc = nc_open(f)
   printstyled("Reading dims...\n")
-  @time dims = ncvar_dim(nc)
+  # @time dims = ncvar_dim(nc)
+  @time dims = nc_dims(nc)
   band = nc_bands(nc)[1] # 只选择其中一个变量
 
   lonr = range[1:2] + [-1, 1] * delta# longitude range
@@ -56,4 +57,17 @@ function nc_subset(f, range::Vector, fout=nothing;
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims2, Dict(v.attrib); compres=1, goal_attrib=Dict(nc.attrib))
   # ncatt_put(fout, Dict(nc.attrib))
+end
+
+
+function nc_subset(d::AbstractDataFrame; 
+    outdir=".", kw...)
+
+  prefix = str_extract(basename(d.file[1]), ".*(?=_\\d{4})")
+  date_begin = d.date_begin[1]
+  date_end = d.date_end[end]
+
+  fout = "$outdir/$(prefix)_$date_begin-$date_end.nc"
+  urls = collect(d.file)
+  nc_subset(urls, range, fout; kw...)
 end

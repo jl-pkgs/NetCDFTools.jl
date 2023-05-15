@@ -17,6 +17,8 @@ function get_scenario(file, pattern::AbstractString="[a-z,A-Z,0-9,-]*(?=_r\\d)")
   str_extract(basename(file), pattern)
 end
 
+get_host(x::AbstractString) = str_extract(x, "(?<=://)[^\\/]*")
+
 # get date_begin and date_end from the file name
 function get_date(file::AbstractString, pattern::AbstractString="[0-9]{4,8}")
   str_extract_all(basename(file), pattern)
@@ -37,6 +39,10 @@ end
 function str_year(x::AbstractString)
   parse(Int, x[1:4])
 end
+
+is_ssp(x::AbstractString) = x[1:3] == "ssp"
+
+is_r1i1p1f1(x::AbstractString) = x[1:8] == "r1i1p1f1"
 
 """
   $(TYPEDSIGNATURES)
@@ -96,4 +102,6 @@ function CMIPFiles_info(files; detailed=false, include_year=false, include_nmiss
 end
 
 
-export get_model, get_ensemble, get_scenario, get_date, get_date_nmiss, CMIPFiles_info
+export is_ssp, is_r1i1p1f1, 
+  get_variable, get_host,
+  get_model, get_ensemble, get_scenario, get_date, get_date_nmiss, CMIPFiles_info
