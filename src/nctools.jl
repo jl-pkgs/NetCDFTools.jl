@@ -22,7 +22,7 @@ using DocStringExtensions
 
 # include("Ipaper/Ipaper.jl")
 import Ipaper
-import Ipaper: names, path_mnt, check_file
+import Ipaper: names, path_mnt, check_file, nanmean
 # export Ipaper
 
 include("nc_info.jl")
@@ -37,7 +37,7 @@ include("nc_subset.jl")
 
 # CMIP
 include("CMIP/CMIP.jl")
-include("tools.jl")
+include("Interpolation/Interpolation.jl")
 
 include("precompile.jl")
 
