@@ -22,7 +22,7 @@ using DocStringExtensions
 
 # include("Ipaper/Ipaper.jl")
 import Ipaper
-import Ipaper: names, path_mnt, check_file, nanmean
+import Ipaper: names, path_mnt, check_file, nanmean, grep
 # export Ipaper
 
 include("nc_info.jl")

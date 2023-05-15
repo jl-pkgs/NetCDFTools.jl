@@ -46,6 +46,13 @@ function Base.getindex(dim::NcDim, inds)
   NcDim(dim.name, length(vals), vals, dim.atts)
 end
 
+function Base.getindex(ds::NCDataset, pattern::Regex)
+  _keys = keys(ds)
+  _id = grep(_keys, pattern)[1]
+  _name = _keys[_id]
+  ds[_name]
+end
+
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
 function get_nc_dim(ds::NCdata, name="time")
   n = ds.dim[name]
