@@ -45,11 +45,12 @@ function nc_bands(ds::NCdata)
     dims = ["lon", "long", "longitude",
         "lat", "latitude",
         "lev", "level", "mlev",
+        "height",
         "crs",
         "prob", "probs",
         # "vertical", 
         # "x", "y", "z",
-        "time"]
+        "time", "time_bounds"]
     setdiff(vars, [dims; dims .* "_bnds"; "height"])
 end
 

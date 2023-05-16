@@ -16,7 +16,7 @@ nc = nc_open("tasmax_day_ACCESS-CM2_hist-GHG_r2i1p1f1_gn_18500101-18991231.nc")
 
 ```{julia}
 data = nc["tasmax"][:, :, :] |> drop_missing
-data = data .- 273.15
+data = data .- Float32(273.15)
 
 lat = nc["lat"][:]
 lon = nc["lon"][:]

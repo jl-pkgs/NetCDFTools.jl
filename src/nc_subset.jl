@@ -21,15 +21,15 @@ delta = 5
 """
 function nc_subset(f, range::Vector, fout=nothing; 
     delta=5, 
-    check_vals=true,
+    check_vals=true, verbose=true,
     outdir=".", overwrite=false)
 
   fout === nothing && (fout = "$outdir/$(basename(f))")
   if isfile(fout) && !overwrite
-    println("[ok] file downloaded already!")
+    verbose && println("[ok] file downloaded already!")
     return
   end
-
+  
   nc = nc_open(f)
   printstyled("Reading dims...\n")
   # @time dims = ncvar_dim(nc)
