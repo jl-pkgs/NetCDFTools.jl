@@ -12,7 +12,6 @@
 ```julia
 url = "http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/huss/gn/v20191108/huss_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-18991231.nc"
 
-fout = "out2.nc"
 range = [70, 140, 15, 55]
 delta = 5
 
@@ -22,6 +21,7 @@ delta = 5
 function nc_subset(f, range::Vector, fout=nothing; 
     delta=5, 
     check_vals=true, verbose=true,
+    big=false,
     outdir=".", overwrite=false)
 
   fout === nothing && (fout = "$outdir/$(basename(f))")
@@ -29,7 +29,7 @@ function nc_subset(f, range::Vector, fout=nothing;
     verbose && println("[ok] file downloaded already!")
     return
   end
-  
+
   nc = nc_open(f)
   printstyled("Reading dims...\n")
   # @time dims = ncvar_dim(nc)
@@ -47,7 +47,19 @@ function nc_subset(f, range::Vector, fout=nothing;
   dims2 = [dim_lon; dim_lat; dim_time]
 
   printstyled("Reading data...\n")
-  @time vals = v.var[:, :, :] # 三维数据
+
+  ntime = dim_time.dimlen
+
+  if big
+    lst = split_chunk(ntime, 6)
+    tmp = map(itime -> begin
+      println("\t[chunk]: $itime")
+      v.var[:, :, itime]
+    end, lst)
+    vals = cat(tmp...; dims = 3)
+  else 
+    @time vals = v.var[:, :, :] # 三维数据
+  end
   
   if check_vals && length(unique(vals)) == 1
     printstyled("[error] downloaded file failed: $f \n", color=:red)
@@ -71,3 +83,16 @@ function nc_subset(d::AbstractDataFrame;
   urls = collect(d.file)
   nc_subset(urls, range, fout; kw...)
 end
+
+
+function split_chunk(n, nchunk=4)
+  chunk = cld(n, nchunk)
+
+  map(i -> begin
+    i_beg = (i - 1) * chunk + 1
+    i_end = min(i * chunk, n)
+    i_beg:i_end
+  end, 1:nchunk)
+end
+
+export split_chunk

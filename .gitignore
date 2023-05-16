@@ -51,3 +51,4 @@ ChinaHW_cluster_CMIP6
 *debug*
 *.vdoc.jl
 *.txt
+*.sh

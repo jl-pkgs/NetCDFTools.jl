@@ -34,10 +34,15 @@ function Base.getindex(dims::Vector{NcDim}, name::AbstractString)
   dims[ind]
 end
 
+function Base.getindex(dims::Vector{NcDim}, pattern::Regex)
+  names = Ipaper.names(dims)
+  ind = grep(names, pattern)[1]
+  dims[ind]
+end
+
 function Base.getindex(dims::Vector{NcDim}, name::Vector{<:AbstractString})
   names = Ipaper.names(dims)
   ind = indexin(name, names)
-  # print(ind)
   dims[ind]
 end
 
