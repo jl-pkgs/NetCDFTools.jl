@@ -102,6 +102,25 @@ function CMIPFiles_info(files; detailed=false, include_year=false, include_nmiss
 end
 
 
+function CMIPFiles_summary(info::AbstractDataFrame)
+  by = intersect(["variable", "model", "ensemble", "scenario"], names(info))
+  df = groupby(info, by)
+
+  combine(d -> begin
+    n = nrow(d)
+    date_begin = d.date_begin[1]
+    date_end = d.date_end[end]
+
+    year_begin = str_year(date_begin)
+    year_end = str_year(date_end)
+    file = [d.file]
+    DataFrame(;date_begin, date_end, year_begin, year_end, n, file)
+  end, df)
+end
+
+
 export is_ssp, is_r1i1p1f1, 
   get_variable, get_host,
-  get_model, get_ensemble, get_scenario, get_date, get_date_nmiss, CMIPFiles_info
+  str_year, 
+  get_model, get_ensemble, get_scenario, get_date, get_date_nmiss, 
+  CMIPFiles_info, CMIPFiles_summary

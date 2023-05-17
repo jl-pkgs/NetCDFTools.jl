@@ -14,6 +14,7 @@ using PrecompileTools
   
   @compile_workload begin 
     info = CMIP.CMIPFiles_info(fs; detailed=false)
+    info_s = CMIP.CMIPFiles_summary(info)
 
     # compile bilinear
     for T in (Float64, Float32)

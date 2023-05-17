@@ -7,7 +7,8 @@ module CMIP
 using DocStringExtensions
 using nctools
 # import nctools: nc_calendar | not work
-using DataFrames: DataFrame, AbstractDataFrame
+using DataFrames
+
 import Ipaper: str_extract, str_extract_all,
   dates_miss, dates_nmiss
 
@@ -38,12 +39,18 @@ function cbind(x::AbstractDataFrame; kw...)
   # end
 end
 
+function map_df(fun::Function, lst::GroupedDataFrame{DataFrame})
+  n = length(lst)
+  map(i -> fun(lst[i]), 1:n)
+end
+
 include("CMIPFiles_info.jl")
 include("q2RH.jl")
 include("heat_index.jl")
 # include("unit_convert.jl")
 
 
+export map_df
 export Tem_F2C, Tem_C2F, q2RH
 export heat_index, heat_index_q
 
