@@ -22,7 +22,8 @@ using DocStringExtensions
 
 # include("Ipaper/Ipaper.jl")
 import Ipaper
-import Ipaper: names, path_mnt, check_file, nanmean, grep, @par
+import Ipaper: names, path_mnt, check_file, nanmean, grep, @par, 
+  apply, check_dir, unique_sort, make_date
 # export Ipaper
 
 include("nc_info.jl")
@@ -34,6 +35,7 @@ include("ncvar_def.jl")
 include("ncdim_def.jl")
 include("ncatt_put.jl")
 include("nc_subset.jl")
+include("nc_aggregate.jl")
 
 # CMIP
 include("CMIP/CMIP.jl")
