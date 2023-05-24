@@ -84,16 +84,3 @@ function nc_subset(d::AbstractDataFrame;
   urls = collect(d.file)
   nc_subset(urls, range, fout; kw...)
 end
-
-
-function split_chunk(n, nchunk=4)
-  chunk = cld(n, nchunk)
-
-  map(i -> begin
-    i_beg = (i - 1) * chunk + 1
-    i_end = min(i * chunk, n)
-    i_beg:i_end
-  end, 1:nchunk)
-end
-
-export split_chunk

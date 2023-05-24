@@ -21,11 +21,12 @@ using Dates
 using DocStringExtensions
 
 # include("Ipaper/Ipaper.jl")
-import Ipaper
-import Ipaper: names, path_mnt, check_file, nanmean, grep, @par, 
-  apply, check_dir, unique_sort, make_date
+using Ipaper
+# import Ipaper: names, path_mnt, check_file, nanmean, grep, @par, 
+#   apply, check_dir, unique_sort, make_date
 # export Ipaper
 
+include("tools.jl")
 include("nc_info.jl")
 include("nc_dim.jl")
 include("nc_date.jl")
