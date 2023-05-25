@@ -70,7 +70,7 @@ function QDM_mov!(y_adj::AbstractVector{T},
 
   half = fld(ny_win, 2)
   
-  for year in grps
+  @inbounds @views for year in grps
     year_beg = max(year - half, year_min)
     year_end = min(year + half, year_max)
 
@@ -91,8 +91,9 @@ end
 
 function QDM_main(arr_obs::AbstractArray{T,3},
   arr_calib::AbstractArray{T,3},
-  arr_pred::AbstractArray{T,3};   
-  inds, (fun!)=QDM_chunk!, na_rm=false) where {T<:Real}
+  arr_pred::AbstractArray{T,3}, dates;   
+  inds, 
+  (fun!)=QDM_chunk!, ny_win=10) where {T<:Real}
 
   arr_pred_adj = deepcopy(arr_pred) .* T(NaN)
 
@@ -102,13 +103,12 @@ function QDM_main(arr_obs::AbstractArray{T,3},
     j = I[2]
 
     mod(k, 100) == 0 && println("k = $k")
-    
+
     y_obs = arr_obs[i, j, :]
     y_calib = arr_calib[i, j, :]
     y_pred = arr_pred[i, j, :]
 
-    fun!(arr_pred_adj[i, j, :], y_obs, y_calib, y_pred, dates; na_rm)
-    # y_pred_adj = QDM(y_obs, y_calib, y_pred; na_rm)
+    fun!(arr_pred_adj[i, j, :], y_obs, y_calib, y_pred, dates; ny_win)
     # y_pred_adj = QDM(y_obs, y_calib, y_pred; na_rm)
     # arr_pred_adj[i, j, :] = y_pred_adj
   end

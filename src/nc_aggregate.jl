@@ -6,7 +6,7 @@
 - `fout`: output file
 - `by`: "year" or "month", or a function to group dates
 """
-function nc_aggregate(f, fout=nothing; by="year", fun=nanmean,
+function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=nanmean,
   outdir=".", overwrite=false, verbose=true)
   
   fout === nothing && (fout = "$outdir/$(basename(f))")
@@ -37,7 +37,7 @@ function nc_aggregate(f, fout=nothing; by="year", fun=nanmean,
   @time vals = apply(data, 3; by=_by, fun)
   dims = ncvar_dim(nc) # time should be the third dimension
   dims[3] = NcDim_time(unique_sort(_by))
-
+  
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(nc[band].attrib);
     compress=0, goal_attrib=Dict(nc.attrib))
@@ -46,4 +46,30 @@ function nc_aggregate(f, fout=nothing; by="year", fun=nanmean,
 end
 
 
-export nc_aggregate
+"""
+  $(TYPEDSIGNATURES)
+
+# Examples
+
+```julia-repl
+scenario = "historical"
+indir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax/historical"
+outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
+
+nc_aggregate_dir(indir; by="year", outdir)
+```
+"""
+function nc_aggregate_dir(indir; 
+  by="year", replacement="day"=>by, outdir=".", kw...)
+
+  fs = dir(indir, "nc\$")
+
+  for f in fs
+    file = str_replace(basename(f), replacement[1], replacement[2])
+    fout = "$outdir/$file"
+    nc_aggregate(f, fout; by, outdir, kw...)
+  end
+end
+
+
+export nc_aggregate, nc_aggregate_dir
