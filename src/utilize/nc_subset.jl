@@ -73,7 +73,7 @@ function nc_subset(f, range::Vector, fout=nothing;
 end
 
 
-function nc_subset(d::AbstractDataFrame; 
+function nc_subset(d::AbstractDataFrame, range; 
     outdir=".", kw...)
 
   prefix = str_extract(basename(d.file[1]), ".*(?=_\\d{4})")
@@ -84,3 +84,6 @@ function nc_subset(d::AbstractDataFrame;
   urls = collect(d.file)
   nc_subset(urls, range, fout; kw...)
 end
+
+
+export nc_subset

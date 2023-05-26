@@ -10,15 +10,13 @@ export NcDim
 using NCDatasets
 import NCDatasets: @select, NCDataset, MFDataset
 
-using DataFrames: DataFrame, AbstractDataFrame
-
-export nc_open, close
-
 using CFTime
 using Dates
 
-# using DocStringExtensions: TYPEDFIELDS, TYPEDEF
 using DocStringExtensions
+# using DocStringExtensions: TYPEDFIELDS, TYPEDEF
+using DataFrames
+# using DataFrames: DataFrame, AbstractDataFrame
 
 # include("Ipaper/Ipaper.jl")
 using Ipaper
@@ -35,8 +33,10 @@ include("nc_write.jl")
 include("ncvar_def.jl")
 include("ncdim_def.jl")
 include("ncatt_put.jl")
-include("nc_subset.jl")
-include("nc_aggregate.jl")
+
+include("utilize/nc_aggregate.jl")
+include("utilize/nc_combine.jl")
+include("utilize/nc_subset.jl")
 
 # CMIP
 include("CMIP/CMIP.jl")
@@ -45,9 +45,10 @@ include("BiasCorrection/BiasCorrection.jl")
 
 include("precompile.jl")
 
+
 export CMIP
 export @select
-export nc_open, nc_close
+export nc_open, nc_close, close
 export nc_bands, get_bandName, nc_info, ncinfo, ncvar_info
 export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize
 export nc_read, nc_write, nc_write!
