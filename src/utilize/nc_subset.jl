@@ -17,6 +17,8 @@ delta = 5
 
 @time nc_subset(url, range)
 ```
+
+$(METHODLIST)
 """
 function nc_subset(f, range::Vector, fout=nothing; 
     delta=5, 

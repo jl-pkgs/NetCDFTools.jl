@@ -31,7 +31,11 @@ function nc_combine(fs, fout)
     compress=0, goal_attrib=Dict(nc.attrib))
 end
 
-
+"""
+$(TYPEDSIGNATURES)
+  
+$(METHODLIST)
+"""
 function nc_combine(d::AbstractDataFrame; outdir = ".", overwrite=false)
 
   prefix = str_extract(basename(d.file[1]), ".*(?=_\\d{4})")

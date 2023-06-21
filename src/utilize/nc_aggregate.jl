@@ -5,6 +5,8 @@
 - `f`: input file
 - `fout`: output file
 - `by`: "year" or "month", or a function to group dates
+
+$(METHODLIST)
 """
 function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=nanmean,
   outdir=".", overwrite=false, verbose=true)
@@ -58,6 +60,8 @@ outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
 
 nc_aggregate_dir(indir; by="year", outdir)
 ```
+
+$(METHODLIST)
 """
 function nc_aggregate_dir(indir; 
   by="year", replacement="day"=>by, outdir=".", kw...)
