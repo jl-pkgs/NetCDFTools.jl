@@ -1,0 +1,106 @@
+# 1. 探索原始的序列
+
+## 1.1. ecdf的图
+```{julia}
+# model = "ACCESS-CM2"
+using Plots, StatsBase
+
+lims = [-10, 30]
+x = lims[1]:0.1:lims[2]
+
+f_obs   = ecdf(y_obs)
+f_calib = ecdf(y_calib)
+f_pred  = ecdf(y_pred)
+
+plot(x, f_obs(x), label = "obs")
+plot!(x, f_calib(x), label = "calib")
+plot!(x, f_pred(x), label = "pred")
+```
+
+## 1.2. quantile
+```{julia}
+# lims = [-10, 30]
+# x = lims[1]:0.1:lims[2]
+tau = 0:0.001:1
+
+z_obs = quantile(y_obs, tau)
+z_calib = quantile(y_calib, tau)
+z_pred = quantile(y_pred, tau)
+
+plot(tau, z_obs, label="obs")
+plot!(tau, z_calib, label="calib")
+plot!(tau, z_pred, label="pred")
+```
+
+```{julia}
+plot(z_calib - z_obs, tau, label="calib - obs")
+plot!(z_pred - z_obs, tau, label="pred - obs")
+# plot!(x, f_calib(x), label="calib")
+# plot!(x, f_pred(x), label="pred")
+```
+
+# 分位数矫正
+
+```{julia}
+# R"""
+# source("scripts/ChinaHW_Observed/quantile_mapping/quantile_mapping.R")
+# """
+@time y_pred_adj = R"QDM($y_obs, $y_calib, $y_pred)" |> rcopy;
+@time y_calib_adj = R"QDM($y_obs, $y_calib, $y_calib)" |> rcopy;
+# r["mhat_c"]
+# @rget r
+```
+
+> 重新绘图
+
+```{julia}
+gr(framestyle=:box, fontfamily = "msyh")
+# lims = [-10, 30]
+# x = lims[1]:0.1:lims[2]
+tau = 0:0.001:1
+
+z_obs = quantile(y_obs, tau)
+z_calib = quantile(y_calib, tau)
+z_pred = quantile(y_pred, tau)
+
+p1 = plot(tau, z_obs, label="obs", title = "(a) 校正前")
+plot!(p1, tau, z_calib, label="calib", linestyl=:dash )
+plot!(p1, tau, z_pred, label="pred", linestyl=:dash )
+
+## 矫正后
+# z_obs = quantile(y_obs, tau)
+z_calib = quantile(y_calib_adj, tau)
+z_pred = quantile(y_pred_adj, tau)
+
+p2 = plot(tau, z_obs, label="obs", title = "(b) 校正后")
+plot!(p2, tau, z_calib, label="calib")
+plot!(p2, tau, z_pred, label="pred")
+
+plot(p1, p2, layout = (1, 2))
+```
+
+> 矫正之后得到了非常明显的改观
+
+## Julia版本的分位数矫正
+
+```{julia}
+@time y_pred_adj2 = QDM(y_obs, y_calib, y_pred)
+@time y_calib_adj2 = QDM(y_obs, y_calib, y_calib);
+
+# hist(y_pred_adj2 - y_pred_adj)
+# y_calib_adj = R"QDM($y_obs, $y_calib, $y_calib)" |> rcopy;
+```
+
+```{julia}
+R"""
+Ipaper::write_fig({
+  hist($y_pred_adj2 - $y_pred_adj)
+}, "d:/a.pdf")
+"""
+```
+
+```{julia}
+# diff = y_pred_adj2 - y_pred_adj
+# findall(abs.(diff) .>= 0.1)
+plot(y_pred_adj2, y_pred_adj, seriestype=:scatter, label="pred")
+```

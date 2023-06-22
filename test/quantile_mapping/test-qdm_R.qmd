@@ -1,0 +1,118 @@
+```{r}
+library(Ipaper)
+library(ggplot2)
+
+fun = function(x, a, b) {
+  a * x + b
+}
+
+QDM_mov <- function(o.c, m.c, m.p, chunk = 30) {
+  n <- length(m.p)
+  nchunk <- ceiling(n / chunk)
+
+  pred <- foreach(i = 1:nchunk, icount(), .combine = c) %do% {
+    i_beg <- (i - 1) * chunk + 1
+    i_end <- i * chunk
+
+    i_beg_win <- i_beg
+    i_end_win <- i_end
+
+    if (i_end > n) {
+      i_end <- n
+      i_end_win <- n
+      i_beg_win <- n - chunk + 1
+    }
+
+    inds_pred <- i_beg:i_end
+    inds_win <- i_beg_win:i_end_win
+
+    # print2(inds_pred, inds_win)
+    inds <- match(inds_pred, inds_win)
+    ans <- MBC::QDM(o.c, m.c, m.p[inds_win])$mhat.p[inds]
+  }
+  pred
+}
+```
+
+```{r}
+set.seed(1)
+x = 1850:2100 # years 
+n = length(x)
+
+years_his = 1961:2014
+years_ssp = 2015:2100
+
+inds_cal = which(x %in% years_his)
+inds_val = which(x %in% years_ssp)
+
+y_obs <- fun(x, a = 2, b = 1)
+y_gcm <- fun(x, a = 2, b = 1) + rnorm(n, 100, sd = 100)
+
+o.c = y_obs[inds_cal]
+m.c = y_gcm[inds_cal]
+
+m.ssp = y_gcm[inds_val]
+
+r = MBC::QDM(o.c, m.c, m.ssp)
+p_his = r$mhat.c
+p_ssp = r$mhat.p
+
+p_all = QDM_mov(o.c, m.c, y_gcm, chunk = 30)
+p_ssp2 = QDM_mov(o.c, m.c, m.ssp, chunk = 30)
+
+df = list(
+  Raw     = data.table(year = x, y = y_gcm),
+  Real    = data.table(year = x, y = y_obs), 
+  adj_his = data.table(year = years_his, y = p_his), 
+  adj_ssp = data.table(year = years_ssp, y = p_ssp),
+  adj_all_V2 = data.table(year = x, y = p_all),
+  adj_ssp_V2 = data.table(year = years_ssp, y = p_ssp2)
+) %>% melt_list("type")
+
+dat = df[type %!in% c("Raw")]
+# dat = df
+p = ggplot(dat, aes(year, y, color = type)) + 
+  geom_line()
+
+write_fig(p, 'd:/a.pdf', 10, 5)
+```
+
+> 如果有比较强的年际变化趋势，这种应该如何考虑？
+
+> 拼接的问题。
+
+## 做一个30年的窗口
+
+```{r}
+n <- length(years_ssp)
+lst_index = split_chunk(n)
+
+split_chunk <- function(n, chunk = 30) {
+  nchunk = ceiling(n / chunk)
+
+  foreach(i = 1:nchunk, icount()) %do% {
+    i_beg = (i - 1) * chunk + 1
+    i_end = i * chunk
+
+    i_beg_win = i_beg
+    i_end_win = i_end
+
+    if (i_end > n) {
+      i_end = n
+      i_end_win = n
+      i_beg_win = n - chunk + 1
+    }
+    data.table(i, i_beg, i_end, i_beg_win, i_end_win)
+  }
+}
+
+```
+
+```{r}
+
+```
+
+```{julia}
+using Ipaper
+
+```
