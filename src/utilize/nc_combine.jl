@@ -1,14 +1,25 @@
 function nc_get_value(fs, band=nothing)
   band === nothing && (band = nc_bands(fs[1])[1])
 
-  res = map(f -> begin
-      nc_open(f) do ds
-        ds[band].var[:]
-      end
-    end, fs)
+  data = []
+  dates = []
+  
+  for f = fs
+    nc_open(f) do ds
+      _data = ds[band].var[:]
+      _dates = nc_date(ds)
+      push!(data, _data)
+      push!(dates, _dates)
+    end
+  end
+  
+  ndim = length(size(data[1]))
+  
+  data = cat(data..., dims=ndim)
+  dates = cat(dates..., dims=1)
 
-  dims = length(size(res[1]))
-  cat(res..., dims=dims)
+  inds = .!(duplicated(dates))
+  selectdim(data, ndim, inds), dates[inds]
 end
 
 
@@ -19,11 +30,14 @@ function nc_combine(fs, fout; compress=0)
   v = nc[band]
 
   printstyled("Reading data...\n")
-  @time vals = nc_get_value(fs, band)
-  time = nc_get_value(fs, "time")
+  @time vals, dates = nc_get_value(fs, band)
+  # times = nc_get_value(fs, "time")
+
+  att = nc["time"].attrib
+  times = CFTime.timeencode(dates, att["units"], att["calendar"])
   
   dims = ncvar_dim(nc)
-  dim_time = NcDim("time", time, dims["time"].atts)
+  dim_time = NcDim("time", times, dims["time"].atts)
   dims[3] = dim_time
 
   printstyled("Writing data...\n")
