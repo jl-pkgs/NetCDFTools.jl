@@ -12,7 +12,7 @@ function nc_get_value(fs, band=nothing)
 end
 
 
-function nc_combine(fs, fout)
+function nc_combine(fs, fout; compress=0)
   f = fs[1]
   nc = nc_open(f)
   band = nc_bands(f)[1]
@@ -28,7 +28,7 @@ function nc_combine(fs, fout)
 
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(v.attrib);
-    compress=0, goal_attrib=Dict(nc.attrib))
+    compress, goal_attrib=Dict(nc.attrib))
 end
 
 """
@@ -36,7 +36,7 @@ $(TYPEDSIGNATURES)
   
 $(METHODLIST)
 """
-function nc_combine(d::AbstractDataFrame; outdir = ".", overwrite=false)
+function nc_combine(d::AbstractDataFrame; outdir = ".", overwrite=false, kw...)
 
   prefix = str_extract(basename(d.file[1]), ".*(?=_\\d{4})")
   date_begin = d.date_begin[1]
@@ -50,14 +50,14 @@ function nc_combine(d::AbstractDataFrame; outdir = ".", overwrite=false)
 
   @show fout
   fs = d.file
-  nc_combine(fs, fout)  
+  nc_combine(fs, fout; kw...)  
 end
 
 
 # 若要使用并行版本，次函数需要重写
-function nc_combine(lst::GroupedDataFrame; outdir = ".", overwrite=false)
+function nc_combine(lst::GroupedDataFrame; outdir = ".", overwrite=false, kw...)
   for d = lst
-    nc_combine(d; outdir, overwrite)
+    nc_combine(d; outdir, overwrite, kw...)
   end
 end
 
