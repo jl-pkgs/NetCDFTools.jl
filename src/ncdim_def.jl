@@ -1,8 +1,27 @@
+# TODO: 这里有提升空间
 function NcDim_time(dates)
   vals = CFTime.timeencode.(dates, "days since 1970-01-01", eltype(dates))
-  attrib = Dict("units" => "days since 1970-01-01",
-        "calendar" => "proleptic_gregorian", "long_name" => "time")
+  attrib = Dict(
+    "units" => "days since 1970-01-01",
+    "calendar" => "proleptic_gregorian",
+    "long_name" => "time")
   NcDim("time", length(vals), vals, attrib)
+end
+
+"""
+  make_dims(range=[70, 140, 15, 55], cellsize = 0.5, dates)
+  
+$(METHODLIST)
+"""
+function make_dims(range, cellsize, dates)
+  lon = range[1]+cellsize/2:cellsize:range[2]
+  lat = range[3]+cellsize/2:cellsize:range[4]
+
+  [
+    NcDim("lon", lon, Dict("longname" => "Longitude", "units" => "degrees east"))
+    NcDim("lat", lat, Dict("longname" => "Latitude", "units" => "degrees north"))
+    NcDim_time(dates)
+  ]
 end
 
 
@@ -29,25 +48,25 @@ ncdim_def(ds, dim_t)
 close(ds)
 ```
 """
-function ncdim_def(ds, name, val, attrib = Dict(); verbose = false)
-    # x = NcDim(name, val, attrib)
-    # val = val |> collect
-    if name in keys(ds.dim)
-        verbose && @warn "Dimension `$name`: exist!"
-        return
-    end
-    defDim(ds, name, length(val))
-    defVar(ds, name, val, (name,); attrib = attrib)
+function ncdim_def(ds, name, val, attrib=Dict(); verbose=false)
+  # x = NcDim(name, val, attrib)
+  # val = val |> collect
+  if name in keys(ds.dim)
+    verbose && @warn "Dimension `$name`: exist!"
+    return
+  end
+  defDim(ds, name, length(val))
+  defVar(ds, name, val, (name,); attrib=attrib)
 end
 
 # NcDim
 function ncdim_def(ds, dim::NcDim)
-    ncdim_def(ds, dim.name, dim.vals, dim.atts)
+  ncdim_def(ds, dim.name, dim.vals, dim.atts)
 end
 
 function ncdim_def(ds, dims::Vector{NcDim})
-    for i = 1:length(dims)
-        dim = dims[i]
-        ncdim_def(ds, dim.name, dim.vals, dim.atts)
-    end
+  for i = 1:length(dims)
+    dim = dims[i]
+    ncdim_def(ds, dim.name, dim.vals, dim.atts)
+  end
 end

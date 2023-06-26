@@ -31,8 +31,11 @@
 dims = [
     NcDim("lon", lon, Dict("longname" => "Longitude", "units" => "degrees east"))
     NcDim("lat", lat, Dict("longname" => "Latitude", "units" => "degrees north"))
-    NcDim("time", 1:ntime)
+    NcDim_time(dates)
 ]
+dims = make_dims(range, cellsize, dates) # another option
+
+nc_write(f, varname, val, dims)
 ```
 
 $(METHODLIST)
