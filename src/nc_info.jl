@@ -44,7 +44,7 @@ function nc_bands(ds::NCdata)
     vars = keys(ds)
     dims = ["lon", "long", "longitude",
         "lat", "latitude",
-        "lev", "level", "mlev", 
+        "lev", "level", "mlev", "plev",
         "height",
         "crs",
         "prob", "probs", 

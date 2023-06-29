@@ -35,32 +35,33 @@ function nc_subset(f, range::Vector, fout=nothing;
   nc = nc_open(f)
   printstyled("Reading dims...\n")
   # @time dims = ncvar_dim(nc)
-  @time dims = nc_dims(nc)
+  @time dims = ncvar_dim(nc)
   band = nc_bands(nc)[1] # 只选择其中一个变量
 
   lonr = range[1:2] + [-1, 1] * delta# longitude range
   latr = range[3:4] + [-1, 1] * delta# latitude range
   v = @select(nc[band], $lonr[1] <= lon <= $lonr[2] && $latr[1] <= lat <= $latr[2])
 
-  (ilon, ilat, itime) = parentindices(v)
-  dim_lon = dims["lon"][ilon]
-  dim_lat = dims["lat"][ilat]
-  dim_time = dims["time"][itime]
-  dims2 = [dim_lon; dim_lat; dim_time]
-
+  (ilon, ilat, _) = parentindices(v)
+  
+  dims[1] = dims["lon"][ilon]
+  dims[2] = dims["lat"][ilat]
   printstyled("Reading data...\n")
 
-  ntime = dim_time.dimlen
-
+  ntime = dims[end].dimlen
+  ndim = ndims(v)
+  
   if big
     lst = split_chunk(ntime, 6)
     tmp = map(itime -> begin
       println("\t[chunk]: $itime")
-      v.var[:, :, itime]
+      _inds = tuple(inds[1:3]..., 1)
+      v.var[_inds]
     end, lst)
-    vals = cat(tmp...; dims = 3)
-  else 
-    @time vals = v.var[:, :, :] # 三维数据
+    vals = cat(tmp...; dims = ndim)
+  else
+    inds = ntuple(i -> :, ndims(v))
+    @time vals = v.var[inds...]
   end
   
   if check_vals && length(unique(vals)) == 1
@@ -69,7 +70,7 @@ function nc_subset(f, range::Vector, fout=nothing;
   end
   
   printstyled("Writing data...\n")
-  @time nc_write(fout, band, vals, dims2, Dict(v.attrib); 
+  @time nc_write(fout, band, vals, dims, Dict(v.attrib); 
     compress=1, goal_attrib=Dict(nc.attrib))
   # ncatt_put(fout, Dict(nc.attrib))
 end
