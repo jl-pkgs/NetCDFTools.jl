@@ -10,6 +10,10 @@
 # Example
 
 ```julia
+# 4-d array
+url = "http://esgf3.dkrz.de/thredds/dodsC/cmip6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/zg/gn/v20191108/zg_day_ACCESS-CM2_historical_r1i1p1f1_gn_19500101-19541231.nc"
+
+# 3-d array
 url = "http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/huss/gn/v20191108/huss_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-18991231.nc"
 
 range = [70, 140, 15, 55]
@@ -20,11 +24,12 @@ delta = 5
 
 $(METHODLIST)
 """
-function nc_subset(f, range::Vector, fout=nothing; 
-    delta=5, 
-    check_vals=true, verbose=true,
-    big=false,
-    outdir=".", overwrite=false)
+function nc_subset(f, range::Vector, fout=nothing;
+  delta=5,
+  check_vals=true, verbose=true,
+  big=false,
+  plevs=nothing,
+  outdir=".", overwrite=false)
 
   fout === nothing && (fout = "$outdir/$(basename(f))")
   if isfile(fout) && !overwrite
@@ -34,50 +39,60 @@ function nc_subset(f, range::Vector, fout=nothing;
 
   nc = nc_open(f)
   printstyled("Reading dims...\n")
-  # @time dims = ncvar_dim(nc)
   @time dims = ncvar_dim(nc)
+
   band = nc_bands(nc)[1] # 只选择其中一个变量
 
   lonr = range[1:2] + [-1, 1] * delta# longitude range
   latr = range[3:4] + [-1, 1] * delta# latitude range
+  
+  ## 截取数据
+  in_plev(plev, plevs) = indexin(round.(Int, plev), plevs*100) .!== nothing
+
   v = @select(nc[band], $lonr[1] <= lon <= $lonr[2] && $latr[1] <= lat <= $latr[2])
 
   (ilon, ilat, _) = parentindices(v)
-  
   dims[1] = dims["lon"][ilon]
   dims[2] = dims["lat"][ilat]
+
+  if plevs !== nothing && ndims(v) == 4
+    v = @select(v, in_plev(plev, $plevs))
+    (ilon, ilat, ilev, _) = parentindices(v)
+    dims[3] = dims[3][ilev]
+  end
+  
   printstyled("Reading data...\n")
 
   ntime = dims[end].dimlen
   ndim = ndims(v)
-  
-  if big
+  inds = ntuple(i -> :, ndim)
+
+  @time if big
     lst = split_chunk(ntime, 6)
     tmp = map(itime -> begin
-      println("\t[chunk]: $itime")
-      _inds = tuple(inds[1:3]..., 1)
-      v.var[_inds]
-    end, lst)
-    vals = cat(tmp...; dims = ndim)
+        println("\t[chunk]: $itime")
+        _inds = tuple(inds[1:ndim-1]..., itime)
+        v[_inds...]
+      end, lst)
+    vals = cat(tmp...; dims=ndim)
   else
-    inds = ntuple(i -> :, ndims(v))
-    @time vals = v.var[inds...]
+    vals = v[inds...]
   end
-  
+
   if check_vals && length(unique(vals)) == 1
     printstyled("[error] downloaded file failed: $f \n", color=:red)
     return
   end
-  
+
   printstyled("Writing data...\n")
-  @time nc_write(fout, band, vals, dims, Dict(v.attrib); 
+  @time nc_write(fout, band, vals, dims, Dict(v.attrib);
     compress=1, goal_attrib=Dict(nc.attrib))
   # ncatt_put(fout, Dict(nc.attrib))
 end
 
 
-function nc_subset(d::AbstractDataFrame, range; 
-    outdir=".", kw...)
+function nc_subset(d::AbstractDataFrame, range;
+  outdir=".", kw...)
 
   prefix = str_extract(basename(d.file[1]), ".*(?=_\\d{4})")
   date_begin = d.date_begin[1]
