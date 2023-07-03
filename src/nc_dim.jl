@@ -19,6 +19,19 @@ function Ipaper.names(dims::Vector{NcDim})
   map(x -> x.name, dims)
 end
 
+
+function find_dim(dims::Vector{NcDim}, name::AbstractString)
+  names = Ipaper.names(dims)
+  ind = indexin([name], names)[1]
+  ind
+end
+
+function find_dim(dims::Vector{NcDim}, pattern::Regex)
+  names = Ipaper.names(dims)
+  ind = grep(names, pattern)[1]
+  ind
+end
+
 """
     $(TYPEDSIGNATURES)
 # Examples
@@ -28,15 +41,8 @@ dims = nc_dims(f)
 dims[["lon", "lat"]]
 ```
 """
-function Base.getindex(dims::Vector{NcDim}, name::AbstractString)
-  names = Ipaper.names(dims)
-  ind = indexin([name], names)[1]
-  dims[ind]
-end
-
-function Base.getindex(dims::Vector{NcDim}, pattern::Regex)
-  names = Ipaper.names(dims)
-  ind = grep(names, pattern)[1]
+function Base.getindex(dims::Vector{NcDim}, name::Union{AbstractString,Regex})
+  ind = find_dim(dims, name)
   dims[ind]
 end
 
@@ -57,6 +63,13 @@ function Base.getindex(ds::NCDataset, pattern::Regex)
   _name = _keys[_id]
   ds[_name]
 end
+
+
+function Base.setindex!(dims::Vector{NcDim}, v::NcDim, name::Union{AbstractString,Regex})
+  ind = find_dim(dims, name)
+  dims[ind] = v
+end
+
 
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
 function get_nc_dim(ds::NCdata, name="time")

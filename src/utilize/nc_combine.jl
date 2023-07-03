@@ -37,9 +37,9 @@ function nc_combine(fs, fout; compress=0)
   times = CFTime.timeencode(dates, att["units"], att["calendar"])
   
   dims = ncvar_dim(nc)
-  dim_time = NcDim("time", times, dims["time"].atts)
-  dims[3] = dim_time
-
+  dims["time"] = NcDim("time", times, dims["time"].atts)
+  # 这里会引起错误
+  
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(v.attrib);
     compress, goal_attrib=Dict(nc.attrib))
