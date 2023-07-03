@@ -1,3 +1,10 @@
+filter_model(d::AbstractDataFrame, models::Vector{<:AbstractString}) = d[r_in(d.model, models), :]
+
+filter_model(d::AbstractDataFrame, models::AbstractString) = d[d.model.==models, :]
+
+filter_model(d::AbstractDataFrame, models::Regex) = d[grepl(d.model, models), :]
+
+
 """
     get_model(file; prefix = "day_", postfix = "_hist|_ssp|_piControl")
 """
@@ -18,6 +25,8 @@ function get_scenario(file, pattern::AbstractString="[a-z,A-Z,0-9,-]*(?=_r\\d)")
 end
 
 get_host(x::AbstractString) = str_extract(x, "(?<=://)[^\\/]*")
+
+get_freq(file::AbstractString) = str_extract(basename(file), "(?<=_).{3,6}(?=_)")
 
 # get date_begin and date_end from the file name
 function get_date(file::AbstractString, pattern::AbstractString="[0-9]{4,8}")
@@ -122,5 +131,6 @@ end
 export is_ssp, is_r1i1p1f1, 
   get_variable, get_host,
   str_year, 
+  filter_model, get_freq, 
   get_model, get_ensemble, get_scenario, get_date, get_date_nmiss, 
   CMIPFiles_info, CMIPFiles_summary
