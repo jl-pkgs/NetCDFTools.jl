@@ -14,6 +14,13 @@ end
 """
   $(TYPEDSIGNATURES)
 
+# Arguments
+
+- `type_adj`: 
+
+  + `add`: 高斯分布的变量，如Tair
+  + `mul`: 降水
+
 # Notes
 
 QDM: 需要使用一个滑动窗口。
@@ -33,27 +40,30 @@ QDM: 需要使用一个滑动窗口。
 
 3. https://github.com/rpkgs/climQMBC/blob/master/R/map_QDM.R#L43
 """
-function QDM(y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}; na_rm=true) where {T<:Real}
+function QDM(y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}; type_adj="add", kw...) where {T<:Real}
   tau_pred = cal_tau(y_pred)
 
-  if na_rm
+  if type_adj == "mul"
+    delta_m = y_pred ./ nanquantile2(y_calib, tau_pred)
+    y_adj = nanquantile2(y_obs, tau_pred) .* delta_m
+  elseif type_adj == "add"
     delta_m = y_pred - nanquantile2(y_calib, tau_pred)
     y_adj = nanquantile2(y_obs, tau_pred) + delta_m
-  else
-    delta_m = y_pred - quantile(y_calib, tau_pred)
-    y_adj = quantile(y_obs, tau_pred) + delta_m
   end
+  #   delta_m = y_pred - quantile(y_calib, tau_pred)
+  #   y_adj = quantile(y_obs, tau_pred) + delta_m
   y_adj
 end
 
 
 # only for daily data
 function QDM_chunk!(y_adj::AbstractVector{T},
-  y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; ny_win=10) where {T<:Real}
+  y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; 
+  ny_win=10, type_adj="add") where {T<:Real}
 
   lst_index = split_date(dates; ny_win, merge_small=0.7)
   for inds in lst_index
-    y_adj[inds] .= QDM(y_obs, y_calib, y_pred[inds])
+    y_adj[inds] .= QDM(y_obs, y_calib, y_pred[inds]; type_adj)
   end
   y_adj
 end
@@ -61,7 +71,8 @@ end
 
 # 逐年滑动平均QDM
 function QDM_mov!(y_adj::AbstractVector{T},
-  y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; ny_win=30) where {T<:Real}
+  y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; 
+  ny_win=30, type_adj="add") where {T<:Real}
 
   years = year.(dates)
   grps = unique_sort(years)
@@ -81,8 +92,13 @@ function QDM_mov!(y_adj::AbstractVector{T},
     _y_mov = y_pred[inds_mov]
     
     tau_pred = cal_tau(_y_mov, _y_target)
-    delta_m = _y_target - nanquantile2(y_calib, tau_pred)
-    y_target = nanquantile2(y_obs, tau_pred) + delta_m # 修正之后的
+    if type_adj == "add"
+      delta_m = _y_target - nanquantile2(y_calib, tau_pred)
+      y_target = nanquantile2(y_obs, tau_pred) + delta_m # 修正之后的
+    elseif type_adj == "mul"
+      delta_m = _y_target ./ nanquantile2(y_calib, tau_pred)
+      y_target = nanquantile2(y_obs, tau_pred) .* delta_m # 修正之后的
+    end
     y_adj[inds_target] .= y_target
   end
   y_adj
@@ -93,7 +109,8 @@ function QDM_main(arr_obs::AbstractArray{T,3},
   arr_calib::AbstractArray{T,3},
   arr_pred::AbstractArray{T,3}, dates;   
   inds, 
-  (fun!)=QDM_chunk!, ny_win=10) where {T<:Real}
+  (fun!)=QDM_chunk!, 
+  ny_win=10, type_adj="add") where {T<:Real}
 
   arr_pred_adj = deepcopy(arr_pred) .* T(NaN)
 
@@ -108,7 +125,7 @@ function QDM_main(arr_obs::AbstractArray{T,3},
     y_calib = arr_calib[i, j, :]
     y_pred = arr_pred[i, j, :]
 
-    fun!(arr_pred_adj[i, j, :], y_obs, y_calib, y_pred, dates; ny_win)
+    fun!(arr_pred_adj[i, j, :], y_obs, y_calib, y_pred, dates; ny_win, type_adj)
     # y_pred_adj = QDM(y_obs, y_calib, y_pred; na_rm)
     # arr_pred_adj[i, j, :] = y_pred_adj
   end
