@@ -1,0 +1,29 @@
+```{julia}
+# using DataStructures
+# include("src/CMIP/esgf.jl")
+using nctools.CMIP
+
+import HTTP, JSON
+function request_esgf(url)
+  p = HTTP.get(url)
+  data = JSON.parse(String(p.body))
+  data["response"]["docs"]
+end
+
+host = "https://esgf-data.dkrz.de/esg-search/search/"
+
+params = Dict(
+    "distrib"       => "false",
+    "type"          => "File",
+    "mip_era"       => "CMIP6",
+    "variable_id"   => "zg",
+    "experiment_id" => "hist-GHG,hist-nat,hist-aer",
+    "frequency"     => "day",
+    "limit"         => 10000,
+    "format"        => "application%2Fsolr%2Bjson" #"application/solr+json"
+)
+
+url = build_url(host, params)
+@time docs = request_esgf(url)
+info = tidy_docs(docs)
+```

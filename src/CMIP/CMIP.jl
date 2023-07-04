@@ -10,7 +10,7 @@ using nctools
 using DataFrames
 
 import Ipaper: str_extract, str_extract_all,
-  dates_miss, dates_nmiss, r_in
+  dates_miss, dates_nmiss, r_in, grepl, gsub
 
 
 # by reference
@@ -44,6 +44,7 @@ function map_df(fun::Function, lst::GroupedDataFrame{DataFrame})
   map(i -> fun(lst[i]), 1:n)
 end
 
+include("esgf.jl")
 include("CMIPFiles_info.jl")
 include("q2RH.jl")
 include("heat_index.jl")
