@@ -1,10 +1,11 @@
-function nc_get_value(fs, band=nothing)
+function nc_get_value(fs, band=nothing; verbose=false)
   band === nothing && (band = nc_bands(fs[1])[1])
 
   data = []
   dates = []
   
   for f = fs
+    verbose && (println(basename(f)))
     nc_open(f) do ds
       _data = ds[band].var[:]
       _dates = nc_date(ds)
