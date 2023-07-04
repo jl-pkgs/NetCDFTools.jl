@@ -7,6 +7,9 @@
   the length of data unique values
 
 
+# Note
+! 目前只保存其中一个变量
+
 # Example
 
 ```julia
@@ -31,6 +34,7 @@ function nc_subset(f, range::Vector, fout=nothing;
   check_vals=true, verbose=true,
   big=false,
   plevs=nothing,
+  band=nothing,
   outdir=".", overwrite=false)
 
   fout === nothing && (fout = "$outdir/$(basename(f))")
@@ -40,10 +44,10 @@ function nc_subset(f, range::Vector, fout=nothing;
   end
 
   nc = nc_open(f)
-  printstyled("Reading dims...\n")
-  @time dims = ncvar_dim(nc)
+  band === nothing && (band = nc_bands(nc)[1])
 
-  band = nc_bands(nc)[1] # 只选择其中一个变量
+  printstyled("Reading dims...\n")
+  @time dims = ncvar_dim(nc, band)
 
   lonr = range[1:2] + [-1, 1] * delta# longitude range
   latr = range[3:4] + [-1, 1] * delta# latitude range
@@ -54,13 +58,13 @@ function nc_subset(f, range::Vector, fout=nothing;
   v = @select(nc[band], $lonr[1] <= lon <= $lonr[2] && $latr[1] <= lat <= $latr[2])
 
   (ilon, ilat, _) = parentindices(v)
-  dims[1] = dims["lon"][ilon]
-  dims[2] = dims["lat"][ilat]
-
+  dims["lon"] = dims["lon"][ilon]
+  dims["lat"] = dims["lat"][ilat]
+  
   if plevs !== nothing && ndims(v) == 4
     v = @select(v, in_plev(plev, $plevs))
     (ilon, ilat, ilev, _) = parentindices(v)
-    dims[3] = dims[3][ilev]
+    dims["plev"] = dims["plev"][ilev]
   end
   
   printstyled("Reading data...\n")
