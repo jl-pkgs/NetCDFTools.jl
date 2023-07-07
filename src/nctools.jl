@@ -33,6 +33,7 @@ include("nc_write.jl")
 include("ncvar_def.jl")
 include("ncdim_def.jl")
 include("ncatt_put.jl")
+include("tools_rbase.jl")
 
 include("utilize/nc_aggregate.jl")
 include("utilize/nc_combine.jl")
