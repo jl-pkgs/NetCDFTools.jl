@@ -8,11 +8,6 @@ using Ipaper
 # cd(dirname(@__FILE__)) do
 include("test-nc_write.jl")
 include("test-nc_dims.jl")
-# include("test-Ipaper.jl")
-
-    # include("test-smooth_whit.jl")
-    # include("test-smooth_SG.jl")
-    # include("test_wTSM.jl")
-    # include("test_whittaker.jl")
-    # include("test-lambda_init.jl")
+include("test-bilinear.jl")
+include("test-CMIPFiles_info.jl")
 # end

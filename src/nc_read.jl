@@ -22,7 +22,7 @@ function nc_read(file, band=1;
   type=nothing, period=nothing, ind=nothing, 
   raw=false, nodata = NaN, verbose=false)
 
-  ds = Dataset(path_mnt(file))
+  ds = nc_open(path_mnt(file))
   bandName = get_bandName(file, band)
   # @time data = ds[bandName].var[:] # not replace na values at here
   data = raw ? ds[bandName].var : ds[bandName]

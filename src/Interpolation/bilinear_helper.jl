@@ -31,17 +31,17 @@ function nanmean4(y1::T, y2::T, y3::T, y4::T) where {T<:AbstractFloat}
     Σ += y1
   end
 
-  if y2 != y2
+  if y2 == y2
     n += 1
     Σ += y2
   end
 
-  if y3 != y3
+  if y3 == y3
     n += 1
     Σ += y3
   end
 
-  if y4 != y4
+  if y4 == y4
     n += 1
     Σ += y4
   end
