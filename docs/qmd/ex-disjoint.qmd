@@ -1,0 +1,13 @@
+```{julia}
+using SpatioTemporalCluster
+import SpatioTemporalCluster as ST
+import SpatioTemporalCluster: Disjoint, find_root!
+```
+
+```{julia}
+ids = [20, 30, 50, 40]
+d = Disjoint(ids)
+
+p = find_root!(d, 20)
+union!(d, 20, 30)
+```
