@@ -1,7 +1,7 @@
 using Pkg
 Pkg.activate(".")
 
-@time using nctools
+@time using NCTools
 @time using RCall
 
 

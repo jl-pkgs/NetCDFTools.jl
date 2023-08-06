@@ -1,6 +1,6 @@
 ```{julia}
 using Ipaper
-using nctools
+using NCTools
 
 function write_fig2(file="Rplot.pdf", width=10, height=5; show=true)
   # using Plots

@@ -1,4 +1,4 @@
-# using nctools
+# using NCTools
 # using Test
 
 import Random: seed!

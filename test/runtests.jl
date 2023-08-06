@@ -1,5 +1,5 @@
 using Test
-using nctools
+using NCTools
 using Ipaper
 
 # println(dirname(@__FILE__))

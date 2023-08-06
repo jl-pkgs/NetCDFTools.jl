@@ -1,4 +1,4 @@
-using nctools
+using NCTools
 using NCDatasets
 
 # f = "/mnt/g/Researches/CMIP6/CMIP6_ChinaHW_mergedFiles/HItasmax/hist-GHG/HItasmax_day_ACCESS-CM2_hist-GHG_r1i1p1f1_gn_19610101-20141231.nc"

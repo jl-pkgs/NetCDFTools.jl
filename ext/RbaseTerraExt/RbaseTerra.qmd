@@ -1,5 +1,5 @@
 ```{julia}
-using nctools, RCall
+using NCTools, RCall
 # using DataFrames
 
 ```

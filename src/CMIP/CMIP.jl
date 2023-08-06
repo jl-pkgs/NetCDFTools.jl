@@ -5,8 +5,8 @@
 module CMIP
 
 using DocStringExtensions
-using nctools
-# import nctools: nc_calendar | not work
+using NCTools
+# import NCTools: nc_calendar | not work
 using DataFrames
 
 import Ipaper: str_extract, str_extract_all,

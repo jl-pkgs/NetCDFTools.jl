@@ -1,4 +1,4 @@
-using nctools
+using NCTools
 
 function create_nc()
   isfile(f) && rm(f)

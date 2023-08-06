@@ -1,7 +1,7 @@
-# 1. nctools写入数据示例
+# 1. NCTools写入数据示例
 
 ```{julia}
-using nctools
+using NCTools
 using Test
 import Random: seed!
 ```

@@ -3,8 +3,8 @@ using Test
 
 @testset "nanmean" begin
   x = [1.0, 2, 3, 4]
-  @test nctools.nanmean4(x...) == 2.5
-  @test nctools.mean4(x...) == 2.5
+  @test NCTools.nanmean4(x...) == 2.5
+  @test NCTools.mean4(x...) == 2.5
 end
 
 
