@@ -1,10 +1,8 @@
 # Copyright (c) 2022 Dongdong Kong. All rights reserved.
 # This work is licensed under the terms of the MIT license.  
 # For a copy, see <https://opensource.org/licenses/MIT>.
-# using nctools
-module nctools
+module NCTools
 
-# using NetCDF
 export NcDim
 
 using NCDatasets
