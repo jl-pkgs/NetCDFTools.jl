@@ -55,7 +55,7 @@ close(ds)
 nc_info(f)
 ```
 
-@seealso [ncdim_def](ref)
+@seealso [`ncdim_def`](@ref)
 """
 function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib=Dict();
     compress=1, type=nothing, kwargs...)

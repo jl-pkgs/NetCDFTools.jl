@@ -1,5 +1,5 @@
-using Pkg
-Pkg.activate(@__DIR__)
+# using Pkg
+# Pkg.activate(@__DIR__)
 CI = get(ENV, "CI", nothing) == "true"
 using Documenter, NCTools
 
@@ -25,6 +25,6 @@ makedocs(modules=[NCTools],
 )
 
 if CI
-  deploydocs(repo="github.com/CUG-hydro/NCTools.jl.git",
+  deploydocs(repo="github.com/jl-spatial/NCTools.jl.git",
     target="build")
 end

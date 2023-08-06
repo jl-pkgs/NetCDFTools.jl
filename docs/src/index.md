@@ -13,20 +13,46 @@ Pkg.add("NCTools")
 ```
 
 ```@docs
-nc_info
-ncdim_def
+nc_open
+nc_cellsize
+
+Base.getindex
+
+NCTools.NcDim
+NCTools.ncdim_def
+NCTools.make_dims
+
 ncvar_def
+ncatt_put
 ```
 
-```docs
+```@docs
 nc_read
 nc_write
+nc_write!
 ```
+
 
 ## Utilities
 
 ```@docs
+QDM
+bilinear
+
 nc_aggregate
+nc_aggregate_dir
+
 nc_combine
 nc_subset
+```
+
+
+## CMIP functions
+
+```@docs
+CMIP.Tem_F2C
+CMIP.heat_index
+
+CMIP.get_model
+CMIP.CMIPFiles_info
 ```
