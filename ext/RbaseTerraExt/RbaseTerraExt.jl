@@ -2,7 +2,7 @@ export RbaseTerraExt
 module RbaseTerraExt
 
 using DataFrames
-using RCall, NCTools
+using RCall, NetCDFTools
 
 function init_pkgs()
   R"""
@@ -56,7 +56,7 @@ date = nc_date(f);
 # heatmap(data[:, :, 1]', yflip=true);
 ```
 """
-function NCTools.exact_extract(data, lon, lat, shp, date=nothing; plot=false)
+function NetCDFTools.exact_extract(data, lon, lat, shp, date=nothing; plot=false)
   cellx = diff(lon[1:2])[1]
   celly = diff(lat[1:2])[1]
 

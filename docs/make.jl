@@ -1,12 +1,12 @@
 # using Pkg
 # Pkg.activate(@__DIR__)
 CI = get(ENV, "CI", nothing) == "true"
-using Documenter, NCTools
+using Documenter, NetCDFTools
 
-makedocs(modules=[NCTools], sitename="NCTools.jl")
+makedocs(modules=[NetCDFTools], sitename="NetCDFTools.jl")
 
-makedocs(modules=[NCTools],
-  sitename="NCTools.jl",
+makedocs(modules=[NetCDFTools],
+  sitename="NetCDFTools.jl",
   doctest=false,
   format=Documenter.HTML(
     prettyurls=CI,
