@@ -1,7 +1,7 @@
 ```{julia}
 # using DataStructures
 # include("src/CMIP/esgf.jl")
-using NCTools.CMIP
+using NetCDFTools.CMIP
 
 import HTTP, JSON
 function request_esgf(url)

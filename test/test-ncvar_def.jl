@@ -1,4 +1,4 @@
-using NCTools
+using NetCDFTools
 
 function create_nc()
   isfile(f) && rm(f)

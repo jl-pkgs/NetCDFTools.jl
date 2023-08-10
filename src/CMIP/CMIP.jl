@@ -5,7 +5,7 @@
 module CMIP
 
 using DocStringExtensions
-using NCTools
+using NetCDFTools
 using DataFrames
 
 import Ipaper: str_extract, str_extract_all,

@@ -1,4 +1,4 @@
-name = "NCTools"
+name = "NetCDFTools"
 uuid = "13b2da74-5743-4fb0-a7fd-ee492c7bd322"
 authors = ["Dongdong Kong <kongdd@users.noreply.github.com>"]
 version = "0.1.7"

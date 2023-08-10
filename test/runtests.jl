@@ -1,5 +1,5 @@
 using Test
-using NCTools
+using NetCDFTools
 using Ipaper
 
 # println(dirname(@__FILE__))

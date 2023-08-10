@@ -1,4 +1,4 @@
-# using NCTools
+# using NetCDFTools
 # using Test
 
 import Random: seed!

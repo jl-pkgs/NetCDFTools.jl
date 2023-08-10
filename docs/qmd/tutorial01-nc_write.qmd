@@ -1,7 +1,7 @@
-# 1. NCTools写入数据示例
+# 1. NetCDFTools写入数据示例
 
 ```{julia}
-using NCTools
+using NetCDFTools
 using Test
 import Random: seed!
 ```

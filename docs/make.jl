@@ -25,6 +25,6 @@ makedocs(modules=[NCTools],
 )
 
 if CI
-  deploydocs(repo="github.com/jl-spatial/NCTools.jl.git",
+  deploydocs(repo="github.com/jl-spatial/NetCDFTools.jl.git",
     target="build")
 end

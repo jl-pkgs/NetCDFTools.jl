@@ -1,6 +1,6 @@
-# NCTools.jl
+# NetCDFTools.jl
 
-Documentation for NCTools.jl, a Julia package for loading/writing NetCDF data on 
+Documentation for NetCDFTools.jl, a Julia package for loading/writing NetCDF data on 
 the top of `NCDatasets.jl`.
 
 ## Installation
@@ -9,7 +9,7 @@ Inside the Julia shell, you can download and install using the following command
 
 ```julia
 using Pkg
-Pkg.add("NCTools")
+Pkg.add("NetCDFTools")
 ```
 
 ```@docs
@@ -18,9 +18,9 @@ nc_cellsize
 
 Base.getindex
 
-NCTools.NcDim
-NCTools.ncdim_def
-NCTools.make_dims
+NetCDFTools.NcDim
+NetCDFTools.ncdim_def
+NetCDFTools.make_dims
 
 ncvar_def
 ncatt_put
