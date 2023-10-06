@@ -6,9 +6,9 @@ filter_model(d::AbstractDataFrame, models::Regex) = d[grepl(d.model, models), :]
 
 
 """
-    get_model(file; prefix = "day_", postfix = "_hist|_ssp|_piControl")
+    get_model(file; prefix = "day_|mon_|year_", postfix = "_hist|_ssp|_piControl")
 """
-function get_model(file, prefix="day_", postfix="_hist|_ssp|_piControl")
+function get_model(file, prefix="day_|mon_|year_", postfix="_hist|_ssp|_piControl")
   str_extract(basename(file), "(?<=$prefix).*(?=$postfix)") #|> String
 end
 
