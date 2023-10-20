@@ -72,14 +72,15 @@ end
 
 
 # Base.getindex(dims::Vector{NcDim}, name::AbstractString) = Base.getindex(dims, [name])
-function get_nc_dim(ds::NCdata, name="time")
+# TODO: fix Regex
+function get_nc_dim(ds::NCdata, name::Union{AbstractString,Regex})
   n = ds.dim[name]
   vals = 1:n
   NcDim(name, n, vals, Dict())
   # NcDim(name, n, nothing, Dict()) # TODO
 end
 
-function nc_dim(ds::NCdata, name="time")
+function nc_dim(ds::NCdata, name::Union{AbstractString,Regex})
   if haskey(ds, name)
     try
       x = ds[name]
@@ -92,7 +93,7 @@ function nc_dim(ds::NCdata, name="time")
   end
 end
 
-function nc_dim(file::NCfiles, name="time")
+function nc_dim(file::NCfiles, name::Union{AbstractString,Regex})
   nc_open(file) do ds
     nc_dim(ds, name)
   end
@@ -120,8 +121,8 @@ end
     nc_cellsize(ds::NCdata)
 """
 function nc_cellsize(ds::NCdata)
-  diflon = nc_dim(ds, "lon").vals |> diff
-  diflat = nc_dim(ds, "lat").vals |> diff
+  diflon = nc_dim(ds, r"lon").vals |> diff
+  diflat = nc_dim(ds, r"lat").vals |> diff
 
   cell_x = mode(diflon)
   cell_y = mode(diflat)
