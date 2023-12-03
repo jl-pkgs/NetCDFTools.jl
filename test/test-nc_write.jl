@@ -1,5 +1,5 @@
-# using NetCDFTools
-# using Test
+using NetCDFTools
+using Test
 
 import Random: seed!
 
@@ -34,6 +34,7 @@ import Random: seed!
     varname="HI", overwrite=true,
     type=Float32)
   
+  dat2 = nc_read(fn; raw=false)
   dat2 = nc_read(fn; ind = (:, :, 1), raw=false)
   @test dat2[1] === NaN32
 

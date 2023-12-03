@@ -19,8 +19,8 @@
 - `verbose`: Boolean. It `true`, `data` and `ind` will be printed on the console.
 """
 function nc_read(file, band=1;
-  type=nothing, period=nothing, ind=nothing, 
-  raw=false, nodata = NaN, verbose=false)
+  type=nothing, period=nothing, ind=nothing,
+  raw=false, nodata=NaN, verbose=false)
 
   ds = nc_open(path_mnt(file))
   bandName = get_bandName(file, band)
@@ -40,15 +40,14 @@ function nc_read(file, band=1;
     ind = (:, :, itime[1]:itime[end])
     # data = length(dates) != length(ind) ?  data[:, :, ind] : data
   end
-  if ind === nothing
-    ind = (:,)
-  end
+
+  ind === nothing && (ind = repeat([:], ndims(data)))
   verbose && @show(data, ind)
 
   data = data[ind...]
   close(ds)
-  
-  if !raw; 
+
+  if !raw
     # - `AbstractMissArray`: missing will replaced
     # - `AbstractArray`: no missing, no operation
     # Ipaper.drop_missing!(data, nodata) # alternative option
