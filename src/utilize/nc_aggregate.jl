@@ -13,7 +13,7 @@ function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=mean,
   
   fout === nothing && (fout = "$outdir/$(basename(f))")
   if isfile(fout) && !overwrite
-    println("[ok] file downloaded already!")
+    println("[ok] file already finished!")
     return
   end
   verbose && (println("[running] : $(basename(fout))"))

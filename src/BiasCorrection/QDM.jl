@@ -86,8 +86,8 @@ function QDM_mov!(y_adj::AbstractVector{T},
     year_beg = max(year - half, year_min)
     year_end = min(year + half, year_max)
 
-    inds_target = years == year
-    inds_mov = years in year_beg:year_end
+    inds_target = years .== year
+    inds_mov = year_beg .<= years .<= year_end
 
     _y_target = y_pred[inds_target]
     _y_mov = y_pred[inds_mov]
@@ -106,6 +106,7 @@ function QDM_mov!(y_adj::AbstractVector{T},
 end
 
 
+# inds: spatial index
 function QDM_main(arr_obs::AbstractArray{T,3},
   arr_calib::AbstractArray{T,3},
   arr_pred::AbstractArray{T,3}, dates;   
