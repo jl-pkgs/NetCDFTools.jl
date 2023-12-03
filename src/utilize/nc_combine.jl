@@ -43,7 +43,7 @@ function nc_combine(fs, fout; compress=0)
   
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(v.attrib);
-    compress, goal_attrib=Dict(nc.attrib))
+    compress, global_attrib=Dict(nc.attrib))
 end
 
 """

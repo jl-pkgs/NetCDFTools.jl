@@ -8,8 +8,8 @@
 
 $(METHODLIST)
 """
-function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=nanmean,
-  outdir=".", overwrite=false, verbose=true)
+function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=mean,
+  outdir="./OUTPUT", overwrite=false, verbose=true)
   
   fout === nothing && (fout = "$outdir/$(basename(f))")
   if isfile(fout) && !overwrite
@@ -42,7 +42,7 @@ function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=nanmean,
   
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(nc[band].attrib);
-    compress=0, goal_attrib=Dict(nc.attrib))
+    compress=0, global_attrib=Dict(nc.attrib))
   
   nc_close(nc)
 end
@@ -58,15 +58,16 @@ scenario = "historical"
 indir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax/historical"
 outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
 
-nc_aggregate_dir(indir; by="year", outdir)
+nc_aggregate_dir(indir; by="year", replacement="day"=>"year", outdir)
 ```
 
 $(METHODLIST)
 """
 function nc_aggregate_dir(indir; 
-  by="year", replacement="day"=>by, outdir=".", kw...)
+  by="year", replacement="day"=>by, outdir="./OUTPUT", kw...)
 
   fs = dir(indir, "nc\$")
+  check_dir(outdir)
 
   for f in fs
     file = str_replace(basename(f), replacement[1], replacement[2])

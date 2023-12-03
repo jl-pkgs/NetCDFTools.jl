@@ -42,8 +42,8 @@ function nc_bands(ds::NCdata)
     # v_id = NCDatasets.nc_inq_varids(ds.ncid)
     # vars = NCDatasets.nc_inq_varname.(ds.ncid, v_id)
     vars = keys(ds)
-    dims = ["lon", "long", "longitude",
-        "lat", "latitude",
+    dims = ["x", "lon", "long", "longitude",
+        "y", "lat", "latitude",
         "lev", "level", "mlev", "plev",
         "height",
         "crs",

@@ -92,7 +92,7 @@ function nc_subset(f, range::Vector, fout=nothing;
 
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(v.attrib);
-    compress=1, goal_attrib=Dict(nc.attrib))
+    compress=1, global_attrib=Dict(nc.attrib))
   # ncatt_put(fout, Dict(nc.attrib))
 end
 
