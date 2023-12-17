@@ -58,10 +58,10 @@ nc_info(f)
 @seealso [`ncdim_def`](@ref)
 """
 function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib=Dict();
-    compress=1, type=nothing, kwargs...)
+    compress=1, type=nothing, overwrite=false, kwargs...)
 
     # attrib["deflatelevel"] = compress
-    if name in keys(ds)
+    if name in keys(ds) && !overwrite
         # println(options)
         @warn "Variable `$name`: exist!"
         return

@@ -44,8 +44,8 @@ $(METHODLIST)
 """
 function nc_write(f::AbstractString, varname::AbstractString, val,
   dims::Vector{NcDim}, attrib::Dict=Dict();
-  compress=1, overwrite=false, mode="c", 
-  global_attrib = Dict(),
+  compress=1, overwrite=false, mode="c",
+  global_attrib=Dict(),
   kw...)
 
   # check whether variable defined
@@ -67,6 +67,40 @@ function nc_write(f::AbstractString, varname::AbstractString, val,
 end
 
 
+"""
+$(TYPEDSIGNATURES)
+
+$(METHODLIST)
+
+# ! TODO: need to test overwrite
+"""
+function nc_write!(f::AbstractString, varname::AbstractString, val,
+  dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
+  compress=1, kw...)
+
+  mode = check_file(f) ? "a" : "c"
+  ds = nc_open(f, mode)
+  ncdim_def(ds, dims; verbose=false)
+
+  ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
+  close(ds)
+end
+
+
+function nc_write!(f::AbstractString, data::NamedTuple,
+  dims::Vector{<:Union{NcDim,AbstractString}}; verbose=false, kw...)
+
+  for (varname, val) in pairs(data)
+    verbose && println(varname)
+    nc_write!(f, string(varname), val, dims; kw...)
+  end
+end
+
+
+
+# =============================================================================
+# ! DEPRECATED ================================================================
+# =============================================================================
 function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
   varname="x", kw...)
 
@@ -74,23 +108,6 @@ function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, at
   printstyled("latest: nc_write(f, varname, val, dims, attrib; kw...)\n", color=:red)
 
   nc_write(f, varname, val, dims, attrib; kw...)
-end
-
-
-"""
-$(TYPEDSIGNATURES)
-
-$(METHODLIST)
-"""
-function nc_write!(f::AbstractString, varname::AbstractString, val, dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
-  compress=1, kw...)
-
-  mode = check_file(f) ? "a" : "c"
-  ds = nc_open(f, mode)
-  ncdim_def(ds, dims; verbose=false)
-  
-  ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
-  close(ds)
 end
 
 
