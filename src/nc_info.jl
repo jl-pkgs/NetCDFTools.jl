@@ -63,6 +63,7 @@ end
 
 get_bandName(file, band::Integer) = nc_bands(file)[band]
 get_bandName(file, band::AbstractString) = band
+get_bandName(file, band::Symbol) = string(band)
 
 
 function nc_info(ds::NCdata)
