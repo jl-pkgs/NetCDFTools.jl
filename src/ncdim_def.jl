@@ -1,5 +1,9 @@
-# TODO: 这里有提升空间
-function NcDim_time(dates)
+import Dates: Date, DateTime
+import CFTime: AbstractCFDateTime
+
+const DateTimeType = Union{DateTime,AbstractCFDateTime}
+
+function NcDim_time(dates::Vector{<:DateTimeType})
   vals = CFTime.timeencode.(dates, "days since 1970-01-01", eltype(dates))
   attrib = Dict(
     "units" => "days since 1970-01-01",
@@ -7,6 +11,8 @@ function NcDim_time(dates)
     "long_name" => "time")
   NcDim("time", length(vals), vals, attrib)
 end
+
+NcDim_time(dates::Vector{Date}) = NcDim_time(DateTime.(dates))
 
 """
   make_dims(range=[70, 140, 15, 55], cellsize = 0.5, dates)
@@ -60,13 +66,13 @@ function ncdim_def(ds, name, val, attrib=Dict(); verbose=false)
 end
 
 # NcDim
-function ncdim_def(ds, dim::NcDim)
-  ncdim_def(ds, dim.name, dim.vals, dim.atts)
+function ncdim_def(ds, dim::NcDim; kw...)
+  ncdim_def(ds, dim.name, dim.vals, dim.atts; kw...)
 end
 
-function ncdim_def(ds, dims::Vector{NcDim})
+function ncdim_def(ds, dims::Vector{NcDim}; kw...)
   for i = 1:length(dims)
     dim = dims[i]
-    ncdim_def(ds, dim.name, dim.vals, dim.atts)
+    ncdim_def(ds, dim.name, dim.vals, dim.atts; kw...)
   end
 end

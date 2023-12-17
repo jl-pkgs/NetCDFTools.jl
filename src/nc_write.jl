@@ -87,6 +87,8 @@ function nc_write!(f::AbstractString, varname::AbstractString, val, dims::Vector
 
   mode = check_file(f) ? "a" : "c"
   ds = nc_open(f, mode)
+  ncdim_def(ds, dims; verbose=false)
+  
   ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
   close(ds)
 end
