@@ -1,3 +1,5 @@
 function exact_extract end
 
-export exact_extract
+function coverage_fraction end
+
+export exact_extract, coverage_fraction

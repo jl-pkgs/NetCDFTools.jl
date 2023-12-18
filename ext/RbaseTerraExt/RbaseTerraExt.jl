@@ -6,8 +6,12 @@ using RCall, NetCDFTools
 
 function init_pkgs()
   R"""
-  library(terra)
-  library(exactextractr)
+  suppressMessages({
+    library(Ipaper)
+    library(terra)
+    library(exactextractr)
+    library(data.table)
+  })
 
   aperm_array <- function(x) {
     dims = dim(x)
@@ -88,5 +92,30 @@ function NetCDFTools.exact_extract(data, lon, lat, shp, date=nothing; plot=false
   r
   """ |> rcopy
 end
+
+
+function NetCDFTools.coverage_fraction(f, shp)
+  init_pkgs()
+
+  R"""
+  ra = rast($f, lyrs=1)
+
+  shp = sf::read_sf($shp)
+  fraction = exactextractr::coverage_fraction(ra, shp)[[1]]
+  area = cellSize(ra, unit = "km")
+
+  r = c(area, fraction = fraction)
+  rast_df(r) %>% 
+    mutate(area2 = area * fraction) %>%
+    .[fraction > 0] %>%
+    .[, .(I = cell, cell, lon, lat, fraction, area, area2)]
+  # print(info)
+  # info
+  """ |> rcopy
+end
+
+# TODO: Test convert julia `Raster` to R `terra::rast`
+
+
 
 end
