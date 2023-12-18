@@ -7,10 +7,11 @@ using RCall, NetCDFTools
 function init_pkgs()
   R"""
   suppressMessages({
-    library(Ipaper)
     library(terra)
     library(exactextractr)
     library(data.table)
+    library(Ipaper)
+    library(sf2)
   })
 
   aperm_array <- function(x) {
@@ -94,13 +95,15 @@ function NetCDFTools.exact_extract(data, lon, lat, shp, date=nothing; plot=false
 end
 
 
-function NetCDFTools.coverage_fraction(f, shp)
+function NetCDFTools.coverage_fraction(f, shp; union=false)
   init_pkgs()
 
   R"""
   ra = rast($f, lyrs=1)
 
   shp = sf::read_sf($shp)
+  if ($union) shp = sf::st_union(shp)
+
   fraction = exactextractr::coverage_fraction(ra, shp)[[1]]
   area = cellSize(ra, unit = "km")
 
@@ -109,8 +112,6 @@ function NetCDFTools.coverage_fraction(f, shp)
     mutate(area2 = area * fraction) %>%
     .[fraction > 0] %>%
     .[, .(I = cell, cell, lon, lat, fraction, area, area2)]
-  # print(info)
-  # info
   """ |> rcopy
 end
 
