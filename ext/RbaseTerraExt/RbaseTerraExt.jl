@@ -95,10 +95,27 @@ function NetCDFTools.exact_extract(data, lon, lat, shp, date=nothing; plot=false
 end
 
 
+"""
+    coverage_fraction(f, shp; union=false)
+
+# Examples
+
+```julia
+f = "Z:/ERA5/ChinaHI_hourly/OUTPUT/ChinaDaily_ERA5_HI_ALL_2022.nc"
+f_shp = "//kong-nas/CMIP6/GitHub/shapefiles/国家基础地理信息系统数据/bou1_4p.shp"
+
+@time info, mask = coverage_fraction(f, f_shp; union=true)
+@time data = nc_read_all(f);
+data2 = map(x -> updateMask!(x, mask), data)
+
+fout = "Z:/ERA5/ChinaHI_hourly/OUTPUT/ChinaDaily_ERA5_HI_ALL_2022_masked.nc"
+nc_write!(fout, data2, ncvar_dim(f))
+```
+"""
 function NetCDFTools.coverage_fraction(f, shp; union=false)
   init_pkgs()
 
-  R"""
+  info = R"""
   ra = rast($f, lyrs=1)
 
   shp = sf::read_sf($shp)
@@ -113,10 +130,16 @@ function NetCDFTools.coverage_fraction(f, shp; union=false)
     .[fraction > 0] %>%
     .[, .(I = cell, cell, lon, lat, fraction, area, area2)]
   """ |> rcopy
+  
+  # return a mask, true is inside
+  data = nc_read(f, ind=(:, :, 1)) # time should be in the last
+
+  mask = falses(size(data))
+  mask[info.cell] .= true
+  info, mask
 end
 
 # TODO: Test convert julia `Raster` to R `terra::rast`
-
 
 
 end
