@@ -1,9 +1,9 @@
 # NetCDFTools in Julia
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://jl-spatial.github.io/NetCDFTools.jl/stable)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://jl-spatial.github.io/NetCDFTools.jl/dev)
-[![CI](https://github.com/jl-spatial/NetCDFTools.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/jl-spatial/NetCDFTools.jl/actions/workflows/CI.yml)
-[![Codecov](https://codecov.io/gh/jl-spatial/NetCDFTools.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/jl-spatial/NetCDFTools.jl)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://jl-pkgs.github.io/NetCDFTools.jl/stable)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://jl-pkgs.github.io/NetCDFTools.jl/dev)
+[![CI](https://github.com/jl-pkgs/NetCDFTools.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/jl-pkgs/NetCDFTools.jl/actions/workflows/CI.yml)
+[![Codecov](https://codecov.io/gh/jl-pkgs/NetCDFTools.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/jl-pkgs/NetCDFTools.jl)
 
 > Dongdong Kong, CUG
 
@@ -11,7 +11,7 @@
 
 ```
 using Pkg
-Pkg.add(url = "https://github.com/jl-spatial/NetCDFTools.jl")
+Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")
 ```
 
 ## Usage
