@@ -79,7 +79,7 @@ fs = [
 info = CMIP.CMIPFiles_info(fs; detailed=false)
 ```
 """
-function CMIPFiles_info(files; detailed=false, include_year=false, include_nmiss=false)
+function CMIPFiles_info(files; detailed=false, include_year=false, include_nmiss=false, include_host=false)
   date_begin, date_end = get_date(files)
 
   info = DataFrame(;
@@ -93,6 +93,11 @@ function CMIPFiles_info(files; detailed=false, include_year=false, include_nmiss
     cbind(info; 
       year_begin=str_year.(date_begin), 
       year_end=str_year.(date_end))
+  end
+
+  if include_host
+    host = get_host.(files)
+    cbind(info; host)
   end
   
   if detailed
