@@ -132,9 +132,9 @@ function NetCDFTools.coverage_fraction(f, shp; union=false)
   """ |> rcopy
   
   # return a mask, true is inside
-  data = nc_read(f, ind=(:, :, 1)) # time should be in the last
-
-  mask = falses(size(data))
+  dims = length.(nc_dims(f)[1:2])
+  # data = nc_read(f, ind=(:, :, 1)) # time should be in the last
+  mask = falses(dims...)
   mask[info.cell] .= true
   info, mask
 end

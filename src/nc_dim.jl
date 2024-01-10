@@ -19,6 +19,7 @@ function Ipaper.names(dims::Vector{NcDim})
   map(x -> x.name, dims)
 end
 
+Base.length(dim::NcDim) = dim.dimlen
 
 function find_dim(dims::Vector{NcDim}, name::AbstractString)
   names = Ipaper.names(dims)
