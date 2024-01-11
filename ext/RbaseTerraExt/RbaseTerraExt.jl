@@ -2,7 +2,10 @@ export RbaseTerraExt
 module RbaseTerraExt
 
 using DataFrames
-using RCall, NetCDFTools
+using RCall
+using NetCDFTools
+import NetCDFTools: exact_extract, coverage_fraction
+
 
 function init_pkgs()
   R"""
@@ -61,7 +64,7 @@ date = nc_date(f);
 # heatmap(data[:, :, 1]', yflip=true);
 ```
 """
-function NetCDFTools.exact_extract(data, lon, lat, shp, date=nothing; plot=false)
+function exact_extract(data, lon, lat, shp, date=nothing; plot=false)
   cellx = diff(lon[1:2])[1]
   celly = diff(lat[1:2])[1]
 
@@ -112,7 +115,7 @@ fout = "Z:/ERA5/ChinaHI_hourly/OUTPUT/ChinaDaily_ERA5_HI_ALL_2022_masked.nc"
 nc_write!(fout, data2, ncvar_dim(f))
 ```
 """
-function NetCDFTools.coverage_fraction(f, shp; union=false)
+function coverage_fraction(f, shp; union=false)
   init_pkgs()
 
   info = R"""
