@@ -1,4 +1,4 @@
-using Interpolations
+import Interpolations: linear_interpolation, Line
 
 
 function approx(x, y, xout)
