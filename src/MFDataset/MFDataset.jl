@@ -13,7 +13,6 @@ function st_dims(x::FileNetCDF)
 end
 
 
-include("tools_Ipaper.jl")
 include("struct_MFDataset.jl")
 
 # include("tools_NCDatasets.jl")
@@ -24,5 +23,4 @@ include("struct_MFDataset.jl")
 # include("main_YAXArrays.jl")
 
 export MFDataset, MFVariable, get_chunk
-export findnear
 export st_dims

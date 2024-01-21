@@ -58,13 +58,6 @@ function Base.getindex(dim::NcDim, inds)
   NcDim(dim.name, length(vals), vals, dim.atts)
 end
 
-function Base.getindex(ds::NCDataset, pattern::Regex)
-  _keys = keys(ds)
-  _id = grep(_keys, pattern)[1]
-  _name = _keys[_id]
-  ds[_name]
-end
-
 
 function Base.setindex!(dims::Vector{NcDim}, v::NcDim, name::Union{AbstractString,Regex})
   ind = find_dim(dims, name)
@@ -85,6 +78,7 @@ function nc_dim(ds::NCdata, name::Union{AbstractString,Regex})
   if haskey(ds, name)
     try
       x = ds[name]
+      name = keys(x)[1]
       NcDim(name, x.var[:], Dict(x.attrib))
     catch
       get_nc_dim(ds, name)
@@ -122,8 +116,8 @@ end
     nc_cellsize(ds::NCdata)
 """
 function nc_cellsize(ds::NCdata)
-  diflon = nc_dim(ds, r"lon").vals |> diff
-  diflat = nc_dim(ds, r"lat").vals |> diff
+  diflon = nc_dim(ds, r"lon|x").vals |> diff
+  diflat = nc_dim(ds, r"lat|x").vals |> diff
 
   cell_x = mode(diflon)
   cell_y = mode(diflat)

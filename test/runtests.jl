@@ -2,6 +2,8 @@ using Test
 using NetCDFTools
 using Ipaper
 
+dir_root = dirname(dirname(@__FILE__))
+proj_path(f) = dirname(dirname(@__FILE__)) * "/" *  f
 # println(dirname(@__FILE__))
 # println(pwd())
 

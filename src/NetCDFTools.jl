@@ -20,9 +20,7 @@ import DataFrames: AbstractDataFrame, GroupedDataFrame
 using Ipaper
 @reexport using Ipaper.sf
 
-# import Ipaper: names, path_mnt, check_file, nanmean, grep, @par, 
-#   apply, check_dir, unique_sort, make_date
-# export Ipaper
+include("NCDataset.jl")
 
 include("tools.jl")
 include("nc_info.jl")
