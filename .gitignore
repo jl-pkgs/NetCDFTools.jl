@@ -52,3 +52,6 @@ ChinaHW_cluster_CMIP6
 *.vdoc.jl
 *.txt
 *.sh
+
+*.qmd
+*/*/temp/*

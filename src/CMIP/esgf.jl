@@ -10,7 +10,7 @@ function build_url(host, params)
   host * "?" * join([string(k) * "=" * string(v) for (k, v) in params], "&")
 end
 
-function filter_url(urls, url_type = ["OPENDAP", "HTTPServer"])
+function filter_url(urls, url_type=["OPENDAP", "HTTPServer"])
   inds = grepl.(urls, url_type[1]) |> findall
   if isempty(inds)
     inds = grepl.(urls, url_type[2]) |> findall

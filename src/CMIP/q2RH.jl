@@ -1,13 +1,13 @@
 
 # - Pa: kPa
 # -  q: g/g
-function vapour_press(q, Pa = 101.325) 
+function vapour_press(q, Pa=101.325)
   epsilon = 0.6220016
-  q * Pa/(epsilon + (1 - epsilon) * q)
+  q * Pa / (epsilon + (1 - epsilon) * q)
 end
 
 function cal_es(Tair)
-   0.6108 * exp((17.27 * Tair)/(Tair + 237.3))
+  0.6108 * exp((17.27 * Tair) / (Tair + 237.3))
 end
 
 # RH in the unit of `%`

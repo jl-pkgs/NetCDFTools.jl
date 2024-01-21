@@ -6,18 +6,19 @@ module NetCDFTools
 export NcDim
 
 using NCDatasets
-import NCDatasets: @select, NCDataset, MFDataset
+import NCDatasets: @select, NCDataset
 
 using CFTime
 using Dates
 
 using DocStringExtensions
 # using DocStringExtensions: TYPEDFIELDS, TYPEDEF
-using DataFrames
-# using DataFrames: DataFrame, AbstractDataFrame
+import DataFrames: AbstractDataFrame, GroupedDataFrame
 
 # include("Ipaper/Ipaper.jl")
 using Ipaper
+using Ipaper.sf
+
 # import Ipaper: names, path_mnt, check_file, nanmean, grep, @par, 
 #   apply, check_dir, unique_sort, make_date
 # export Ipaper
@@ -38,6 +39,7 @@ include("utilize/nc_aggregate.jl")
 include("utilize/nc_combine.jl")
 include("utilize/nc_subset.jl")
 
+include("MFDataset/MFDataset.jl")
 # CMIP
 include("CMIP/CMIP.jl")
 include("Interpolation/Interpolation.jl")

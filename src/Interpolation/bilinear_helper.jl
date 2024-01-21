@@ -1,9 +1,30 @@
-import Interpolations: linear_interpolation, Line
-
+# export approx
+# import Interpolations: linear_interpolation, Line
+# function approx(x, y, xout)
+#   interp_linear_extrap = linear_interpolation(x, y, extrapolation_bc=Line())
+#   interp_linear_extrap.(xout) # outside grid: linear extrapolation
+# end
 
 function approx(x, y, xout)
-  interp_linear_extrap = linear_interpolation(x, y, extrapolation_bc=Line())
-  interp_linear_extrap.(xout) # outside grid: linear extrapolation
+  !issorted(x) && error("Input x must be sorted")
+  yout = zeros(length(xout))
+
+  for (i, xi) in enumerate(xout)
+    # Find the interval that xi falls in
+    idx = searchsortedlast(x, xi)
+
+    # If xi is out of bounds of x, extrapolate
+    if idx == 0
+      yout[i] = y[1] + (xi - x[1]) * (y[2] - y[1]) / (x[2] - x[1])
+    elseif idx == length(x)
+      yout[i] = y[end] + (xi - x[end]) * (y[end] - y[end-1]) / (x[end] - x[end-1])
+    else
+      # Otherwise, interpolate
+      yout[i] = y[idx] + (xi - x[idx]) * (y[idx+1] - y[idx]) / (x[idx+1] - x[idx])
+    end
+  end
+
+  return yout
 end
 
 
