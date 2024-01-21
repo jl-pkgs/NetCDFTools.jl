@@ -1,3 +1,22 @@
+# - Pa: kPa
+# -  q: g/g
+function vapour_press(q, Pa=101.325)
+  epsilon = 0.6220016
+  q * Pa / (epsilon + (1 - epsilon) * q)
+end
+
+function cal_es(Tair)
+  0.6108 * exp((17.27 * Tair) / (Tair + 237.3))
+end
+
+# RH in the unit of `%`
+function q2RH(q, Tair; Pa=101.325)
+  ea = vapour_press(q, Pa)
+  es = cal_es(Tair)
+  ea / es * 100
+end
+
+
 """
     Tem_F2C(T_degF::Real)
     Tem_C2F(T_degC::Real)
@@ -95,8 +114,6 @@ function heat_index(f_tair::AbstractString, f_rh::AbstractString, outfile::Abstr
     # @time nc_write(arr_HI, outfile, dims; varname=varname, type=type, compress=compress)
   end
 end
-
-
 
 
 function heat_index_q(f_tair::AbstractString, f_q::AbstractString, outfile::AbstractString;

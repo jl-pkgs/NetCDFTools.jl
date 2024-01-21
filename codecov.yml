@@ -1,0 +1,7 @@
+ignore:
+  - "src/back/*"
+  - "src/*/deprecated"
+  - "src/*/temp"
+  - "ext/*/test"
+  - "src/CMIP/heat_index.jl"
+  - "ext/RbaseTerraExt.jl"
