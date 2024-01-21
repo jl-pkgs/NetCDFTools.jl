@@ -55,11 +55,15 @@ function nc_subset(f, range::Vector, fout=nothing;
   ## 截取数据
   in_plev(plev, plevs) = indexin(round.(Int, plev), plevs*100) .!== nothing
 
-  v = @select(nc[band], $lonr[1] <= lon <= $lonr[2] && $latr[1] <= lat <= $latr[2])
+  if haskey(nc, "lon") && haskey(nc, "lat")
+    v = @select(nc[band], $lonr[1] <= lon <= $lonr[2] && $latr[1] <= lat <= $latr[2])
+  elseif haskey(nc, "x") && haskey(nc, "y")
+    v = @select(nc[band], $lonr[1] <= x <= $lonr[2] && $latr[1] <= y <= $latr[2])
+  end
 
   (ilon, ilat, _) = parentindices(v)
-  dims["lon"] = dims["lon"][ilon]
-  dims["lat"] = dims["lat"][ilat]
+  dims[1] = dims[1][ilon]
+  dims[2] = dims[2][ilat]
   
   if plevs !== nothing && ndims(v) == 4
     v = @select(v, in_plev(plev, $plevs))

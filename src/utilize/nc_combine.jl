@@ -7,7 +7,7 @@ function nc_get_value(fs, band=nothing; verbose=false)
   for f = fs
     verbose && (println(basename(f)))
     nc_open(f) do ds
-      _data = ds[band].var[:]
+      _data = ds[band].var |> collect
       _dates = nc_date(ds)
       push!(data, _data)
       push!(dates, _dates)
@@ -23,7 +23,11 @@ function nc_get_value(fs, band=nothing; verbose=false)
   selectdim(data, ndim, inds), dates[inds]
 end
 
+"""
+    nc_combine(fs, fout; compress=0)
 
+!会自动跳过重复的日期
+"""
 function nc_combine(fs, fout; compress=0)
   f = fs[1]
   nc = nc_open(f)
@@ -34,13 +38,16 @@ function nc_combine(fs, fout; compress=0)
   @time vals, dates = nc_get_value(fs, band)
   # times = nc_get_value(fs, "time")
 
-  att = nc["time"].attrib
-  times = CFTime.timeencode(dates, att["units"], att["calendar"])
-  
+  if eltype(dates) <: Real
+    times = dates
+  else
+    att = nc["time"].attrib
+    times = CFTime.timeencode(dates, att["units"], att["calendar"])
+  end
   dims = ncvar_dim(nc)
-  dims["time"] = NcDim("time", times, dims["time"].atts)
-  # 这里会引起错误
+  dims["time"] = NcDim("time", dates, dims["time"].atts)
   
+  # 这里会引起错误
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(v.attrib);
     compress, global_attrib=Dict(nc.attrib))
