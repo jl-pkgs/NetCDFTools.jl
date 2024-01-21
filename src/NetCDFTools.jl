@@ -11,13 +11,14 @@ import NCDatasets: @select, NCDataset
 using CFTime
 using Dates
 
+using Reexport
 using DocStringExtensions
 # using DocStringExtensions: TYPEDFIELDS, TYPEDEF
 import DataFrames: AbstractDataFrame, GroupedDataFrame
 
 # include("Ipaper/Ipaper.jl")
 using Ipaper
-using Ipaper.sf
+@reexport using Ipaper.sf
 
 # import Ipaper: names, path_mnt, check_file, nanmean, grep, @par, 
 #   apply, check_dir, unique_sort, make_date

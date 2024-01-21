@@ -6,8 +6,9 @@ using Ipaper
 # println(pwd())
 
 # cd(dirname(@__FILE__)) do
+include("test-bilinear.jl")
+include("test-MFDataset.jl")
 include("test-nc_write.jl")
 include("test-nc_dims.jl")
-include("test-bilinear.jl")
 include("test-CMIPFiles_info.jl")
 # end
