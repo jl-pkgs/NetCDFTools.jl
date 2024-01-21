@@ -23,13 +23,16 @@ function ncatt_get(nc::NCdata)
   Dict(nc.attrib)
 end
 
-function ncatt_get(f::NCfiles)
+function ncatt_get(f::AbstractString)
   nc_open(f) do nc
     ncatt_get(nc)
   end
 end
 
-function ncatt_get(f::NCfiles, keys::Vector)
+ncatt_get(fs::Vector{<:AbstractString}) = map(ncatt_get, fs)
+
+
+function ncatt_get(f::AbstractString, keys::Vector)
   nc = nc_open(f)
   res = map(key -> begin
       if haskey(nc.attrib, key)
@@ -40,11 +43,10 @@ function ncatt_get(f::NCfiles, keys::Vector)
       end
     end, keys)
   nc_close(nc)
-  # filter(not_empty, res)
   res
 end
 
-function ncatt_get(f::NCfiles, key::AbstractString)
+function ncatt_get(f::AbstractString, key::AbstractString)
   ncatt_get(f, [key])[1]
 end
 

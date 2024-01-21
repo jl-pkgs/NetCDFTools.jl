@@ -8,6 +8,7 @@ proj_path(f) = dirname(dirname(@__FILE__)) * "/" *  f
 # println(pwd())
 
 # cd(dirname(@__FILE__)) do
+include("test-ncatt.jl")
 include("test-bilinear.jl")
 include("test-MFDataset.jl")
 include("test-nc_write.jl")
