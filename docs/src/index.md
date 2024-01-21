@@ -56,3 +56,9 @@ CMIP.heat_index
 CMIP.get_model
 CMIP.CMIPFiles_info
 ```
+
+## MFDataset
+
+```@docs
+MFDataset
+```
