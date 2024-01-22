@@ -3,5 +3,6 @@ ignore:
   - "src/*/deprecated"
   - "src/*/temp"
   - "ext/*/test"
+  - "src/BiasCorrection/*"
   - "src/CMIP/heat_index.jl"
   - "ext/RbaseTerraExt.jl"
