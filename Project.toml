@@ -29,7 +29,7 @@ RbaseTerraExt = "RCall"
 [compat]
 CFTime = "0.1"
 DataFrames = "1.6"
-DiskArrays = "0.3"
+DiskArrays = "0.3, 0.4"
 DocStringExtensions = "0.9"
 Ipaper = "0.1.16, 0.1.17"
 NCDatasets = "0.13, 0.14"
