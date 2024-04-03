@@ -135,7 +135,7 @@ function coverage_fraction(f, shp; union=false)
   """ |> rcopy
   
   # return a mask, true is inside
-  dims = length.(nc_dims(f)[1:2])
+  dims = length.(st_dims(f)[1:2])
   # data = nc_read(f, ind=(:, :, 1)) # time should be in the last
   mask = falses(dims...)
   mask[info.cell] .= true
