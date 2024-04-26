@@ -8,6 +8,7 @@ export NcDim
 using NCDatasets
 import NCDatasets: @select, NCDataset
 
+using ProgressMeter
 using CFTime
 using Dates
 
