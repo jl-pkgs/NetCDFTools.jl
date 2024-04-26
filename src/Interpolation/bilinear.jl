@@ -29,7 +29,9 @@ Z = rand(T, length(lon), length(lat), 2)
 r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)
 ```
 """
-function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, progress=true) where {T<:Real}
+function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, 
+  parallel=true, progress=true) where {T<:Real}
+  
   nx = length(x)
   ny = length(y)
 
@@ -57,12 +59,12 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, progress=true
 
   ntime = size(z, 3)
   res = zeros(T, nxx, nyy, ntime)
-  p = Progress(nxx)
+  p = Progress(nyy)
 
-  for i = 1:nxx
+  @par parallel for j = 1:nyy
     progress && next!(p)
 
-    @inbounds for j = 1:nyy
+    @inbounds for i = 1:nxx
       I, J = lx1[i], ly1[j]
       I2, J2 = min(I + 1, nx), min(J + 1, ny)
 
@@ -75,13 +77,18 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, progress=true
       z22 = @view z[I2, J2, :]
 
       if na_rm
-        zmean = nanmean4.(z11, z12, z21, z22) # mean
-        fix_na_each(z11, z12)
-        fix_na_each(z21, z22)
-        fix_na(z11, zmean)
-        fix_na(z12, zmean)
-        fix_na(z21, zmean)
-        fix_na(z22, zmean)
+        for k = 1:ntime
+          zmean = nanmean4(z11[k], z12[k], z21[k], z22[k]) # mean
+          isnan(z11[k]) && (z11[k] = z12[k])
+          isnan(z12[k]) && (z12[k] = z11[k])
+          isnan(z21[k]) && (z21[k] = z22[k])
+          isnan(z22[k]) && (z22[k] = z21[k])
+
+          isnan(z11[k]) && (z11[k] = zmean)
+          isnan(z12[k]) && (z12[k] = zmean)
+          isnan(z21[k]) && (z21[k] = zmean)
+          isnan(z22[k]) && (z22[k] = zmean)
+        end
       end
 
       @fastmath res[i, j, :] = @.(
@@ -93,6 +100,14 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, progress=true
   end
   res
 end
+
+# zmean = nanmean4.(z11, z12, z21, z22) # mean
+# fix_na_each(z11, z12)
+# fix_na_each(z21, z22)
+# fix_na(z11, zmean)
+# fix_na(z12, zmean)
+# fix_na(z21, zmean)
+# fix_na(z22, zmean)
 
 function bilinear(x, y, z::AbstractArray{T,3};
   range=[70, 140, 15, 55], cellsize=1, na_rm=true) where {T<:Real}
