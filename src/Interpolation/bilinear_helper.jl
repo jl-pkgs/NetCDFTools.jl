@@ -4,29 +4,39 @@
 #   interp_linear_extrap = linear_interpolation(x, y, extrapolation_bc=Line())
 #   interp_linear_extrap.(xout) # outside grid: linear extrapolation
 # end
+export find_first, interp_linear
 
-function approx(x, y, xout)
-  !issorted(x) && error("Input x must be sorted")
-  yout = zeros(length(xout))
-
-  for (i, xi) in enumerate(xout)
-    # Find the interval that xi falls in
-    idx = searchsortedlast(x, xi)
-
-    # If xi is out of bounds of x, extrapolate
-    if idx == 0
-      yout[i] = y[1] + (xi - x[1]) * (y[2] - y[1]) / (x[2] - x[1])
-    elseif idx == length(x)
-      yout[i] = y[end] + (xi - x[end]) * (y[end] - y[end-1]) / (x[end] - x[end-1])
-    else
-      # Otherwise, interpolate
-      yout[i] = y[idx] + (xi - x[idx]) * (y[idx+1] - y[idx]) / (x[idx+1] - x[idx])
-    end
+function find_first(x::AbstractVector, xout::Real)
+  # `x` should be sorted
+  direct = sign(x[2] - x[1])
+  if direct == 1
+    searchsortedlast(x, xout)
+  elseif direct == -1
+    searchsortedlast(x, xout; lt=Base.isgreater)
   end
-
-  return yout
 end
 
+function interp_linear(x1::Real, y1::Real, x2::Real, y2::Real, xout::Real)
+  y1 + (xout - x1) * (y2 - y1) / (x2 - x1)
+end
+
+function approx(x, y, xout)
+  yout = zeros(length(xout))
+
+  @inbounds for (i, xi) in enumerate(xout)
+    # Find the interval that xi falls in
+    idx = find_first(x, xi)
+    # If xi is out of bounds of x, extrapolate
+    if idx == 0
+      yout[i] = interp_linear(x[1], y[1], x[2], y[2], xi)
+    elseif idx == length(x)
+      yout[i] = interp_linear(x[end-1], y[end-1], x[end], y[end], xi)
+    else
+      yout[i] = interp_linear(x[idx], y[idx], x[idx+1], y[idx+1], xi)
+    end
+  end
+  return yout
+end
 
 array(val; dims) = reshape(val, dims...)
 array(val, dims) = array(val; dims)

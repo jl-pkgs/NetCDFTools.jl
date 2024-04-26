@@ -9,9 +9,11 @@ Where the z's are the corresponding elements of the Z matrix.
 
   $(METHODLIST)
 
+! 插值外延，可能会导致错误！
+
 # References
 
-1. https://github.com/cran/fields/blob/master/R/interp.surface.R
+1. https://github.com/NCAR/fields/blob/master/fields/R/interp.surface.R#L48
 
 2. https://en.wikipedia.org/wiki/Bilinear_interpolation
 
@@ -33,17 +35,20 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true) where {T<:Rea
 
   nxx = length(xx)
   nyy = length(yy)
-  
+
   ## approx: 将(x, y) -> 网格的(i, j)；可将(x2-x1, y2-y1) -> (1, 1)
   lx = approx(x, 1.0:nx, xx)
   ly = approx(y, 1.0:ny, yy)
 
+  # 可能会存在数据越界的问题
   lx1 = floor.(Int, lx)
   ly1 = floor.(Int, ly)
+  clamp!(lx1, 1, nx) # 修复数组越界
+  clamp!(ly1, 1, ny)
 
   ex = lx - lx1
   ey = ly - ly1
-  
+
   ## 边界处理
   lx1[lx1.==nx] .= nx - 1
   ly1[ly1.==ny] .= ny - 1
@@ -55,14 +60,15 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true) where {T<:Rea
 
   @inbounds for i = 1:nxx, j = 1:nyy
     I, J = lx1[i], ly1[j]
+    I2, J2 = min(I + 1, nx), min(J + 1, ny)
 
     _ex = ex[i] #/ (x2 - x1)
     _ey = ey[j] #/ (y2 - x1)
 
-    z11 = z[I, J, :]
-    z12 = z[I, J+1, :]
-    z21 = z[I+1, J, :]
-    z22 = z[I+1, J+1, :]
+    z11 = @view z[I, J, :]
+    z12 = @view z[I, J2, :]
+    z21 = @view z[I2, J, :]
+    z22 = @view z[I2, J2, :]
 
     if na_rm
       zmean = nanmean4.(z11, z12, z21, z22) # mean
@@ -79,14 +85,13 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true) where {T<:Rea
       z12 * (1 - _ex) * _ey +
       z21 * _ex * (1 - _ey) +
       z22 * _ex * _ey)
-    
   end
   res
 end
 
 function bilinear(x, y, z::AbstractArray{T,3};
   range=[70, 140, 15, 55], cellsize=1, na_rm=true) where {T<:Real}
-  
+
   delta = cellsize / 2
   rlon = range[1:2]
   rlat = range[3:4]
