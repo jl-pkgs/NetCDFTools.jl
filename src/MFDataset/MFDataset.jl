@@ -15,6 +15,12 @@ end
 
 include("struct_MFDataset.jl")
 
+
+function nc_date(m::MFDataset)
+  dates = map(f -> nc_date(f), m.fs)
+  cat(dates..., dims=1)
+end
+
 # include("tools_NCDatasets.jl")
 # include("tools_Zarr.jl")
 # include("mapslices_3d_chunk.jl")
