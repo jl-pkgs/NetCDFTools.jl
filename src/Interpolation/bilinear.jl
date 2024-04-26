@@ -64,50 +64,42 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true,
   @par parallel for j = 1:nyy
     progress && next!(p)
 
-    @inbounds for i = 1:nxx
+    for i = 1:nxx
       I, J = lx1[i], ly1[j]
       I2, J2 = min(I + 1, nx), min(J + 1, ny)
 
       _ex = ex[i] #/ (x2 - x1)
       _ey = ey[j] #/ (y2 - x1)
 
-      z11 = @view z[I, J, :]
-      z12 = @view z[I, J2, :]
-      z21 = @view z[I2, J, :]
-      z22 = @view z[I2, J2, :]
+      @inbounds for k = 1:ntime
+        z11 = z[I, J, k]
+        z12 = z[I, J2, k]
+        z21 = z[I2, J, k]
+        z22 = z[I2, J2, k]
+        
+        if na_rm
+          zmean = nanmean4(z11, z12, z21, z22) # mean
+          isnan(z11) && (z11 = z12)
+          isnan(z12) && (z12 = z11)
+          isnan(z21) && (z21 = z22)
+          isnan(z22) && (z22 = z21)
 
-      if na_rm
-        for k = 1:ntime
-          zmean = nanmean4(z11[k], z12[k], z21[k], z22[k]) # mean
-          isnan(z11[k]) && (z11[k] = z12[k])
-          isnan(z12[k]) && (z12[k] = z11[k])
-          isnan(z21[k]) && (z21[k] = z22[k])
-          isnan(z22[k]) && (z22[k] = z21[k])
-
-          isnan(z11[k]) && (z11[k] = zmean)
-          isnan(z12[k]) && (z12[k] = zmean)
-          isnan(z21[k]) && (z21[k] = zmean)
-          isnan(z22[k]) && (z22[k] = zmean)
+          isnan(z11) && (z11 = zmean)
+          isnan(z12) && (z12 = zmean)
+          isnan(z21) && (z21 = zmean)
+          isnan(z22) && (z22 = zmean)
         end
+        
+        @fastmath res[i, j, k] = 
+          z11 * (1 - _ex) * (1 - _ey) +
+          z12 * (1 - _ex) * _ey +
+          z21 * _ex * (1 - _ey) +
+          z22 * _ex * _ey
       end
-
-      @fastmath res[i, j, :] = @.(
-        z11 * (1 - _ex) * (1 - _ey) +
-        z12 * (1 - _ex) * _ey +
-        z21 * _ex * (1 - _ey) +
-        z22 * _ex * _ey)
     end
   end
   res
 end
-
-# zmean = nanmean4.(z11, z12, z21, z22) # mean
-# fix_na_each(z11, z12)
-# fix_na_each(z21, z22)
-# fix_na(z11, zmean)
-# fix_na(z12, zmean)
-# fix_na(z21, zmean)
-# fix_na(z22, zmean)
 
 function bilinear(x, y, z::AbstractArray{T,3};
   range=[70, 140, 15, 55], cellsize=1, na_rm=true) where {T<:Real}

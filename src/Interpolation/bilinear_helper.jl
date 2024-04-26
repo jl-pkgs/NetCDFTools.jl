@@ -80,31 +80,29 @@ function nanmean4(y1::T, y2::T, y3::T, y4::T) where {T<:AbstractFloat}
   return Σ / n
 end
 
-function nanmean4(y1::AbstractVector{T}, y2::AbstractVector{T},
-  y3::AbstractVector{T}, y4::AbstractVector{T}) where {T<:AbstractFloat}
-  nanmean4.(y1, y2, y3, y4)
-end
+# function nanmean4(y1::AbstractVector{T}, y2::AbstractVector{T},
+#   y3::AbstractVector{T}, y4::AbstractVector{T}) where {T<:AbstractFloat}
+#   nanmean4.(y1, y2, y3, y4)
+# end
 
+# function fix_na_each(x::AbstractArray{T}, y::AbstractArray{T}) where {T<:Real}
+#   @inbounds @simd for i in eachindex(x)
+#     if isnan(x[i])
+#       x[i] = y[i]
+#     end
+#     if isnan(y[i])
+#       y[i] = x[i]
+#     end
+#   end
+# end
 
-
-function fix_na_each(x::AbstractArray{T}, y::AbstractArray{T}) where {T<:Real}
-  @inbounds @simd for i in eachindex(x)
-    if isnan(x[i])
-      x[i] = y[i]
-    end
-    if isnan(y[i])
-      y[i] = x[i]
-    end
-  end
-end
-
-function fix_na(x::AbstractArray{T}, y::AbstractArray{T}) where {T<:Real}
-  @inbounds @simd for i in eachindex(x)
-    if isnan(x[i])
-      x[i] = y[i]
-    end
-  end
-end
+# function fix_na(x::AbstractArray{T}, y::AbstractArray{T}) where {T<:Real}
+#   @inbounds @simd for i in eachindex(x)
+#     if isnan(x[i])
+#       x[i] = y[i]
+#     end
+#   end
+# end
 
 
 export approx, array, meshgrid
