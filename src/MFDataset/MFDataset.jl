@@ -1,5 +1,5 @@
 using Parameters
-using DiskArrays: GridChunks
+import NCDatasets.DiskArrays: GridChunks
 # using ProgressMeter
 
 import Ipaper.sf: FileNetCDF, st_dims
