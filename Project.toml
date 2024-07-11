@@ -1,7 +1,7 @@
 name = "NetCDFTools"
 uuid = "13b2da74-5743-4fb0-a7fd-ee492c7bd322"
 authors = ["Dongdong Kong <kongdd@users.noreply.github.com>"]
-version = "0.1.11"
+version = "0.2.0"
 
 [deps]
 CFTime = "179af706-886a-5703-950a-314cd64e0468"
@@ -30,7 +30,7 @@ RbaseTerraExt = "RCall"
 CFTime = "0.1"
 DataFrames = "1.6"
 DocStringExtensions = "0.9"
-Ipaper = "0.1.16, 0.1.17"
+Ipaper = "0.1.16, 0.1.17, 0.2"
 NCDatasets = "0.13, 0.14"
 Parameters = "0.12"
 PrecompileTools = "1.2"
