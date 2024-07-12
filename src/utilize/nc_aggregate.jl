@@ -77,4 +77,4 @@ function nc_aggregate_dir(indir;
 end
 
 
-export nc_aggregate, nc_aggregate_dir
+

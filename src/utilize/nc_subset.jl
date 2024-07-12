@@ -114,4 +114,3 @@ function nc_subset(d::AbstractDataFrame, range;
 end
 
 
-export nc_subset

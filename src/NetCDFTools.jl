@@ -35,9 +35,7 @@ include("ncdim_def.jl")
 include("ncatt_put.jl")
 include("tools_rbase.jl")
 
-include("utilize/nc_aggregate.jl")
-include("utilize/nc_combine.jl")
-include("utilize/nc_subset.jl")
+include("utilize/utilize.jl")
 
 include("MFDataset/MFDataset.jl")
 # CMIP
