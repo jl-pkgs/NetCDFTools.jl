@@ -1,7 +1,7 @@
 name = "NetCDFTools"
 uuid = "13b2da74-5743-4fb0-a7fd-ee492c7bd322"
 authors = ["Dongdong Kong <kongdd@users.noreply.github.com>"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 CFTime = "179af706-886a-5703-950a-314cd64e0468"

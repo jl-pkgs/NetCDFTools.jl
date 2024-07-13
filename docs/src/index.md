@@ -44,6 +44,7 @@ nc_aggregate_dir
 
 nc_combine
 nc_subset
+nc_crop
 ```
 
 
