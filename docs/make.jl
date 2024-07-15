@@ -8,6 +8,7 @@ makedocs(modules=[NetCDFTools], sitename="NetCDFTools.jl")
 makedocs(modules=[NetCDFTools],
   sitename="NetCDFTools.jl",
   doctest=false,
+  warnonly=true,
   format=Documenter.HTML(
     prettyurls=CI,
   ),

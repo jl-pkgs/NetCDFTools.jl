@@ -1,8 +1,12 @@
 nc_date(ds::NCdata) = ds["time"][:]
 
-function nc_date(file::NCfiles)
+function nc_date(file::NCfiles; period=nothing)
   nc_open(file) do ds
-    nc_date(ds)
+    dates = nc_date(ds)
+    period === nothing && return dates
+
+    inds = period[1] .<= year.(dates) .<= period[2]
+    return dates[inds]
   end
 end
 
