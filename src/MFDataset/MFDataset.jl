@@ -28,5 +28,5 @@ end
 # include("mapslices_3d.jl")
 # include("main_YAXArrays.jl")
 
-export MFDataset, MFVariable, get_chunk
+export MFDataset, MFVariable, get_chunk, GridChunks
 export st_dims
