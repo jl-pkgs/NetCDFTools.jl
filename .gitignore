@@ -36,6 +36,7 @@ gdal/
 .vscode/
 *.m
 *.mat
+*.csv
 
 ## data
 *.nc

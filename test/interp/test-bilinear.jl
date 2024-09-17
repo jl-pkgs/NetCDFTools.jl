@@ -27,13 +27,13 @@ end
 end
 
 @testset "bilinear vs. cdo" begin
-  f_cdo = "../data/HI_tasmax_resampled_cdo.nc"
+  f_cdo = proj_path("data/HI_tasmax_resampled_cdo.nc")
   # cdo_bilinear(f, fout, fgrid; verbose=true)
   Z_cdo = nc_read(f_cdo)
 
   ## 2. bilinear版本
   # note: the sort style of `lat` and `yy` should be same
-  f = "../data/HI_tasmax_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101.nc"
+  f = proj_path("data/HI_tasmax_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101.nc")
   lon, lat = st_dims(f)
   A = nc_read(f)
   b = bbox(70, 15, 140, 55)

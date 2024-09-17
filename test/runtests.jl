@@ -6,8 +6,10 @@ dir_root = dirname(dirname(@__FILE__))
 proj_path(f) = dirname(dirname(@__FILE__)) * "/" *  f
 # println(dirname(@__FILE__))
 # println(pwd())
-include("interp/test-bilinear.jl")
 include("interp/test-angle.jl")
+include("interp/test-weighted_nanmean.jl")
+include("interp/test-spInterp.jl")
+include("interp/test-bilinear.jl")
 
 # cd(dirname(@__FILE__)) do
 include("test-nc_date.jl")
