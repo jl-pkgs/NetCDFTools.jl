@@ -55,7 +55,7 @@ weight_idw
 ```
 
 ```@docs
-rdist_earth
+earth_dist
 angle_azimuth_sphere
 ```
 
