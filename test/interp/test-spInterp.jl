@@ -1,4 +1,6 @@
 # using RTableTools
+# st = fread("data/st_met2481.csv")
+# serialize("data/st_met2481", st[:, [:site, :lon, :lat, :alt]])
 using Ipaper, Ipaper.sf #, ArchGDAL
 using NetCDFTools, Test
 
@@ -15,14 +17,16 @@ indir = "$(@__DIR__)/../../data"
   nlon, nlat = length(lon), length(lat)
   ra = rast(rand(nlon, nlat), b)
 
+  weights = weights_idw(ra, sites)
+  @test length(rm_empty(weights[:])) == 7861
+
+  weights = weights_idw(ra, sites)
   weights = weights_adw(ra, sites)
   @time zs = spInterp(weights, data)
 
   @test size(zs) == (nlon, nlat, 24)
   @test mean(zs[:, :, 1]) ≈ 814.0711051650405
 end
-# st = fread("data/st_met2481.csv")
-# serialize("data/st_met2481", st[:, [:site, :lon, :lat, :alt]])
 
 # @profview zs = spInterp(weights, data);
 

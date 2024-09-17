@@ -1,9 +1,15 @@
 using DataFrames
 
 """
+    weight_idw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=2)
+    weight_adw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=4, cdd=450)
+
+# Arguments
 - `point`: Tuple of (lon, lat) coordinates
 - `sites`: Matrix of (lon, lat) coordinates
 - `r_deg`: radius in degrees
+- `nmax`: maximum number of sites
+- `m`: power of distance
 """
 function weight_idw(point::Tuple, sites::AbstractMatrix;
   r_deg=5, nmax::Int=20, m=2)
@@ -20,7 +26,9 @@ function weight_idw(point::Tuple, sites::AbstractMatrix;
     dist = dist[inds]
     I = I[inds]
   end
-  w = 1 / dist .^ m
+
+  isempty(dist) && return DataFrame(; I=[], w=[], dist)
+  w = 1 ./ dist .^ m
   DataFrame(; I, w, dist)
 end
 
@@ -67,7 +75,7 @@ end
 function weights_idw(ra::SpatRaster, sites::AbstractMatrix;
   nmax::Int=10, r_deg=5,
   m=2, ignored...)
-  weights_func(ra, sites; wfun=weight_idw, nmax, r_deg, kw, m, ignored...)
+  weights_func(ra, sites; wfun=weight_idw, nmax, r_deg, m, ignored...)
 end
 
 function weights_adw(ra::SpatRaster, sites::AbstractMatrix;
@@ -97,10 +105,27 @@ function weights_func(ra::SpatRaster, sites::AbstractMatrix; wfun::Function, nma
       weights[i, j] = info
     end
   end
-  weights
+  return weights
 end
 
 
+"""
+    spInterp(weights::AbstractMatrix, data::AbstractMatrix; progress=true)
+
+```julia
+sites = [st.lon st.lat]
+alt = st[:, :alt]
+data = repeat(alt, 1, 24)' |> collect
+
+b = bbox(70, 15, 140, 55)
+lon, lat = bbox2dims(b; cellsize=0.5)
+nlon, nlat = length(lon), length(lat)
+ra = rast(rand(nlon, nlat), b)
+
+weights = weights_adw(ra, sites)
+@time zs = spInterp(weights, data)
+```
+"""
 function spInterp(weights::AbstractMatrix, data::AbstractMatrix; progress=true)
   ntime = size(data, 1)
   nlon, nlat = size(weights)[1:2]
@@ -122,8 +147,10 @@ function spInterp(weights::AbstractMatrix, data::AbstractMatrix; progress=true)
       out[i, j, :] .= z
     end
   end
-  out
+  return out
 end
 
 
-export weight_adw, weights_adw, weights_func, spInterp
+export weight_adw, weight_idw,
+  weights_adw, weights_idw,
+  weights_func, spInterp

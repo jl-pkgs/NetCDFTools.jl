@@ -37,7 +37,6 @@ nc_write!
 
 ```@docs
 QDM
-bilinear
 
 nc_aggregate
 nc_aggregate_dir
@@ -47,6 +46,18 @@ nc_subset
 nc_crop
 ```
 
+## Interpolation
+
+```@docs
+spInterp
+bilinear
+weight_idw
+```
+
+```@docs
+rdist_earth
+angle_azimuth_sphere
+```
 
 ## CMIP functions
 

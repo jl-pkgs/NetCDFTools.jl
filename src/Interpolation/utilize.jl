@@ -14,7 +14,7 @@ function weighted_nanmean(x::AbstractVector{T1}, w::AbstractVector{T2}) where {T
     ∑ += ifelse(notnan, x[i] * w[i], ∅)
     ∑w += ifelse(notnan, w[i], ∅w)
   end
-  ∑ / ∑w
+  return ∑ / ∑w
 end
 
 # byrow
@@ -47,7 +47,7 @@ function weighted_nanmean!(R::AbstractVector, mat::AbstractMatrix{T1}, w::Abstra
     end
     R[i] = ∑ / ∑w
   end
-  R
+  return R
 end
 
 function rm_empty(list::Vector)
