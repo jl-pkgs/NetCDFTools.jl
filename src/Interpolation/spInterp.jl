@@ -137,8 +137,8 @@ function spInterp(weights::AbstractMatrix, data::AbstractMatrix; progress=true)
   @views @inbounds for i = 1:nlon
     progress && next!(p)
     for j = 1:nlat
-      k = (i - 1) * nlat + j
-      info = weights[k]
+      # k = (i - 1) * nlat + j
+      info = weights[i, j]
       isempty(info) && continue
 
       I = info.I
