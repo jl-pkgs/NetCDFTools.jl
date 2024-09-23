@@ -16,7 +16,7 @@
        will be stored in the _FillValue attribute.
 
     + chunksizes: Vector integers setting the chunk size. The total size of a
-       chunk must be less than 4 GiB.
+       chunk must be less than 4 GiB. Such as `(10, 10, 1)`
 
     + shuffle: If true, the shuffle filter is activated which can improve the
        compression ratio.
@@ -35,7 +35,7 @@ dims = [
 ]
 dims = make_dims(range, cellsize, dates) # another option
 
-nc_write(f, varname, val, dims)
+nc_write(f, varname, val, dims; units, longname)
 ```
 
 $(METHODLIST)
@@ -44,22 +44,24 @@ $(METHODLIST)
 """
 function nc_write(f::AbstractString, varname::AbstractString, val,
   dims::Vector{NcDim}, attrib::Dict=Dict();
+  units=nothing, longname=nothing,
   compress=1, overwrite=false, mode="c",
   global_attrib=Dict(),
   kw...)
 
+  !isnothing(units) && (attrib["units"] = units)
+  !isnothing(longname) && (attrib["longname"] = longname)
+
   # check whether variable defined
   if !check_file(f) || overwrite
-    if isfile(f)
-      rm(f)
-    end
+    isfile(f) && rm(f)
 
     ds = nc_open(f, mode)
     ncatt_put(ds, global_attrib)
     ncdim_def(ds, dims)
 
     dimnames = names(dims)
-    ncvar_def(ds, varname, val, dimnames, attrib; compress=compress, kw...)
+    ncvar_def(ds, varname, val, dimnames, attrib; compress, kw...)
     close(ds)
   else
     println("[file exist]: $(basename(f))")
@@ -94,31 +96,4 @@ function nc_write!(f::AbstractString, data::NamedTuple,
     verbose && println(varname)
     nc_write!(f, string(varname), val, dims; kw...)
   end
-end
-
-
-
-# =============================================================================
-# ! DEPRECATED ================================================================
-# =============================================================================
-function nc_write(val::AbstractArray, f::AbstractString, dims::Vector{NcDim}, attrib=Dict();
-  varname="x", kw...)
-
-  printstyled("Deprecated nc_write function!\n", color=:red)
-  printstyled("latest: nc_write(f, varname, val, dims, attrib; kw...)\n", color=:red)
-
-  nc_write(f, varname, val, dims, attrib; kw...)
-end
-
-
-"""
-$(TYPEDSIGNATURES)
-
-$(METHODLIST)
-"""
-function nc_write!(val::AbstractArray, f::AbstractString, dims::Vector{<:Union{NcDim,AbstractString}}, attrib=Dict();
-  varname="x", kw...)
-
-  printstyled("Deprecated nc_write! function!\n", color=:red)
-  nc_write!(f, varname, val, dims, attrib; kw...)
 end
