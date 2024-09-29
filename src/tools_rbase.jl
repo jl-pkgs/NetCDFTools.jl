@@ -10,19 +10,22 @@ function updateMask!(A::AbstractArray{T,2}, mask::BitMatrix) where {T<:Real}
   A
 end
 
-# function updateMask!(A::AbstractArray{T,3}, mask::BitMatrix) where {T<:Real}
-#   missval = T(NaN)
-#   @views @inbounds for t in axes(A, 3)
-#     x = A[:, :, t]
-#     x[.!mask] .= missval
-#   end
-#   A
-# end
+function updateMask!(A::AbstractArray{T,3}, mask::BitMatrix) where {T<:Real}
+  missval = T(NaN)
+  nlon, nlat, ntime = size(A)
+  # lgl = .!mask
+  @inbounds @par for k in 1:ntime
+    for j = 1:nlat, i = 1:nlon
+      !mask[i, j] && (A[i, j, k] = missval)
+    end
+  end
+  A
+end
 
 function updateMask!(A::AbstractArray{T,N}, mask::BitMatrix) where {T<:Real,N}
-  @views @inbounds for t in axes(A, N)
+  @inbounds for t in axes(A, N)
     ind = (repeat([:], N - 1)..., t)
-    x = A[ind...]
+    x = @view A[ind...]
     updateMask!(x, mask)
   end
   A
