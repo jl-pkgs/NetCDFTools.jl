@@ -97,3 +97,12 @@ function nc_write!(f::AbstractString, data::NamedTuple,
     nc_write!(f, string(varname), val, dims; kw...)
   end
 end
+
+function nc_write!(f::AbstractString, ra::SpatRaster; kw...)
+  _dims = [
+    NcDim("lon", ra.lon),
+    NcDim("lat", ra.lat),
+    NcDim_time(ra.time)
+  ]
+  nc_write!(f, ra.name, ra.A, _dims; kw...)
+end
