@@ -1,15 +1,16 @@
 using Test, NetCDFTools, Ipaper
 
+
 @testset "updateMask" begin
   A = array(1.0:16, (4, 4)) |> collect
   mask = A .> 10
   updateMask!(A, mask)
-  length(findall(A .> 10)) == 6
+  @test length(findall(A .> 10)) == 6
 
-  A = rand(4, 4, 2)
-  mask = A[:, :, 1] .> 0.5
+  A = rand(4, 4, 2, 2)
+  mask = A[:, :, 1, 1] .> 0.5
   updateMask!(A, mask)
-  @test isempty(findall(A[:, :, 1] .<= 0.5))
+  @test isempty(findall(A[:, :, 1, 1] .<= 0.5))
 end
 
 

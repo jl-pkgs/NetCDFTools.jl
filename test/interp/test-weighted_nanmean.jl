@@ -1,4 +1,4 @@
-using Test
+using Test, Ipaper, NetCDFTools
 
 @testset "weighted_nanmean" begin
   x = [1, 2, 3, NaN]

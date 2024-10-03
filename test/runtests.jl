@@ -1,7 +1,6 @@
 using Test
 using NetCDFTools
 using Ipaper, Dates
-import NetCDFTools: weighted_nanmean
 
 dir_root = dirname(dirname(@__FILE__))
 proj_path(f) = dirname(dirname(@__FILE__)) * "/" *  f

@@ -1,19 +1,5 @@
 export rm_empty, weighted_nanmean!, weighted_nanmean, earth_dist
-
-function weighted_nanmean(x::AbstractVector{T1}, w::AbstractVector{T2}) where {T1,T2}
-  T = promote_type(T1, T2)
-  ∑ = ∅ = T(0)
-  ∑w = ∅w = T2(0)
-
-  @inbounds for i = eachindex(x)
-    # if !isnan(x[i]); end
-    xᵢ = x[i]
-    notnan = xᵢ == xᵢ
-    ∑ += ifelse(notnan, x[i] * w[i], ∅)
-    ∑w += ifelse(notnan, w[i], ∅w)
-  end
-  return ∑ / ∑w
-end
+import Ipaper: weighted_nanmean
 
 # byrow
 function weighted_nanmean(mat::AbstractMatrix{T1}, w::AbstractVector{T2}) where {T1,T2}

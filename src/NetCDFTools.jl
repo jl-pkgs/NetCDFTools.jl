@@ -21,6 +21,11 @@ import DataFrames: AbstractDataFrame, GroupedDataFrame
 using Ipaper
 @reexport using Ipaper.sf
 
+export exact_extract, coverage_fraction
+
+function exact_extract end
+function coverage_fraction end
+
 include("NCDataset.jl")
 
 include("tools.jl")

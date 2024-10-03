@@ -29,7 +29,7 @@ function split_chunk(n::Int, nchunk=4; chunk=nothing, ratio_small::Real=0.0)
     lst[end-1] = i_beg:i_end
     deleteat!(lst, nchunk)
   end
-  lst
+  return lst
 end
 
 function split_chunk(x::Union{UnitRange,AbstractVector}, nchunk=4; kw...)
@@ -47,7 +47,35 @@ function split_date(dates; ny_win=10, kw...)
   lst_index = map(grp -> begin
       findall(indexin(years, grp) .!== nothing)
     end, lst)
-  lst_index
+  return lst_index
 end
 
-export split_chunk, split_date
+
+function updateMask!(A::AbstractArray{T,2}, mask::BitMatrix) where {T<:Real}
+  missval = T(NaN)
+  A[.!mask] .= missval
+  return A
+end
+
+function updateMask!(A::AbstractArray{T,3}, mask::BitMatrix) where {T<:Real}
+  missval = T(NaN)
+  nlon, nlat, ntime = size(A)
+  # lgl = .!mask
+  @inbounds @par for k in 1:ntime
+    for j = 1:nlat, i = 1:nlon
+      !mask[i, j] && (A[i, j, k] = missval)
+    end
+  end
+  return A
+end
+
+function updateMask!(A::AbstractArray{T,N}, mask::BitMatrix) where {T<:Real,N}
+  @inbounds for t in axes(A, N)
+    ind = (repeat([:], N - 1)..., t)
+    x = @view A[ind...]
+    updateMask!(x, mask)
+  end
+  A
+end
+
+export split_chunk, split_date, updateMask!

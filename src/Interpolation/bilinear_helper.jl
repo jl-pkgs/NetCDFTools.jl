@@ -38,8 +38,8 @@ function approx(x, y, xout)
   return yout
 end
 
-array(val; dims) = reshape(val, dims...)
-array(val, dims) = array(val; dims)
+# array(val; dims) = reshape(val, dims...)
+# array(val, dims) = array(val; dims)
 
 function meshgrid(x, y)
   X = repeat(x', length(y), 1)
