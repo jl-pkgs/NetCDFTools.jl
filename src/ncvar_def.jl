@@ -11,25 +11,26 @@
 - `compress`: Compression level: 0 (default) means no compression and 9 means
     maximum compression. Each chunk will be compressed individually.
 
-- `type`: which type to save? Julia variable types (not string), e.g., `Float32`.
+- `type`: which type to save? Julia variable types (not string), e.g.,
+  `Float32`.
 
 - `options`: Dictionary object, 
 
-    - `fillvalue`: A value filled in the NetCDF file to indicate missing data.
-        It will be stored in the _FillValue attribute.
+  + `fillvalue`: A value filled in the NetCDF file to indicate missing data. It
+    will be stored in the _FillValue attribute.
 
-    - `chunksizes`: Vector integers setting the chunk size. The total size of a
-        chunk must be less than 4 GiB. 
+  + `chunksizes`: Vector integers setting the chunk size. The total size of a
+    chunk must be less than 4 GiB. 
 
-    - `shuffle`: If true, the shuffle filter is activated which can improve the
-        compression ratio.
+  + `shuffle`: If true, the shuffle filter is activated which can improve the
+    compression ratio.
 
-    - `checksum`: The checksum method can be :fletcher32 or :nochecksum
-        (checksumming is disabled, which is the default)
+  + `checksum`: The checksum method can be :fletcher32 or :nochecksum
+    (checksumming is disabled, which is the default)
 
-    - `attrib`: An iterable of attribute name and attribute value pairs, for
-        example a Dict, DataStructures.OrderedDict or simply a vector of pairs
-        (see example below)
+  + `attrib`: An iterable of attribute name and attribute value pairs, for
+    example a Dict, DataStructures.OrderedDict or simply a vector of pairs (see
+    example below)
     
 # Examples
 
@@ -71,8 +72,7 @@ function ncvar_def(ds, name, val, dims::Vector{D}, attrib=Dict();
       @warn "Variable `$name`: exist! Use `overwrite=true` to overwrite."
       return
     else
-      @warn "Variable `$name`: exist! Overwrited."
-      
+      # @warn "Variable `$name`: exist! Overwrited."
       _var = ds[name]
       indices = ntuple(i -> :, ndims(_var))
       _var[indices...] = val
@@ -80,12 +80,11 @@ function ncvar_def(ds, name, val, dims::Vector{D}, attrib=Dict();
     end
   end
 
-  dimnames = dims
   # 若只有string name，则无法定义dims，无奈之举
+  dimnames = dims
   if D == NcDim
     ncdim_def(ds, dims) # define dimensions if previous not exist
     dimnames = map(x -> x.name, dims)
   end
-
   defVar(ds, name, val, dimnames; attrib, deflatelevel=compress, kw...)
 end

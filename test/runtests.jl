@@ -18,6 +18,7 @@ include("test-utilize.jl")
 include("test-ncatt.jl")
 include("test-MFDataset.jl")
 include("test-nc_write.jl")
+include("test-nc_write_rast.jl")
 include("test-nc_dims.jl")
 include("test-CMIPFiles_info.jl")
 # end

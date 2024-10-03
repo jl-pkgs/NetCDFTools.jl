@@ -1,3 +1,4 @@
+export NcDims, NcDim_time, ncdim_def
 import Dates: Date, DateTime
 import CFTime: AbstractCFDateTime
 
@@ -14,15 +15,8 @@ end
 
 NcDim_time(dates::Vector{Date}) = NcDim_time(DateTime.(dates))
 
-"""
-  make_dims(range=[70, 140, 15, 55], cellsize = 0.5, dates)
-  
-$(METHODLIST)
-"""
-function make_dims(range, cellsize, dates)
-  lon = range[1]+cellsize/2:cellsize:range[2]
-  lat = range[3]+cellsize/2:cellsize:range[4]
-
+function NcDims(b::bbox, cellsize, dates; reverse_lat=true)
+  lon, lat = bbox2dims(b; cellsize, reverse_lat)
   [
     NcDim("lon", lon, Dict("longname" => "Longitude", "units" => "degrees east"))
     NcDim("lat", lat, Dict("longname" => "Latitude", "units" => "degrees north"))
@@ -30,6 +24,7 @@ function make_dims(range, cellsize, dates)
   ]
 end
 
+NcDims(ra::SpatRaster) = NcDims(ra.b, ra.cellsize, ra.time)
 
 """
     ncdim_def(ds, name, val, attrib = Dict())
