@@ -90,7 +90,6 @@ end
 function nc_write!(f::AbstractString, data::NamedTuple,
   dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
   verbose=false, kw...)
-
   for (varname, val) in pairs(data)
     verbose && println(varname)
     nc_write!(f, string(varname), val, dims, attrib; kw...)
@@ -98,10 +97,6 @@ function nc_write!(f::AbstractString, data::NamedTuple,
 end
 
 function nc_write!(f::AbstractString, ra::SpatRaster, attrib::Dict=Dict(); kw...)
-  _dims = [
-    NcDim("lon", ra.lon),
-    NcDim("lat", ra.lat),
-    NcDim_time(ra.time)
-  ]
+  _dims = NcDims(ra)
   nc_write!(f, ra.name, ra.A, _dims, attrib; kw...)
 end

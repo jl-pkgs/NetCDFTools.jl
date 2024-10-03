@@ -8,7 +8,7 @@
     "http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/ScenarioMIP/CSIRO-ARCCSS/ACCESS-CM2/ssp126/r1i1p1f1/day/huss/gn/v20210317/huss_day_ACCESS-CM2_ssp126_r1i1p1f1_gn_20650101-21001231.nc"
   ]
 
-  info = CMIP.CMIPFiles_info(fs; detailed=false)
+  @time info = CMIP.CMIPFiles_info(fs; detailed=true, include_host=true, include_year=true)
   @test size(info, 1) == 6
   @test info.model[1] == "ACCESS-CM2"
   @test info.variable[1] == "huss"

@@ -15,8 +15,7 @@ end
 
 NcDim_time(dates::Vector{Date}) = NcDim_time(DateTime.(dates))
 
-function NcDims(b::bbox, cellsize, dates; reverse_lat=true)
-  lon, lat = bbox2dims(b; cellsize, reverse_lat)
+function NcDims(lon::AbstractVector, lat::AbstractVector, dates::AbstractVector)
   [
     NcDim("lon", lon, Dict("longname" => "Longitude", "units" => "degrees east"))
     NcDim("lat", lat, Dict("longname" => "Latitude", "units" => "degrees north"))
@@ -24,7 +23,12 @@ function NcDims(b::bbox, cellsize, dates; reverse_lat=true)
   ]
 end
 
-NcDims(ra::SpatRaster) = NcDims(ra.b, ra.cellsize, ra.time)
+function NcDims(b::bbox, cellsize, dates; reverse_lat=true)
+  lon, lat = bbox2dims(b; cellsize, reverse_lat)
+  NcDims(lon, lat, dates)
+end
+
+NcDims(ra::SpatRaster) = NcDims(ra.lon, ra.lat, ra.time)
 
 """
     ncdim_def(ds, name, val, attrib = Dict())

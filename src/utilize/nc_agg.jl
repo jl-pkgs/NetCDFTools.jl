@@ -7,8 +7,12 @@
 - `by`: "year" or "month", or a function to group dates
 
 $(METHODLIST)
+# Examples
+```
+nc_agg(f, fout; by="year", fun=mean, outdir="./OUTPUT", overwrite=false, verbose=true)
+```
 """
-function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=mean,
+function nc_agg(f::AbstractString, fout=nothing; by="year", fun=mean,
   outdir="./OUTPUT", overwrite=false, verbose=true)
   
   fout === nothing && (fout = "$outdir/$(basename(f))")
@@ -19,7 +23,6 @@ function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=mean,
   verbose && (println("[running] : $(basename(fout))"))
 
   check_dir(outdir)
-
   nc = nc_open(f)
   band = nc_bands(nc)[1]
   
@@ -28,22 +31,22 @@ function nc_aggregate(f::AbstractString, fout=nothing; by="year", fun=mean,
   dates = nc_date(f)
 
   if by == "month"
-    _by = make_date.(year.(dates), month.(dates))
+    _by = date_ym.(dates)
   elseif by == "year"
-    _by = make_date.(year.(dates))
+    _by = date_year.(dates)
   else
     _by = by.(dates)
   end
   
   printstyled("Processing ...\n")
-  @time vals = apply(data, 3; by=_by, fun)
+  @time vals = agg_time(data, _by; fun) # only support the 3th DIM
+
   dims = ncvar_dim(nc) # time should be the third dimension
-  dims[3] = NcDim_time(unique_sort(_by))
+  dims["time"] = NcDim_time(unique_sort(_by))
   
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(nc[band].attrib);
-    compress=0, global_attrib=Dict(nc.attrib))
-  
+    compress=0, global_attrib=Dict(nc.attrib), overwrite)
   nc_close(nc)
 end
 
@@ -58,12 +61,12 @@ scenario = "historical"
 indir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax/historical"
 outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
 
-nc_aggregate_dir(indir; by="year", replacement="day"=>"year", outdir)
+nc_agg_dir(indir; by="year", replacement="day"=>"year", outdir)
 ```
 
 $(METHODLIST)
 """
-function nc_aggregate_dir(indir; 
+function nc_agg_dir(indir; 
   by="year", replacement="day"=>by, outdir="./OUTPUT", kw...)
 
   fs = dir(indir, "nc\$")
@@ -72,9 +75,6 @@ function nc_aggregate_dir(indir;
   for f in fs
     file = str_replace(basename(f), replacement[1], replacement[2])
     fout = "$outdir/$file"
-    nc_aggregate(f, fout; by, outdir, kw...)
+    nc_agg(f, fout; by, outdir, kw...)
   end
 end
-
-
-

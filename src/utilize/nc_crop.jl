@@ -1,13 +1,13 @@
 """
     $(TYPEDSIGNATURES)
 """
-function nc_crop(f::String, range::Vector, fout::String;
+function nc_crop(f::String, b::bbox, fout::String;
   bands=nothing, 
   compress=true, overwrite=false, kw...)
 
   lon, lat = st_dims(f)
-  ilon = findall(range[1] .<= lon .<= range[2]) |> _zip
-  ilat = findall(range[3] .<= lat .<= range[4]) |> _zip
+  ilon = findall(b.xmin .<= lon .<= b.xmax) |> _zip
+  ilat = findall(b.ymin .<= lat .<= b.ymax) |> _zip
 
   _dims = ncvar_dim(f)
   _dims["lon"] = _dims["lon"][ilon]
