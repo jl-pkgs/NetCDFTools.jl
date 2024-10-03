@@ -1,8 +1,8 @@
 """
     ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib = Dict();
-        compress = 1, kwargs...)
+        compress = 1, kw...)
     ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
-        compress = 1, kwargs...)
+        compress = 1, kw...)
 
 # Arguments
 
@@ -57,30 +57,35 @@ nc_info(f)
 
 @seealso [`ncdim_def`](@ref)
 """
-function ncvar_def(ds, name, val, dims::Vector{<:AbstractString}, attrib=Dict();
-    compress=1, type=nothing, overwrite=false, kwargs...)
+function ncvar_def(ds, name, val, dims::Vector{D}, attrib=Dict();
+  compress=1, type=nothing, overwrite=false, kw...) where {S<:AbstractString,D<:Union{NcDim,S}}
 
-    # attrib["deflatelevel"] = compress
-    if name in keys(ds) && !overwrite
-        # println(options)
-        @warn "Variable `$name`: exist!"
-        return
+  # change datatype
+  if type !== nothing && eltype(val) != type
+    val = @.(type(val))
+  end
+
+  # attrib["deflatelevel"] = compress
+  if name in keys(ds)
+    if !overwrite
+      @warn "Variable `$name`: exist! Use `overwrite=true` to overwrite."
+      return
+    else
+      @warn "Variable `$name`: exist! Overwrited."
+      
+      _var = ds[name]
+      indices = ntuple(i -> :, ndims(_var))
+      _var[indices...] = val
+      return
     end
-    # change datatype
-    if type !== nothing && eltype(val) != type
-        val = @.(type(val))
-    end
-    # defDim(ds, name, length(val))
-    defVar(ds, name, val, dims; attrib=attrib, deflatelevel=compress, kwargs...)
-end
+  end
 
-function ncvar_def(ds, name, val, dims::Vector{NcDim}, attrib=Dict();
-    compress=1, kwargs...)
-
-    # attrib["deflatelevel"] = compress
+  dimnames = dims
+  # 若只有string name，则无法定义dims，无奈之举
+  if D == NcDim
     ncdim_def(ds, dims) # define dimensions if previous not exist
     dimnames = map(x -> x.name, dims)
-    ncvar_def(ds, name, val, dimnames; attrib=attrib, deflatelevel=compress, kwargs...)
-    # var = NcVar(varname, dims; t = type, compress = compress)
-end
+  end
 
+  defVar(ds, name, val, dimnames; attrib, deflatelevel=compress, kw...)
+end

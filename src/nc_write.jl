@@ -44,54 +44,40 @@ $(METHODLIST)
 """
 function nc_write(f::AbstractString, varname::AbstractString, val,
   dims::Vector{NcDim}, attrib::Dict=Dict();
-  units=nothing, longname=nothing,
-  compress=1, overwrite=false, mode="c",
-  global_attrib=Dict(),
-  kw...)
-
-  !isnothing(units) && (attrib["units"] = units)
-  !isnothing(longname) && (attrib["longname"] = longname)
-
+  overwrite=false, mode="c", kw...)
+  
   # check whether variable defined
   if !check_file(f) || overwrite
     isfile(f) && rm(f)
-
-    ds = nc_open(f, mode)
-    ncatt_put(ds, global_attrib)
-    ncdim_def(ds, dims)
-
-    dimnames = names(dims)
-    ncvar_def(ds, varname, val, dimnames, attrib; compress, kw...)
-    close(ds)
+    nc_write!(f, varname, val, dims, attrib; mode, kw...)
   else
     println("[file exist]: $(basename(f))")
   end
 end
 
-
 """
 $(TYPEDSIGNATURES)
 
 $(METHODLIST)
-
-# ! TODO: need to test overwrite
 """
 function nc_write!(f::AbstractString, varname::AbstractString, val,
-  dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
+  dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict(); 
   units=nothing, longname=nothing,
-  compress=1, kw...)
+  compress=1, global_attrib=Dict(), mode=nothing, 
+  kw...)
   
   !isnothing(units) && (attrib["units"] = units)
   !isnothing(longname) && (attrib["longname"] = longname)
 
-  mode = check_file(f) ? "a" : "c"
+  isnothing(mode) && (mode = check_file(f) ? "a" : "c")
+
   ds = nc_open(f, mode)
+  ncatt_put(ds, global_attrib)
   ncdim_def(ds, dims; verbose=false)
 
-  ncvar_def(ds, varname, val, dims, attrib; compress=compress, kw...)
+  ncvar_def(ds, varname, val, dims, attrib; compress, kw...)
   close(ds)
 end
-
 
 function nc_write!(f::AbstractString, data::NamedTuple,
   dims::Vector{<:Union{NcDim,AbstractString}}; verbose=false, kw...)
