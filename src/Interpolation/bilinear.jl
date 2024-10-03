@@ -1,5 +1,7 @@
 """
-    bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true) where {T<:Real}
+    bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, parallel=true, progress=true) where {T<:Real}
+    bilinear(x, y, z::AbstractArray{T,3}; b::bbox, reverse_lat=true, cellsize=1, na_rm=true)
+    bilinear(ra::SpatRaster{T,3}; cellsize=1, na_rm=true, kw...) where {T<:Real}
 
 Suppose that the location, (locx, locy) lies in between the first two grid points in both x an y. That is locx is between x1 and x2 and locy is between y1 and y2. Let `ex= (l1-x1)/(x2-x1)` `ey= (l2-y1)/(y2-y1)`. The interpolant is
 
@@ -29,9 +31,9 @@ Z = rand(T, length(lon), length(lat), 2)
 r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)
 ```
 """
-function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true, 
+function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true,
   parallel=true, progress=true) where {T<:Real}
-  
+
   nx = length(x)
   ny = length(y)
 
@@ -76,7 +78,7 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true,
         z12 = z[I, J2, k]
         z21 = z[I2, J, k]
         z22 = z[I2, J2, k]
-        
+
         if na_rm
           zmean = nanmean4(z11, z12, z21, z22) # mean
           isnan(z11) && (z11 = z12)
@@ -89,8 +91,8 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true,
           isnan(z21) && (z21 = zmean)
           isnan(z22) && (z22 = zmean)
         end
-        
-        @fastmath res[i, j, k] = 
+
+        @fastmath res[i, j, k] =
           z11 * (1 - _ex) * (1 - _ey) +
           z12 * (1 - _ex) * _ey +
           z21 * _ex * (1 - _ey) +
@@ -102,14 +104,16 @@ function bilinear(x, y, z::AbstractArray{T,3}, xx, yy; na_rm=true,
 end
 
 function bilinear(x, y, z::AbstractArray{T,3};
-  range=[70, 140, 15, 55], cellsize=1, na_rm=true) where {T<:Real}
-
-  delta = cellsize / 2
-  rlon = range[1:2]
-  rlat = range[3:4]
-  xx = rlon[1]+delta:cellsize:rlon[2] #|> collect
-  yy = rlat[1]+delta:cellsize:rlat[2] #|> collect
+  b::bbox, reverse_lat=true, cellsize=1, na_rm=true) where {T<:Real}
+  xx, yy = bbox2dims(b; cellsize, reverse_lat)
   bilinear(x, y, z, xx, yy; na_rm)
+end
+
+function bilinear(ra::SpatRaster{T,3}; cellsize=1, na_rm=true, kw...) where {T<:Real}
+  (; lon, lat, b, time, name, bands) = ra
+  xx, yy = bbox2dims(b; cellsize)
+  Z = bilinear(lon, lat, ra.A, xx, yy; na_rm)
+  rast(Z, b; time, name, bands, kw...)
 end
 
 

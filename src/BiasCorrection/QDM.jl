@@ -62,7 +62,7 @@ function QDM_chunk!(y_adj::AbstractVector{T},
   y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; 
   ny_win=10, type_adj="add") where {T<:Real}
 
-  lst_index = split_date(dates; ny_win, merge_small=0.7)
+  lst_index = split_date(dates; ny_win, ratio_small=0.7)
   for inds in lst_index
     y_adj[inds] .= QDM(y_obs, y_calib, y_pred[inds]; type_adj)
   end

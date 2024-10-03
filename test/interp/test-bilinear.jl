@@ -1,5 +1,5 @@
 # major update, fix the error of bilinear nanmean4
-using Test
+using Test, NetCDFTools
 
 @testset "nanmean" begin
   x = [1.0, 2, 3, 4]
@@ -9,22 +9,27 @@ end
 
 
 @testset "bilinear" begin
-  cell = 10
-  lon = 70:cell:140
-  lat = 15:cell:55
-  ntime = 2
-
-  cell2 = 5
-  Lon = 70+cell2/2:cell2:140
-  Lat = 15+cell2/2:cell2:55
-  Z = rand(Float32, length(lon), length(lat), ntime)
-  r1 = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)
-  r2 = bilinear(lon, lat, Z; range=[70, 140, 15, 55], cellsize=cell2)
+  set_seed(1)
+  b = bbox(70, 15, 140, 55)
+  lon, lat = bbox2dims(b; cellsize=10)
   
+  cell2 = 5
+  ntime = 2
+  Z = rand(Float32, length(lon), length(lat), ntime)
+
+  dates = Date(2010):Day(1):Date(2010, 1, 1) |> collect
+  ra = rast(deepcopy(Z), b; time=dates, name="tasmax")
+  ra_5 = bilinear(ra; cellsize=5)
+  
+  Lon, Lat = bbox2dims(b; cellsize=5)
+  r1 = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)
+  r2 = bilinear(lon, lat, Z; b, cellsize=cell2)
+
   @test size(r1) == (length(Lon), length(Lat), ntime)
   @test r1 == r2
-  # 如何检测结果是否正确？
+  @test ra_5.A == r1
 end
+
 
 @testset "bilinear vs. cdo" begin
   f_cdo = proj_path("data/HI_tasmax_resampled_cdo.nc")

@@ -78,7 +78,11 @@ $(METHODLIST)
 """
 function nc_write!(f::AbstractString, varname::AbstractString, val,
   dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
+  units=nothing, longname=nothing,
   compress=1, kw...)
+  
+  !isnothing(units) && (attrib["units"] = units)
+  !isnothing(longname) && (attrib["longname"] = longname)
 
   mode = check_file(f) ? "a" : "c"
   ds = nc_open(f, mode)

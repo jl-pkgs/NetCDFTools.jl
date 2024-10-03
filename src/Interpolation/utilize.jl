@@ -1,13 +1,11 @@
 export rm_empty, weighted_nanmean!, weighted_nanmean, earth_dist
-using LoopVectorization
 
 function weighted_nanmean(x::AbstractVector{T1}, w::AbstractVector{T2}) where {T1,T2}
   T = promote_type(T1, T2)
   ∑ = ∅ = T(0)
   ∑w = ∅w = T2(0)
 
-  # @inbounds 
-  @turbo for i = eachindex(x)
+  @inbounds for i = eachindex(x)
     # if !isnan(x[i]); end
     xᵢ = x[i]
     notnan = xᵢ == xᵢ
