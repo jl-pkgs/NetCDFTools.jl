@@ -1,7 +1,7 @@
 name = "NetCDFTools"
 uuid = "13b2da74-5743-4fb0-a7fd-ee492c7bd322"
 authors = ["Dongdong Kong <kongdd@users.noreply.github.com>"]
-version = "0.2.1"
+version = "0.2.2"
 
 [deps]
 CFTime = "179af706-886a-5703-950a-314cd64e0468"
@@ -34,7 +34,7 @@ RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
 RbaseTerraExt = "RCall"
 
 [compat]
-CFTime = "0"
+CFTime = "0.1, 0.2"
 DataFrames = "1.6"
 DocStringExtensions = "0.9"
 Ipaper = "0.2.5"

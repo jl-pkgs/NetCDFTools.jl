@@ -20,7 +20,6 @@ Base.getindex
 
 NetCDFTools.NcDim
 NetCDFTools.ncdim_def
-NetCDFTools.make_dims
 
 ncvar_def
 ncatt_put
@@ -30,6 +29,8 @@ ncatt_put
 nc_read
 nc_write
 nc_write!
+
+ncsave
 ```
 
 
@@ -38,12 +39,16 @@ nc_write!
 ```@docs
 QDM
 
-nc_aggregate
-nc_aggregate_dir
+nc_agg 
+nc_agg_dir
 
 nc_combine
 nc_subset
 nc_crop
+```
+
+```@docs
+split_chunk
 ```
 
 ## Interpolation
