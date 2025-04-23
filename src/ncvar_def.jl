@@ -69,7 +69,7 @@ function ncvar_def(ds, name, val, dims::Vector{D}, attrib=Dict();
   # attrib["deflatelevel"] = compress
   if name in keys(ds)
     if !overwrite
-      @warn "Variable `$name`: exist! Use `overwrite=true` to overwrite."
+      @warn "Variable `$name`: exist! Data not written. Use `overwrite=true` to overwrite. "
       return
     else
       # @warn "Variable `$name`: exist! Overwrited."

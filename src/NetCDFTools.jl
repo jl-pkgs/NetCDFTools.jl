@@ -35,6 +35,8 @@ include("nc_date.jl")
 include("nc_read.jl")
 include("nc_read_extra.jl")
 include("nc_write.jl")
+include("ncsave.jl")
+
 include("ncvar_def.jl")
 include("ncdim_def.jl")
 include("ncatt_put.jl")
