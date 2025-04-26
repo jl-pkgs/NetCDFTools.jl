@@ -1,5 +1,5 @@
-using Distributed
-using Ipaper: abind
+# using Distributed
+using Ipaper: abind, par_map
 
 export nc_read_par
 export nc_read_all
@@ -7,8 +7,8 @@ export nc_read_all
 # rmprocs.(2:5)
 # procs()
 
-function nc_read_par(fs, args...; kw...)
-  lst = pmap(f -> nc_read(f, args...; kw...), fs)
+function nc_read_par(fs, args...; progress=true, kw...)
+  lst = par_map(f -> nc_read(f, args...; kw...), fs; progress)
   abind(lst, increase=false)
 end
 
