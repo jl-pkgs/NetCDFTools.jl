@@ -46,7 +46,7 @@ Base.getindex(v::MFVariable, i) = v.vars[i]
 
 
 # dims = 3
-function Base.getindex(v::MFVariable{T,3}, i, j; ) where {T}
+function Base.getindex(v::MFVariable{T,3}, i, j; progress::Bool=true) where {T}
   ntime = map(x -> size(x, 3), v.vars) |> sum
   nlon, nlat = size(v.vars[1])[1:2]
   i != Colon() && (nlon = length(i))
@@ -56,7 +56,11 @@ function Base.getindex(v::MFVariable{T,3}, i, j; ) where {T}
 
   res = zeros(T, nlon, nlat, ntime)
   i_beg = 0
+  p = Progress(length(v.vars))
+  
   @inbounds for var in v.vars
+    progress && next!(p)
+
     _ntime = size(var, 3)
     inds = (i_beg+1):(i_beg+_ntime)
     res[:, :, inds] .= var[i, j, :]

@@ -3,6 +3,7 @@ import NCDatasets.DiskArrays: GridChunks
 # using ProgressMeter
 
 import Ipaper.sf: FileNetCDF, st_dims
+import Ipaper: Progress
 
 function st_dims(x::FileNetCDF)
   nc_open(x.file) do nc
