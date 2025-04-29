@@ -46,7 +46,7 @@ function nc_agg(f::AbstractString, fout=nothing; by="year", fun=mean,
   
   printstyled("Writing data...\n")
   @time nc_write(fout, band, vals, dims, Dict(nc[band].attrib);
-    compress=0, global_attrib=Dict(nc.attrib), overwrite)
+    compress=0, global_attr=Dict(nc.attrib), overwrite)
   nc_close(nc)
 end
 

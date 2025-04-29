@@ -22,7 +22,7 @@ NetCDFTools.NcDim
 NetCDFTools.ncdim_def
 
 ncvar_def
-ncatt_put
+ncattr_put
 ```
 
 ```@docs

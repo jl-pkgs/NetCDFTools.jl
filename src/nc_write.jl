@@ -11,7 +11,7 @@
 
 - `longname`: longname of the variable
 
-- attrib: An iterable of attribute name and attribute value pairs, for example a
+- attr: An iterable of attrute name and attrute value pairs, for example a
   Dict, DataStructures.OrderedDict or simply a vector of pairs (see example
   below)
   
@@ -21,7 +21,7 @@
   [`NCDatasets.defVar`]. For examples:
 
   + fillvalue: A value filled in the NetCDF file to indicate missing data. It
-    will be stored in the _FillValue attribute.
+    will be stored in the _FillValue attrute.
 
   + chunksizes: Vector integers setting the chunk size. The total size of a
     chunk must be less than 4 GiB. Such as `(10, 10, 1)`
@@ -53,17 +53,16 @@ $(METHODLIST)
 @seealso `ncvar_def`
 """
 function nc_write(f::AbstractString, varname::AbstractString, val,
-  dims::Vector{NcDim}, attrib::Dict=Dict();
+  dims::Vector{NcDim}, attr::Dict=Dict();
   overwrite=false, mode="c", kw...)
 
   if !check_file(f) || overwrite
     isfile(f) && rm(f)
-    nc_write!(f, varname, val, dims, attrib; mode, kw...)
+    nc_write!(f, varname, val, dims; attr, mode, kw...)
   else
-    println("[file exist]: $(basename(f))")
+    println("[file exist, data not save]: $(basename(f))")
   end
 end
-
 
 """
 $(TYPEDSIGNATURES)
@@ -71,32 +70,33 @@ $(TYPEDSIGNATURES)
 $(METHODLIST)
 """
 function nc_write!(f::AbstractString, varname::AbstractString, val,
-  dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
+  dims::Vector{<:Union{NcDim,AbstractString}};
   units=nothing, longname=nothing,
-  compress=1, global_attrib=Dict(), mode=nothing, kw...)
+  attr::Dict=Dict(),
+  compress=1, global_attr=Dict(), mode=nothing, kw...)
 
-  !isnothing(units) && (attrib["units"] = units)
-  !isnothing(longname) && (attrib["longname"] = longname)
+  !isnothing(units) && (attr["units"] = units)
+  !isnothing(longname) && (attr["longname"] = longname)
   isnothing(mode) && (mode = check_file(f) ? "a" : "c")
 
   ds = nc_open(f, mode)
-  ncatt_put(ds, global_attrib)
+  ncattr_put(ds, global_attr)
   ncdim_def(ds, dims; verbose=false)
 
-  ncvar_def(ds, varname, val, dims, attrib; compress, kw...)
+  ncvar_def(ds, varname, val, dims, attr; compress, kw...)
   close(ds)
 end
 
-function nc_write!(f::AbstractString, data::NamedTuple,
-  dims::Vector{<:Union{NcDim,AbstractString}}, attrib::Dict=Dict();
-  verbose=false, kw...)
-  for (varname, val) in pairs(data)
+function nc_write!(f::AbstractString, values::NamedTuple,
+  dims::Vector{<:Union{NcDim,AbstractString}};
+  attr::Dict=Dict(), verbose=false, kw...)
+  for (varname, val) in pairs(values)
     verbose && println(varname)
-    nc_write!(f, string(varname), val, dims, attrib; kw...)
+    nc_write!(f, string(varname), val, dims; attr, kw...)
   end
 end
 
-function nc_write!(f::AbstractString, ra::SpatRaster, attrib::Dict=Dict(); kw...)
+function nc_write!(f::AbstractString, ra::SpatRaster; kw...)
   _dims = NcDims(ra)
-  nc_write!(f, ra.name, ra.A, _dims, attrib; kw...)
+  nc_write!(f, ra.name, ra.A, _dims; kw...)
 end

@@ -49,8 +49,9 @@ function nc_combine(fs, fout; compress=0)
   
   # 这里会引起错误
   printstyled("Writing data...\n")
-  @time nc_write(fout, band, vals, dims, Dict(v.attrib);
-    compress, global_attrib=Dict(nc.attrib))
+  @time nc_write(fout, band, vals, dims;
+    attr=Dict(v.attrib), global_attr=Dict(nc.attrib),
+    compress)
 end
 
 """

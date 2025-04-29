@@ -1,6 +1,8 @@
 using Test, NetCDFTools
 
-@testset "ncsave" begin
+
+# @testset "ncsave" 
+begin
   f = "test.nc"
   dims = (; x=1:10, y=1:10)
   ncsave(f, true; dims, SM2=rand(10, 10), SPI=rand(Float32, 10, 10))
@@ -19,6 +21,15 @@ using Test, NetCDFTools
   @test size(SM3) == (10, 10, 10)
   @test eltype(SPI) == Float32
   @test eltype(SM3) == Float64
-
-  isfile(f) && rm(f)
+  # isfile(f) && rm(f)
 end
+
+f = "test3.nc"
+n = 1000
+dims = (; x=1:n, y=1:n, z=1:10)
+values = (; SM2=rand(n, n, 10), SPI=rand(Float32, n, n, 10))
+values = Dict(:SM2 => rand(n, n, 10), :SPI => rand(Float32, n, n, 10))
+
+@time ncsave(f, false; dims, values);
+
+rm(f)

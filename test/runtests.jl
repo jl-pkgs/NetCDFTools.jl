@@ -15,7 +15,7 @@ include("interp/test-bilinear.jl")
 
 # cd(dirname(@__FILE__)) do
 include("test-nc_date.jl")
-include("test-ncatt.jl")
+include("test-ncattr.jl")
 include("test-MFDataset.jl")
 include("test-nc_write.jl")
 include("test-nc_write_rast.jl")

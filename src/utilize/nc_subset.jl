@@ -95,9 +95,9 @@ function nc_subset(f, range::Vector, fout=nothing;
   end
 
   printstyled("Writing data...\n")
-  @time nc_write(fout, band, vals, dims, Dict(v.attrib);
-    compress=1, global_attrib=Dict(nc.attrib))
-  # ncatt_put(fout, Dict(nc.attrib))
+  @time nc_write(fout, band, vals, dims;
+    compress=1, attr=Dict(v.attrib), global_attr = Dict(nc.attrib))
+  # ncattr_put(fout, Dict(nc.attrib))
 end
 
 
@@ -112,5 +112,3 @@ function nc_subset(d::AbstractDataFrame, range;
   urls = collect(d.file)
   nc_subset(urls, range, fout; kw...)
 end
-
-

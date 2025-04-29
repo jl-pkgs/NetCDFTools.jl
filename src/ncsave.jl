@@ -16,11 +16,15 @@ bool2int(x::Integer) = x
 
 
 """
-    ncsave(f::AbstractString, compress, options=(;); dims, kw...)
+    ncsave(f::AbstractString, compress, options=(;); dims, values=Dict(), kw...)
 
 ## Arguments
 - `compress`: 0~10, 0代表不压缩, 10最大压缩，默认为1
 - `options`: other keyword arguments to `nc_write!`
+  + longname
+  + units
+
+- `values`: can be NamedTuple or Dict, but values should have the same dimensions
 
 ## Examples
 ```julia
@@ -35,10 +39,11 @@ dims = (; x = 1:10, y = 1:10, z = 1:10)
 ncsave("test.nc"; dims, SM3=rand(10, 10, 10))
 ```
 """
-function ncsave(f::AbstractString, compress=1, options=(;); dims, kw...)
+function ncsave(f::AbstractString, compress=1, options=(;); dims, values=(;), kw...)
   compress = bool2int(compress)
   dims = check_dims(dims)
-  
+  kw = (; values..., kw...)
+
   for (key, value) in pairs(kw)
     nc_write!(f, string(key), value, dims; compress=1, options...)
   end

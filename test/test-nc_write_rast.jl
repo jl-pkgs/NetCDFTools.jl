@@ -9,7 +9,7 @@ ra = rast(A, b; time=dates, name="tasmax")
 
 @testset "nc_write! for Tuple and SpatRast" begin
   nc_write!("a.nc", ra;
-    attrib=Dict("units" => "K", "long_name" => "temperature"),
+    attr=Dict("units" => "K", "long_name" => "temperature"),
     overwrite=true)
 
   _dims = NcDims(ra)
@@ -33,11 +33,11 @@ end
   end
 
   nc_write!("t1.nc", ra,
-    Dict("units" => "K", "long_name" => "temperature"), overwrite=true)
+    attr=Dict("units" => "K", "long_name" => "temperature"), overwrite=true)
   check_unit("t1.nc")
 
   nc_write!("t1.nc", ra,
-    attrib=Dict("units" => "K", "long_name" => "temperature"),
+    attr=Dict("units" => "K", "long_name" => "temperature"),
     overwrite=true)
   check_unit("t1.nc")
   rm("t1.nc")
