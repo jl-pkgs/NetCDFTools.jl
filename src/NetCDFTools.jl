@@ -39,7 +39,7 @@ include("ncsave.jl")
 
 include("ncvar_def.jl")
 include("ncdim_def.jl")
-include("ncattr_put.jl")
+include("nc_attr.jl")
 
 include("utilize/utilize.jl")
 
@@ -63,7 +63,7 @@ export nc_subset
 
 export NcDim_time
 export ncdim_def, ncvar_def
-export ncattr_put, ncattr_get, ncattr_del
+export nc_attr!, nc_attr, nc_attr_rm!
 
 export names
 

@@ -80,7 +80,7 @@ function nc_write!(f::AbstractString, varname::AbstractString, val,
   isnothing(mode) && (mode = check_file(f) ? "a" : "c")
 
   ds = nc_open(f, mode)
-  ncattr_put(ds, global_attr)
+  nc_attr!(ds, global_attr)
   ncdim_def(ds, dims; verbose=false)
 
   ncvar_def(ds, varname, val, dims, attr; compress, kw...)

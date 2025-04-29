@@ -4,16 +4,16 @@
     @test names(dims) == ["lon", "lat", "time"]
 end
 
-@testset "ncattr_put" begin
+@testset "nc_attr!" begin
     f = "data/temp_HI.nc"
 
     atts = Dict("a" => 1, "b" => 2)
-    ncattr_put(f, atts)
+    nc_attr!(f, atts)
     # nc_atts(f) == atts
     nc_info(f)
 
     ks = keys(atts) |> collect
-    ncattr_del(f, ks)
+    nc_attr_rm!(f, ks)
     nc_info(f)
     # @test names(dims) == ["lon", "lat", "time"]
 end
