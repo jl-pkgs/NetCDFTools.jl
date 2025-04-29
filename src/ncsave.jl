@@ -1,4 +1,5 @@
-# like jld2save
+export check_dims
+
 function nt2dims(dims::NamedTuple)
   _dims = []
   for (key, value) in pairs(dims)
@@ -15,6 +16,7 @@ bool2int(x::Bool) = Int(x)
 bool2int(x::Integer) = x
 
 
+# like jld2save
 """
     ncsave(f::AbstractString, compress, options=(;); dims, values=Dict(), kw...)
 
