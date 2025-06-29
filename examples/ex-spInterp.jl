@@ -1,7 +1,7 @@
 # using RTableTools
 # st = fread("data/st_met2481.csv")
 # serialize("data/st_met2481", st[:, [:site, :lon, :lat, :alt]])
-using Ipaper, Ipaper.sf #, ArchGDAL
+using Ipaper, SpatRasters #, ArchGDAL
 using NetCDFTools, Test, Dates
 
 begin

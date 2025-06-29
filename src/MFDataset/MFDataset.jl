@@ -2,7 +2,7 @@ using Parameters
 import NCDatasets.DiskArrays: GridChunks
 # using ProgressMeter
 
-import Ipaper.sf: FileNetCDF, st_dims
+import SpatRasters: FileNetCDF, st_dims
 import Ipaper: Progress
 
 function st_dims(x::FileNetCDF)

@@ -17,18 +17,17 @@ Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+SpatRasters = "25a4c9b9-c310-4d6e-b9a7-fa79274760a1"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
-[sources]
-Ipaper = {url = "https://github.com/jl-pkgs/Ipaper.jl"}
-
 [weakdeps]
 RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
 
-[extras]
-RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
+[sources]
+Ipaper = {url = "https://github.com/jl-pkgs/Ipaper.jl"}
+SpatRasters = {url = "https://github.com/jl-pkgs/SpatRasters.jl"}
 
 [extensions]
 RbaseTerraExt = "RCall"
@@ -37,11 +36,15 @@ RbaseTerraExt = "RCall"
 CFTime = "0.1, 0.2"
 DataFrames = "1.6"
 DocStringExtensions = "0.9"
-Ipaper = "0.2.5"
+Ipaper = "0.2, 0.2.5"
 NCDatasets = "0.13, 0.14"
 Parameters = "0.12"
 PrecompileTools = "1"
 ProgressMeter = "1"
 Reexport = "1.2"
+SpatRasters = "0.1.0"
 StatsBase = "0.34, 0.35"
 julia = "1"
+
+[extras]
+RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
