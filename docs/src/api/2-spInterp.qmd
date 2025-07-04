@@ -1,7 +1,14 @@
+# 2. spInterp
+
 ```{julia}
-using Ipaper, SpatRasters #, ArchGDAL
-using NetCDFTools, Test
+using Ipaper, SpatRasters, NetCDFTools, Test
 using MakieLayers, CairoMakie
+
+function make_rast(; b::bbox=bbox(70, 15, 140, 55), cellsize=0.5)
+  lon, lat = bbox2dims(b; cellsize)
+  nlon, nlat = length(lon), length(lat)
+  rast(zeros(nlon, nlat), b)
+end
 
 indir = "$(@__DIR__)/../../../data" |> abspath
 ```
@@ -17,13 +24,8 @@ data = repeat(alt, 1, 24)' |> collect
 ```
 
 ```{julia}
-b = bbox(70, 15, 140, 55)
-lon, lat = bbox2dims(b; cellsize=0.5)
-nlon, nlat = length(lon), length(lat)
-ra = rast(rand(nlon, nlat), b)
-```
+ra = make_rast(; cellsize=0.5)
 
-```{julia}
 weights = weights_idw(ra, sites)
 @test length(rm_empty(weights[:])) == 7861
 
@@ -35,6 +37,21 @@ weights = weights_adw(ra, sites)
 @test mean(zs[:, :, 1]) ≈ 814.0711051650405
 ```
 
+## 完整案例
+
+- 0.5deg, 1year 365×24, 2481 sites
 ```{julia}
-imagesc(zs[:, :, 1])
+data = repeat(alt, 1, 24 * 365)' |> collect
+ra = make_rast(; cellsize=0.5)
+weights = weights_idw(ra, sites)
+@time zs = spInterp(weights, data); # 1day, hourly
+```
+
+- 0.1deg, 1year 365×24, 2481 sites
+
+> 67.654694 seconds (425.24 k allocations: 18.288 GiB, 0.42% gc time)
+
+```{julia}
+lon, lat = st_dims(ra)
+imagesc(lon, lat, zs[:, :, 1])
 ```

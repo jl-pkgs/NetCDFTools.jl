@@ -11,6 +11,7 @@ book:
     chapters:
         - index.md
         - api/1-SpatRaster.qmd
+        - api/2-spInterp.qmd
         - api/z-index.qmd 
         - Reference.md
 
@@ -33,7 +34,7 @@ book:
 toc-title: "Table of Contents"
 
 execute:
-    echo: false
+    echo: true
     output: true
     cache: false
     freeze: false

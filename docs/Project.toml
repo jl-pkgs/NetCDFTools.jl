@@ -7,7 +7,9 @@ Quarto = "d7167be5-f61b-4dc9-b75c-ab62374668c5"
 SpatRasters = "25a4c9b9-c310-4d6e-b9a7-fa79274760a1"
 MakieLayers = "154460a4-5f98-42d0-b270-e4f6a264d2f3"
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Ipaper = "e58298cb-69f7-4186-aecd-5834b6793426"
 
 [sources]
 SpatRasters = {url = "https://github.com/jl-pkgs/SpatRasters.jl"}
 MakieLayers = {url = "https://github.com/jl-pkgs/MakieLayers.jl"}
+Ipaper = {url = "https://github.com/jl-pkgs/Ipaper.jl"}
