@@ -1,2 +1,10 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+DocumenterQuarto = "73f83fcb-c367-40db-89b6-8fd94701aaf2"
+IJulia = "7073ff75-c697-5162-941a-fcdaad2a7d2a"
+NetCDFTools = "13b2da74-5743-4fb0-a7fd-ee492c7bd322"
+Quarto = "d7167be5-f61b-4dc9-b75c-ab62374668c5"
+SpatRasters = "25a4c9b9-c310-4d6e-b9a7-fa79274760a1"
+
+[sources]
+SpatRasters = {url = "https://github.com/jl-pkgs/SpatRasters.jl"}

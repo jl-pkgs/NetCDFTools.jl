@@ -28,10 +28,8 @@ _dims = [
 nc_write("out.nc", "PRCP", Z, _dims; attrib=Dict("unit" => "mm/h"), overwrite=true)
 
 # @profview zs = spInterp(weights, data);
-
 begin
   using GLMakie, MakieLayers
   lon, lat = st_dims(ra)
   imagesc(lon, lat, Z[:, :, 1:4]; colorrange=(0, 5000))
 end
-
