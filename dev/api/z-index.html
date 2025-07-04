@@ -463,8 +463,7 @@ window.onload = function () {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#select" id="toc-select" class="nav-link active" data-scroll-target="#select"><code>@select</code></a></li>
-  <li><a href="#abstractspatraster" id="toc-abstractspatraster" class="nav-link" data-scroll-target="#abstractspatraster"><code>AbstractSpatRaster</code></a></li>
+  <li><a href="#abstractspatraster" id="toc-abstractspatraster" class="nav-link active" data-scroll-target="#abstractspatraster"><code>AbstractSpatRaster</code></a></li>
   <li><a href="#cmip" id="toc-cmip" class="nav-link" data-scroll-target="#cmip"><code>CMIP</code></a></li>
   <li><a href="#d8direction" id="toc-d8direction" class="nav-link" data-scroll-target="#d8direction"><code>D8Direction</code></a></li>
   <li><a href="#dirlength" id="toc-dirlength" class="nav-link" data-scroll-target="#dirlength"><code>DirLength</code></a></li>
@@ -622,125 +621,6 @@ window.onload = function () {
 
 
 <p><em>Docstrings for NetCDFTools.</em></p>
-<section id="select" class="level2">
-<h2 class="anchored" data-anchor-id="select"><code>@select</code></h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<pre><code>vsubset = CommonDataModel.@select(v,expression)
-dssubset = CommonDataModel.@select(ds,expression)</code></pre>
-<p>Return a subset of the variable <code>v</code> (or dataset <code>ds</code>) satisfying the condition <code>expression</code> as a view. The condition has the following form:</p>
-<p><code>condition₁ &amp;&amp; condition₂ &amp;&amp; condition₃ ... conditionₙ</code></p>
-<p>Every condition should involve a single 1D variable (typically a coordinate variable, referred as <code>coord</code> below). If <code>v</code> is a variable, the related 1D variable should have a shared dimension with the variable <code>v</code>. All local variables need to have a <code>$</code> prefix (see examples below). This macro is experimental and subjected to change.</p>
-<p>Every condition can either perform:</p>
-<ul>
-<li>a nearest match: <code>coord ≈ target_coord</code> (for <code>≈</code> type <code>\approx</code> followed by the TAB-key). Only the data corresponding to the index closest to <code>target_coord</code> is loaded.</li>
-<li>a nearest match with tolerance: <code>coord ≈ target_coord ± tolerance</code>. As before, but if the difference between the closest value in <code>coord</code> and <code>target_coord</code> is larger (in absolute value) than <code>tolerance</code>, an empty array is returned.</li>
-<li>a condition operating on scalar values. For example, a <code>condition</code> equal to <code>10 &lt;= lon &lt;= 20</code> loads all data with the longitude between 10 and 20 or <code>abs(lat) &gt; 60</code> loads all variables with a latitude north of 60° N and south of 60° S (assuming that the has the 1D variables <code>lon</code> and <code>lat</code> for longitude and latitude).</li>
-</ul>
-<p>Only the data which satisfies all conditions is loaded. All conditions must be chained with an <code>&amp;&amp;</code> (logical and). They should not contain additional parenthesis or other logical operators such as <code>||</code> (logical or).</p>
-<p>To convert the view into a regular array one can use <code>collect</code>, <code>Array</code> or regular indexing. As in julia, views of scalars are wrapped into a zero dimensional arrays which can be dereferenced by using <code>[]</code>. Modifying a view will modify the underlying file (if the file is opened as writable, otherwise an error is issued).</p>
-<p>As for any view, one can use <code>parentindices(vsubset)</code> to get the indices matching a select query.</p>
-<section id="examples" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="examples">Examples</h4>
-<p>Create a sample file with random data:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">NCDatasets</span>, <span class="bu">Dates</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CommonDataModel</span>: @select</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># using NCDatasets: @select</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> <span class="st">"sample_file.nc"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> <span class="op">-</span><span class="fl">180</span><span class="op">:</span><span class="fl">180</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> <span class="op">-</span><span class="fl">90</span><span class="op">:</span><span class="fl">90</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">DateTime</span>(<span class="fl">2000</span>,<span class="fl">1</span>,<span class="fl">1</span>)<span class="op">:</span><span class="fu">Day</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">DateTime</span>(<span class="fl">2000</span>,<span class="fl">1</span>,<span class="fl">3</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>SST <span class="op">=</span> <span class="fu">randn</span>(<span class="fu">length</span>(lon),<span class="fu">length</span>(lat),<span class="fu">length</span>(time))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">NCDataset</span>(fname,<span class="st">"c"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">defVar</span>(ds,<span class="st">"lon"</span>,lon,(<span class="st">"lon"</span>,));</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">defVar</span>(ds,<span class="st">"lat"</span>,lat,(<span class="st">"lat"</span>,));</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">defVar</span>(ds,<span class="st">"time"</span>,time,(<span class="st">"time"</span>,));</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">defVar</span>(ds,<span class="st">"SST"</span>,SST,(<span class="st">"lon"</span>,<span class="st">"lat"</span>,<span class="st">"time"</span>));</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># load by bounding box</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="pp">@select</span>(ds[<span class="st">"SST"</span>],<span class="fl">30</span> <span class="op">&lt;=</span> lon <span class="op">&lt;=</span> <span class="fl">60</span> <span class="op">&amp;&amp;</span> <span class="fl">40</span> <span class="op">&lt;=</span> lat <span class="op">&lt;=</span> <span class="fl">80</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># substitute a local variable in condition using $</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>lonr <span class="op">=</span> (<span class="fl">30</span>,<span class="fl">60</span>) <span class="co"># longitude range</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>latr <span class="op">=</span> (<span class="fl">40</span>,<span class="fl">80</span>) <span class="co"># latitude range</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="pp">@select</span>(ds[<span class="st">"SST"</span>],<span class="op">$</span>lonr[<span class="fl">1</span>] <span class="op">&lt;=</span> lon <span class="op">&lt;=</span> <span class="op">$</span>lonr[<span class="fl">2</span>] <span class="op">&amp;&amp;</span> <span class="op">$</span>latr[<span class="fl">1</span>] <span class="op">&lt;=</span> lat <span class="op">&lt;=</span> <span class="op">$</span>latr[<span class="fl">2</span>])</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also select based on `ClosedInterval`s from `IntervalSets.jl`.</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Both 30..60 and 60 ± 20 construct `ClosedInterval`s, see their documentation for details.</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>lon_interval <span class="op">=</span> <span class="fl">30</span><span class="op">..</span><span class="fl">60</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>lat_interval <span class="op">=</span> <span class="fl">60</span> <span class="op">±</span> <span class="fl">20</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="pp">@select</span>(ds[<span class="st">"SST"</span>], lon <span class="op">∈</span> <span class="op">$</span>lon_interval <span class="op">&amp;&amp;</span> lat <span class="op">∈</span> <span class="op">$</span>lat_interval)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices matching the select query</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>(lon_indices,lat_indices,time_indices) <span class="op">=</span> <span class="fu">parentindices</span>(v)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># get longitude matchting the select query</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>v_lon <span class="op">=</span> v[<span class="st">"lon"</span>]</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># find the nearest time instance</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="pp">@select</span>(ds[<span class="st">"SST"</span>],time <span class="op">≈</span> <span class="fu">DateTime</span>(<span class="fl">2000</span>,<span class="fl">1</span>,<span class="fl">4</span>))</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># find the nearest time instance but not earlier or later than 2 hours</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># an empty array is returned if no time instance is present</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="pp">@select</span>(ds[<span class="st">"SST"</span>],time <span class="op">≈</span> <span class="fu">DateTime</span>(<span class="fl">2000</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">1</span>) <span class="op">±</span> <span class="fu">Hour</span>(<span class="fl">2</span>))</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Any 1D variable with the same dimension name can be used in <code>@select</code>. For example, if we have a time series of temperature and salinity, the temperature values can also be selected based on salinity:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">NCDatasets</span>, <span class="bu">Dates</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CommonDataModel</span>: @select</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> <span class="st">"sample_series.nc"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a sample time series</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">DateTime</span>(<span class="fl">2000</span>,<span class="fl">1</span>,<span class="fl">1</span>)<span class="op">:</span><span class="fu">Day</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">DateTime</span>(<span class="fl">2009</span>,<span class="fl">12</span>,<span class="fl">31</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>salinity <span class="op">=</span> <span class="fu">randn</span>(<span class="fu">length</span>(time)) <span class="op">.+</span> <span class="fl">35</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="fu">randn</span>(<span class="fu">length</span>(time))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">NCDataset</span>(fname,<span class="st">"c"</span>) <span class="cf">do</span> ds</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">defVar</span>(ds,<span class="st">"time"</span>,time,(<span class="st">"time"</span>,));</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">defVar</span>(ds,<span class="st">"salinity"</span>,salinity,(<span class="st">"time"</span>,));</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">defVar</span>(ds,<span class="st">"temperature"</span>,temperature,(<span class="st">"time"</span>,));</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">NCDataset</span>(fname)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># load all temperature data from January where the salinity is larger than 35.</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="pp">@select</span>(ds[<span class="st">"temperature"</span>],<span class="bu">Dates</span>.<span class="fu">month</span>(time) <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;&amp;</span> salinity <span class="op">&gt;=</span> <span class="fl">35</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># this is equivalent to:</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> ds[<span class="st">"temperature"</span>][<span class="fu">findall</span>(<span class="bu">Dates</span>.<span class="fu">month</span>.(time) <span class="op">.==</span> <span class="fl">1</span> <span class="op">.&amp;&amp;</span> salinity <span class="op">.&gt;=</span> <span class="fl">35</span>)]</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>v <span class="op">==</span> v2</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># returns true</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled" title="Note">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For optimal performance, one should try to load contiguous data ranges, in particular when the data is loaded over HTTP/OPeNDAP.</p>
-</div>
-</div>
-</section>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</section>
 <section id="abstractspatraster" class="level2">
 <h2 class="anchored" data-anchor-id="abstractspatraster"><code>AbstractSpatRaster</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -863,11 +743,11 @@ Note
 <div class="callout-body-container">
 <pre><code>MFDataset(fs) = MFDataset(; fs)
 MFDataset(fs, chunksize) = MFDataset(; fs, chunksize)</code></pre>
-<section id="examples-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-1">Examples</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">MFDataset</span>(fs)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> m[<span class="st">"LAI"</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> v[i, j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples">Examples</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">MFDataset</span>(fs)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> m[<span class="st">"LAI"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> v[i, j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -964,7 +844,7 @@ MFDataset(fs, chunksize) = MFDataset(; fs, chunksize)</code></pre>
 <p>No docstring found for public module <code>NetCDFTools</code>.</p>
 <section id="public-names-1" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="public-names-1">Public names</h3>
-<p><code>@select</code>, <code>AbstractSpatRaster</code>, <code>CMIP</code>, <code>D8Direction</code>, <code>DirLength</code>, <code>GridChunks</code>, <code>InGrid</code>, <code>MFDataset</code>, <code>MFVariable</code>, <code>NcDim</code>, <code>NcDim_time</code>, <code>NcDims</code>, <code>NextCell</code>, <code>QDM</code>, <code>QDM_chunk!</code>, <code>QDM_main</code>, <code>QDM_mov!</code>, <code>SpatRaster</code>, <code>SpatRasters</code>, <code>_zip</code>, <code>angle_azimuth</code>, <code>angle_azimuth_sphere</code>, <code>approx</code>, <code>array</code>, <code>bandnames</code>, <code>bbox</code>, <code>bbox2cellsize</code>, <code>bbox2dims</code>, <code>bbox2lims</code>, <code>bbox2ndim</code>, <code>bbox2range</code>, <code>bbox2vec</code>, <code>bbox_overlap</code>, <code>bilinear</code>, <code>cellArea</code>, <code>check_dims</code>, <code>close</code>, <code>col_goto</code>, <code>coverage_fraction</code>, <code>earth_dist</code>, <code>exact_extract</code>, <code>find_first</code>, <code>fliplr</code>, <code>flipud</code>, <code>gdal_info</code>, <code>gdal_nodata</code>, <code>gdal_polygonize</code>, <code>gdalinfo</code>, <code>get_bandName</code>, <code>get_chunk</code>, <code>getgeotransform</code>, <code>gis2tau</code>, <code>gis2wflow</code>, <code>guanshan_dem</code>, <code>guanshan_flowdir_cpp</code>, <code>guanshan_flowdir_gis</code>, <code>in_bbox</code>, <code>interp_linear</code>, <code>isscalar</code>, <code>merge_var</code>, <code>merge_var!</code>, <code>meshgrid</code>, <code>names</code>, <code>nband</code>, <code>nc_agg</code>, <code>nc_agg_dir</code>, <code>nc_attr</code>, <code>nc_attr!</code>, <code>nc_attr_rm!</code>, <code>nc_bands</code>, <code>nc_calendar</code>, <code>nc_cellsize</code>, <code>nc_close</code>, <code>nc_combine</code>, <code>nc_crop</code>, <code>nc_date</code>, <code>nc_dim</code>, <code>nc_dims</code>, <code>nc_info</code>, <code>nc_open</code>, <code>nc_read</code>, <code>nc_read_all</code>, <code>nc_read_par</code>, <code>nc_subset</code>, <code>nc_write</code>, <code>nc_write!</code>, <code>ncdim_def</code>, <code>ncinfo</code>, <code>ncsave</code>, <code>ncvar_def</code>, <code>ncvar_dim</code>, <code>ncvar_info</code>, <code>nlayer</code>, <code>nlyr</code>, <code>ogr_info</code>, <code>range2bbox</code>, <code>rast</code>, <code>read_gdal</code>, <code>read_sf</code>, <code>resample_first</code>, <code>rm_empty</code>, <code>rm_shp</code>, <code>row_goto</code>, <code>set_bandnames</code>, <code>spInterp</code>, <code>split_chunk</code>, <code>split_date</code>, <code>st_bbox</code>, <code>st_cellsize</code>, <code>st_crop</code>, <code>st_dims</code>, <code>st_extract</code>, <code>st_location</code>, <code>st_location_exact</code>, <code>st_location_fast</code>, <code>st_mosaic</code>, <code>st_points</code>, <code>st_read</code>, <code>st_write</code>, <code>tau2gis</code>, <code>updateMask!</code>, <code>weight_adw</code>, <code>weight_idw</code>, <code>weighted_nanmean</code>, <code>weighted_nanmean!</code>, <code>weights_adw</code>, <code>weights_func</code>, <code>weights_idw</code>, <code>write_gdal</code>, <code>write_sf</code>, <code>xy2ij</code></p>
+<p><code>AbstractSpatRaster</code>, <code>CMIP</code>, <code>D8Direction</code>, <code>DirLength</code>, <code>GridChunks</code>, <code>InGrid</code>, <code>MFDataset</code>, <code>MFVariable</code>, <code>NcDim</code>, <code>NcDim_time</code>, <code>NcDims</code>, <code>NextCell</code>, <code>QDM</code>, <code>QDM_chunk!</code>, <code>QDM_main</code>, <code>QDM_mov!</code>, <code>SpatRaster</code>, <code>SpatRasters</code>, <code>_zip</code>, <code>angle_azimuth</code>, <code>angle_azimuth_sphere</code>, <code>approx</code>, <code>array</code>, <code>bandnames</code>, <code>bbox</code>, <code>bbox2cellsize</code>, <code>bbox2dims</code>, <code>bbox2lims</code>, <code>bbox2ndim</code>, <code>bbox2range</code>, <code>bbox2vec</code>, <code>bbox_overlap</code>, <code>bilinear</code>, <code>cellArea</code>, <code>check_dims</code>, <code>close</code>, <code>col_goto</code>, <code>coverage_fraction</code>, <code>earth_dist</code>, <code>exact_extract</code>, <code>find_first</code>, <code>fliplr</code>, <code>flipud</code>, <code>gdal_info</code>, <code>gdal_nodata</code>, <code>gdal_polygonize</code>, <code>gdalinfo</code>, <code>get_bandName</code>, <code>get_chunk</code>, <code>getgeotransform</code>, <code>gis2tau</code>, <code>gis2wflow</code>, <code>guanshan_dem</code>, <code>guanshan_flowdir_cpp</code>, <code>guanshan_flowdir_gis</code>, <code>in_bbox</code>, <code>interp_linear</code>, <code>isscalar</code>, <code>merge_var</code>, <code>merge_var!</code>, <code>meshgrid</code>, <code>names</code>, <code>nband</code>, <code>nc_agg</code>, <code>nc_agg_dir</code>, <code>nc_attr</code>, <code>nc_attr!</code>, <code>nc_attr_rm!</code>, <code>nc_bands</code>, <code>nc_calendar</code>, <code>nc_cellsize</code>, <code>nc_close</code>, <code>nc_combine</code>, <code>nc_crop</code>, <code>nc_date</code>, <code>nc_dim</code>, <code>nc_dims</code>, <code>nc_info</code>, <code>nc_open</code>, <code>nc_read</code>, <code>nc_read_all</code>, <code>nc_read_par</code>, <code>nc_subset</code>, <code>nc_write</code>, <code>nc_write!</code>, <code>ncdim_def</code>, <code>ncinfo</code>, <code>ncsave</code>, <code>ncvar_def</code>, <code>ncvar_dim</code>, <code>ncvar_info</code>, <code>nlayer</code>, <code>nlyr</code>, <code>ogr_info</code>, <code>range2bbox</code>, <code>rast</code>, <code>read_gdal</code>, <code>read_sf</code>, <code>resample_first</code>, <code>rm_empty</code>, <code>rm_shp</code>, <code>row_goto</code>, <code>set_bandnames</code>, <code>spInterp</code>, <code>split_chunk</code>, <code>split_date</code>, <code>st_bbox</code>, <code>st_cellsize</code>, <code>st_crop</code>, <code>st_dims</code>, <code>st_extract</code>, <code>st_location</code>, <code>st_location_exact</code>, <code>st_location_fast</code>, <code>st_mosaic</code>, <code>st_points</code>, <code>st_read</code>, <code>st_write</code>, <code>tau2gis</code>, <code>updateMask!</code>, <code>weight_adw</code>, <code>weight_idw</code>, <code>weighted_nanmean</code>, <code>weighted_nanmean!</code>, <code>weights_adw</code>, <code>weights_func</code>, <code>weights_idw</code>, <code>write_gdal</code>, <code>write_sf</code>, <code>xy2ij</code></p>
 </section>
 <section id="displaying-contents-of-readme-found-at-homerunnerworknetcdftools.jlnetcdftools.jlreadme.md" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="displaying-contents-of-readme-found-at-homerunnerworknetcdftools.jlnetcdftools.jlreadme.md">Displaying contents of readme found at <code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/README.md</code></h3>
@@ -1023,13 +903,13 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">QDM</span>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    y_obs<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    y_calib<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    y_pred<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>;</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    type_adj,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">QDM</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    y_obs<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    y_calib<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    y_pred<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>;</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    type_adj,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments">Arguments</h3>
 <ul>
@@ -1168,8 +1048,8 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 <p><code>SpatRaster</code> is a simple spatial raster with WGS84 projection, abbreviated as <code>rast</code>.</p>
 <p>Due to its simplicity, <code>SpatRasters.jl</code> doesn’t rely on any other geospatial packages, which makes <code>SpatRasters.jl</code> more lightweight than <code>GeoArrays</code> and <code>Rasters.jl</code>.</p>
 <p><code>SpatRasters.jl</code> used the class and function of R language <code>terra</code> and <code>sf</code> packages.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">-e</span> <span class="st">"@time using SpatRasters"</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">-e</span> <span class="st">"@time using SpatRasters"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -1223,8 +1103,8 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 </div>
 <div class="callout-body-container">
 <p>球面方位角 (0~360°)</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth_sphere</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>)) <span class="co"># 正北，0</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>))        <span class="co"># 正北，0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth_sphere</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>)) <span class="co"># 正北，0</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>))        <span class="co"># 正北，0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1445,8 +1325,8 @@ bilinear(ra::SpatRaster{T,3}; cellsize=1, na_rm=true, kw...) where {T&lt;:Real}<
 <p>Suppose that the location, (locx, locy) lies in between the first two grid points in both x an y. That is locx is between x1 and x2 and locy is between y1 and y2. Let <code>ex= (l1-x1)/(x2-x1)</code> <code>ey= (l2-y1)/(y2-y1)</code>. The interpolant is</p>
 <p>( 1-ex)(1-ey)<em>z11 + (1- ex)(ey)</em>z12 + ( ex)(1-ey)<em>z21 + ( ex)(ey)</em>z22</p>
 <p>Where the z’s are the corresponding elements of the Z matrix.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bilinear</span>(x, y, z, xx, yy; na_rm, parallel, progress)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/Interpolation/bilinear.jl#L34"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/bilinear.jl:34</code></a>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bilinear</span>(x, y, z, xx, yy; na_rm, parallel, progress)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/Interpolation/bilinear.jl#L34"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/bilinear.jl:34</code></a>.</p>
 <p>! 插值外延，可能会导致错误！</p>
 <section id="references-1" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references-1">References</h3>
@@ -1455,8 +1335,8 @@ bilinear(ra::SpatRaster{T,3}; cellsize=1, na_rm=true, kw...) where {T&lt;:Real}<
 <li>https://en.wikipedia.org/wiki/Bilinear_interpolation</li>
 </ol>
 </section>
-<section id="examples-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-2">Examples</h3>
+<section id="examples-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-1">Examples</h3>
 <pre class="jldoc"><code>lon = 70:5:140
 lat = 15:5:55
 
@@ -1580,9 +1460,9 @@ r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)</code></pre>
 <div class="callout-body-container">
 <pre><code>earth_dist(x1::Matrix, x2::Matrix; R=6378.388)
 earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> [<span class="fl">110</span> <span class="fl">30</span>; <span class="fl">111</span> <span class="fl">31</span>]</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> [<span class="fl">113</span> <span class="fl">32</span>; <span class="fl">115</span> <span class="fl">35</span>]</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">earth_dist</span>(p1, p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> [<span class="fl">110</span> <span class="fl">30</span>; <span class="fl">111</span> <span class="fl">31</span>]</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> [<span class="fl">113</span> <span class="fl">32</span>; <span class="fl">115</span> <span class="fl">35</span>]</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">earth_dist</span>(p1, p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1960,9 +1840,9 @@ in_bbox(bs::Vector{bbox}, (lon, lat))</code></pre>
 <li><code>var</code>: variable to merge</li>
 </ul>
 </section>
-<section id="examples-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-3">Examples</h3>
-<div class="sourceCode" id="cb77"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> <span class="fu">bbox</span>(<span class="op">-</span><span class="fl">180</span>, <span class="op">-</span><span class="fl">60</span>, <span class="fl">180</span>, <span class="fl">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-2">Examples</h3>
+<div class="sourceCode" id="cb74"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> <span class="fu">bbox</span>(<span class="op">-</span><span class="fl">180</span>, <span class="op">-</span><span class="fl">60</span>, <span class="fl">180</span>, <span class="fl">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -2044,8 +1924,8 @@ names(df::GroupKey)</code></pre>
 <li>a <code>Function</code> predicate taking the column name as a string and returning <code>true</code> for columns that should be kept</li>
 </ul>
 <p>See also <a href="#propertynames"><code>propertynames</code></a> which returns a <code>Vector{Symbol}</code> (except for <code>GroupedDataFrame</code> in which case use <code>Symbol.(names(df))</code>).</p>
-<section id="examples-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-4">Examples</h3>
+<section id="examples-3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-3">Examples</h3>
 <pre class="jldoctest"><code>julia&gt; df = DataFrame(x1=[1, missing, missing], x2=[3, 2, 4], x3=[3, missing, 2], x4=Union{Int, Missing}[2, 4, 4])
 3×4 DataFrame
  Row │ x1       x2     x3       x4
@@ -2119,19 +1999,19 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb84"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>;</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>    fout;</span>
-<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>    by,</span>
-<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>    fun,</span>
-<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>    verbose</span>
-<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>;</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>    fout;</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>    by,</span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>    fun,</span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>    verbose</span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments-3" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments-3">Arguments</h3>
 <ul>
@@ -2139,12 +2019,12 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 <li><code>fout</code>: output file</li>
 <li><code>by</code>: “year” or “month”, or a function to group dates</li>
 </ul>
-<div class="sourceCode" id="cb85"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f; <span class="op">...</span>)</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f, fout; by, fun, outdir, overwrite, verbose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/utilize/nc_agg.jl#L15"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:15</code></a>.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f; <span class="op">...</span>)</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f, fout; by, fun, outdir, overwrite, verbose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/utilize/nc_agg.jl#L15"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:15</code></a>.</p>
 </section>
-<section id="examples-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-5">Examples</h3>
+<section id="examples-4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-4">Examples</h3>
 <pre><code>nc_agg(f, fout; by="year", fun=mean, outdir="./OUTPUT", overwrite=false, verbose=true)</code></pre>
 </section>
 </div>
@@ -2160,16 +2040,16 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb87"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="examples-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-6">Examples</h3>
+<div class="sourceCode" id="cb84"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-5">Examples</h3>
 <pre class="julia-repl"><code>scenario = "historical"
 indir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax/historical"
 outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
 
 nc_agg_dir(indir; by="year", replacement="day"=&gt;"year", outdir)</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/utilize/nc_agg.jl#L69"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:69</code></a>.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/utilize/nc_agg.jl#L69"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:69</code></a>.</p>
 </section>
 </div>
 </div>
@@ -2321,14 +2201,14 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <div class="callout-body-container">
 <pre><code>nc_combine(fs, fout; compress=0)</code></pre>
 <p>!会自动跳过重复的日期</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>    d<span class="op">::</span><span class="dt">DataFrames.AbstractDataFrame</span>;</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb99"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(d; outdir, overwrite, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/utilize/nc_combine.jl#L62"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_combine.jl:62</code></a>.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    d<span class="op">::</span><span class="dt">DataFrames.AbstractDataFrame</span>;</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(d; outdir, overwrite, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/utilize/nc_combine.jl#L62"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_combine.jl:62</code></a>.</p>
 </div>
 </div>
 </div>
@@ -2342,15 +2222,15 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb100"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_crop</span>(</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">String</span>,</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    b<span class="op">::</span><span class="dt">bbox</span>,</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>    fout<span class="op">::</span><span class="dt">String</span>;</span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>    bands,</span>
-<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>    compress,</span>
-<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_crop</span>(</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">String</span>,</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>    b<span class="op">::</span><span class="dt">bbox</span>,</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>    fout<span class="op">::</span><span class="dt">String</span>;</span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>    bands,</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    compress,</span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2449,11 +2329,11 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </div>
 <div class="callout-body-container">
 <pre><code>open netcdf file, `nc_open` is alias of `NCDataset`</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(</span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">Union{AbstractString, Vector{&lt;:AbstractString}}</span>,</span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>    args<span class="op">...</span>;</span>
-<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
-<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">Union{AbstractString, Vector{&lt;:AbstractString}}</span>,</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>    args<span class="op">...</span>;</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments-4" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments-4">Arguments</h3>
 <ul>
@@ -2464,10 +2344,10 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="examples-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-7">Examples</h3>
-<div class="sourceCode" id="cb107"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(f, args; kwargs<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/nc_info.jl#L20"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:20</code></a>.</p>
+<section id="examples-6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-6">Examples</h3>
+<div class="sourceCode" id="cb104"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(f, args; kwargs<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/nc_info.jl#L20"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:20</code></a>.</p>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>, NCDatasets.NCDataset())</span></p>
 </section>
 </div>
@@ -2483,17 +2363,17 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb108"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(file; <span class="op">...</span>) <span class="op">-&gt;</span> <span class="dt">Any</span></span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(</span>
-<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>    file,</span>
-<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>    band;</span>
-<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span>,</span>
-<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a>    period,</span>
-<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a>    ind,</span>
-<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a>    raw,</span>
-<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a>    nodata,</span>
-<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a>    verbose</span>
-<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(file; <span class="op">...</span>) <span class="op">-&gt;</span> <span class="dt">Any</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>    file,</span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>    band;</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span>,</span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>    period,</span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>    ind,</span>
+<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a>    raw,</span>
+<span id="cb105-9"><a href="#cb105-9" aria-hidden="true" tabindex="-1"></a>    nodata,</span>
+<span id="cb105-10"><a href="#cb105-10" aria-hidden="true" tabindex="-1"></a>    verbose</span>
+<span id="cb105-11"><a href="#cb105-11" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments-5" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments-5">Arguments</h3>
 <ul>
@@ -2558,24 +2438,24 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb111"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>;</span>
-<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
-<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
-<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>,</span>
-<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a>    fout;</span>
-<span id="cb111-10"><a href="#cb111-10" aria-hidden="true" tabindex="-1"></a>    delta,</span>
-<span id="cb111-11"><a href="#cb111-11" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
-<span id="cb111-12"><a href="#cb111-12" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
-<span id="cb111-13"><a href="#cb111-13" aria-hidden="true" tabindex="-1"></a>    big,</span>
-<span id="cb111-14"><a href="#cb111-14" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
-<span id="cb111-15"><a href="#cb111-15" aria-hidden="true" tabindex="-1"></a>    band,</span>
-<span id="cb111-16"><a href="#cb111-16" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb111-17"><a href="#cb111-17" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
-<span id="cb111-18"><a href="#cb111-18" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>;</span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
+<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
+<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>,</span>
+<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a>    fout;</span>
+<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a>    delta,</span>
+<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
+<span id="cb108-12"><a href="#cb108-12" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
+<span id="cb108-13"><a href="#cb108-13" aria-hidden="true" tabindex="-1"></a>    big,</span>
+<span id="cb108-14"><a href="#cb108-14" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
+<span id="cb108-15"><a href="#cb108-15" aria-hidden="true" tabindex="-1"></a>    band,</span>
+<span id="cb108-16"><a href="#cb108-16" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb108-17"><a href="#cb108-17" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
+<span id="cb108-18"><a href="#cb108-18" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments-6" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments-6">Arguments</h3>
 <ul>
@@ -2588,33 +2468,33 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </section>
 <section id="example" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example">Example</h3>
-<div class="sourceCode" id="cb112"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4-d array</span></span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf3.dkrz.de/thredds/dodsC/cmip6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/zg/gn/v20191108/zg_day_ACCESS-CM2_historical_r1i1p1f1_gn_19500101-19541231.nc"</span></span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(url)</span>
-<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3-d array</span></span>
-<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/huss/gn/v20191108/huss_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-18991231.nc"</span></span>
-<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>range <span class="op">=</span> [<span class="fl">70</span>, <span class="fl">140</span>, <span class="fl">15</span>, <span class="fl">55</span>]</span>
-<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">nc_subset</span>(url, range)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb113"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(f, range; <span class="op">...</span>)</span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>    range,</span>
-<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>    fout;</span>
-<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>    delta,</span>
-<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
-<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
-<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>    big,</span>
-<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
-<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>    band,</span>
-<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
-<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/utilize/nc_subset.jl#L32"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_subset.jl:32</code></a>.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4-d array</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf3.dkrz.de/thredds/dodsC/cmip6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/zg/gn/v20191108/zg_day_ACCESS-CM2_historical_r1i1p1f1_gn_19500101-19541231.nc"</span></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(url)</span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-6"><a href="#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3-d array</span></span>
+<span id="cb109-7"><a href="#cb109-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/huss/gn/v20191108/huss_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-18991231.nc"</span></span>
+<span id="cb109-8"><a href="#cb109-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-9"><a href="#cb109-9" aria-hidden="true" tabindex="-1"></a>range <span class="op">=</span> [<span class="fl">70</span>, <span class="fl">140</span>, <span class="fl">15</span>, <span class="fl">55</span>]</span>
+<span id="cb109-10"><a href="#cb109-10" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb109-11"><a href="#cb109-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-12"><a href="#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">nc_subset</span>(url, range)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(f, range; <span class="op">...</span>)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>    range,</span>
+<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>    fout;</span>
+<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a>    delta,</span>
+<span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
+<span id="cb110-8"><a href="#cb110-8" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
+<span id="cb110-9"><a href="#cb110-9" aria-hidden="true" tabindex="-1"></a>    big,</span>
+<span id="cb110-10"><a href="#cb110-10" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
+<span id="cb110-11"><a href="#cb110-11" aria-hidden="true" tabindex="-1"></a>    band,</span>
+<span id="cb110-12"><a href="#cb110-12" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb110-13"><a href="#cb110-13" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
+<span id="cb110-14"><a href="#cb110-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/utilize/nc_subset.jl#L32"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_subset.jl:32</code></a>.</p>
 </section>
 </div>
 </div>
@@ -2629,23 +2509,23 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb114"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>;</span>
-<span id="cb114-6"><a href="#cb114-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb114-7"><a href="#cb114-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
-<span id="cb114-8"><a href="#cb114-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
-<span id="cb114-9"><a href="#cb114-9" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb114-10"><a href="#cb114-10" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb114-11"><a href="#cb114-11" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb114-12"><a href="#cb114-12" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>,</span>
-<span id="cb114-13"><a href="#cb114-13" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">::</span><span class="dt">Dict</span>;</span>
-<span id="cb114-14"><a href="#cb114-14" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb114-15"><a href="#cb114-15" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb114-16"><a href="#cb114-16" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb114-17"><a href="#cb114-17" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>;</span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
+<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
+<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb111-10"><a href="#cb111-10" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb111-11"><a href="#cb111-11" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb111-12"><a href="#cb111-12" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>,</span>
+<span id="cb111-13"><a href="#cb111-13" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">::</span><span class="dt">Dict</span>;</span>
+<span id="cb111-14"><a href="#cb111-14" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb111-15"><a href="#cb111-15" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb111-16"><a href="#cb111-16" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb111-17"><a href="#cb111-17" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments-7" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments-7">Arguments</h3>
 <ul>
@@ -2667,32 +2547,32 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="examples-8" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-8">Examples</h3>
-<div class="sourceCode" id="cb115"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> [</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim_time</span>(dates)</span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>cellsize<span class="op">=</span><span class="fl">1</span></span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> <span class="fu">Date</span>(<span class="fl">2010</span>)<span class="op">:</span><span class="fu">Day</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Date</span>(<span class="fl">2010</span>, <span class="fl">1</span>, <span class="fl">4</span>) <span class="op">|&gt;</span> collect</span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">NcDims</span>(b, cellsize, dates) <span class="co"># one option</span></span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; units, longname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb116"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; <span class="op">...</span>)</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>    varname,</span>
-<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>    dims,</span>
-<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>    attr;</span>
-<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/nc_write.jl#L55"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:55</code></a>.</p>
+<section id="examples-7" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-7">Examples</h3>
+<div class="sourceCode" id="cb112"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> [</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim_time</span>(dates)</span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>cellsize<span class="op">=</span><span class="fl">1</span></span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> <span class="fu">Date</span>(<span class="fl">2010</span>)<span class="op">:</span><span class="fu">Day</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Date</span>(<span class="fl">2010</span>, <span class="fl">1</span>, <span class="fl">4</span>) <span class="op">|&gt;</span> collect</span>
+<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">NcDims</span>(b, cellsize, dates) <span class="co"># one option</span></span>
+<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; units, longname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; <span class="op">...</span>)</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>    varname,</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>    dims,</span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>    attr;</span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/nc_write.jl#L55"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:55</code></a>.</p>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>)</span> <code>ncvar_def</code></p>
 </section>
 </div>
@@ -2708,33 +2588,33 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb117"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{&lt;:Union{AbstractString, NcDim}}</span>;</span>
-<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
-<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
-<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
-<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
-<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
-<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb117-13"><a href="#cb117-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb118"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>    varname,</span>
-<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>    dims;</span>
-<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
-<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
-<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
-<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
-<span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
-<span id="cb118-11"><a href="#cb118-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb118-12"><a href="#cb118-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb118-13"><a href="#cb118-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/c40ccbb571399db4a470f9fce7a108d47c083c41//src/nc_write.jl#L72"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:72</code></a>.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{&lt;:Union{AbstractString, NcDim}}</span>;</span>
+<span id="cb114-6"><a href="#cb114-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
+<span id="cb114-7"><a href="#cb114-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
+<span id="cb114-8"><a href="#cb114-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
+<span id="cb114-9"><a href="#cb114-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
+<span id="cb114-10"><a href="#cb114-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
+<span id="cb114-11"><a href="#cb114-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb114-12"><a href="#cb114-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb114-13"><a href="#cb114-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    varname,</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    dims;</span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
+<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
+<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
+<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/5991e2708772cd514295a2ed47535aca7840a0bc//src/nc_write.jl#L72"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:72</code></a>.</p>
 </div>
 </div>
 </div>
@@ -2751,22 +2631,22 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <pre><code>ncdim_def(ds, name, val, attrib = Dict())
 ncdim_def(ds, dim::NcDim)
 ncdim_def(ds, dims::Vector{NcDim})</code></pre>
-<section id="examples-9" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-9">Examples</h3>
-<div class="sourceCode" id="cb120"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. by existing nc file</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f = "/mnt/j/Researches/Obs/Obs_ChinaHW_cluster/ncell_16/clusterId_HItasmax_movTRS_Obs.nc"</span></span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">nc_dims</span>(f)</span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f2.nc"</span>, <span class="st">"c"</span>)</span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dims);</span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(ds)</span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
-<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. by assigned variables</span></span>
-<span id="cb120-10"><a href="#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="co"># dates = nc_date(ds)</span></span>
-<span id="cb120-11"><a href="#cb120-11" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f3.nc"</span>, <span class="st">"c"</span>)</span>
-<span id="cb120-12"><a href="#cb120-12" aria-hidden="true" tabindex="-1"></a>dim_t <span class="op">=</span> <span class="fu">NcDim_time</span>(dates)</span>
-<span id="cb120-13"><a href="#cb120-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dim_t)</span>
-<span id="cb120-14"><a href="#cb120-14" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-8" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-8">Examples</h3>
+<div class="sourceCode" id="cb117"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. by existing nc file</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f = "/mnt/j/Researches/Obs/Obs_ChinaHW_cluster/ncell_16/clusterId_HItasmax_movTRS_Obs.nc"</span></span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">nc_dims</span>(f)</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f2.nc"</span>, <span class="st">"c"</span>)</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dims);</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(ds)</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. by assigned variables</span></span>
+<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a><span class="co"># dates = nc_date(ds)</span></span>
+<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f3.nc"</span>, <span class="st">"c"</span>)</span>
+<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a>dim_t <span class="op">=</span> <span class="fu">NcDim_time</span>(dates)</span>
+<span id="cb117-13"><a href="#cb117-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dim_t)</span>
+<span id="cb117-14"><a href="#cb117-14" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -2814,17 +2694,17 @@ ncdim_def(ds, dims::Vector{NcDim})</code></pre>
 <li><p><code>values</code>: can be NamedTuple or Dict, but values should have the same dimensions</p></li>
 </ul>
 </section>
-<section id="examples-10" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="examples-10">Examples</h4>
-<div class="sourceCode" id="cb123"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
-<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>; dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
-<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite</span></span>
-<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>, (; overwrite<span class="op">=</span><span class="cn">true</span>); </span>
-<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a>  dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float64</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
-<span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-8"><a href="#cb123-8" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
-<span id="cb123-9"><a href="#cb123-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>; dims, SM3<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="examples-9">Examples</h4>
+<div class="sourceCode" id="cb120"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>; dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite</span></span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>, (; overwrite<span class="op">=</span><span class="cn">true</span>); </span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>  dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float64</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
+<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>; dims, SM3<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -2859,27 +2739,27 @@ ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
 </ul></li>
 </ul>
 </section>
-<section id="examples-11" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-11">Examples</h3>
-<div class="sourceCode" id="cb125"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">"f1.nc"</span></span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">isfile</span>(f) <span class="op">&amp;&amp;</span> <span class="fu">rm</span>(f)</span>
-<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"c"</span>)</span>
-<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>compress <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
-<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
-<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"time"</span>, <span class="fl">1</span><span class="op">:</span>ntime)</span>
-<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-10"><a href="#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>], <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"hello"</span>); compress <span class="op">=</span> compress)</span>
-<span id="cb125-11"><a href="#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
-<span id="cb125-12"><a href="#cb125-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-13"><a href="#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="co"># append a variable</span></span>
-<span id="cb125-14"><a href="#cb125-14" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"a"</span>)</span>
-<span id="cb125-15"><a href="#cb125-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI2"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>]; compress <span class="op">=</span> compress)</span>
-<span id="cb125-16"><a href="#cb125-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ds)</span>
-<span id="cb125-17"><a href="#cb125-17" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
-<span id="cb125-18"><a href="#cb125-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-19"><a href="#cb125-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_info</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-10" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-10">Examples</h3>
+<div class="sourceCode" id="cb122"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">"f1.nc"</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">isfile</span>(f) <span class="op">&amp;&amp;</span> <span class="fu">rm</span>(f)</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"c"</span>)</span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>compress <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
+<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"time"</span>, <span class="fl">1</span><span class="op">:</span>ntime)</span>
+<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-10"><a href="#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>], <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"hello"</span>); compress <span class="op">=</span> compress)</span>
+<span id="cb122-11"><a href="#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
+<span id="cb122-12"><a href="#cb122-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-13"><a href="#cb122-13" aria-hidden="true" tabindex="-1"></a><span class="co"># append a variable</span></span>
+<span id="cb122-14"><a href="#cb122-14" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"a"</span>)</span>
+<span id="cb122-15"><a href="#cb122-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI2"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>]; compress <span class="op">=</span> compress)</span>
+<span id="cb122-16"><a href="#cb122-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ds)</span>
+<span id="cb122-17"><a href="#cb122-17" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
+<span id="cb122-18"><a href="#cb122-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-19"><a href="#cb122-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_info</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>)</span> <a href="#ncdim_def"><code>ncdim_def</code></a></p>
 </section>
 </div>
@@ -3176,17 +3056,17 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 </div>
 <div class="callout-body-container">
 <pre><code>spInterp(weights::AbstractMatrix, data::AbstractMatrix; progress=true)</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>sites <span class="op">=</span> [st.lon st.lat]</span>
-<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> st[<span class="op">:</span>, <span class="op">:</span>alt]</span>
-<span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">repeat</span>(alt, <span class="fl">1</span>, <span class="fl">24</span>)<span class="ch">' |&gt; collect</span></span>
-<span id="cb142-4"><a href="#cb142-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-5"><a href="#cb142-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
-<span id="cb142-6"><a href="#cb142-6" aria-hidden="true" tabindex="-1"></a>lon, lat <span class="op">=</span> <span class="fu">bbox2dims</span>(b; cellsize<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb142-7"><a href="#cb142-7" aria-hidden="true" tabindex="-1"></a>nlon, nlat <span class="op">=</span> <span class="fu">length</span>(lon), <span class="fu">length</span>(lat)</span>
-<span id="cb142-8"><a href="#cb142-8" aria-hidden="true" tabindex="-1"></a>ra <span class="op">=</span> <span class="fu">rast</span>(<span class="fu">rand</span>(nlon, nlat), b)</span>
-<span id="cb142-9"><a href="#cb142-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-10"><a href="#cb142-10" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_adw</span>(ra, sites)</span>
-<span id="cb142-11"><a href="#cb142-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> zs <span class="op">=</span> <span class="fu">spInterp</span>(weights, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>sites <span class="op">=</span> [st.lon st.lat]</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> st[<span class="op">:</span>, <span class="op">:</span>alt]</span>
+<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">repeat</span>(alt, <span class="fl">1</span>, <span class="fl">24</span>)<span class="ch">' |&gt; collect</span></span>
+<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-5"><a href="#cb139-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
+<span id="cb139-6"><a href="#cb139-6" aria-hidden="true" tabindex="-1"></a>lon, lat <span class="op">=</span> <span class="fu">bbox2dims</span>(b; cellsize<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb139-7"><a href="#cb139-7" aria-hidden="true" tabindex="-1"></a>nlon, nlat <span class="op">=</span> <span class="fu">length</span>(lon), <span class="fu">length</span>(lat)</span>
+<span id="cb139-8"><a href="#cb139-8" aria-hidden="true" tabindex="-1"></a>ra <span class="op">=</span> <span class="fu">rast</span>(<span class="fu">rand</span>(nlon, nlat), b)</span>
+<span id="cb139-9"><a href="#cb139-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-10"><a href="#cb139-10" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_adw</span>(ra, sites)</span>
+<span id="cb139-11"><a href="#cb139-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> zs <span class="op">=</span> <span class="fu">spInterp</span>(weights, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3387,9 +3267,9 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <div class="callout-body-container">
 <pre><code>st_location(r::Raster, points::Vector{Tuple{T,T}})</code></pre>
 <p>return the overlaping indexes <code>inds</code>, and corresponding (i,j)</p>
-<section id="examples-12" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-12">Examples</h3>
-<div class="sourceCode" id="cb153"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>inds, locs <span class="op">=</span> <span class="fu">st_location</span>(r, points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-11" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-11">Examples</h3>
+<div class="sourceCode" id="cb150"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>inds, locs <span class="op">=</span> <span class="fu">st_location</span>(r, points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
