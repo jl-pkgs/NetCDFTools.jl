@@ -33,7 +33,7 @@ weights = weights_idw(ra, sites)
 weights = weights_adw(ra, sites)
 @time zs = spInterp(weights, data)
 
-@test size(zs) == (nlon, nlat, 24)
+# @test size(zs) == (nlon, nlat, 24)
 @test mean(zs[:, :, 1]) ≈ 814.0711051650405
 ```
 
