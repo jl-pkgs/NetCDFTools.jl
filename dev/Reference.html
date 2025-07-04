@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Dongdong Kong">
-<meta name="dcterms.date" content="2025-06-29">
 
-<title>NetCDFTools</title>
+<title>NetCDFTools.jl – NetCDFTools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Reference.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -172,10 +205,10 @@ window.onload = function () {
 
 
 <link rel="stylesheet" href="_static/style.css">
-<meta property="og:title" content="NetCDFTools">
+<meta property="og:title" content="NetCDFTools.jl – NetCDFTools">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="NetCDFTools">
-<meta name="twitter:title" content="NetCDFTools">
+<meta name="twitter:title" content="NetCDFTools.jl – NetCDFTools">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -379,7 +412,7 @@ window.onload = function () {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reference.html"><span class="chapter-title">NetCDFTools.jl</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -401,12 +434,12 @@ window.onload = function () {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Overview</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">NetCDFTools.jl</span></a>
+  <a href="./Reference.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">NetCDFTools.jl</span></a>
   </div>
 </li>
     </ul>
@@ -419,11 +452,11 @@ window.onload = function () {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#netcdftools-in-julia" id="toc-netcdftools-in-julia" class="nav-link active" data-scroll-target="#netcdftools-in-julia">NetCDFTools in Julia</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a>
-  <ul class="collapse">
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  </ul></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#utilities" id="toc-utilities" class="nav-link" data-scroll-target="#utilities">Utilities</a></li>
+  <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation">Interpolation</a></li>
+  <li><a href="#cmip-functions" id="toc-cmip-functions" class="nav-link" data-scroll-target="#cmip-functions">CMIP functions</a></li>
+  <li><a href="#mfdataset" id="toc-mfdataset" class="nav-link" data-scroll-target="#mfdataset">MFDataset</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -433,26 +466,14 @@ window.onload = function () {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">NetCDFTools</h1>
+<h1 class="title"><span class="chapter-title">NetCDFTools.jl</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Dongdong Kong <a href="mailto:kongdd@users.noreply.github.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 29, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -462,30 +483,61 @@ window.onload = function () {
 </header>
 
 
-<section id="netcdftools-in-julia" class="level1">
-<h1>NetCDFTools in Julia</h1>
-<p><a href="https://jl-pkgs.github.io/NetCDFTools.jl/stable"><img src="https://img.shields.io/badge/docs-stable-blue.svg" class="img-fluid" alt="Stable"></a> <a href="https://jl-pkgs.github.io/NetCDFTools.jl/dev"><img src="https://img.shields.io/badge/docs-dev-blue.svg" class="img-fluid" alt="Dev"></a> <a href="https://github.com/jl-pkgs/NetCDFTools.jl/actions/workflows/CI.yml"><img src="https://github.com/jl-pkgs/NetCDFTools.jl/actions/workflows/CI.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://app.codecov.io/gh/jl-pkgs/NetCDFTools.jl/tree/master"><img src="https://codecov.io/gh/jl-pkgs/NetCDFTools.jl/branch/master/graph/badge.svg" class="img-fluid" alt="Codecov"></a></p>
-<blockquote class="blockquote">
-<p>Dongdong Kong, CUG</p>
-</blockquote>
+<p>Documentation for NetCDFTools.jl, a Julia package for loading/writing NetCDF data on the top of <code>NCDatasets.jl</code>.</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Inside the Julia shell, you can download and install using the following commands:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">"NetCDFTools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="@docs"><code>nc_open
+nc_cellsize
+
+Base.getindex
+
+NetCDFTools.NcDim
+NetCDFTools.ncdim_def
+
+ncvar_def
+nc_attr!</code></pre>
+<pre class="@docs"><code>nc_read
+nc_write
+nc_write!
+
+ncsave</code></pre>
 </section>
-<section id="installation" class="level1">
-<h1>Installation</h1>
-<pre><code>using Pkg
-Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<ul class="task-list">
-<li><p><label><input type="checkbox" checked="">检索CMIP6数据，获取下载url</label></p></li>
-<li><p><label><input type="checkbox" checked="">OpenDAP下载CMIP6数据</label></p></li>
-<li><p><label><input type="checkbox" checked="">CMIP6 <code>QMD</code>偏差矫正</label></p></li>
-<li><p><label><input type="checkbox" checked="">CMIP6 <code>bilinear</code>双线性插值</label></p></li>
-<li><p><label><input type="checkbox" checked="">nc文件拼接、聚合（一些仿cdo的函数，nc_combine, nc_subset, nc_aggregate）</label></p></li>
-<li><p><label><input type="checkbox" checked="">nc文件处理</label></p></li>
-</ul>
+<section id="utilities" class="level2">
+<h2 class="anchored" data-anchor-id="utilities">Utilities</h2>
+<pre class="@docs"><code>QDM
+
+nc_agg 
+nc_agg_dir
+
+nc_combine
+nc_subset
+nc_crop</code></pre>
+<pre class="@docs"><code>split_chunk</code></pre>
+</section>
+<section id="interpolation" class="level2">
+<h2 class="anchored" data-anchor-id="interpolation">Interpolation</h2>
+<pre class="@docs"><code>spInterp
+bilinear
+weight_idw</code></pre>
+<pre class="@docs"><code>earth_dist
+angle_azimuth_sphere</code></pre>
+</section>
+<section id="cmip-functions" class="level2">
+<h2 class="anchored" data-anchor-id="cmip-functions">CMIP functions</h2>
+<pre class="@docs"><code>CMIP.Tem_F2C
+CMIP.heat_index
+
+CMIP.get_model
+CMIP.CMIPFiles_info</code></pre>
+</section>
+<section id="mfdataset" class="level2">
+<h2 class="anchored" data-anchor-id="mfdataset">MFDataset</h2>
+<pre class="@docs"><code>MFDataset</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -903,11 +955,11 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Overview">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Overview</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Reference.html" class="pagination-link" aria-label="NetCDFTools.jl">
-        <span class="nav-page-text"><span class="chapter-title">NetCDFTools.jl</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

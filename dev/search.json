@@ -1,0 +1,82 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NetCDFTools",
+    "section": "",
+    "text": "NetCDFTools in Julia",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "NetCDFTools",
+    "section": "Usage",
+    "text": "Usage\n\n检索CMIP6数据，获取下载url\nOpenDAP下载CMIP6数据\nCMIP6 QMD偏差矫正\nCMIP6 bilinear双线性插值\nnc文件拼接、聚合（一些仿cdo的函数，nc_combine, nc_subset, nc_aggregate）\nnc文件处理",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "Reference.html",
+    "href": "Reference.html",
+    "title": "NetCDFTools.jl",
+    "section": "",
+    "text": "Installation\nDocumentation for NetCDFTools.jl, a Julia package for loading/writing NetCDF data on the top of NCDatasets.jl.\nInside the Julia shell, you can download and install using the following commands:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>NetCDFTools.jl</span>"
+    ]
+  },
+  {
+    "objectID": "Reference.html#installation",
+    "href": "Reference.html#installation",
+    "title": "NetCDFTools.jl",
+    "section": "",
+    "text": "using Pkg\nPkg.add(\"NetCDFTools\")\nnc_open\nnc_cellsize\n\nBase.getindex\n\nNetCDFTools.NcDim\nNetCDFTools.ncdim_def\n\nncvar_def\nnc_attr!\nnc_read\nnc_write\nnc_write!\n\nncsave",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>NetCDFTools.jl</span>"
+    ]
+  },
+  {
+    "objectID": "Reference.html#utilities",
+    "href": "Reference.html#utilities",
+    "title": "NetCDFTools.jl",
+    "section": "Utilities",
+    "text": "Utilities\nQDM\n\nnc_agg \nnc_agg_dir\n\nnc_combine\nnc_subset\nnc_crop\nsplit_chunk",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>NetCDFTools.jl</span>"
+    ]
+  },
+  {
+    "objectID": "Reference.html#interpolation",
+    "href": "Reference.html#interpolation",
+    "title": "NetCDFTools.jl",
+    "section": "Interpolation",
+    "text": "Interpolation\nspInterp\nbilinear\nweight_idw\nearth_dist\nangle_azimuth_sphere",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>NetCDFTools.jl</span>"
+    ]
+  },
+  {
+    "objectID": "Reference.html#cmip-functions",
+    "href": "Reference.html#cmip-functions",
+    "title": "NetCDFTools.jl",
+    "section": "CMIP functions",
+    "text": "CMIP functions\nCMIP.Tem_F2C\nCMIP.heat_index\n\nCMIP.get_model\nCMIP.CMIPFiles_info",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>NetCDFTools.jl</span>"
+    ]
+  },
+  {
+    "objectID": "Reference.html#mfdataset",
+    "href": "Reference.html#mfdataset",
+    "title": "NetCDFTools.jl",
+    "section": "MFDataset",
+    "text": "MFDataset\nMFDataset",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>NetCDFTools.jl</span>"
+    ]
+  }
+]
