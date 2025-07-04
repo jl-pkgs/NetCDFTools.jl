@@ -34,16 +34,6 @@ plot(p1, p2, layout = (1, 2))
 write_fig2("a.png", 10, 5; show=false)
 ```
 
-```{julia}
-using BenchmarkTools
-
-@btime nanmean($x)
-@btime nanmean4_v0($x[1], $x[2], $x[3], $x[4])
-@btime nanmean4($x[1], $x[2], $x[3], $x[4])
-# @btime nanmean4(x[1], x[2], x[3], x[4])
-@btime nanmean4_v2(x[1], x[2], x[3], x[4], z)
-```
-
 ## 测试
 
 ```{julia}

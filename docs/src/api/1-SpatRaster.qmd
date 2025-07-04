@@ -1,0 +1,23 @@
+---
+title: "1. SpatRaster"
+number-depth: 2
+execute:
+  echo: true
+  output: asis
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using DocumenterQuarto
+# using SpatRasters
+```
+
+# SpatRaster
+
+`SpatRaster` is a simple spatial raster with WGS84 projection, abbreviated as `rast`.
+
+
+```{julia}
+1 + 1
+```

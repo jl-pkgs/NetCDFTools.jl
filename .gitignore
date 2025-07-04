@@ -54,5 +54,5 @@ ChinaHW_cluster_CMIP6
 *.txt
 *.sh
 
-*.qmd
+# *.qmd
 */*/temp/*

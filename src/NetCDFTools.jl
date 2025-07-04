@@ -53,10 +53,10 @@ include("precompile.jl")
 
 
 export CMIP
-export @select
+# export @select
 export nc_open, nc_close, close
 export nc_bands, get_bandName, nc_info, ncinfo, ncvar_info
-export nc_dim, nc_dims, ncvar_dim, nc_size, nc_cellsize
+export nc_dim, nc_dims, ncvar_dim, nc_cellsize
 export nc_read, nc_write, nc_write!
 export nc_date, nc_calendar
 export nc_subset

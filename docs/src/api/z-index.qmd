@@ -1,0 +1,20 @@
+---
+number-depth: 2
+---
+
+# Reference
+
+_Docstrings for NetCDFTools._
+
+```{julia}
+#| echo: false
+#| output: false
+using DocumenterQuarto
+using NetCDFTools
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+DocumenterQuarto.autodoc(NetCDFTools)
+```
