@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>spinterp – NetCDFTools</title>
+<title>2. spInterp – NetCDFTools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -171,15 +206,15 @@ window.onload = function () {
 
 
 <link rel="stylesheet" href="../_static/style.css">
-<meta property="og:title" content="NetCDFTools">
+<meta property="og:title" content="2. spInterp – NetCDFTools">
 <meta property="og:image" content="2-spInterp_files/figure-html/cell-6-output-2.svg">
 <meta property="og:site_name" content="NetCDFTools">
-<meta name="twitter:title" content="NetCDFTools">
+<meta name="twitter:title" content="2. spInterp – NetCDFTools">
 <meta name="twitter:image" content="2-spInterp_files/figure-html/cell-6-output-2.svg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -378,7 +413,7 @@ window.onload = function () {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/2-spInterp.html"><span class="chapter-title">using RTableTools</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/2-spInterp.html"><span class="chapter-title">2. spInterp</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -410,7 +445,7 @@ window.onload = function () {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/2-spInterp.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">using RTableTools</span></a>
+  <a href="../api/2-spInterp.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">2. spInterp</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -428,20 +463,61 @@ window.onload = function () {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#完整案例" id="toc-完整案例" class="nav-link active" data-scroll-target="#完整案例">完整案例</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">2. spInterp</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<div id="1744d5e2" class="cell" data-execution_count="1">
+</header>
+
+
+<div id="8b4bfbb2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Ipaper</span>, <span class="bu">SpatRasters</span>, <span class="bu">NetCDFTools</span>, <span class="bu">Test</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MakieLayers</span>, <span class="bu">CairoMakie</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">make_rast</span>(; b<span class="op">::</span><span class="dt">bbox</span>=<span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>), cellsize<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  lon, lat <span class="op">=</span> <span class="fu">bbox2dims</span>(b; cellsize)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  nlon, nlat <span class="op">=</span> <span class="fu">length</span>(lon), <span class="fu">length</span>(lat)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rast</span>(<span class="fu">zeros</span>(nlon, nlat), b)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>indir <span class="op">=</span> <span class="st">"</span><span class="sc">$</span>(<span class="pp">@__DIR__</span>)<span class="st">/../../../data"</span> <span class="op">|&gt;</span> abspath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>"/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/data"</code></pre>
 </div>
 </div>
-<div id="7c16c026" class="cell" data-execution_count="2">
+<div id="062a98b9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using RTableTools</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># st = fread("data/st_met2481.csv")</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># serialize("data/st_met2481", st[:, [:site, :lon, :lat, :alt]])</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> <span class="fu">deserialize</span>(<span class="st">"</span><span class="sc">$</span>indir<span class="st">/st_met2481"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sites <span class="op">=</span> [st.lon st.lat]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> st[<span class="op">:</span>, <span class="op">:</span>alt]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">repeat</span>(alt, <span class="fl">1</span>, <span class="fl">24</span>)<span class="ch">' |&gt; collect</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>24×2481 Matrix{Float64}:
  296.0  296.0  361.9  514.5  494.6  177.4  …  68.6  5.5  8.5  13.9  4.7  4.0
@@ -470,44 +546,43 @@ window.onload = function () {
  296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0</code></pre>
 </div>
 </div>
-<div id="da273f2d" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-blue-fg">SpatRaster{Float64}: </span><span style="text-decoration:underline" class="ansi-green-fg">Raster</span>
-  A        : Matrix{Float64} | (140, 80) | <span style="font-weight:bold;text-decoration:underline" class="ansi-blue-fg">0.09 Mb</span>
-  b        : bbox(70.0, 15.0, 140.0, 55.0)
-  cellsize : (0.5, 0.5)
-  lon, lat : 70.25:0.5:139.75, 54.75:-0.5:15.25
-  time     : nothing
-  bands    : nothing
-  nodata   : nothing</pre>
-</div>
-</div>
-</div>
-<div id="5128d1b0" class="cell" data-execution_count="4">
+<div id="7b8c3b10" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ra <span class="op">=</span> <span class="fu">make_rast</span>(; cellsize<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_idw</span>(ra, sites)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@test</span> <span class="fu">length</span>(<span class="fu">rm_empty</span>(weights[<span class="op">:</span>])) <span class="op">==</span> <span class="fl">7861</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_idw</span>(ra, sites)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_adw</span>(ra, sites)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> zs <span class="op">=</span> <span class="fu">spInterp</span>(weights, data)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># @test size(zs) == (nlon, nlat, 24)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@test</span> <span class="fu">mean</span>(zs[<span class="op">:</span>, <span class="op">:</span>, <span class="fl">1</span>]) <span class="op">≈</span> <span class="fl">814.0711051650405</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:01:55</span>
+<pre><span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:02:02</span>
 
-<span class="ansi-green-fg">Progress:  66%|███████████████████████████▎             |  ETA: 0:00:01</span>
+<span class="ansi-green-fg">Progress:  49%|████████████████████▎                    |  ETA: 0:00:03</span>
+
+<span class="ansi-green-fg">Progress:  69%|████████████████████████████▍            |  ETA: 0:00:01</span>
 
 <span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:02</span>
 
 
-<span class="ansi-green-fg">Progress:  46%|███████████████████                      |  ETA: 0:00:00</span>
+<span class="ansi-green-fg">Progress:  46%|██████████████████▊                      |  ETA: 0:00:00</span>
 
-<span class="ansi-green-fg">Progress:  91%|█████████████████████████████████████▌   |  ETA: 0:00:00</span>
+<span class="ansi-green-fg">Progress:  90%|████████████████████████████████████▉    |  ETA: 0:00:00</span>
 
 <span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:00</span>
 
 
-<span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:00:58</span>
+<span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:01:00</span>
 
-<span class="ansi-green-fg">Progress:  26%|██████████▉                              |  ETA: 0:00:03</span>
+<span class="ansi-green-fg">Progress:  24%|█████████▋                               |  ETA: 0:00:03</span>
 
-<span class="ansi-green-fg">Progress:  64%|██████████████████████████▍              |  ETA: 0:00:01</span>
+<span class="ansi-green-fg">Progress:  66%|███████████████████████████              |  ETA: 0:00:01</span>
 
-<span class="ansi-green-fg">Progress:  94%|██████████████████████████████████████▍  |  ETA: 0:00:00</span>
+<span class="ansi-green-fg">Progress:  97%|███████████████████████████████████████▉ |  ETA: 0:00:00</span>
 
 <span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:01</span>
 
@@ -519,15 +594,240 @@ window.onload = function () {
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  0.237353 seconds (364.30 k allocations: 20.224 MiB, 95.03% compilation time)</code></pre>
+<pre><code>  0.242002 seconds (364.29 k allocations: 20.225 MiB, 95.02% compilation time)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-green-fg ansi-bold">Test Passed</span></pre>
 </div>
 </div>
 </div>
-<div id="32d96a5e" class="cell" data-execution_count="5">
+<section id="完整案例" class="level2">
+<h2 class="anchored" data-anchor-id="完整案例">完整案例</h2>
+<ul>
+<li>0.5deg, 1year 365×24, 2481 sites</li>
+</ul>
+<div id="58a9c132" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">repeat</span>(alt, <span class="fl">1</span>, <span class="fl">24</span> <span class="op">*</span> <span class="fl">365</span>)<span class="ch">' |&gt; collect</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ra <span class="op">=</span> <span class="fu">make_rast</span>(; cellsize<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_idw</span>(ra, sites)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> zs <span class="op">=</span> <span class="fu">spInterp</span>(weights, data); <span class="co"># 1day, hourly</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-green-fg">Progress:  51%|█████████████████████▏                   |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  89%|████████████████████████████████████▍    |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:00</span>
+
+
+<span class="ansi-green-fg">Progress:  25%|██████████▎                              |  ETA: 0:00:01</span>
+
+<span class="ansi-green-fg">Progress:  37%|███████████████▎                         |  ETA: 0:00:01</span>
+
+<span class="ansi-green-fg">Progress:  45%|██████████████████▌                      |  ETA: 0:00:01</span>
+
+<span class="ansi-green-fg">Progress:  53%|█████████████████████▋                   |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  61%|████████████████████████▉                |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  67%|███████████████████████████▌             |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  74%|██████████████████████████████▏          |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  81%|█████████████████████████████████▏       |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  93%|██████████████████████████████████████▏  |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:01</span>
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  1.208200 seconds (17.62 k allocations: 749.206 MiB, 0.87% gc time)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>140×80×8760 Array{Float64, 3}:
+[:, :, 1] =
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                                   ⋱            ⋮                   
+ 0.0  0.0  90.4  170.014   191.056      0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.8904   77.5929     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.5693   77.2186  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 2] =
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                                   ⋱            ⋮                   
+ 0.0  0.0  90.4  170.014   191.056      0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.8904   77.5929     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.5693   77.2186  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 3] =
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                                   ⋱            ⋮                   
+ 0.0  0.0  90.4  170.014   191.056      0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.8904   77.5929     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.5693   77.2186  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+;;; … 
+
+[:, :, 8758] =
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                                   ⋱            ⋮                   
+ 0.0  0.0  90.4  170.014   191.056      0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.8904   77.5929     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.5693   77.2186  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 8759] =
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                                   ⋱            ⋮                   
+ 0.0  0.0  90.4  170.014   191.056      0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.8904   77.5929     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.5693   77.2186  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 8760] =
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                                   ⋱            ⋮                   
+ 0.0  0.0  90.4  170.014   191.056      0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.8904   77.5929     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  90.4   77.5693   77.2186  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6     …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0   66.6      66.6        0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0   0.0    0.0       0.0        0.0  0.0  0.0  0.0  0.0  0.0  0.0</code></pre>
+</div>
+</div>
+<ul>
+<li>0.1deg, 1year 365×24, 2481 sites</li>
+</ul>
+<blockquote class="blockquote">
+<p>67.654694 seconds (425.24 k allocations: 18.288 GiB, 0.42% gc time)</p>
+</blockquote>
+<div id="96b25fa8" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lon, lat <span class="op">=</span> <span class="fu">st_dims</span>(ra)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">imagesc</span>(lon, lat, zs[<span class="op">:</span>, <span class="op">:</span>, <span class="fl">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.
@@ -546,6 +846,7 @@ window.onload = function () {
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -977,4 +1278,4 @@ window.onload = function () {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
