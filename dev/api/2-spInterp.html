@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NetCDFTools.jl – NetCDFTools</title>
+<title>spinterp – NetCDFTools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,66 +20,32 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./api/z-index.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e48d11066fe46049b8056d961f78ce1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-8baa932c728ac0b72af33d3ff6ac96e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e48d11066fe46049b8056d961f78ce1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../api/z-index.html" rel="next">
+<link href="../api/1-SpatRaster.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e48d11066fe46049b8056d961f78ce1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8baa932c728ac0b72af33d3ff6ac96e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-e48d11066fe46049b8056d961f78ce1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -204,16 +170,16 @@ window.onload = function () {
 </script>
 
 
-<link rel="stylesheet" href="_static/style.css">
-<meta property="og:title" content="NetCDFTools.jl – NetCDFTools">
-<meta property="og:description" content="">
+<link rel="stylesheet" href="../_static/style.css">
+<meta property="og:title" content="NetCDFTools">
+<meta property="og:image" content="2-spInterp_files/figure-html/cell-6-output-2.svg">
 <meta property="og:site_name" content="NetCDFTools">
-<meta name="twitter:title" content="NetCDFTools.jl – NetCDFTools">
-<meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NetCDFTools">
+<meta name="twitter:image" content="2-spInterp_files/figure-html/cell-6-output-2.svg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -382,7 +348,7 @@ window.onload = function () {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">NetCDFTools</span>
     </a>
   </div>
@@ -412,7 +378,7 @@ window.onload = function () {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reference.html"><span class="chapter-title">NetCDFTools.jl</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/2-spInterp.html"><span class="chapter-title">using RTableTools</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -434,27 +400,27 @@ window.onload = function () {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Overview</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/1-SpatRaster.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. SpatRaster</span></a>
+  <a href="../api/1-SpatRaster.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. SpatRaster</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/2-spInterp.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">using RTableTools</span></a>
+  <a href="../api/2-spInterp.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">using RTableTools</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/z-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference</span></a>
+  <a href="../api/z-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Reference.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">NetCDFTools.jl</span></a>
+  <a href="../Reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">NetCDFTools.jl</span></a>
   </div>
 </li>
     </ul>
@@ -462,98 +428,124 @@ window.onload = function () {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of Contents</h2>
-   
-  <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#utilities" id="toc-utilities" class="nav-link" data-scroll-target="#utilities">Utilities</a></li>
-  <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation">Interpolation</a></li>
-  <li><a href="#cmip-functions" id="toc-cmip-functions" class="nav-link" data-scroll-target="#cmip-functions">CMIP functions</a></li>
-  <li><a href="#mfdataset" id="toc-mfdataset" class="nav-link" data-scroll-target="#mfdataset">MFDataset</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-title">NetCDFTools.jl</span></h1>
+
+
+
+<div id="1744d5e2" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>"/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/data"</code></pre>
+</div>
+</div>
+<div id="7c16c026" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>24×2481 Matrix{Float64}:
+ 296.0  296.0  361.9  514.5  494.6  177.4  …  68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4  …  68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4  …  68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4  …  68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4  …  68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0
+ 296.0  296.0  361.9  514.5  494.6  177.4     68.6  5.5  8.5  13.9  4.7  4.0</code></pre>
+</div>
+</div>
+<div id="da273f2d" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-blue-fg">SpatRaster{Float64}: </span><span style="text-decoration:underline" class="ansi-green-fg">Raster</span>
+  A        : Matrix{Float64} | (140, 80) | <span style="font-weight:bold;text-decoration:underline" class="ansi-blue-fg">0.09 Mb</span>
+  b        : bbox(70.0, 15.0, 140.0, 55.0)
+  cellsize : (0.5, 0.5)
+  lon, lat : 70.25:0.5:139.75, 54.75:-0.5:15.25
+  time     : nothing
+  bands    : nothing
+  nodata   : nothing</pre>
+</div>
+</div>
+</div>
+<div id="5128d1b0" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:01:55</span>
+
+<span class="ansi-green-fg">Progress:  66%|███████████████████████████▎             |  ETA: 0:00:01</span>
+
+<span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:02</span>
+
+
+<span class="ansi-green-fg">Progress:  46%|███████████████████                      |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress:  91%|█████████████████████████████████████▌   |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:00</span>
+
+
+<span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:00:58</span>
+
+<span class="ansi-green-fg">Progress:  26%|██████████▉                              |  ETA: 0:00:03</span>
+
+<span class="ansi-green-fg">Progress:  64%|██████████████████████████▍              |  ETA: 0:00:01</span>
+
+<span class="ansi-green-fg">Progress:  94%|██████████████████████████████████████▍  |  ETA: 0:00:00</span>
+
+<span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:01</span>
+
+
+<span class="ansi-green-fg">Progress:   1%|▋                                        |  ETA: 0:00:07</span>
+
+<span class="ansi-green-fg">Progress: 100%|█████████████████████████████████████████| Time: 0:00:00</span>
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  0.237353 seconds (364.30 k allocations: 20.224 MiB, 95.03% compilation time)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-green-fg ansi-bold">Test Passed</span></pre>
+</div>
+</div>
+</div>
+<div id="32d96a5e" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.
+
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ Makie ~/.julia/packages/Makie/UjJJY/src/scenes.jl:238</span>
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure class="figure">
+<p><img src="2-spInterp_files/figure-html/cell-6-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Documentation for NetCDFTools.jl, a Julia package for loading/writing NetCDF data on the top of <code>NCDatasets.jl</code>.</p>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>Inside the Julia shell, you can download and install using the following commands:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">"NetCDFTools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="@docs"><code>nc_open
-nc_cellsize
-
-Base.getindex
-
-NetCDFTools.NcDim
-NetCDFTools.ncdim_def
-
-ncvar_def
-nc_attr!</code></pre>
-<pre class="@docs"><code>nc_read
-nc_write
-nc_write!
-
-ncsave</code></pre>
-</section>
-<section id="utilities" class="level2">
-<h2 class="anchored" data-anchor-id="utilities">Utilities</h2>
-<pre class="@docs"><code>QDM
-
-nc_agg 
-nc_agg_dir
-
-nc_combine
-nc_subset
-nc_crop</code></pre>
-<pre class="@docs"><code>split_chunk</code></pre>
-</section>
-<section id="interpolation" class="level2">
-<h2 class="anchored" data-anchor-id="interpolation">Interpolation</h2>
-<pre class="@docs"><code>spInterp
-bilinear
-weight_idw</code></pre>
-<pre class="@docs"><code>earth_dist
-angle_azimuth_sphere</code></pre>
-</section>
-<section id="cmip-functions" class="level2">
-<h2 class="anchored" data-anchor-id="cmip-functions">CMIP functions</h2>
-<pre class="@docs"><code>CMIP.Tem_F2C
-CMIP.heat_index
-
-CMIP.get_model
-CMIP.CMIPFiles_info</code></pre>
-</section>
-<section id="mfdataset" class="level2">
-<h2 class="anchored" data-anchor-id="mfdataset">MFDataset</h2>
-<pre class="@docs"><code>MFDataset</code></pre>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -970,11 +962,14 @@ CMIP.CMIPFiles_info</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./api/z-index.html" class="pagination-link" aria-label="Reference">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Reference</span></span>
+      <a href="../api/1-SpatRaster.html" class="pagination-link" aria-label="1. SpatRaster">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">1. SpatRaster</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../api/z-index.html" class="pagination-link" aria-label="Reference">
+        <span class="nav-page-text"><span class="chapter-title">Reference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -982,4 +977,4 @@ CMIP.CMIPFiles_info</code></pre>
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jl-pkgs/NetCDFTools.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
