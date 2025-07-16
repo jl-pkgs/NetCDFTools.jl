@@ -11,7 +11,7 @@ book:
     chapters:
         - index.md
         - api/1-SpatRaster.qmd
-        - api/2-spInterp.qmd
+        # - api/2-spInterp.qmd
         - api/z-index.qmd 
         - Reference.md
 

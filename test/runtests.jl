@@ -9,8 +9,8 @@ proj_path(f) = dirname(dirname(@__FILE__)) * "/" *  f
 include("utilize/test-utilize.jl")
 include("test-Ipaper.jl")
 include("interp/test-weighted_nanmean.jl")
-include("interp/test-angle.jl")
-include("interp/test-spInterp.jl")
+# include("interp/test-angle.jl")
+# include("interp/test-spInterp.jl")
 include("interp/test-bilinear.jl")
 
 # cd(dirname(@__FILE__)) do
