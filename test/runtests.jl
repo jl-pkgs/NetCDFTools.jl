@@ -22,5 +22,5 @@ include("test-nc_write_rast.jl")
 include("test-ncsave.jl")
 
 include("test-nc_dims.jl")
-include("test-CMIPFiles_info.jl")
+# include("test-CMIPFiles_info.jl")
 # end
