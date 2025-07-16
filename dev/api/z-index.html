@@ -1386,7 +1386,7 @@ bilinear(ra::SpatRaster{T,3}; cellsize=1, na_rm=true, kw...) where {T&lt;:Real}<
 <p>( 1-ex)(1-ey)<em>z11 + (1- ex)(ey)</em>z12 + ( ex)(1-ey)<em>z21 + ( ex)(ey)</em>z22</p>
 <p>Where the z’s are the corresponding elements of the Z matrix.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bilinear</span>(x, y, z, xx, yy; na_rm, parallel, progress)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/Interpolation/bilinear.jl#L34"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/bilinear.jl:34</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/Interpolation/bilinear.jl#L34"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/bilinear.jl:34</code></a>.</p>
 <p>! 插值外延，可能会导致错误！</p>
 <section id="references-2" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references-2">References</h3>
@@ -2298,7 +2298,7 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 </ul>
 <div class="sourceCode" id="cb106"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f; <span class="op">...</span>)</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f, fout; by, fun, outdir, overwrite, verbose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_agg.jl#L15"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:15</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/utilize/nc_agg.jl#L15"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:15</code></a>.</p>
 </section>
 <section id="examples-6" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="examples-6">Examples</h3>
@@ -2326,7 +2326,7 @@ outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
 
 nc_agg_dir(indir; by="year", replacement="day"=&gt;"year", outdir)</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_agg.jl#L69"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:69</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/utilize/nc_agg.jl#L69"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:69</code></a>.</p>
 </section>
 </div>
 </div>
@@ -2485,7 +2485,7 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
 <span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb120"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(d; outdir, overwrite, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_combine.jl#L62"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_combine.jl:62</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/utilize/nc_combine.jl#L62"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_combine.jl:62</code></a>.</p>
 </div>
 </div>
 </div>
@@ -2624,7 +2624,7 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <section id="examples-8" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="examples-8">Examples</h3>
 <div class="sourceCode" id="cb128"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(f, args; kwargs<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/nc_info.jl#L20"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:20</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/nc_info.jl#L20"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:20</code></a>.</p>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>, NCDatasets.NCDataset())</span></p>
 </section>
 </div>
@@ -2771,7 +2771,7 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <span id="cb134-12"><a href="#cb134-12" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
 <span id="cb134-13"><a href="#cb134-13" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
 <span id="cb134-14"><a href="#cb134-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_subset.jl#L32"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_subset.jl:32</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/utilize/nc_subset.jl#L32"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_subset.jl:32</code></a>.</p>
 </section>
 </div>
 </div>
@@ -2849,7 +2849,7 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <span id="cb137-9"><a href="#cb137-9" aria-hidden="true" tabindex="-1"></a>    mode,</span>
 <span id="cb137-10"><a href="#cb137-10" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
 <span id="cb137-11"><a href="#cb137-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/nc_write.jl#L55"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:55</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/nc_write.jl#L55"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:55</code></a>.</p>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>)</span> <code>ncvar_def</code></p>
 </section>
 </div>
@@ -2891,7 +2891,7 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <span id="cb139-11"><a href="#cb139-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
 <span id="cb139-12"><a href="#cb139-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
 <span id="cb139-13"><a href="#cb139-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/nc_write.jl#L72"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:72</code></a>.</p>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/38c5995e929896a7713818a0bf39378764451734//src/nc_write.jl#L72"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:72</code></a>.</p>
 </div>
 </div>
 </div>
