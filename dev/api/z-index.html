@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../Reference.html" rel="next">
-<link href="../api/2-spInterp.html" rel="prev">
+<link href="../api/1-SpatRaster.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e48d11066fe46049b8056d961f78ce1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8baa932c728ac0b72af33d3ff6ac96e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-e48d11066fe46049b8056d961f78ce1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bf4b7f2ebcb219ca684acbe691a18b7e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3a3583175378ac0e40eba76531f50b08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-bf4b7f2ebcb219ca684acbe691a18b7e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -445,11 +445,6 @@ window.onload = function () {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/2-spInterp.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. spInterp</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../api/z-index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Reference</span></a>
   </div>
 </li>
@@ -479,6 +474,7 @@ window.onload = function () {
   <li><a href="#ncdim" id="toc-ncdim" class="nav-link" data-scroll-target="#ncdim"><code>NcDim</code></a></li>
   <li><a href="#ncdim_time" id="toc-ncdim_time" class="nav-link" data-scroll-target="#ncdim_time"><code>NcDim_time</code></a></li>
   <li><a href="#ncdims" id="toc-ncdims" class="nav-link" data-scroll-target="#ncdims"><code>NcDims</code></a></li>
+  <li><a href="#neighbor" id="toc-neighbor" class="nav-link" data-scroll-target="#neighbor"><code>Neighbor</code></a></li>
   <li><a href="#netcdftools" id="toc-netcdftools" class="nav-link" data-scroll-target="#netcdftools"><code>NetCDFTools</code></a></li>
   <li><a href="#nextcell" id="toc-nextcell" class="nav-link" data-scroll-target="#nextcell"><code>NextCell</code></a></li>
   <li><a href="#qdm" id="toc-qdm" class="nav-link" data-scroll-target="#qdm"><code>QDM</code></a></li>
@@ -487,6 +483,7 @@ window.onload = function () {
   <li><a href="#qdm_mov" id="toc-qdm_mov" class="nav-link" data-scroll-target="#qdm_mov"><code>QDM_mov!</code></a></li>
   <li><a href="#spatraster" id="toc-spatraster" class="nav-link" data-scroll-target="#spatraster"><code>SpatRaster</code></a></li>
   <li><a href="#spatrasters" id="toc-spatrasters" class="nav-link" data-scroll-target="#spatrasters"><code>SpatRasters</code></a></li>
+  <li><a href="#weight_adw" id="toc-weight_adw" class="nav-link" data-scroll-target="#weight_adw"><code>_weight_adw</code></a></li>
   <li><a href="#zip" id="toc-zip" class="nav-link" data-scroll-target="#zip"><code>_zip</code></a></li>
   <li><a href="#angle_azimuth" id="toc-angle_azimuth" class="nav-link" data-scroll-target="#angle_azimuth"><code>angle_azimuth</code></a></li>
   <li><a href="#angle_azimuth_sphere" id="toc-angle_azimuth_sphere" class="nav-link" data-scroll-target="#angle_azimuth_sphere"><code>angle_azimuth_sphere</code></a></li>
@@ -506,10 +503,14 @@ window.onload = function () {
   <li><a href="#check_dims" id="toc-check_dims" class="nav-link" data-scroll-target="#check_dims"><code>check_dims</code></a></li>
   <li><a href="#close" id="toc-close" class="nav-link" data-scroll-target="#close"><code>close</code></a></li>
   <li><a href="#col_goto" id="toc-col_goto" class="nav-link" data-scroll-target="#col_goto"><code>col_goto</code></a></li>
+  <li><a href="#cor" id="toc-cor" class="nav-link" data-scroll-target="#cor"><code>cor</code></a></li>
   <li><a href="#coverage_fraction" id="toc-coverage_fraction" class="nav-link" data-scroll-target="#coverage_fraction"><code>coverage_fraction</code></a></li>
+  <li><a href="#distance_earth" id="toc-distance_earth" class="nav-link" data-scroll-target="#distance_earth"><code>distance_earth</code></a></li>
+  <li><a href="#distance_norm" id="toc-distance_norm" class="nav-link" data-scroll-target="#distance_norm"><code>distance_norm</code></a></li>
   <li><a href="#earth_dist" id="toc-earth_dist" class="nav-link" data-scroll-target="#earth_dist"><code>earth_dist</code></a></li>
   <li><a href="#exact_extract" id="toc-exact_extract" class="nav-link" data-scroll-target="#exact_extract"><code>exact_extract</code></a></li>
   <li><a href="#find_first" id="toc-find_first" class="nav-link" data-scroll-target="#find_first"><code>find_first</code></a></li>
+  <li><a href="#find_neighbor" id="toc-find_neighbor" class="nav-link" data-scroll-target="#find_neighbor"><code>find_neighbor</code></a></li>
   <li><a href="#fliplr" id="toc-fliplr" class="nav-link" data-scroll-target="#fliplr"><code>fliplr</code></a></li>
   <li><a href="#flipud" id="toc-flipud" class="nav-link" data-scroll-target="#flipud"><code>flipud</code></a></li>
   <li><a href="#gdal_info" id="toc-gdal_info" class="nav-link" data-scroll-target="#gdal_info"><code>gdal_info</code></a></li>
@@ -525,8 +526,12 @@ window.onload = function () {
   <li><a href="#guanshan_flowdir_cpp" id="toc-guanshan_flowdir_cpp" class="nav-link" data-scroll-target="#guanshan_flowdir_cpp"><code>guanshan_flowdir_cpp</code></a></li>
   <li><a href="#guanshan_flowdir_gis" id="toc-guanshan_flowdir_gis" class="nav-link" data-scroll-target="#guanshan_flowdir_gis"><code>guanshan_flowdir_gis</code></a></li>
   <li><a href="#in_bbox" id="toc-in_bbox" class="nav-link" data-scroll-target="#in_bbox"><code>in_bbox</code></a></li>
+  <li><a href="#interp" id="toc-interp" class="nav-link" data-scroll-target="#interp"><code>interp</code></a></li>
   <li><a href="#interp_linear" id="toc-interp_linear" class="nav-link" data-scroll-target="#interp_linear"><code>interp_linear</code></a></li>
+  <li><a href="#interp_tps" id="toc-interp_tps" class="nav-link" data-scroll-target="#interp_tps"><code>interp_tps</code></a></li>
   <li><a href="#isscalar" id="toc-isscalar" class="nav-link" data-scroll-target="#isscalar"><code>isscalar</code></a></li>
+  <li><a href="#make_rast" id="toc-make_rast" class="nav-link" data-scroll-target="#make_rast"><code>make_rast</code></a></li>
+  <li><a href="#median" id="toc-median" class="nav-link" data-scroll-target="#median"><code>median</code></a></li>
   <li><a href="#merge_var" id="toc-merge_var" class="nav-link" data-scroll-target="#merge_var"><code>merge_var</code></a></li>
   <li><a href="#merge_var-1" id="toc-merge_var-1" class="nav-link" data-scroll-target="#merge_var-1"><code>merge_var!</code></a></li>
   <li><a href="#meshgrid" id="toc-meshgrid" class="nav-link" data-scroll-target="#meshgrid"><code>meshgrid</code></a></li>
@@ -563,6 +568,7 @@ window.onload = function () {
   <li><a href="#nlayer" id="toc-nlayer" class="nav-link" data-scroll-target="#nlayer"><code>nlayer</code></a></li>
   <li><a href="#nlyr" id="toc-nlyr" class="nav-link" data-scroll-target="#nlyr"><code>nlyr</code></a></li>
   <li><a href="#ogr_info" id="toc-ogr_info" class="nav-link" data-scroll-target="#ogr_info"><code>ogr_info</code></a></li>
+  <li><a href="#predict" id="toc-predict" class="nav-link" data-scroll-target="#predict"><code>predict</code></a></li>
   <li><a href="#range2bbox" id="toc-range2bbox" class="nav-link" data-scroll-target="#range2bbox"><code>range2bbox</code></a></li>
   <li><a href="#rast" id="toc-rast" class="nav-link" data-scroll-target="#rast"><code>rast</code></a></li>
   <li><a href="#read_gdal" id="toc-read_gdal" class="nav-link" data-scroll-target="#read_gdal"><code>read_gdal</code></a></li>
@@ -572,11 +578,12 @@ window.onload = function () {
   <li><a href="#rm_shp" id="toc-rm_shp" class="nav-link" data-scroll-target="#rm_shp"><code>rm_shp</code></a></li>
   <li><a href="#row_goto" id="toc-row_goto" class="nav-link" data-scroll-target="#row_goto"><code>row_goto</code></a></li>
   <li><a href="#set_bandnames" id="toc-set_bandnames" class="nav-link" data-scroll-target="#set_bandnames"><code>set_bandnames</code></a></li>
-  <li><a href="#spinterp" id="toc-spinterp" class="nav-link" data-scroll-target="#spinterp"><code>spInterp</code></a></li>
+  <li><a href="#solve_tps" id="toc-solve_tps" class="nav-link" data-scroll-target="#solve_tps"><code>solve_tps</code></a></li>
   <li><a href="#split_chunk" id="toc-split_chunk" class="nav-link" data-scroll-target="#split_chunk"><code>split_chunk</code></a></li>
   <li><a href="#split_date" id="toc-split_date" class="nav-link" data-scroll-target="#split_date"><code>split_date</code></a></li>
   <li><a href="#st_bbox" id="toc-st_bbox" class="nav-link" data-scroll-target="#st_bbox"><code>st_bbox</code></a></li>
   <li><a href="#st_cellsize" id="toc-st_cellsize" class="nav-link" data-scroll-target="#st_cellsize"><code>st_cellsize</code></a></li>
+  <li><a href="#st_coords" id="toc-st_coords" class="nav-link" data-scroll-target="#st_coords"><code>st_coords</code></a></li>
   <li><a href="#st_crop" id="toc-st_crop" class="nav-link" data-scroll-target="#st_crop"><code>st_crop</code></a></li>
   <li><a href="#st_dims" id="toc-st_dims" class="nav-link" data-scroll-target="#st_dims"><code>st_dims</code></a></li>
   <li><a href="#st_extract" id="toc-st_extract" class="nav-link" data-scroll-target="#st_extract"><code>st_extract</code></a></li>
@@ -588,14 +595,12 @@ window.onload = function () {
   <li><a href="#st_read" id="toc-st_read" class="nav-link" data-scroll-target="#st_read"><code>st_read</code></a></li>
   <li><a href="#st_write" id="toc-st_write" class="nav-link" data-scroll-target="#st_write"><code>st_write</code></a></li>
   <li><a href="#tau2gis" id="toc-tau2gis" class="nav-link" data-scroll-target="#tau2gis"><code>tau2gis</code></a></li>
+  <li><a href="#tps_kernel" id="toc-tps_kernel" class="nav-link" data-scroll-target="#tps_kernel"><code>tps_kernel</code></a></li>
   <li><a href="#updatemask" id="toc-updatemask" class="nav-link" data-scroll-target="#updatemask"><code>updateMask!</code></a></li>
-  <li><a href="#weight_adw" id="toc-weight_adw" class="nav-link" data-scroll-target="#weight_adw"><code>weight_adw</code></a></li>
-  <li><a href="#weight_idw" id="toc-weight_idw" class="nav-link" data-scroll-target="#weight_idw"><code>weight_idw</code></a></li>
+  <li><a href="#weight_adw-1" id="toc-weight_adw-1" class="nav-link" data-scroll-target="#weight_adw-1"><code>weight_adw!</code></a></li>
+  <li><a href="#weight_idw" id="toc-weight_idw" class="nav-link" data-scroll-target="#weight_idw"><code>weight_idw!</code></a></li>
   <li><a href="#weighted_nanmean" id="toc-weighted_nanmean" class="nav-link" data-scroll-target="#weighted_nanmean"><code>weighted_nanmean</code></a></li>
   <li><a href="#weighted_nanmean-1" id="toc-weighted_nanmean-1" class="nav-link" data-scroll-target="#weighted_nanmean-1"><code>weighted_nanmean!</code></a></li>
-  <li><a href="#weights_adw" id="toc-weights_adw" class="nav-link" data-scroll-target="#weights_adw"><code>weights_adw</code></a></li>
-  <li><a href="#weights_func" id="toc-weights_func" class="nav-link" data-scroll-target="#weights_func"><code>weights_func</code></a></li>
-  <li><a href="#weights_idw" id="toc-weights_idw" class="nav-link" data-scroll-target="#weights_idw"><code>weights_idw</code></a></li>
   <li><a href="#write_gdal" id="toc-write_gdal" class="nav-link" data-scroll-target="#write_gdal"><code>write_gdal</code></a></li>
   <li><a href="#write_sf" id="toc-write_sf" class="nav-link" data-scroll-target="#write_sf"><code>write_sf</code></a></li>
   <li><a href="#xy2ij" id="toc-xy2ij" class="nav-link" data-scroll-target="#xy2ij"><code>xy2ij</code></a></li>
@@ -678,7 +683,7 @@ window.onload = function () {
 <p><code>SpatRasters.D8Direction</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "D8Direction" from SpatRasters:
  [1] D8Direction(dem::AbstractMatrix{T}, i::Int64, j::Int64, spill::T) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/D8Direction.jl:2</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/D8Direction.jl:2</code></pre>
 </div>
 </div>
 </div>
@@ -696,7 +701,7 @@ window.onload = function () {
 <p><code>SpatRasters.DirLength</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "DirLength" from SpatRasters:
  [1] DirLength(idir::Int64)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:116</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:116</code></pre>
 </div>
 </div>
 </div>
@@ -730,9 +735,9 @@ window.onload = function () {
 <p><code>SpatRasters.InGrid</code> is a <code>Function</code>.</p>
 <pre><code># 2 methods for generic function "InGrid" from SpatRasters:
  [1] InGrid(i::Int64, j::Int64, nrow::Int64, ncol::Int64)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:106
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:106
  [2] InGrid(x::AbstractMatrix, i::Int64, j::Int64)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:110</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:110</code></pre>
 </div>
 </div>
 </div>
@@ -838,6 +843,34 @@ MFDataset(fs, chunksize) = MFDataset(; fs, chunksize)</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
+<section id="neighbor" class="level2">
+<h2 class="anchored" data-anchor-id="neighbor"><code>Neighbor</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<section id="summary-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="summary-2">Summary</h3>
+<pre><code>struct Neighbor{FT, N}</code></pre>
+</section>
+<section id="fields-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fields-1">Fields</h3>
+<pre><code>nmax   :: Int64
+dims   :: Tuple
+count  :: AbstractArray{Integer}
+index  :: AbstractArray{Integer, N}
+dist   :: AbstractArray{FT, N}
+angle  :: AbstractArray{FT, N}
+weight :: AbstractArray{FT, N}</code></pre>
+</section>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
 <section id="netcdftools" class="level2">
 <h2 class="anchored" data-anchor-id="netcdftools"><code>NetCDFTools</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -849,7 +882,7 @@ MFDataset(fs, chunksize) = MFDataset(; fs, chunksize)</code></pre>
 <p>No docstring found for public module <code>NetCDFTools</code>.</p>
 <section id="public-names-1" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="public-names-1">Public names</h3>
-<p><code>AbstractSpatRaster</code>, <code>CMIP</code>, <code>D8Direction</code>, <code>DirLength</code>, <code>GridChunks</code>, <code>InGrid</code>, <code>MFDataset</code>, <code>MFVariable</code>, <code>NcDim</code>, <code>NcDim_time</code>, <code>NcDims</code>, <code>NextCell</code>, <code>QDM</code>, <code>QDM_chunk!</code>, <code>QDM_main</code>, <code>QDM_mov!</code>, <code>SpatRaster</code>, <code>SpatRasters</code>, <code>_zip</code>, <code>angle_azimuth</code>, <code>angle_azimuth_sphere</code>, <code>approx</code>, <code>array</code>, <code>bandnames</code>, <code>bbox</code>, <code>bbox2cellsize</code>, <code>bbox2dims</code>, <code>bbox2lims</code>, <code>bbox2ndim</code>, <code>bbox2range</code>, <code>bbox2vec</code>, <code>bbox_overlap</code>, <code>bilinear</code>, <code>cellArea</code>, <code>check_dims</code>, <code>close</code>, <code>col_goto</code>, <code>coverage_fraction</code>, <code>earth_dist</code>, <code>exact_extract</code>, <code>find_first</code>, <code>fliplr</code>, <code>flipud</code>, <code>gdal_info</code>, <code>gdal_nodata</code>, <code>gdal_polygonize</code>, <code>gdalinfo</code>, <code>get_bandName</code>, <code>get_chunk</code>, <code>getgeotransform</code>, <code>gis2tau</code>, <code>gis2wflow</code>, <code>guanshan_dem</code>, <code>guanshan_flowdir_cpp</code>, <code>guanshan_flowdir_gis</code>, <code>in_bbox</code>, <code>interp_linear</code>, <code>isscalar</code>, <code>merge_var</code>, <code>merge_var!</code>, <code>meshgrid</code>, <code>names</code>, <code>nband</code>, <code>nc_agg</code>, <code>nc_agg_dir</code>, <code>nc_attr</code>, <code>nc_attr!</code>, <code>nc_attr_rm!</code>, <code>nc_bands</code>, <code>nc_calendar</code>, <code>nc_cellsize</code>, <code>nc_close</code>, <code>nc_combine</code>, <code>nc_crop</code>, <code>nc_date</code>, <code>nc_dim</code>, <code>nc_dims</code>, <code>nc_info</code>, <code>nc_open</code>, <code>nc_read</code>, <code>nc_read_all</code>, <code>nc_read_par</code>, <code>nc_subset</code>, <code>nc_write</code>, <code>nc_write!</code>, <code>ncdim_def</code>, <code>ncinfo</code>, <code>ncsave</code>, <code>ncvar_def</code>, <code>ncvar_dim</code>, <code>ncvar_info</code>, <code>nlayer</code>, <code>nlyr</code>, <code>ogr_info</code>, <code>range2bbox</code>, <code>rast</code>, <code>read_gdal</code>, <code>read_sf</code>, <code>resample_first</code>, <code>rm_empty</code>, <code>rm_shp</code>, <code>row_goto</code>, <code>set_bandnames</code>, <code>spInterp</code>, <code>split_chunk</code>, <code>split_date</code>, <code>st_bbox</code>, <code>st_cellsize</code>, <code>st_crop</code>, <code>st_dims</code>, <code>st_extract</code>, <code>st_location</code>, <code>st_location_exact</code>, <code>st_location_fast</code>, <code>st_mosaic</code>, <code>st_points</code>, <code>st_read</code>, <code>st_write</code>, <code>tau2gis</code>, <code>updateMask!</code>, <code>weight_adw</code>, <code>weight_idw</code>, <code>weighted_nanmean</code>, <code>weighted_nanmean!</code>, <code>weights_adw</code>, <code>weights_func</code>, <code>weights_idw</code>, <code>write_gdal</code>, <code>write_sf</code>, <code>xy2ij</code></p>
+<p><code>AbstractSpatRaster</code>, <code>CMIP</code>, <code>D8Direction</code>, <code>DirLength</code>, <code>GridChunks</code>, <code>InGrid</code>, <code>MFDataset</code>, <code>MFVariable</code>, <code>NcDim</code>, <code>NcDim_time</code>, <code>NcDims</code>, <code>Neighbor</code>, <code>NextCell</code>, <code>QDM</code>, <code>QDM_chunk!</code>, <code>QDM_main</code>, <code>QDM_mov!</code>, <code>SpatRaster</code>, <code>SpatRasters</code>, <code>_weight_adw</code>, <code>_zip</code>, <code>angle_azimuth</code>, <code>angle_azimuth_sphere</code>, <code>approx</code>, <code>array</code>, <code>bandnames</code>, <code>bbox</code>, <code>bbox2cellsize</code>, <code>bbox2dims</code>, <code>bbox2lims</code>, <code>bbox2ndim</code>, <code>bbox2range</code>, <code>bbox2vec</code>, <code>bbox_overlap</code>, <code>bilinear</code>, <code>cellArea</code>, <code>check_dims</code>, <code>close</code>, <code>col_goto</code>, <code>cor</code>, <code>coverage_fraction</code>, <code>distance_earth</code>, <code>distance_norm</code>, <code>earth_dist</code>, <code>exact_extract</code>, <code>find_first</code>, <code>find_neighbor</code>, <code>fliplr</code>, <code>flipud</code>, <code>gdal_info</code>, <code>gdal_nodata</code>, <code>gdal_polygonize</code>, <code>gdalinfo</code>, <code>get_bandName</code>, <code>get_chunk</code>, <code>getgeotransform</code>, <code>gis2tau</code>, <code>gis2wflow</code>, <code>guanshan_dem</code>, <code>guanshan_flowdir_cpp</code>, <code>guanshan_flowdir_gis</code>, <code>in_bbox</code>, <code>interp</code>, <code>interp_linear</code>, <code>interp_tps</code>, <code>isscalar</code>, <code>make_rast</code>, <code>median</code>, <code>merge_var</code>, <code>merge_var!</code>, <code>meshgrid</code>, <code>names</code>, <code>nband</code>, <code>nc_agg</code>, <code>nc_agg_dir</code>, <code>nc_attr</code>, <code>nc_attr!</code>, <code>nc_attr_rm!</code>, <code>nc_bands</code>, <code>nc_calendar</code>, <code>nc_cellsize</code>, <code>nc_close</code>, <code>nc_combine</code>, <code>nc_crop</code>, <code>nc_date</code>, <code>nc_dim</code>, <code>nc_dims</code>, <code>nc_info</code>, <code>nc_open</code>, <code>nc_read</code>, <code>nc_read_all</code>, <code>nc_read_par</code>, <code>nc_subset</code>, <code>nc_write</code>, <code>nc_write!</code>, <code>ncdim_def</code>, <code>ncinfo</code>, <code>ncsave</code>, <code>ncvar_def</code>, <code>ncvar_dim</code>, <code>ncvar_info</code>, <code>nlayer</code>, <code>nlyr</code>, <code>ogr_info</code>, <code>predict</code>, <code>range2bbox</code>, <code>rast</code>, <code>read_gdal</code>, <code>read_sf</code>, <code>resample_first</code>, <code>rm_empty</code>, <code>rm_shp</code>, <code>row_goto</code>, <code>set_bandnames</code>, <code>solve_tps</code>, <code>split_chunk</code>, <code>split_date</code>, <code>st_bbox</code>, <code>st_cellsize</code>, <code>st_coords</code>, <code>st_crop</code>, <code>st_dims</code>, <code>st_extract</code>, <code>st_location</code>, <code>st_location_exact</code>, <code>st_location_fast</code>, <code>st_mosaic</code>, <code>st_points</code>, <code>st_read</code>, <code>st_write</code>, <code>tau2gis</code>, <code>tps_kernel</code>, <code>updateMask!</code>, <code>weight_adw!</code>, <code>weight_idw!</code>, <code>weighted_nanmean</code>, <code>weighted_nanmean!</code>, <code>write_gdal</code>, <code>write_sf</code>, <code>xy2ij</code></p>
 </section>
 <section id="displaying-contents-of-readme-found-at-homerunnerworknetcdftools.jlnetcdftools.jlreadme.md" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="displaying-contents-of-readme-found-at-homerunnerworknetcdftools.jlnetcdftools.jlreadme.md">Displaying contents of readme found at <code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/README.md</code></h3>
@@ -894,7 +927,7 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 <p><code>SpatRasters.NextCell</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "NextCell" from SpatRasters:
  [1] NextCell(dem::AbstractMatrix, i::Int64, j::Int64, dir::UInt8)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:120</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:120</code></pre>
 </div>
 </div>
 </div>
@@ -908,13 +941,13 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">QDM</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    y_obs<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    y_calib<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    y_pred<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>;</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    type_adj,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">QDM</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    y_obs<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    y_calib<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    y_pred<span class="op">::</span><span class="dt">AbstractArray{T&lt;:Real, 1}</span>;</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    type_adj,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="arguments" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="arguments">Arguments</h3>
 <ul>
@@ -1039,23 +1072,41 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 <p>No docstring found for public module <code>SpatRasters</code>.</p>
 <section id="public-names-2" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="public-names-2">Public names</h3>
-<p><code>AbstractSpatRaster</code>, <code>D8Direction</code>, <code>DirLength</code>, <code>InGrid</code>, <code>NextCell</code>, <code>SpatRaster</code>, <code>bandnames</code>, <code>bbox</code>, <code>bbox2cellsize</code>, <code>bbox2dims</code>, <code>bbox2lims</code>, <code>bbox2ndim</code>, <code>bbox2range</code>, <code>bbox2vec</code>, <code>bbox_overlap</code>, <code>cellArea</code>, <code>col_goto</code>, <code>earth_dist</code>, <code>fliplr</code>, <code>flipud</code>, <code>gdal_info</code>, <code>gdal_nodata</code>, <code>gdal_polygonize</code>, <code>gdalinfo</code>, <code>getgeotransform</code>, <code>gis2tau</code>, <code>gis2wflow</code>, <code>guanshan_dem</code>, <code>guanshan_flowdir_cpp</code>, <code>guanshan_flowdir_gis</code>, <code>in_bbox</code>, <code>isscalar</code>, <code>merge_var</code>, <code>merge_var!</code>, <code>nband</code>, <code>nlayer</code>, <code>nlyr</code>, <code>ogr_info</code>, <code>range2bbox</code>, <code>rast</code>, <code>read_gdal</code>, <code>read_sf</code>, <code>resample_first</code>, <code>rm_shp</code>, <code>row_goto</code>, <code>set_bandnames</code>, <code>st_bbox</code>, <code>st_cellsize</code>, <code>st_crop</code>, <code>st_dims</code>, <code>st_extract</code>, <code>st_location</code>, <code>st_location_exact</code>, <code>st_location_fast</code>, <code>st_mosaic</code>, <code>st_points</code>, <code>st_read</code>, <code>st_write</code>, <code>tau2gis</code>, <code>write_gdal</code>, <code>write_sf</code>, <code>xy2ij</code></p>
+<p><code>AbstractSpatRaster</code>, <code>D8Direction</code>, <code>DirLength</code>, <code>InGrid</code>, <code>Neighbor</code>, <code>NextCell</code>, <code>SpatRaster</code>, <code>_weight_adw</code>, <code>angle_azimuth</code>, <code>angle_azimuth_sphere</code>, <code>bandnames</code>, <code>bbox</code>, <code>bbox2cellsize</code>, <code>bbox2dims</code>, <code>bbox2lims</code>, <code>bbox2ndim</code>, <code>bbox2range</code>, <code>bbox2vec</code>, <code>bbox_overlap</code>, <code>cellArea</code>, <code>col_goto</code>, <code>cor</code>, <code>distance_earth</code>, <code>distance_norm</code>, <code>earth_dist</code>, <code>find_neighbor</code>, <code>fliplr</code>, <code>flipud</code>, <code>gdal_info</code>, <code>gdal_nodata</code>, <code>gdal_polygonize</code>, <code>gdalinfo</code>, <code>getgeotransform</code>, <code>gis2tau</code>, <code>gis2wflow</code>, <code>guanshan_dem</code>, <code>guanshan_flowdir_cpp</code>, <code>guanshan_flowdir_gis</code>, <code>in_bbox</code>, <code>interp</code>, <code>interp_tps</code>, <code>isscalar</code>, <code>make_rast</code>, <code>median</code>, <code>merge_var</code>, <code>merge_var!</code>, <code>meshgrid</code>, <code>nband</code>, <code>nlayer</code>, <code>nlyr</code>, <code>ogr_info</code>, <code>predict</code>, <code>range2bbox</code>, <code>rast</code>, <code>read_gdal</code>, <code>read_sf</code>, <code>resample_first</code>, <code>rm_shp</code>, <code>row_goto</code>, <code>set_bandnames</code>, <code>solve_tps</code>, <code>st_bbox</code>, <code>st_cellsize</code>, <code>st_coords</code>, <code>st_crop</code>, <code>st_dims</code>, <code>st_extract</code>, <code>st_location</code>, <code>st_location_exact</code>, <code>st_location_fast</code>, <code>st_mosaic</code>, <code>st_points</code>, <code>st_read</code>, <code>st_write</code>, <code>tau2gis</code>, <code>tps_kernel</code>, <code>weight_adw!</code>, <code>weight_idw!</code>, <code>write_gdal</code>, <code>write_sf</code>, <code>xy2ij</code></p>
 </section>
-<section id="displaying-contents-of-readme-found-at-homerunner.juliapackagesspatrasters6d9vereadme.md" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="displaying-contents-of-readme-found-at-homerunner.juliapackagesspatrasters6d9vereadme.md">Displaying contents of readme found at <code>/home/runner/.julia/packages/SpatRasters/6D9Ve/README.md</code></h3>
+<section id="displaying-contents-of-readme-found-at-homerunner.juliapackagesspatrasters4wigtreadme.md" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="displaying-contents-of-readme-found-at-homerunner.juliapackagesspatrasters4wigtreadme.md">Displaying contents of readme found at <code>/home/runner/.julia/packages/SpatRasters/4wIGt/README.md</code></h3>
 </section>
 <section id="spatrasters.jl-simple-spatial-rasters-in-julia" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="spatrasters.jl-simple-spatial-rasters-in-julia">SpatRasters.jl: Simple Spatial Rasters in Julia</h3>
-<p>&lt;!– <a href="https://jl-pkgs.github.io/SpatRasters.jl/stable"><img src="https://img.shields.io/badge/docs-stable-blue.svg" class="img-fluid" alt="Stable"></a> –&gt; <a href="https://jl-pkgs.github.io/SpatRasters.jl/dev"><img src="https://img.shields.io/badge/docs-dev-blue.svg" class="img-fluid" alt="Dev"></a> <a href="https://github.com/jl-pkgs/SpatRasters.jl/actions/workflows/CI.yml"><img src="https://github.com/jl-pkgs/SpatRasters.jl/actions/workflows/CI.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://codecov.io/gh/jl-pkgs/SpatRasters.jl"><img src="https://codecov.io/gh/jl-pkgs/SpatRasters.jl/branch/master/graph/badge.svg" class="img-fluid" alt="Codecov"></a></p>
+<p>&lt;!– <a href="https://jl-pkgs.github.io/SpatRasters.jl/stable"><img src="https://img.shields.io/badge/docs-stable-blue.svg" class="img-fluid" alt="Stable"></a> –&gt; <a href="https://jl-pkgs.github.io/SpatRasters.jl/dev"><img src="https://img.shields.io/badge/docs-dev-blue.svg" class="img-fluid" alt="Dev"></a> <a href="https://github.com/jl-pkgs/SpatRasters.jl/actions/workflows/CI.yml"><img src="https://github.com/jl-pkgs/SpatRasters.jl/actions/workflows/CI.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://app.codecov.io/gh/jl-pkgs/SpatRasters.jl/tree/master"><img src="https://codecov.io/gh/jl-pkgs/SpatRasters.jl/branch/master/graph/badge.svg" class="img-fluid" alt="Codecov"></a></p>
 <blockquote class="blockquote">
 <p>Dongdong Kong</p>
 </blockquote>
 <p><code>SpatRaster</code> is a simple spatial raster with WGS84 projection, abbreviated as <code>rast</code>.</p>
 <p>Due to its simplicity, <code>SpatRasters.jl</code> doesn’t rely on any other geospatial packages, which makes <code>SpatRasters.jl</code> more lightweight than <code>GeoArrays</code> and <code>Rasters.jl</code>.</p>
 <p><code>SpatRasters.jl</code> used the class and function of R language <code>terra</code> and <code>sf</code> packages.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">-e</span> <span class="st">"@time using SpatRasters"</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">-e</span> <span class="st">"@time using SpatRasters"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="weight_adw" class="level2">
+<h2 class="anchored" data-anchor-id="weight_adw"><code>_weight_adw</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters._weight_adw</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "_weight_adw" from SpatRasters:
+ [1] _weight_adw(dist::AbstractVector{FT}, angle::AbstractVector{FT}; cdd, m) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/weights.jl:65</code></pre>
 </div>
 </div>
 </div>
@@ -1088,12 +1139,12 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 </div>
 <div class="callout-body-container">
 <p>No documentation found for public symbol.</p>
-<p><code>NetCDFTools.angle_azimuth</code> is a <code>Function</code>.</p>
-<pre><code># 2 methods for generic function "angle_azimuth" from NetCDFTools:
- [1] angle_azimuth(p1::Tuple{FT, FT}, p2::AbstractMatrix{FT}) where FT
-     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/utilize.jl:85
- [2] angle_azimuth(p1::Tuple{FT, FT}, p2::Tuple{FT, FT}) where FT
-     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/utilize.jl:72</code></pre>
+<p><code>SpatRasters.angle_azimuth</code> is a <code>Function</code>.</p>
+<pre><code># 2 methods for generic function "angle_azimuth" from SpatRasters:
+ [1] angle_azimuth(p1::AbstractVector{FT}, p2::AbstractMatrix{FT}) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/angle.jl:58
+ [2] angle_azimuth(p1::AbstractVector{FT}, p2::AbstractVector{FT}; to_degree) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/angle.jl:38</code></pre>
 </div>
 </div>
 </div>
@@ -1108,8 +1159,12 @@ Pkg.add(url = "https://github.com/jl-pkgs/NetCDFTools.jl")</code></pre>
 </div>
 <div class="callout-body-container">
 <p>球面方位角 (0~360°)</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth_sphere</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>)) <span class="co"># 正北，0</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>))        <span class="co"># 正北，0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth_sphere</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>)) <span class="co"># 正北，0</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">angle_azimuth</span>((<span class="fl">0</span>, <span class="fl">0</span>), (<span class="fl">0</span>, <span class="fl">1</span>))        <span class="co"># 正北，0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="references-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="references-1">References</h4>
+<p>https://chatgpt.com/c/6876ff2c-834c-8012-98cd-2bc9691d453f</p>
+</section>
 </div>
 </div>
 </div>
@@ -1200,7 +1255,7 @@ bbox2affine(size::Tuple{Integer, Integer}, b::bbox)</code></pre>
 <p><code>SpatRasters.bbox2cellsize</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "bbox2cellsize" from SpatRasters:
  [1] bbox2cellsize(b::bbox, size)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:19</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:19</code></pre>
 </div>
 </div>
 </div>
@@ -1238,7 +1293,7 @@ bbox2affine(size::Tuple{Integer, Integer}, b::bbox)</code></pre>
 <p><code>SpatRasters.bbox2lims</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "bbox2lims" from SpatRasters:
  [1] bbox2lims(b::bbox)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:66</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:66</code></pre>
 </div>
 </div>
 </div>
@@ -1256,7 +1311,7 @@ bbox2affine(size::Tuple{Integer, Integer}, b::bbox)</code></pre>
 <p><code>SpatRasters.bbox2ndim</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "bbox2ndim" from SpatRasters:
  [1] bbox2ndim(b; size, cellsize)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:49</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:49</code></pre>
 </div>
 </div>
 </div>
@@ -1274,7 +1329,7 @@ bbox2affine(size::Tuple{Integer, Integer}, b::bbox)</code></pre>
 <p><code>SpatRasters.bbox2range</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "bbox2range" from SpatRasters:
  [1] bbox2range(b::bbox)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:63</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:63</code></pre>
 </div>
 </div>
 </div>
@@ -1292,7 +1347,7 @@ bbox2affine(size::Tuple{Integer, Integer}, b::bbox)</code></pre>
 <p><code>SpatRasters.bbox2vec</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "bbox2vec" from SpatRasters:
  [1] bbox2vec(b::bbox)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:65</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:65</code></pre>
 </div>
 </div>
 </div>
@@ -1310,7 +1365,7 @@ bbox2affine(size::Tuple{Integer, Integer}, b::bbox)</code></pre>
 <p><code>SpatRasters.bbox_overlap</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "bbox_overlap" from SpatRasters:
  [1] bbox_overlap(b::bbox, box::bbox; size, cellsize, reverse_lat, zip)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:70</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:70</code></pre>
 </div>
 </div>
 </div>
@@ -1330,11 +1385,11 @@ bilinear(ra::SpatRaster{T,3}; cellsize=1, na_rm=true, kw...) where {T&lt;:Real}<
 <p>Suppose that the location, (locx, locy) lies in between the first two grid points in both x an y. That is locx is between x1 and x2 and locy is between y1 and y2. Let <code>ex= (l1-x1)/(x2-x1)</code> <code>ey= (l2-y1)/(y2-y1)</code>. The interpolant is</p>
 <p>( 1-ex)(1-ey)<em>z11 + (1- ex)(ey)</em>z12 + ( ex)(1-ey)<em>z21 + ( ex)(ey)</em>z22</p>
 <p>Where the z’s are the corresponding elements of the Z matrix.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bilinear</span>(x, y, z, xx, yy; na_rm, parallel, progress)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/Interpolation/bilinear.jl#L34"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/bilinear.jl:34</code></a>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bilinear</span>(x, y, z, xx, yy; na_rm, parallel, progress)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/Interpolation/bilinear.jl#L34"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/bilinear.jl:34</code></a>.</p>
 <p>! 插值外延，可能会导致错误！</p>
-<section id="references-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="references-1">References</h3>
+<section id="references-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references-2">References</h3>
 <ol type="1">
 <li>https://github.com/NCAR/fields/blob/master/fields/R/interp.surface.R#L48</li>
 <li>https://en.wikipedia.org/wiki/Bilinear_interpolation</li>
@@ -1367,7 +1422,7 @@ r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)</code></pre>
 <p><code>SpatRasters.cellArea</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "cellArea" from SpatRasters:
  [1] cellArea(x, y, cellsize)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRasters.jl:106</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:118</code></pre>
 </div>
 </div>
 </div>
@@ -1433,7 +1488,45 @@ r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)</code></pre>
 <p><code>SpatRasters.col_goto</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "col_goto" from SpatRasters:
  [1] col_goto(col::Int64, idir::Int64)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:104</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:104</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="cor" class="level2">
+<h2 class="anchored" data-anchor-id="cor"><code>cor</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>cor(x::AbstractVector)</code></pre>
+<p>Return the number one.</p>
+<pre><code>cor(X::AbstractMatrix; dims::Int=1)</code></pre>
+<p>Compute the Pearson correlation matrix of the matrix <code>X</code> along the dimension <code>dims</code>.</p>
+<pre><code>cor(x::AbstractVector, y::AbstractVector)</code></pre>
+<p>Compute the Pearson correlation between the vectors <code>x</code> and <code>y</code>.</p>
+<pre><code>cor(X::AbstractVecOrMat, Y::AbstractVecOrMat; dims=1)</code></pre>
+<p>Compute the Pearson correlation between the vectors or matrices <code>X</code> and <code>Y</code> along the dimension <code>dims</code>.</p>
+<pre><code>cor(X, w::AbstractWeights, dims=1)</code></pre>
+<p>Compute the Pearson correlation matrix of <code>X</code> along the dimension <code>dims</code> with a weighting <code>w</code> .</p>
+<pre><code>cor(ce::CovarianceEstimator, x::AbstractVector, y::AbstractVector)</code></pre>
+<p>Compute the correlation of the vectors <code>x</code> and <code>y</code> using estimator <code>ce</code>.</p>
+<pre><code>cor(ce::CovarianceEstimator, X::AbstractMatrix, [w::AbstractWeights];
+    mean=nothing, dims::Int=1)</code></pre>
+<p>Compute the correlation matrix of the matrix <code>X</code> along dimension <code>dims</code> using estimator <code>ce</code>. A weighting vector <code>w</code> can be specified. The keyword argument <code>mean</code> can be:</p>
+<ul>
+<li><p><code>nothing</code> (default) in which case the mean is estimated and subtracted from the data <code>X</code>,</p></li>
+<li><p>a precalculated mean in which case it is subtracted from the data <code>X</code>. Assuming <code>size(X)</code> is <code>(N,M)</code>, <code>mean</code> can either be:</p>
+<ul>
+<li>when <code>dims=1</code>, an <code>AbstractMatrix</code> of size <code>(1,M)</code>,</li>
+<li>when <code>dims=2</code>, an <code>AbstractVector</code> of length <code>N</code> or an <code>AbstractMatrix</code> of size <code>(N,1)</code>.</li>
+</ul></li>
+</ul>
+<pre><code>cor(d::MultivariateDistribution)</code></pre>
+<p>Computes the correlation matrix for distribution <code>d</code>.</p>
 </div>
 </div>
 </div>
@@ -1455,6 +1548,42 @@ r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
+<section id="distance_earth" class="level2">
+<h2 class="anchored" data-anchor-id="distance_earth"><code>distance_earth</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.distance_earth</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "distance_earth" from SpatRasters:
+ [1] distance_earth(p1::AbstractArray{FT}, p2::AbstractArray{FT}; R) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/Interp.jl:17</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="distance_norm" class="level2">
+<h2 class="anchored" data-anchor-id="distance_norm"><code>distance_norm</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.distance_norm</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "distance_norm" from SpatRasters:
+ [1] distance_norm(p1::AbstractArray{FT}, p2::AbstractArray{FT}; kw...) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/Interp.jl:8</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
 <section id="earth_dist" class="level2">
 <h2 class="anchored" data-anchor-id="earth_dist"><code>earth_dist</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -1465,9 +1594,9 @@ r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)</code></pre>
 <div class="callout-body-container">
 <pre><code>earth_dist(x1::Matrix, x2::Matrix; R=6378.388)
 earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> [<span class="fl">110</span> <span class="fl">30</span>; <span class="fl">111</span> <span class="fl">31</span>]</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> [<span class="fl">113</span> <span class="fl">32</span>; <span class="fl">115</span> <span class="fl">35</span>]</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">earth_dist</span>(p1, p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> [<span class="fl">110</span> <span class="fl">30</span>; <span class="fl">111</span> <span class="fl">31</span>]</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> [<span class="fl">113</span> <span class="fl">32</span>; <span class="fl">115</span> <span class="fl">35</span>]</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">earth_dist</span>(p1, p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1507,6 +1636,26 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 </div>
 <div style="page-break-after: always;"></div>
 </section>
+<section id="find_neighbor" class="level2">
+<h2 class="anchored" data-anchor-id="find_neighbor"><code>find_neighbor</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.find_neighbor</code> is a <code>Function</code>.</p>
+<pre><code># 2 methods for generic function "find_neighbor" from SpatRasters:
+ [1] find_neighbor(ra::SpatRaster, X; nmax, radius, do_angle)
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/find_neighbor.jl:29
+ [2] find_neighbor(point, tree; nmax, radius)
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/find_neighbor.jl:21</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
 <section id="fliplr" class="level2">
 <h2 class="anchored" data-anchor-id="fliplr"><code>fliplr</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -1519,9 +1668,9 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <p><code>SpatRasters.fliplr</code> is a <code>Function</code>.</p>
 <pre><code># 2 methods for generic function "fliplr" from SpatRasters:
  [1] fliplr(x::AbstractArray{T, 3}) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/Ops.jl:14
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:14
  [2] fliplr(x::AbstractMatrix{T}) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/Ops.jl:13</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:13</code></pre>
 </div>
 </div>
 </div>
@@ -1539,9 +1688,9 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <p><code>SpatRasters.flipud</code> is a <code>Function</code>.</p>
 <pre><code># 2 methods for generic function "flipud" from SpatRasters:
  [1] flipud(x::AbstractArray{T, 3}) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/Ops.jl:12
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:12
  [2] flipud(x::AbstractMatrix{T}) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/Ops.jl:11</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:11</code></pre>
 </div>
 </div>
 </div>
@@ -1663,7 +1812,7 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <p><code>SpatRasters.getgeotransform</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "getgeotransform" from SpatRasters:
  [1] getgeotransform(ra::AbstractSpatRaster)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/Ops.jl:2</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:2</code></pre>
 </div>
 </div>
 </div>
@@ -1681,7 +1830,7 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <p><code>SpatRasters.gis2tau</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "gis2tau" from SpatRasters:
  [1] gis2tau(A::AbstractArray)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:59</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:59</code></pre>
 </div>
 </div>
 </div>
@@ -1699,7 +1848,7 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <p><code>SpatRasters.gis2wflow</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "gis2wflow" from SpatRasters:
  [1] gis2wflow(A::AbstractArray)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:50</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:50</code></pre>
 </div>
 </div>
 </div>
@@ -1715,8 +1864,8 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <div class="callout-body-container">
 <p>No documentation found for public symbol.</p>
 <p><code>SpatRasters.guanshan_dem</code> is of type <code>String</code>.</p>
-<section id="summary-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="summary-2">Summary</h3>
+<section id="summary-3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="summary-3">Summary</h3>
 <pre><code>mutable struct String</code></pre>
 </section>
 <section id="supertype-hierarchy" class="level3 unnumbered">
@@ -1738,8 +1887,8 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <div class="callout-body-container">
 <p>No documentation found for public symbol.</p>
 <p><code>SpatRasters.guanshan_flowdir_cpp</code> is of type <code>String</code>.</p>
-<section id="summary-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="summary-3">Summary</h3>
+<section id="summary-4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="summary-4">Summary</h3>
 <pre><code>mutable struct String</code></pre>
 </section>
 <section id="supertype-hierarchy-1" class="level3 unnumbered">
@@ -1761,8 +1910,8 @@ earth_dist(p1::Tuple{FT,FT}, x2::AbstractMatrix; R=6378.388) where {FT}</code></
 <div class="callout-body-container">
 <p>No documentation found for public symbol.</p>
 <p><code>SpatRasters.guanshan_flowdir_gis</code> is of type <code>String</code>.</p>
-<section id="summary-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="summary-4">Summary</h3>
+<section id="summary-5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="summary-5">Summary</h3>
 <pre><code>mutable struct String</code></pre>
 </section>
 <section id="supertype-hierarchy-2" class="level3 unnumbered">
@@ -1789,6 +1938,33 @@ in_bbox(bs::Vector{bbox}, (lon, lat))</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
+<section id="interp" class="level2">
+<h2 class="anchored" data-anchor-id="interp"><code>interp</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>interp(x::AbstractMatrix, y::AbstractArray{FT}, target::SpatRaster;
+    nmax::Int=20, radius::Real=200, do_angle=false,
+    wfun::Function=weight_idw!, kw...)
+interp(neighbor::Neighbor{FT,N}, y::AbstractArray{FT}, target::SpatRaster; ignored...)</code></pre>
+<section id="arguments-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="arguments-2">Arguments</h4>
+<ul>
+<li><p><code>kw</code>: other parameters to <code>wfun</code></p>
+<ul>
+<li><code>weight_idw!</code>: <code>m</code></li>
+<li><code>weight_adw!</code>: <code>cdd</code>, <code>m</code></li>
+</ul></li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
 <section id="interp_linear" class="level2">
 <h2 class="anchored" data-anchor-id="interp_linear"><code>interp_linear</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -1807,6 +1983,24 @@ in_bbox(bs::Vector{bbox}, (lon, lat))</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
+<section id="interp_tps" class="level2">
+<h2 class="anchored" data-anchor-id="interp_tps"><code>interp_tps</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.interp_tps</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "interp_tps" from SpatRasters:
+ [1] interp_tps(X::AbstractMatrix, Y::AbstractArray, target::SpatRaster; λ, distance, progress, kw...)
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:156</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
 <section id="isscalar" class="level2">
 <h2 class="anchored" data-anchor-id="isscalar"><code>isscalar</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -1819,9 +2013,87 @@ in_bbox(bs::Vector{bbox}, (lon, lat))</code></pre>
 <p><code>SpatRasters.isscalar</code> is a <code>Function</code>.</p>
 <pre><code># 2 methods for generic function "isscalar" from SpatRasters:
  [1] isscalar(::Nothing)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/tools_Ipaper.jl:4
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/tools_Ipaper.jl:4
  [2] isscalar(x)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/tools_Ipaper.jl:3</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/tools_Ipaper.jl:3</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="make_rast" class="level2">
+<h2 class="anchored" data-anchor-id="make_rast"><code>make_rast</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.make_rast</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "make_rast" from SpatRasters:
+ [1] make_rast(; b, cellsize)
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRaster.jl:67</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="median" class="level2">
+<h2 class="anchored" data-anchor-id="median"><code>median</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>median(itr)</code></pre>
+<p>Compute the median of all elements in a collection. For an even number of elements no exact median element exists, so the result is equivalent to calculating mean of two median elements.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <code>itr</code> contains <code>NaN</code> or <a href="#missing"><code>missing</code></a> values, the result is also <code>NaN</code> or <code>missing</code> (<code>missing</code> takes precedence if <code>itr</code> contains both). Use the <a href="#skipmissing"><code>skipmissing</code></a> function to omit <code>missing</code> entries and compute the median of non-missing values.</p>
+</div>
+</div>
+<section id="examples-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-2">Examples</h3>
+<pre class="jldoctest"><code>julia&gt; using Statistics
+
+julia&gt; median([1, 2, 3])
+2.0
+
+julia&gt; median([1, 2, 3, 4])
+2.5
+
+julia&gt; median([1, 2, missing, 4])
+missing
+
+julia&gt; median(skipmissing([1, 2, missing, 4]))
+2.0</code></pre>
+<pre><code>median(A::AbstractArray; dims)</code></pre>
+<p>Compute the median of an array along the given dimensions.</p>
+</section>
+<section id="examples-3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-3">Examples</h3>
+<pre class="jldoctest"><code>julia&gt; using Statistics
+
+julia&gt; median([1 2; 3 4], dims=1)
+1×2 Matrix{Float64}:
+ 2.0  3.0</code></pre>
+<pre><code>median(v::AbstractVector{&lt;:Real}, w::AbstractWeights)</code></pre>
+<p>Compute the weighted median of <code>v</code> with weights <code>w</code> (of type <code>AbstractWeights</code>). See the documentation for <a href="#quantile"><code>quantile</code></a> for more details.</p>
+<pre><code>median(d::UnivariateDistribution)</code></pre>
+<p>Return the median value of distribution <code>d</code>. The median is the smallest <code>x</code> in the support of <code>d</code> for which <code>cdf(d, x) ≥ 1/2</code>. Corresponding to this definition as 1/2-quantile, a fallback is provided calling the <code>quantile</code> function.</p>
+<pre><code>median(d::MvLogNormal)</code></pre>
+<p>Return the median vector of the lognormal distribution. which is strictly smaller than the mean.</p>
+</section>
 </div>
 </div>
 </div>
@@ -1837,17 +2109,17 @@ in_bbox(bs::Vector{bbox}, (lon, lat))</code></pre>
 <div class="callout-body-container">
 <pre><code>merge_var(fs; vars=nothing, var=nothing,
     progress=true, box::Union{bbox,Nothing}=nothing)</code></pre>
-<section id="arguments-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-2">Arguments</h3>
+<section id="arguments-3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-3">Arguments</h3>
 <ul>
 <li><code>fs</code>: tiff file paths</li>
 <li><code>vars</code>: variables in the tiff</li>
 <li><code>var</code>: variable to merge</li>
 </ul>
 </section>
-<section id="examples-2" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-2">Examples</h3>
-<div class="sourceCode" id="cb74"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> <span class="fu">bbox</span>(<span class="op">-</span><span class="fl">180</span>, <span class="op">-</span><span class="fl">60</span>, <span class="fl">180</span>, <span class="fl">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-4">Examples</h3>
+<div class="sourceCode" id="cb98"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> <span class="fu">bbox</span>(<span class="op">-</span><span class="fl">180</span>, <span class="op">-</span><span class="fl">60</span>, <span class="fl">180</span>, <span class="fl">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -1866,7 +2138,7 @@ in_bbox(bs::Vector{bbox}, (lon, lat))</code></pre>
 <p><code>SpatRasters.merge_var!</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "merge_var!" from SpatRasters:
  [1] merge_var!(R::AbstractArray, f; var, box, cellsize)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_mosaic.jl:35</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_mosaic.jl:35</code></pre>
 </div>
 </div>
 </div>
@@ -1929,8 +2201,8 @@ names(df::GroupKey)</code></pre>
 <li>a <code>Function</code> predicate taking the column name as a string and returning <code>true</code> for columns that should be kept</li>
 </ul>
 <p>See also <a href="#propertynames"><code>propertynames</code></a> which returns a <code>Vector{Symbol}</code> (except for <code>GroupedDataFrame</code> in which case use <code>Symbol.(names(df))</code>).</p>
-<section id="examples-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-3">Examples</h3>
+<section id="examples-5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-5">Examples</h3>
 <pre class="jldoctest"><code>julia&gt; df = DataFrame(x1=[1, missing, missing], x2=[3, 2, 4], x3=[3, missing, 2], x4=Union{Int, Missing}[2, 4, 4])
 3×4 DataFrame
  Row │ x1       x2     x3       x4
@@ -1990,7 +2262,7 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 <p><code>SpatRasters.nband</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "nband" from SpatRasters:
  [1] nband(ra::SpatRaster{T, N}) where {T, N}
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRaster.jl:21</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRaster.jl:21</code></pre>
 </div>
 </div>
 </div>
@@ -2004,32 +2276,32 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb81"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>;</span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
-<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>    fout;</span>
-<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>    by,</span>
-<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>    fun,</span>
-<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>    verbose</span>
-<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="arguments-3" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-3">Arguments</h3>
+<div class="sourceCode" id="cb105"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>;</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(</span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>    fout;</span>
+<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a>    by,</span>
+<span id="cb105-9"><a href="#cb105-9" aria-hidden="true" tabindex="-1"></a>    fun,</span>
+<span id="cb105-10"><a href="#cb105-10" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb105-11"><a href="#cb105-11" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb105-12"><a href="#cb105-12" aria-hidden="true" tabindex="-1"></a>    verbose</span>
+<span id="cb105-13"><a href="#cb105-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arguments-4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-4">Arguments</h3>
 <ul>
 <li><code>f</code>: input file</li>
 <li><code>fout</code>: output file</li>
 <li><code>by</code>: “year” or “month”, or a function to group dates</li>
 </ul>
-<div class="sourceCode" id="cb82"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f; <span class="op">...</span>)</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f, fout; by, fun, outdir, overwrite, verbose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/utilize/nc_agg.jl#L15"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:15</code></a>.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f; <span class="op">...</span>)</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg</span>(f, fout; by, fun, outdir, overwrite, verbose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_agg.jl#L15"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:15</code></a>.</p>
 </section>
-<section id="examples-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-4">Examples</h3>
+<section id="examples-6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-6">Examples</h3>
 <pre><code>nc_agg(f, fout; by="year", fun=mean, outdir="./OUTPUT", overwrite=false, verbose=true)</code></pre>
 </section>
 </div>
@@ -2045,16 +2317,16 @@ julia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain mi
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb84"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="examples-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-5">Examples</h3>
+<div class="sourceCode" id="cb108"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-7" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-7">Examples</h3>
 <pre class="julia-repl"><code>scenario = "historical"
 indir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax/historical"
 outdir = "Z:/ChinaHW/CMIP6_cluster_HItasmax_adjchunk/HI_tasmax_year/historical"
 
 nc_agg_dir(indir; by="year", replacement="day"=&gt;"year", outdir)</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/utilize/nc_agg.jl#L69"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:69</code></a>.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_agg_dir</span>(indir; by, replacement, outdir, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_agg.jl#L69"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_agg.jl:69</code></a>.</p>
 </section>
 </div>
 </div>
@@ -2206,14 +2478,14 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <div class="callout-body-container">
 <pre><code>nc_combine(fs, fout; compress=0)</code></pre>
 <p>!会自动跳过重复的日期</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    d<span class="op">::</span><span class="dt">DataFrames.AbstractDataFrame</span>;</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb96"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(d; outdir, overwrite, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/utilize/nc_combine.jl#L62"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_combine.jl:62</code></a>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>    d<span class="op">::</span><span class="dt">DataFrames.AbstractDataFrame</span>;</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_combine</span>(d; outdir, overwrite, kw<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_combine.jl#L62"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_combine.jl:62</code></a>.</p>
 </div>
 </div>
 </div>
@@ -2227,15 +2499,15 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb97"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_crop</span>(</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">String</span>,</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>    b<span class="op">::</span><span class="dt">bbox</span>,</span>
-<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>    fout<span class="op">::</span><span class="dt">String</span>;</span>
-<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>    bands,</span>
-<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    compress,</span>
-<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_crop</span>(</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">String</span>,</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>    b<span class="op">::</span><span class="dt">bbox</span>,</span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>    fout<span class="op">::</span><span class="dt">String</span>;</span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>    bands,</span>
+<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a>    compress,</span>
+<span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb121-8"><a href="#cb121-8" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb121-9"><a href="#cb121-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2334,13 +2606,13 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </div>
 <div class="callout-body-container">
 <pre><code>open netcdf file, `nc_open` is alias of `NCDataset`</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(</span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">Union{AbstractString, Vector{&lt;:AbstractString}}</span>,</span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>    args<span class="op">...</span>;</span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
-<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="arguments-4" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-4">Arguments</h3>
+<div class="sourceCode" id="cb127"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">Union{AbstractString, Vector{&lt;:AbstractString}}</span>,</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>    args<span class="op">...</span>;</span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arguments-5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-5">Arguments</h3>
 <ul>
 <li><p><code>mode</code>:</p>
 <ul>
@@ -2349,10 +2621,10 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="examples-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-6">Examples</h3>
-<div class="sourceCode" id="cb104"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(f, args; kwargs<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/nc_info.jl#L20"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:20</code></a>.</p>
+<section id="examples-8" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-8">Examples</h3>
+<div class="sourceCode" id="cb128"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(f, args; kwargs<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/nc_info.jl#L20"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:20</code></a>.</p>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>, NCDatasets.NCDataset())</span></p>
 </section>
 </div>
@@ -2368,19 +2640,19 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb105"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(file; <span class="op">...</span>) <span class="op">-&gt;</span> <span class="dt">Any</span></span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(</span>
-<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>    file,</span>
-<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>    band;</span>
-<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span>,</span>
-<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>    period,</span>
-<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>    ind,</span>
-<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a>    raw,</span>
-<span id="cb105-9"><a href="#cb105-9" aria-hidden="true" tabindex="-1"></a>    nodata,</span>
-<span id="cb105-10"><a href="#cb105-10" aria-hidden="true" tabindex="-1"></a>    verbose</span>
-<span id="cb105-11"><a href="#cb105-11" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="arguments-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-5">Arguments</h3>
+<div class="sourceCode" id="cb129"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(file; <span class="op">...</span>) <span class="op">-&gt;</span> <span class="dt">Any</span></span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_read</span>(</span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a>    file,</span>
+<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a>    band;</span>
+<span id="cb129-5"><a href="#cb129-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span>,</span>
+<span id="cb129-6"><a href="#cb129-6" aria-hidden="true" tabindex="-1"></a>    period,</span>
+<span id="cb129-7"><a href="#cb129-7" aria-hidden="true" tabindex="-1"></a>    ind,</span>
+<span id="cb129-8"><a href="#cb129-8" aria-hidden="true" tabindex="-1"></a>    raw,</span>
+<span id="cb129-9"><a href="#cb129-9" aria-hidden="true" tabindex="-1"></a>    nodata,</span>
+<span id="cb129-10"><a href="#cb129-10" aria-hidden="true" tabindex="-1"></a>    verbose</span>
+<span id="cb129-11"><a href="#cb129-11" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Any</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arguments-6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-6">Arguments</h3>
 <ul>
 <li><p><code>band</code> : string (variable name) or int (band id). If <code>int</code> provided, <code>bandName = nc_bands(file)[band]</code></p></li>
 <li><p><code>type</code> : returned data type, e.g.&nbsp;<code>Float32</code></p></li>
@@ -2443,26 +2715,26 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb108"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>;</span>
-<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
-<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
-<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>,</span>
-<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a>    fout;</span>
-<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a>    delta,</span>
-<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
-<span id="cb108-12"><a href="#cb108-12" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
-<span id="cb108-13"><a href="#cb108-13" aria-hidden="true" tabindex="-1"></a>    big,</span>
-<span id="cb108-14"><a href="#cb108-14" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
-<span id="cb108-15"><a href="#cb108-15" aria-hidden="true" tabindex="-1"></a>    band,</span>
-<span id="cb108-16"><a href="#cb108-16" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb108-17"><a href="#cb108-17" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
-<span id="cb108-18"><a href="#cb108-18" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="arguments-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-6">Arguments</h3>
+<div class="sourceCode" id="cb132"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>;</span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
+<span id="cb132-6"><a href="#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
+<span id="cb132-7"><a href="#cb132-7" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb132-8"><a href="#cb132-8" aria-hidden="true" tabindex="-1"></a>    range<span class="op">::</span><span class="dt">Vector</span>,</span>
+<span id="cb132-9"><a href="#cb132-9" aria-hidden="true" tabindex="-1"></a>    fout;</span>
+<span id="cb132-10"><a href="#cb132-10" aria-hidden="true" tabindex="-1"></a>    delta,</span>
+<span id="cb132-11"><a href="#cb132-11" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
+<span id="cb132-12"><a href="#cb132-12" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
+<span id="cb132-13"><a href="#cb132-13" aria-hidden="true" tabindex="-1"></a>    big,</span>
+<span id="cb132-14"><a href="#cb132-14" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
+<span id="cb132-15"><a href="#cb132-15" aria-hidden="true" tabindex="-1"></a>    band,</span>
+<span id="cb132-16"><a href="#cb132-16" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb132-17"><a href="#cb132-17" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
+<span id="cb132-18"><a href="#cb132-18" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arguments-7" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-7">Arguments</h3>
 <ul>
 <li><code>check_vals</code>: If download failed, <code>length(unique(vals)) = 1</code>. Default check the length of data unique values</li>
 </ul>
@@ -2473,33 +2745,33 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </section>
 <section id="example" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example">Example</h3>
-<div class="sourceCode" id="cb109"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4-d array</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf3.dkrz.de/thredds/dodsC/cmip6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/zg/gn/v20191108/zg_day_ACCESS-CM2_historical_r1i1p1f1_gn_19500101-19541231.nc"</span></span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(url)</span>
-<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-6"><a href="#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3-d array</span></span>
-<span id="cb109-7"><a href="#cb109-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/huss/gn/v20191108/huss_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-18991231.nc"</span></span>
-<span id="cb109-8"><a href="#cb109-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-9"><a href="#cb109-9" aria-hidden="true" tabindex="-1"></a>range <span class="op">=</span> [<span class="fl">70</span>, <span class="fl">140</span>, <span class="fl">15</span>, <span class="fl">55</span>]</span>
-<span id="cb109-10"><a href="#cb109-10" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb109-11"><a href="#cb109-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-12"><a href="#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">nc_subset</span>(url, range)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb110"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(f, range; <span class="op">...</span>)</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>    range,</span>
-<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>    fout;</span>
-<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a>    delta,</span>
-<span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
-<span id="cb110-8"><a href="#cb110-8" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
-<span id="cb110-9"><a href="#cb110-9" aria-hidden="true" tabindex="-1"></a>    big,</span>
-<span id="cb110-10"><a href="#cb110-10" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
-<span id="cb110-11"><a href="#cb110-11" aria-hidden="true" tabindex="-1"></a>    band,</span>
-<span id="cb110-12"><a href="#cb110-12" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
-<span id="cb110-13"><a href="#cb110-13" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
-<span id="cb110-14"><a href="#cb110-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/utilize/nc_subset.jl#L32"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_subset.jl:32</code></a>.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4-d array</span></span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf3.dkrz.de/thredds/dodsC/cmip6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/zg/gn/v20191108/zg_day_ACCESS-CM2_historical_r1i1p1f1_gn_19500101-19541231.nc"</span></span>
+<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_open</span>(url)</span>
+<span id="cb133-5"><a href="#cb133-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-6"><a href="#cb133-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3-d array</span></span>
+<span id="cb133-7"><a href="#cb133-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://esgf-data04.diasjp.net/thredds/dodsC/esg_dataroot/CMIP6/CMIP/CSIRO-ARCCSS/ACCESS-CM2/historical/r1i1p1f1/day/huss/gn/v20191108/huss_day_ACCESS-CM2_historical_r1i1p1f1_gn_18500101-18991231.nc"</span></span>
+<span id="cb133-8"><a href="#cb133-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-9"><a href="#cb133-9" aria-hidden="true" tabindex="-1"></a>range <span class="op">=</span> [<span class="fl">70</span>, <span class="fl">140</span>, <span class="fl">15</span>, <span class="fl">55</span>]</span>
+<span id="cb133-10"><a href="#cb133-10" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb133-11"><a href="#cb133-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-12"><a href="#cb133-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">nc_subset</span>(url, range)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(f, range; <span class="op">...</span>)</span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_subset</span>(</span>
+<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb134-4"><a href="#cb134-4" aria-hidden="true" tabindex="-1"></a>    range,</span>
+<span id="cb134-5"><a href="#cb134-5" aria-hidden="true" tabindex="-1"></a>    fout;</span>
+<span id="cb134-6"><a href="#cb134-6" aria-hidden="true" tabindex="-1"></a>    delta,</span>
+<span id="cb134-7"><a href="#cb134-7" aria-hidden="true" tabindex="-1"></a>    check_vals,</span>
+<span id="cb134-8"><a href="#cb134-8" aria-hidden="true" tabindex="-1"></a>    verbose,</span>
+<span id="cb134-9"><a href="#cb134-9" aria-hidden="true" tabindex="-1"></a>    big,</span>
+<span id="cb134-10"><a href="#cb134-10" aria-hidden="true" tabindex="-1"></a>    plevs,</span>
+<span id="cb134-11"><a href="#cb134-11" aria-hidden="true" tabindex="-1"></a>    band,</span>
+<span id="cb134-12"><a href="#cb134-12" aria-hidden="true" tabindex="-1"></a>    outdir,</span>
+<span id="cb134-13"><a href="#cb134-13" aria-hidden="true" tabindex="-1"></a>    overwrite</span>
+<span id="cb134-14"><a href="#cb134-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/utilize/nc_subset.jl#L32"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_subset.jl:32</code></a>.</p>
 </section>
 </div>
 </div>
@@ -2514,25 +2786,25 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb111"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>;</span>
-<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
-<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
-<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb111-10"><a href="#cb111-10" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb111-11"><a href="#cb111-11" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb111-12"><a href="#cb111-12" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>,</span>
-<span id="cb111-13"><a href="#cb111-13" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">::</span><span class="dt">Dict</span>;</span>
-<span id="cb111-14"><a href="#cb111-14" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb111-15"><a href="#cb111-15" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb111-16"><a href="#cb111-16" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb111-17"><a href="#cb111-17" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="arguments-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-7">Arguments</h3>
+<div class="sourceCode" id="cb135"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>;</span>
+<span id="cb135-6"><a href="#cb135-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb135-7"><a href="#cb135-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span>
+<span id="cb135-8"><a href="#cb135-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
+<span id="cb135-9"><a href="#cb135-9" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb135-10"><a href="#cb135-10" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb135-11"><a href="#cb135-11" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb135-12"><a href="#cb135-12" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{NcDim}</span>,</span>
+<span id="cb135-13"><a href="#cb135-13" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">::</span><span class="dt">Dict</span>;</span>
+<span id="cb135-14"><a href="#cb135-14" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb135-15"><a href="#cb135-15" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb135-16"><a href="#cb135-16" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb135-17"><a href="#cb135-17" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Union</span>{<span class="dt">Nothing</span>, NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arguments-8" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-8">Arguments</h3>
 <ul>
 <li><p><code>mode</code>: one of “r”, “c”, “w”, see [NCDatasets.nc_open()] for details</p>
 <ul>
@@ -2552,32 +2824,32 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="examples-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-7">Examples</h3>
-<div class="sourceCode" id="cb112"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> [</span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
-<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim_time</span>(dates)</span>
-<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
-<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>cellsize<span class="op">=</span><span class="fl">1</span></span>
-<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> <span class="fu">Date</span>(<span class="fl">2010</span>)<span class="op">:</span><span class="fu">Day</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Date</span>(<span class="fl">2010</span>, <span class="fl">1</span>, <span class="fl">4</span>) <span class="op">|&gt;</span> collect</span>
-<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">NcDims</span>(b, cellsize, dates) <span class="co"># one option</span></span>
-<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; units, longname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb113"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; <span class="op">...</span>)</span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>    varname,</span>
-<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>    dims,</span>
-<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>    attr;</span>
-<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
-<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/nc_write.jl#L55"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:55</code></a>.</p>
+<section id="examples-9" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-9">Examples</h3>
+<div class="sourceCode" id="cb136"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> [</span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
+<span id="cb136-3"><a href="#cb136-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim</span>(<span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
+<span id="cb136-4"><a href="#cb136-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NcDim_time</span>(dates)</span>
+<span id="cb136-5"><a href="#cb136-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb136-6"><a href="#cb136-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-7"><a href="#cb136-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
+<span id="cb136-8"><a href="#cb136-8" aria-hidden="true" tabindex="-1"></a>cellsize<span class="op">=</span><span class="fl">1</span></span>
+<span id="cb136-9"><a href="#cb136-9" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> <span class="fu">Date</span>(<span class="fl">2010</span>)<span class="op">:</span><span class="fu">Day</span>(<span class="fl">1</span>)<span class="op">:</span><span class="fu">Date</span>(<span class="fl">2010</span>, <span class="fl">1</span>, <span class="fl">4</span>) <span class="op">|&gt;</span> collect</span>
+<span id="cb136-10"><a href="#cb136-10" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">NcDims</span>(b, cellsize, dates) <span class="co"># one option</span></span>
+<span id="cb136-11"><a href="#cb136-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-12"><a href="#cb136-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; units, longname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(f, varname, val, dims; <span class="op">...</span>)</span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write</span>(</span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb137-4"><a href="#cb137-4" aria-hidden="true" tabindex="-1"></a>    varname,</span>
+<span id="cb137-5"><a href="#cb137-5" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb137-6"><a href="#cb137-6" aria-hidden="true" tabindex="-1"></a>    dims,</span>
+<span id="cb137-7"><a href="#cb137-7" aria-hidden="true" tabindex="-1"></a>    attr;</span>
+<span id="cb137-8"><a href="#cb137-8" aria-hidden="true" tabindex="-1"></a>    overwrite,</span>
+<span id="cb137-9"><a href="#cb137-9" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb137-10"><a href="#cb137-10" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb137-11"><a href="#cb137-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/nc_write.jl#L55"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:55</code></a>.</p>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>)</span> <code>ncvar_def</code></p>
 </section>
 </div>
@@ -2593,33 +2865,33 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb114"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
-<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{&lt;:Union{AbstractString, NcDim}}</span>;</span>
-<span id="cb114-6"><a href="#cb114-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
-<span id="cb114-7"><a href="#cb114-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
-<span id="cb114-8"><a href="#cb114-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
-<span id="cb114-9"><a href="#cb114-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
-<span id="cb114-10"><a href="#cb114-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
-<span id="cb114-11"><a href="#cb114-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb114-12"><a href="#cb114-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb114-13"><a href="#cb114-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb115"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    varname,</span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    dims;</span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
-<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/61bea8bb353c09a1422e24de4e73e53a28c9d4e3//src/nc_write.jl#L72"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:72</code></a>.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a>    varname<span class="op">::</span><span class="dt">AbstractString</span>,</span>
+<span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb138-5"><a href="#cb138-5" aria-hidden="true" tabindex="-1"></a>    dims<span class="op">::</span><span class="dt">Vector{&lt;:Union{AbstractString, NcDim}}</span>;</span>
+<span id="cb138-6"><a href="#cb138-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
+<span id="cb138-7"><a href="#cb138-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
+<span id="cb138-8"><a href="#cb138-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
+<span id="cb138-9"><a href="#cb138-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
+<span id="cb138-10"><a href="#cb138-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
+<span id="cb138-11"><a href="#cb138-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb138-12"><a href="#cb138-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb138-13"><a href="#cb138-13" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> NCDatasets.NCDataset{<span class="dt">Nothing</span>, <span class="dt">Missing</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_write!</span>(</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a>    varname,</span>
+<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a>    val,</span>
+<span id="cb139-5"><a href="#cb139-5" aria-hidden="true" tabindex="-1"></a>    dims;</span>
+<span id="cb139-6"><a href="#cb139-6" aria-hidden="true" tabindex="-1"></a>    units,</span>
+<span id="cb139-7"><a href="#cb139-7" aria-hidden="true" tabindex="-1"></a>    longname,</span>
+<span id="cb139-8"><a href="#cb139-8" aria-hidden="true" tabindex="-1"></a>    attr,</span>
+<span id="cb139-9"><a href="#cb139-9" aria-hidden="true" tabindex="-1"></a>    compress,</span>
+<span id="cb139-10"><a href="#cb139-10" aria-hidden="true" tabindex="-1"></a>    global_attr,</span>
+<span id="cb139-11"><a href="#cb139-11" aria-hidden="true" tabindex="-1"></a>    mode,</span>
+<span id="cb139-12"><a href="#cb139-12" aria-hidden="true" tabindex="-1"></a>    kw<span class="op">...</span></span>
+<span id="cb139-13"><a href="#cb139-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>defined at <a href="https://github.com/jl-pkgs/NetCDFTools.jl/tree/06b7dad95682cb395aa82f94dd0af94be5ad91bc//src/nc_write.jl#L72"><code>/home/runner/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_write.jl:72</code></a>.</p>
 </div>
 </div>
 </div>
@@ -2636,22 +2908,22 @@ nc_attr_rm!(f::AbstractString, keys::Vector{&lt;:AbstractString})</code></pre>
 <pre><code>ncdim_def(ds, name, val, attrib = Dict())
 ncdim_def(ds, dim::NcDim)
 ncdim_def(ds, dims::Vector{NcDim})</code></pre>
-<section id="examples-8" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-8">Examples</h3>
-<div class="sourceCode" id="cb117"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. by existing nc file</span></span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f = "/mnt/j/Researches/Obs/Obs_ChinaHW_cluster/ncell_16/clusterId_HItasmax_movTRS_Obs.nc"</span></span>
-<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">nc_dims</span>(f)</span>
-<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f2.nc"</span>, <span class="st">"c"</span>)</span>
-<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dims);</span>
-<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(ds)</span>
-<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
-<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. by assigned variables</span></span>
-<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a><span class="co"># dates = nc_date(ds)</span></span>
-<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f3.nc"</span>, <span class="st">"c"</span>)</span>
-<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a>dim_t <span class="op">=</span> <span class="fu">NcDim_time</span>(dates)</span>
-<span id="cb117-13"><a href="#cb117-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dim_t)</span>
-<span id="cb117-14"><a href="#cb117-14" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-10" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-10">Examples</h3>
+<div class="sourceCode" id="cb141"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. by existing nc file</span></span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f = "/mnt/j/Researches/Obs/Obs_ChinaHW_cluster/ncell_16/clusterId_HItasmax_movTRS_Obs.nc"</span></span>
+<span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> <span class="fu">nc_dims</span>(f)</span>
+<span id="cb141-4"><a href="#cb141-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f2.nc"</span>, <span class="st">"c"</span>)</span>
+<span id="cb141-5"><a href="#cb141-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dims);</span>
+<span id="cb141-6"><a href="#cb141-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(ds)</span>
+<span id="cb141-7"><a href="#cb141-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
+<span id="cb141-8"><a href="#cb141-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-9"><a href="#cb141-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. by assigned variables</span></span>
+<span id="cb141-10"><a href="#cb141-10" aria-hidden="true" tabindex="-1"></a><span class="co"># dates = nc_date(ds)</span></span>
+<span id="cb141-11"><a href="#cb141-11" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(<span class="st">"f3.nc"</span>, <span class="st">"c"</span>)</span>
+<span id="cb141-12"><a href="#cb141-12" aria-hidden="true" tabindex="-1"></a>dim_t <span class="op">=</span> <span class="fu">NcDim_time</span>(dates)</span>
+<span id="cb141-13"><a href="#cb141-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, dim_t)</span>
+<span id="cb141-14"><a href="#cb141-14" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -2687,8 +2959,8 @@ ncdim_def(ds, dims::Vector{NcDim})</code></pre>
 </div>
 <div class="callout-body-container">
 <pre><code>ncsave(f::AbstractString, compress, options=(;); dims, values=Dict(), kw...)</code></pre>
-<section id="arguments-8" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="arguments-8">Arguments</h4>
+<section id="arguments-9" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="arguments-9">Arguments</h4>
 <ul>
 <li><p><code>compress</code>: 0~10, 0代表不压缩, 10最大压缩，默认为1</p></li>
 <li><p><code>options</code>: other keyword arguments to <code>nc_write!</code></p>
@@ -2699,17 +2971,17 @@ ncdim_def(ds, dims::Vector{NcDim})</code></pre>
 <li><p><code>values</code>: can be NamedTuple or Dict, but values should have the same dimensions</p></li>
 </ul>
 </section>
-<section id="examples-9" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="examples-9">Examples</h4>
-<div class="sourceCode" id="cb120"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>; dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite</span></span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>, (; overwrite<span class="op">=</span><span class="cn">true</span>); </span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>  dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float64</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
-<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>; dims, SM3<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-11" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="examples-11">Examples</h4>
+<div class="sourceCode" id="cb144"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>; dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float32</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-4"><a href="#cb144-4" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite</span></span>
+<span id="cb144-5"><a href="#cb144-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>, <span class="cn">true</span>, (; overwrite<span class="op">=</span><span class="cn">true</span>); </span>
+<span id="cb144-6"><a href="#cb144-6" aria-hidden="true" tabindex="-1"></a>  dims, SM<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>), SPI<span class="op">=</span><span class="fu">rand</span>(<span class="dt">Float64</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span>
+<span id="cb144-7"><a href="#cb144-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-8"><a href="#cb144-8" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (; x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)</span>
+<span id="cb144-9"><a href="#cb144-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ncsave</span>(<span class="st">"test.nc"</span>; dims, SM3<span class="op">=</span><span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -2728,8 +3000,8 @@ ncdim_def(ds, dims::Vector{NcDim})</code></pre>
     compress = 1, kw...)
 ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
     compress = 1, kw...)</code></pre>
-<section id="arguments-9" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-9">Arguments</h3>
+<section id="arguments-10" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-10">Arguments</h3>
 <ul>
 <li><p><code>val</code>: can be <code>data</code> or vtype</p></li>
 <li><p><code>compress</code>: Compression level: 0 (default) means no compression and 9 means maximum compression. Each chunk will be compressed individually.</p></li>
@@ -2744,27 +3016,27 @@ ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
 </ul></li>
 </ul>
 </section>
-<section id="examples-10" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-10">Examples</h3>
-<div class="sourceCode" id="cb122"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">"f1.nc"</span></span>
-<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">isfile</span>(f) <span class="op">&amp;&amp;</span> <span class="fu">rm</span>(f)</span>
-<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"c"</span>)</span>
-<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>compress <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
-<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
-<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"time"</span>, <span class="fl">1</span><span class="op">:</span>ntime)</span>
-<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-10"><a href="#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>], <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"hello"</span>); compress <span class="op">=</span> compress)</span>
-<span id="cb122-11"><a href="#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
-<span id="cb122-12"><a href="#cb122-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-13"><a href="#cb122-13" aria-hidden="true" tabindex="-1"></a><span class="co"># append a variable</span></span>
-<span id="cb122-14"><a href="#cb122-14" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"a"</span>)</span>
-<span id="cb122-15"><a href="#cb122-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI2"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>]; compress <span class="op">=</span> compress)</span>
-<span id="cb122-16"><a href="#cb122-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ds)</span>
-<span id="cb122-17"><a href="#cb122-17" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
-<span id="cb122-18"><a href="#cb122-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-19"><a href="#cb122-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_info</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-12" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-12">Examples</h3>
+<div class="sourceCode" id="cb146"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">"f1.nc"</span></span>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">isfile</span>(f) <span class="op">&amp;&amp;</span> <span class="fu">rm</span>(f)</span>
+<span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"c"</span>)</span>
+<span id="cb146-4"><a href="#cb146-4" aria-hidden="true" tabindex="-1"></a>compress <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb146-5"><a href="#cb146-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-6"><a href="#cb146-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lon"</span>, lon, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Longitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees east"</span>))</span>
+<span id="cb146-7"><a href="#cb146-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"lat"</span>, lat, <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"Latitude"</span>, <span class="st">"units"</span> <span class="op">=&gt;</span> <span class="st">"degrees north"</span>))</span>
+<span id="cb146-8"><a href="#cb146-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ncdim_def</span>(ds, <span class="st">"time"</span>, <span class="fl">1</span><span class="op">:</span>ntime)</span>
+<span id="cb146-9"><a href="#cb146-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-10"><a href="#cb146-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>], <span class="fu">Dict</span>(<span class="st">"longname"</span> <span class="op">=&gt;</span> <span class="st">"hello"</span>); compress <span class="op">=</span> compress)</span>
+<span id="cb146-11"><a href="#cb146-11" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
+<span id="cb146-12"><a href="#cb146-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-13"><a href="#cb146-13" aria-hidden="true" tabindex="-1"></a><span class="co"># append a variable</span></span>
+<span id="cb146-14"><a href="#cb146-14" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">nc_open</span>(f, <span class="st">"a"</span>)</span>
+<span id="cb146-15"><a href="#cb146-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvar_def</span>(ds, <span class="st">"HI2"</span>, dat, [<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>]; compress <span class="op">=</span> compress)</span>
+<span id="cb146-16"><a href="#cb146-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ds)</span>
+<span id="cb146-17"><a href="#cb146-17" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span>
+<span id="cb146-18"><a href="#cb146-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-19"><a href="#cb146-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nc_info</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="citation" data-cites="seealso">(<a href="#ref-seealso" role="doc-biblioref"><strong>seealso?</strong></a>)</span> <a href="#ncdim_def"><code>ncdim_def</code></a></p>
 </section>
 </div>
@@ -2844,7 +3116,7 @@ ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
 <p><code>SpatRasters.nband</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "nband" from SpatRasters:
  [1] nband(ra::SpatRaster{T, N}) where {T, N}
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRaster.jl:21</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRaster.jl:21</code></pre>
 </div>
 </div>
 </div>
@@ -2866,6 +3138,24 @@ ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
 </div>
 <div style="page-break-after: always;"></div>
 </section>
+<section id="predict" class="level2">
+<h2 class="anchored" data-anchor-id="predict"><code>predict</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.predict</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "predict" from SpatRasters:
+ [1] predict(tps::SpatRasters.ThinPlateSpline, x2::AbstractMatrix{FT}; distance, progress) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:120</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
 <section id="range2bbox" class="level2">
 <h2 class="anchored" data-anchor-id="range2bbox"><code>range2bbox</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -2878,7 +3168,7 @@ ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
 <p><code>SpatRasters.range2bbox</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "range2bbox" from SpatRasters:
  [1] range2bbox(r::AbstractVector)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/bbox.jl:68</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:68</code></pre>
 </div>
 </div>
 </div>
@@ -2893,12 +3183,12 @@ ncvar_def(ds, name, val, dims::NcDim, attrib = Dict();
 </div>
 <div class="callout-body-container">
 <p>No documentation found for public symbol.</p>
-<section id="summary-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="summary-5">Summary</h3>
+<section id="summary-6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="summary-6">Summary</h3>
 <pre><code>mutable struct SpatRaster{T, N}</code></pre>
 </section>
-<section id="fields-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="fields-1">Fields</h3>
+<section id="fields-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fields-2">Fields</h3>
 <pre><code>A        :: AbstractArray{T, N}
 b        :: bbox
 cellsize :: Tuple{Real, Real}
@@ -2930,11 +3220,11 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.read_gdal</code> is a <code>Function</code>.</p>
 <pre><code># 3 methods for generic function "read_gdal" from SpatRasters:
  [1] read_gdal(file::AbstractString, b::bbox, options...)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/IO.jl:35
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:35
  [2] read_gdal(file::AbstractString, indices, b::bbox, options...)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/IO.jl:22
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:22
  [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/IO.jl:13</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:13</code></pre>
 </div>
 </div>
 </div>
@@ -2968,7 +3258,7 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.resample_first</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "resample_first" from SpatRasters:
  [1] resample_first(r::AbstractArray; fact, deepcopy)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_resample.jl:6</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_resample.jl:6</code></pre>
 </div>
 </div>
 </div>
@@ -3004,7 +3294,7 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.rm_shp</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "rm_shp" from SpatRasters:
  [1] rm_shp(f)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRasters.jl:83</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:95</code></pre>
 </div>
 </div>
 </div>
@@ -3025,8 +3315,8 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <li>flow direction 32 64 128 16 0 1 8 4 2</li>
 </ul>
 </section>
-<section id="arguments-10" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-10">Arguments</h3>
+<section id="arguments-11" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-11">Arguments</h3>
 <ul>
 <li><code>k</code>: 8-neighbor 6 7 8 5 1 4 3 2</li>
 </ul>
@@ -3052,26 +3342,33 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="spinterp" class="level2">
-<h2 class="anchored" data-anchor-id="spinterp"><code>spInterp</code></h2>
+<section id="solve_tps" class="level2">
+<h2 class="anchored" data-anchor-id="solve_tps"><code>solve_tps</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<pre><code>spInterp(weights::AbstractMatrix, data::AbstractMatrix; progress=true)</code></pre>
-<div class="sourceCode" id="cb139"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>sites <span class="op">=</span> [st.lon st.lat]</span>
-<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> st[<span class="op">:</span>, <span class="op">:</span>alt]</span>
-<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">repeat</span>(alt, <span class="fl">1</span>, <span class="fl">24</span>)<span class="ch">' |&gt; collect</span></span>
-<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-5"><a href="#cb139-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">bbox</span>(<span class="fl">70</span>, <span class="fl">15</span>, <span class="fl">140</span>, <span class="fl">55</span>)</span>
-<span id="cb139-6"><a href="#cb139-6" aria-hidden="true" tabindex="-1"></a>lon, lat <span class="op">=</span> <span class="fu">bbox2dims</span>(b; cellsize<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb139-7"><a href="#cb139-7" aria-hidden="true" tabindex="-1"></a>nlon, nlat <span class="op">=</span> <span class="fu">length</span>(lon), <span class="fu">length</span>(lat)</span>
-<span id="cb139-8"><a href="#cb139-8" aria-hidden="true" tabindex="-1"></a>ra <span class="op">=</span> <span class="fu">rast</span>(<span class="fu">rand</span>(nlon, nlat), b)</span>
-<span id="cb139-9"><a href="#cb139-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-10"><a href="#cb139-10" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="fu">weights_adw</span>(ra, sites)</span>
-<span id="cb139-11"><a href="#cb139-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> zs <span class="op">=</span> <span class="fu">spInterp</span>(weights, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>solve_tps(x,y,λ,compute_affine=true)</code></pre>
+<p>find solution of tps transformation (required for some operations but takes additional time.)</p>
+<section id="arguments-12" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="arguments-12">Arguments</h4>
+<pre><code>`x`: control points, n
+`y`: deformed (warped) control points
+`λ`: stiffness coefficient</code></pre>
+<p>returns a <code>ThinPlateSpline</code> structure which can be supplied as an argument to <code>tps_deform</code>.</p>
+</section>
+<section id="references-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="references-3">References</h4>
+<ol type="1">
+<li>Ghosh A, Kindermann D D S. Efficient thin plate spline interpolation and its application to adaptive optics[M]. na, 2010.</li>
+</ol>
+</section>
+<section id="see-almost" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="see-almost">See almost</h4>
+<pre><code>`ThinPlateSpline`</code></pre>
+</section>
 </div>
 </div>
 </div>
@@ -3086,8 +3383,8 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 </div>
 <div class="callout-body-container">
 <pre><code>split_chunk(n::Int, nchunk=4; chunk=nothing, ratio_small::Real=0.5)</code></pre>
-<section id="arguments-11" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-11">Arguments</h3>
+<section id="arguments-13" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-13">Arguments</h3>
 <ul>
 <li><code>ratio_small</code>: The minimum ratio of the last chunk to the maximum length of chunks.</li>
 </ul>
@@ -3128,15 +3425,15 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_bbox</code> is a <code>Function</code>.</p>
 <pre><code># 5 methods for generic function "st_bbox" from SpatRasters:
  [1] st_bbox(bs::Vector{bbox})
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_bbox.jl:22
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:22
  [2] st_bbox(f::String)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_bbox.jl:15
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:15
  [3] st_bbox(lon, lat)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_bbox.jl:8
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:8
  [4] st_bbox(v::Vector{&lt;:Real})
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_bbox.jl:4
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:4
  [5] st_bbox(r::AbstractSpatRaster)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_bbox.jl:2</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:2</code></pre>
 </div>
 </div>
 </div>
@@ -3154,11 +3451,29 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_cellsize</code> is a <code>Function</code>.</p>
 <pre><code># 3 methods for generic function "st_cellsize" from SpatRasters:
  [1] st_cellsize(f::AbstractString)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_dims.jl:51
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:51
  [2] st_cellsize(lon::AbstractVector, lat::AbstractVector)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_dims.jl:47
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:47
  [3] st_cellsize(r::AbstractSpatRaster)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_dims.jl:45</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:45</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="st_coords" class="level2">
+<h2 class="anchored" data-anchor-id="st_coords"><code>st_coords</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.st_coords</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "st_coords" from SpatRasters:
+ [1] st_coords(ra::SpatRaster)
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:77</code></pre>
 </div>
 </div>
 </div>
@@ -3176,9 +3491,9 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_crop</code> is a <code>Function</code>.</p>
 <pre><code># 2 methods for generic function "st_crop" from SpatRasters:
  [1] st_crop(f::String, b::bbox)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_crop.jl:3
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_crop.jl:3
  [2] st_crop(ra::SpatRaster, b::bbox)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_crop.jl:5</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_crop.jl:5</code></pre>
 </div>
 </div>
 </div>
@@ -3198,11 +3513,11 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
  [1] st_dims(x::SpatRasters.FileNetCDF)
      @ NetCDFTools ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:8
  [2] st_dims(x::SpatRasters.FileGDAL)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_dims.jl:32
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:32
  [3] st_dims(f::String)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_dims.jl:26
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:26
  [4] st_dims(r::AbstractSpatRaster)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_dims.jl:24</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:24</code></pre>
 </div>
 </div>
 </div>
@@ -3220,7 +3535,7 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_extract</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "st_extract" from SpatRasters:
  [1] st_extract(ra::AbstractSpatRaster, points::Array{Tuple{T, T}, 1}; combine) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_extract.jl:69</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_extract.jl:69</code></pre>
 </div>
 </div>
 </div>
@@ -3238,7 +3553,7 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_location</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "st_location" from SpatRasters:
  [1] st_location(ra::AbstractSpatRaster, points::Array{Tuple{T, T}, 1}; kw...) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_extract.jl:63</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_extract.jl:63</code></pre>
 </div>
 </div>
 </div>
@@ -3256,7 +3571,7 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_location_exact</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "st_location_exact" from SpatRasters:
  [1] st_location_exact(lon::AbstractVector, lat::AbstractVector, points::Array{Tuple{T, T}, 1}; rm_empty, cellsize, tol) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/st_extract.jl:12</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_extract.jl:12</code></pre>
 </div>
 </div>
 </div>
@@ -3272,9 +3587,9 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <div class="callout-body-container">
 <pre><code>st_location(r::Raster, points::Vector{Tuple{T,T}})</code></pre>
 <p>return the overlaping indexes <code>inds</code>, and corresponding (i,j)</p>
-<section id="examples-11" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="examples-11">Examples</h3>
-<div class="sourceCode" id="cb150"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>inds, locs <span class="op">=</span> <span class="fu">st_location</span>(r, points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="examples-13" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="examples-13">Examples</h3>
+<div class="sourceCode" id="cb177"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>inds, locs <span class="op">=</span> <span class="fu">st_location</span>(r, points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
 </div>
@@ -3290,8 +3605,8 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 </div>
 <div class="callout-body-container">
 <pre><code>st_mosaic(rs::Vector{SpatRaster{T,N}}; kw...) where {T,N}</code></pre>
-<section id="arguments-12" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-12">Arguments</h3>
+<section id="arguments-14" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="arguments-14">Arguments</h3>
 <ul>
 <li><code>kw</code>: others to <code>SpatRaster</code></li>
 </ul>
@@ -3313,7 +3628,7 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.st_points</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "st_points" from SpatRasters:
  [1] st_points(x::AbstractVector, y::AbstractVector)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRasters.jl:71</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:83</code></pre>
 </div>
 </div>
 </div>
@@ -3331,11 +3646,11 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.read_gdal</code> is a <code>Function</code>.</p>
 <pre><code># 3 methods for generic function "read_gdal" from SpatRasters:
  [1] read_gdal(file::AbstractString, b::bbox, options...)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/IO.jl:35
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:35
  [2] read_gdal(file::AbstractString, indices, b::bbox, options...)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/IO.jl:22
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:22
  [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/IO.jl:13</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:13</code></pre>
 </div>
 </div>
 </div>
@@ -3369,7 +3684,27 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 <p><code>SpatRasters.tau2gis</code> is a <code>Function</code>.</p>
 <pre><code># 1 method for generic function "tau2gis" from SpatRasters:
  [1] tau2gis(A::AbstractArray)
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/hydro/Hydro.jl:67</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:67</code></pre>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="tps_kernel" class="level2">
+<h2 class="anchored" data-anchor-id="tps_kernel"><code>tps_kernel</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.tps_kernel</code> is a <code>Function</code>.</p>
+<pre><code># 2 methods for generic function "tps_kernel" from SpatRasters:
+ [1] tps_kernel(x1::AbstractMatrix{FT}, x2::AbstractMatrix{FT}; distance) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:63
+ [2] tps_kernel(x::AbstractMatrix{FT}; distance) where FT
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:44</code></pre>
 </div>
 </div>
 </div>
@@ -3397,8 +3732,8 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="weight_adw" class="level2">
-<h2 class="anchored" data-anchor-id="weight_adw"><code>weight_adw</code></h2>
+<section id="weight_adw-1" class="level2">
+<h2 class="anchored" data-anchor-id="weight_adw-1"><code>weight_adw!</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -3406,35 +3741,28 @@ nodata   :: Union{Nothing, AbstractArray{T, 1}}</code></pre>
 </div>
 <div class="callout-body-container">
 <p>No documentation found for public symbol.</p>
-<p><code>NetCDFTools.weight_adw</code> is a <code>Function</code>.</p>
-<pre><code># 1 method for generic function "weight_adw" from NetCDFTools:
- [1] weight_adw(point::Tuple, sites::AbstractMatrix; r_deg, nmax, m, cdd)
-     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/spInterp.jl:35</code></pre>
+<p><code>SpatRasters.weight_adw!</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "weight_adw!" from SpatRasters:
+ [1] weight_adw!(neighbor::Neighbor{FT, N}; cdd, m) where {FT, N}
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/weights.jl:19</code></pre>
 </div>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="weight_idw" class="level2">
-<h2 class="anchored" data-anchor-id="weight_idw"><code>weight_idw</code></h2>
+<h2 class="anchored" data-anchor-id="weight_idw"><code>weight_idw!</code></h2>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<pre><code>weight_idw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=2)
-weight_adw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=4, cdd=450)</code></pre>
-<section id="arguments-13" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="arguments-13">Arguments</h3>
-<ul>
-<li><code>point</code>: Tuple of (lon, lat) coordinates</li>
-<li><code>sites</code>: Matrix of (lon, lat) coordinates</li>
-<li><code>r_deg</code>: radius in degrees</li>
-<li><code>nmax</code>: maximum number of sites</li>
-<li><code>m</code>: power of distance</li>
-</ul>
-</section>
+<p>No documentation found for public symbol.</p>
+<p><code>SpatRasters.weight_idw!</code> is a <code>Function</code>.</p>
+<pre><code># 1 method for generic function "weight_idw!" from SpatRasters:
+ [1] weight_idw!(neighbor::Neighbor{FT, N}; m) where {FT, N}
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/weights.jl:4</code></pre>
 </div>
 </div>
 </div>
@@ -3473,60 +3801,6 @@ weight_adw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=4, cdd=
 <pre><code># 1 method for generic function "weighted_nanmean!" from NetCDFTools:
  [1] weighted_nanmean!(R::AbstractVector, mat::AbstractMatrix{T1}, w::AbstractVector{T2}) where {T1, T2}
      @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/utilize.jl:11</code></pre>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</section>
-<section id="weights_adw" class="level2">
-<h2 class="anchored" data-anchor-id="weights_adw"><code>weights_adw</code></h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>No documentation found for public symbol.</p>
-<p><code>NetCDFTools.weights_adw</code> is a <code>Function</code>.</p>
-<pre><code># 1 method for generic function "weights_adw" from NetCDFTools:
- [1] weights_adw(ra::SpatRaster, sites::AbstractMatrix; nmax, r_deg, m, cdd, ignored...)
-     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/spInterp.jl:81</code></pre>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</section>
-<section id="weights_func" class="level2">
-<h2 class="anchored" data-anchor-id="weights_func"><code>weights_func</code></h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>No documentation found for public symbol.</p>
-<p><code>NetCDFTools.weights_func</code> is a <code>Function</code>.</p>
-<pre><code># 1 method for generic function "weights_func" from NetCDFTools:
- [1] weights_func(ra::SpatRaster, sites::AbstractMatrix; wfun, nmax, r_deg, kw...)
-     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/spInterp.jl:87</code></pre>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</section>
-<section id="weights_idw" class="level2">
-<h2 class="anchored" data-anchor-id="weights_idw"><code>weights_idw</code></h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>No documentation found for public symbol.</p>
-<p><code>NetCDFTools.weights_idw</code> is a <code>Function</code>.</p>
-<pre><code># 1 method for generic function "weights_idw" from NetCDFTools:
- [1] weights_idw(ra::SpatRaster, sites::AbstractMatrix; nmax, r_deg, m, ignored...)
-     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/Interpolation/spInterp.jl:75</code></pre>
 </div>
 </div>
 </div>
@@ -3576,9 +3850,9 @@ weight_adw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=4, cdd=
 <p><code>SpatRasters.xy2ij</code> is a <code>Function</code>.</p>
 <pre><code># 2 methods for generic function "xy2ij" from SpatRasters:
  [1] xy2ij(point::Tuple{T, T}, ra::SpatRaster) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRasters.jl:100
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:112
  [2] xy2ij(x::T, y::T, b::bbox, cellsize) where T&lt;:Real
-     @ ~/.julia/packages/SpatRasters/6D9Ve/src/SpatRasters.jl:89</code></pre>
+     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:101</code></pre>
 </div>
 </div>
 </div>
@@ -4002,8 +4276,8 @@ weight_adw(point::Tuple, sites::AbstractMatrix; r_deg=5, nmax::Int=20, m=4, cdd=
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../api/2-spInterp.html" class="pagination-link" aria-label="2. spInterp">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">2. spInterp</span></span>
+      <a href="../api/1-SpatRaster.html" class="pagination-link" aria-label="1. SpatRaster">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">1. SpatRaster</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
