@@ -64,7 +64,7 @@
     "href": "api/z-index.html#d8direction",
     "title": "Reference",
     "section": "D8Direction",
-    "text": "D8Direction\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.D8Direction is a Function.\n# 1 method for generic function \"D8Direction\" from SpatRasters:\n [1] D8Direction(dem::AbstractMatrix{T}, i::Int64, j::Int64, spill::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/D8Direction.jl:2",
+    "text": "D8Direction\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.D8Direction is a Function.\n# 1 method for generic function \"D8Direction\" from SpatRasters:\n [1] D8Direction(dem::AbstractMatrix{T}, i::Int64, j::Int64, spill::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/D8Direction.jl:2",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -74,7 +74,7 @@
     "href": "api/z-index.html#dirlength",
     "title": "Reference",
     "section": "DirLength",
-    "text": "DirLength\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.DirLength is a Function.\n# 1 method for generic function \"DirLength\" from SpatRasters:\n [1] DirLength(idir::Int64)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:116",
+    "text": "DirLength\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.DirLength is a Function.\n# 1 method for generic function \"DirLength\" from SpatRasters:\n [1] DirLength(idir::Int64)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:116",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -94,7 +94,17 @@
     "href": "api/z-index.html#ingrid",
     "title": "Reference",
     "section": "InGrid",
-    "text": "InGrid\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.InGrid is a Function.\n# 2 methods for generic function \"InGrid\" from SpatRasters:\n [1] InGrid(i::Int64, j::Int64, nrow::Int64, ncol::Int64)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:106\n [2] InGrid(x::AbstractMatrix, i::Int64, j::Int64)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:110",
+    "text": "InGrid\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.InGrid is a Function.\n# 2 methods for generic function \"InGrid\" from SpatRasters:\n [1] InGrid(i::Int64, j::Int64, nrow::Int64, ncol::Int64)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:106\n [2] InGrid(x::AbstractMatrix, i::Int64, j::Int64)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:110",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#line",
+    "href": "api/z-index.html#line",
+    "title": "Reference",
+    "section": "Line",
+    "text": "Line\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct Line{T}\n\n\nFields\norigin  :: Point{T}\nazimuth :: T\nlength  :: T\nk       :: T",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -164,7 +174,7 @@
     "href": "api/z-index.html#netcdftools",
     "title": "Reference",
     "section": "NetCDFTools",
-    "text": "NetCDFTools\n\n\n\n\n\n\nNo docstring found for public module NetCDFTools.\n\nPublic names\nAbstractSpatRaster, CMIP, D8Direction, DirLength, GridChunks, InGrid, MFDataset, MFVariable, NcDim, NcDim_time, NcDims, Neighbor, NextCell, QDM, QDM_chunk!, QDM_main, QDM_mov!, SpatRaster, SpatRasters, _weight_adw, _zip, angle_azimuth, angle_azimuth_sphere, approx, array, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, bilinear, cellArea, check_dims, close, col_goto, cor, coverage_fraction, distance_earth, distance_norm, earth_dist, exact_extract, find_first, find_neighbor, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, get_bandName, get_chunk, getgeotransform, gis2tau, gis2wflow, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, interp, interp_linear, interp_tps, isscalar, make_rast, median, merge_var, merge_var!, meshgrid, names, nband, nc_agg, nc_agg_dir, nc_attr, nc_attr!, nc_attr_rm!, nc_bands, nc_calendar, nc_cellsize, nc_close, nc_combine, nc_crop, nc_date, nc_dim, nc_dims, nc_info, nc_open, nc_read, nc_read_all, nc_read_par, nc_subset, nc_write, nc_write!, ncdim_def, ncinfo, ncsave, ncvar_def, ncvar_dim, ncvar_info, nlayer, nlyr, ogr_info, predict, range2bbox, rast, read_gdal, read_sf, resample_first, rm_empty, rm_shp, row_goto, set_bandnames, solve_tps, split_chunk, split_date, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_location_fast, st_mosaic, st_points, st_read, st_write, tau2gis, tps_kernel, updateMask!, weight_adw!, weight_idw!, weighted_nanmean, weighted_nanmean!, write_gdal, write_sf, xy2ij\n\n\nDisplaying contents of readme found at /home/runner/work/NetCDFTools.jl/NetCDFTools.jl/README.md\n\n\nNetCDFTools in Julia\n   \n\nDongdong Kong, CUG\n\n\n\nInstallation\nusing Pkg\nPkg.add(url = \"https://github.com/jl-pkgs/NetCDFTools.jl\")\n\nUsage\n\n检索CMIP6数据，获取下载url\nOpenDAP下载CMIP6数据\nCMIP6 QMD偏差矫正\nCMIP6 bilinear双线性插值\nnc文件拼接、聚合（一些仿cdo的函数，nccombine, ncsubset, nc_aggregate）\nnc文件处理",
+    "text": "NetCDFTools\n\n\n\n\n\n\nNo docstring found for public module NetCDFTools.\n\nPublic names\nAbstractSpatRaster, CMIP, D8Direction, DirLength, GridChunks, InGrid, Line, MFDataset, MFVariable, NcDim, NcDim_time, NcDims, Neighbor, NextCell, Point, QDM, QDM_chunk!, QDM_main, QDM_mov!, SVF, SVF_azimuth, SVF_azimuth_simple, SpatRaster, SpatRasters, _weight_adw, _zip, angle_SolarDeclination, angle_SunAzimuth, angle_SunElevation, angle_azimuth, angle_azimuth_sphere, approx, array, azimuth2deg, azimuth2slope, azimuth2xy, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, bilinear, cellArea, check_dims, close, col_goto, cor, coverage_fraction, deg2xy, dem_angle_MaxElevation, dem_slope, direction, direction_E, direction_N, distance_earth, distance_norm, earth_dist, exact_extract, find_first, find_neighbor, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, get_bandName, get_chunk, getgeotransform, gis2tau, gis2wflow, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, interp, interp_linear, interp_tps, intersect, isscalar, line_end, line_start, make_rast, median, merge_var, merge_var!, meshgrid, names, nband, nc_agg, nc_agg_dir, nc_attr, nc_attr!, nc_attr_rm!, nc_bands, nc_calendar, nc_cellsize, nc_close, nc_combine, nc_crop, nc_date, nc_dim, nc_dims, nc_info, nc_open, nc_read, nc_read_all, nc_read_par, nc_subset, nc_write, nc_write!, ncdim_def, ncinfo, ncsave, ncvar_def, ncvar_dim, ncvar_info, nlayer, nlyr, ogr_info, predict, range2bbox, rast, read_gdal, read_sf, resample_first, rm_empty, rm_shp, row_goto, set_bandnames, solve_tps, split_chunk, split_date, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_location_fast, st_mosaic, st_points, st_read, st_write, tau2gis, time2local, tps_kernel, updateMask!, weight_adw!, weight_idw!, weighted_nanmean, weighted_nanmean!, write_gdal, write_sf, xy2ij\n\n\nDisplaying contents of readme found at /home/runner/work/NetCDFTools.jl/NetCDFTools.jl/README.md\n\n\nNetCDFTools in Julia\n   \n\nDongdong Kong, CUG\n\n\n\nInstallation\nusing Pkg\nPkg.add(url = \"https://github.com/jl-pkgs/NetCDFTools.jl\")\n\nUsage\n\n检索CMIP6数据，获取下载url\nOpenDAP下载CMIP6数据\nCMIP6 QMD偏差矫正\nCMIP6 bilinear双线性插值\nnc文件拼接、聚合（一些仿cdo的函数，nccombine, ncsubset, nc_aggregate）\nnc文件处理",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -174,7 +184,17 @@
     "href": "api/z-index.html#nextcell",
     "title": "Reference",
     "section": "NextCell",
-    "text": "NextCell\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.NextCell is a Function.\n# 1 method for generic function \"NextCell\" from SpatRasters:\n [1] NextCell(dem::AbstractMatrix, i::Int64, j::Int64, dir::UInt8)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:120",
+    "text": "NextCell\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.NextCell is a Function.\n# 1 method for generic function \"NextCell\" from SpatRasters:\n [1] NextCell(dem::AbstractMatrix, i::Int64, j::Int64, dir::UInt8)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:120",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#point",
+    "href": "api/z-index.html#point",
+    "title": "Reference",
+    "section": "Point",
+    "text": "Point\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct Point{T}\n\n\nFields\nx :: T\ny :: T\n\n\nSupertype Hierarchy\nPoint{T} &lt;: SpatRasters.AbstractPoint{T} &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -220,6 +240,36 @@
     ]
   },
   {
+    "objectID": "api/z-index.html#svf",
+    "href": "api/z-index.html#svf",
+    "title": "Reference",
+    "section": "SVF",
+    "text": "SVF\n\n\n\n\n\n\n\nΦ_slope: in [deg], 天文学方位角，正北为0\nβ_slope: in [deg], 坡面角度",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#svf_azimuth",
+    "href": "api/z-index.html#svf_azimuth",
+    "title": "Reference",
+    "section": "SVF_azimuth",
+    "text": "SVF_azimuth\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.SVF_azimuth is a Function.\n# 1 method for generic function \"SVF_azimuth\" from SpatRasters:\n [1] SVF_azimuth(Φ_sun::T, Φ_slope::T, β_slope::T, zenith_max::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/sky_view_factor.jl:5",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#svf_azimuth_simple",
+    "href": "api/z-index.html#svf_azimuth_simple",
+    "title": "Reference",
+    "section": "SVF_azimuth_simple",
+    "text": "SVF_azimuth_simple\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.SVF_azimuth_simple is a Function.\n# 1 method for generic function \"SVF_azimuth_simple\" from SpatRasters:\n [1] SVF_azimuth_simple(zenith_max::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/sky_view_factor.jl:15",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
     "objectID": "api/z-index.html#spatraster",
     "href": "api/z-index.html#spatraster",
     "title": "Reference",
@@ -234,7 +284,7 @@
     "href": "api/z-index.html#spatrasters",
     "title": "Reference",
     "section": "SpatRasters",
-    "text": "SpatRasters\n\n\n\n\n\n\nNo docstring found for public module SpatRasters.\n\nPublic names\nAbstractSpatRaster, D8Direction, DirLength, InGrid, Neighbor, NextCell, SpatRaster, _weight_adw, angle_azimuth, angle_azimuth_sphere, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, cellArea, col_goto, cor, distance_earth, distance_norm, earth_dist, find_neighbor, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, getgeotransform, gis2tau, gis2wflow, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, interp, interp_tps, isscalar, make_rast, median, merge_var, merge_var!, meshgrid, nband, nlayer, nlyr, ogr_info, predict, range2bbox, rast, read_gdal, read_sf, resample_first, rm_shp, row_goto, set_bandnames, solve_tps, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_location_fast, st_mosaic, st_points, st_read, st_write, tau2gis, tps_kernel, weight_adw!, weight_idw!, write_gdal, write_sf, xy2ij\n\n\nDisplaying contents of readme found at /home/runner/.julia/packages/SpatRasters/4wIGt/README.md\n\n\nSpatRasters.jl: Simple Spatial Rasters in Julia\n&lt;!–  –&gt;   \n\nDongdong Kong\n\nSpatRaster is a simple spatial raster with WGS84 projection, abbreviated as rast.\nDue to its simplicity, SpatRasters.jl doesn’t rely on any other geospatial packages, which makes SpatRasters.jl more lightweight than GeoArrays and Rasters.jl.\nSpatRasters.jl used the class and function of R language terra and sf packages.\njulia -e \"@time using SpatRasters\"\n# 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)",
+    "text": "SpatRasters\n\n\n\n\n\n\nNo docstring found for public module SpatRasters.\n\nPublic names\nAbstractSpatRaster, D8Direction, DirLength, InGrid, Line, Neighbor, NextCell, Point, SVF, SVF_azimuth, SVF_azimuth_simple, SpatRaster, _weight_adw, angle_SolarDeclination, angle_SunAzimuth, angle_SunElevation, angle_azimuth, angle_azimuth_sphere, azimuth2deg, azimuth2slope, azimuth2xy, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, cellArea, col_goto, cor, deg2xy, dem_angle_MaxElevation, dem_slope, direction, direction_E, direction_N, distance_earth, distance_norm, earth_dist, find_neighbor, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, getgeotransform, gis2tau, gis2wflow, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, interp, interp_tps, intersect, isscalar, line_end, line_start, make_rast, median, merge_var, merge_var!, meshgrid, nband, nlayer, nlyr, ogr_info, predict, range2bbox, rast, read_gdal, read_sf, resample_first, rm_shp, row_goto, set_bandnames, solve_tps, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_location_fast, st_mosaic, st_points, st_read, st_write, tau2gis, time2local, tps_kernel, weight_adw!, weight_idw!, write_gdal, write_sf, xy2ij\n\n\nDisplaying contents of readme found at /home/runner/.julia/packages/SpatRasters/JMJ3M/README.md\n\n\nSpatRasters.jl: Simple Spatial Rasters in Julia\n&lt;!–  –&gt;   \n\nDongdong Kong\n\nSpatRaster is a simple spatial raster with WGS84 projection, abbreviated as rast.\nDue to its simplicity, SpatRasters.jl doesn’t rely on any other geospatial packages, which makes SpatRasters.jl more lightweight than GeoArrays and Rasters.jl.\nSpatRasters.jl used the class and function of R language terra and sf packages.\njulia -e \"@time using SpatRasters\"\n# 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)\n\nFunctions\nInterpolation (point to raster)\n\nThin Plate Spline Interpolation (tps)\nAngular Distance Weighting Interpolation (adw)\nInverse Distance Weighting Interpolation (idw)\n\nTerrain\n\nSky view factor (SVF)\nsun shade\n\nmethods\n\nintersect (line & raster)",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -244,7 +294,7 @@
     "href": "api/z-index.html#weight_adw",
     "title": "Reference",
     "section": "_weight_adw",
-    "text": "_weight_adw\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters._weight_adw is a Function.\n# 1 method for generic function \"_weight_adw\" from SpatRasters:\n [1] _weight_adw(dist::AbstractVector{FT}, angle::AbstractVector{FT}; cdd, m) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/weights.jl:65",
+    "text": "_weight_adw\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters._weight_adw is a Function.\n# 1 method for generic function \"_weight_adw\" from SpatRasters:\n [1] _weight_adw(dist::AbstractVector{FT}, angle::AbstractVector{FT}; cdd, m) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/weights.jl:65",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -260,11 +310,41 @@
     ]
   },
   {
+    "objectID": "api/z-index.html#angle_solardeclination",
+    "href": "api/z-index.html#angle_solardeclination",
+    "title": "Reference",
+    "section": "angle_SolarDeclination",
+    "text": "angle_SolarDeclination\n\n\n\n\n\n\nangle_SolarDeclination(J; to_deg=false)\n\nArguments\n\nσ: Solar Declination Angle, 黄赤交角（太阳赤纬角）",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#angle_sunazimuth",
+    "href": "api/z-index.html#angle_sunazimuth",
+    "title": "Reference",
+    "section": "angle_SunAzimuth",
+    "text": "angle_SunAzimuth\n\n\n\n\n\n\n太阳方位角，正北为0°，正东为90°\n\nReferences\n\nhttps://www.suncalc.org/#/26.9025,120,3/2025.07.25/17:14/1/3",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#angle_sunelevation",
+    "href": "api/z-index.html#angle_sunelevation",
+    "title": "Reference",
+    "section": "angle_SunElevation",
+    "text": "angle_SunElevation\n\n\n\n\n\n\n任一点，任一时刻的太阳高度角",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
     "objectID": "api/z-index.html#angle_azimuth",
     "href": "api/z-index.html#angle_azimuth",
     "title": "Reference",
     "section": "angle_azimuth",
-    "text": "angle_azimuth\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.angle_azimuth is a Function.\n# 2 methods for generic function \"angle_azimuth\" from SpatRasters:\n [1] angle_azimuth(p1::AbstractVector{FT}, p2::AbstractMatrix{FT}) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/angle.jl:58\n [2] angle_azimuth(p1::AbstractVector{FT}, p2::AbstractVector{FT}; to_degree) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/angle.jl:38",
+    "text": "angle_azimuth\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.angle_azimuth is a Function.\n# 2 methods for generic function \"angle_azimuth\" from SpatRasters:\n [1] angle_azimuth(p1::AbstractVector{FT}, p2::AbstractMatrix{FT}) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/angle.jl:58\n [2] angle_azimuth(p1::AbstractVector{FT}, p2::AbstractVector{FT}; to_degree) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/angle.jl:38",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -300,6 +380,36 @@
     ]
   },
   {
+    "objectID": "api/z-index.html#azimuth2deg",
+    "href": "api/z-index.html#azimuth2deg",
+    "title": "Reference",
+    "section": "azimuth2deg",
+    "text": "azimuth2deg\n\n\n\n\n\n\n方位角转换为数学角度，限定在0-360°\n  0 -&gt;   90\n 90 -&gt;    0\n180 -&gt;  -90\n270 -&gt; -180",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#azimuth2slope",
+    "href": "api/z-index.html#azimuth2slope",
+    "title": "Reference",
+    "section": "azimuth2slope",
+    "text": "azimuth2slope\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.azimuth2slope is a Function.\n# 1 method for generic function \"azimuth2slope\" from SpatRasters:\n [1] azimuth2slope(ψ)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/angle.jl:23",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#azimuth2xy",
+    "href": "api/z-index.html#azimuth2xy",
+    "title": "Reference",
+    "section": "azimuth2xy",
+    "text": "azimuth2xy\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.azimuth2xy is a Function.\n# 1 method for generic function \"azimuth2xy\" from SpatRasters:\n [1] azimuth2xy(Φ::Real)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/angle.jl:25",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
     "objectID": "api/z-index.html#bandnames",
     "href": "api/z-index.html#bandnames",
     "title": "Reference",
@@ -324,7 +434,7 @@
     "href": "api/z-index.html#bbox2cellsize",
     "title": "Reference",
     "section": "bbox2cellsize",
-    "text": "bbox2cellsize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2cellsize is a Function.\n# 1 method for generic function \"bbox2cellsize\" from SpatRasters:\n [1] bbox2cellsize(b::bbox, size)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:19",
+    "text": "bbox2cellsize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2cellsize is a Function.\n# 1 method for generic function \"bbox2cellsize\" from SpatRasters:\n [1] bbox2cellsize(b::bbox, size)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:19",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -344,7 +454,7 @@
     "href": "api/z-index.html#bbox2lims",
     "title": "Reference",
     "section": "bbox2lims",
-    "text": "bbox2lims\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2lims is a Function.\n# 1 method for generic function \"bbox2lims\" from SpatRasters:\n [1] bbox2lims(b::bbox)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:66",
+    "text": "bbox2lims\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2lims is a Function.\n# 1 method for generic function \"bbox2lims\" from SpatRasters:\n [1] bbox2lims(b::bbox)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:66",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -354,7 +464,7 @@
     "href": "api/z-index.html#bbox2ndim",
     "title": "Reference",
     "section": "bbox2ndim",
-    "text": "bbox2ndim\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2ndim is a Function.\n# 1 method for generic function \"bbox2ndim\" from SpatRasters:\n [1] bbox2ndim(b; size, cellsize)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:49",
+    "text": "bbox2ndim\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2ndim is a Function.\n# 1 method for generic function \"bbox2ndim\" from SpatRasters:\n [1] bbox2ndim(b; size, cellsize)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:49",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -364,7 +474,7 @@
     "href": "api/z-index.html#bbox2range",
     "title": "Reference",
     "section": "bbox2range",
-    "text": "bbox2range\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2range is a Function.\n# 1 method for generic function \"bbox2range\" from SpatRasters:\n [1] bbox2range(b::bbox)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:63",
+    "text": "bbox2range\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2range is a Function.\n# 1 method for generic function \"bbox2range\" from SpatRasters:\n [1] bbox2range(b::bbox)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:63",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -374,7 +484,7 @@
     "href": "api/z-index.html#bbox2vec",
     "title": "Reference",
     "section": "bbox2vec",
-    "text": "bbox2vec\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2vec is a Function.\n# 1 method for generic function \"bbox2vec\" from SpatRasters:\n [1] bbox2vec(b::bbox)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:65",
+    "text": "bbox2vec\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox2vec is a Function.\n# 1 method for generic function \"bbox2vec\" from SpatRasters:\n [1] bbox2vec(b::bbox)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:65",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -384,7 +494,7 @@
     "href": "api/z-index.html#bbox_overlap",
     "title": "Reference",
     "section": "bbox_overlap",
-    "text": "bbox_overlap\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox_overlap is a Function.\n# 1 method for generic function \"bbox_overlap\" from SpatRasters:\n [1] bbox_overlap(b::bbox, box::bbox; size, cellsize, reverse_lat, zip)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:70",
+    "text": "bbox_overlap\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.bbox_overlap is a Function.\n# 1 method for generic function \"bbox_overlap\" from SpatRasters:\n [1] bbox_overlap(b::bbox, box::bbox; size, cellsize, reverse_lat, zip)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:70",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -404,7 +514,7 @@
     "href": "api/z-index.html#cellarea",
     "title": "Reference",
     "section": "cellArea",
-    "text": "cellArea\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.cellArea is a Function.\n# 1 method for generic function \"cellArea\" from SpatRasters:\n [1] cellArea(x, y, cellsize)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:118",
+    "text": "cellArea\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.cellArea is a Function.\n# 1 method for generic function \"cellArea\" from SpatRasters:\n [1] cellArea(x, y, cellsize)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRasters.jl:122",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -434,7 +544,7 @@
     "href": "api/z-index.html#col_goto",
     "title": "Reference",
     "section": "col_goto",
-    "text": "col_goto\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.col_goto is a Function.\n# 1 method for generic function \"col_goto\" from SpatRasters:\n [1] col_goto(col::Int64, idir::Int64)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:104",
+    "text": "col_goto\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.col_goto is a Function.\n# 1 method for generic function \"col_goto\" from SpatRasters:\n [1] col_goto(col::Int64, idir::Int64)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:104",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -460,11 +570,71 @@
     ]
   },
   {
+    "objectID": "api/z-index.html#deg2xy",
+    "href": "api/z-index.html#deg2xy",
+    "title": "Reference",
+    "section": "deg2xy",
+    "text": "deg2xy\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.deg2xy is a Function.\n# 1 method for generic function \"deg2xy\" from SpatRasters:\n [1] deg2xy(θ::Real)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/angle.jl:33",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#dem_angle_maxelevation",
+    "href": "api/z-index.html#dem_angle_maxelevation",
+    "title": "Reference",
+    "section": "dem_angle_MaxElevation",
+    "text": "dem_angle_MaxElevation\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.dem_angle_MaxElevation is a Function.\n# 2 methods for generic function \"dem_angle_MaxElevation\" from SpatRasters:\n [1] dem_angle_MaxElevation(elev::SpatRaster; δψ, radian)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/dem_slope.jl:38\n [2] dem_angle_MaxElevation(elev::SpatRaster, p0::Point{T}; δψ, radian, cellsize) where T\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/dem_slope.jl:18",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#dem_slope",
+    "href": "api/z-index.html#dem_slope",
+    "title": "Reference",
+    "section": "dem_slope",
+    "text": "dem_slope\n\n\n\n\n\n\nslope in radian",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#direction",
+    "href": "api/z-index.html#direction",
+    "title": "Reference",
+    "section": "direction",
+    "text": "direction\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.direction is a Function.\n# 1 method for generic function \"direction\" from SpatRasters:\n [1] direction(x::T, y::T) where T\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/angle.jl:51",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#direction_e",
+    "href": "api/z-index.html#direction_e",
+    "title": "Reference",
+    "section": "direction_E",
+    "text": "direction_E\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.direction_E is a Function.\n# 1 method for generic function \"direction_E\" from SpatRasters:\n [1] direction_E(x::Real; eps)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/angle.jl:41",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#direction_n",
+    "href": "api/z-index.html#direction_n",
+    "title": "Reference",
+    "section": "direction_N",
+    "text": "direction_N\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.direction_N is a Function.\n# 1 method for generic function \"direction_N\" from SpatRasters:\n [1] direction_N(y::Real; eps)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/terrain/angle.jl:46",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
     "objectID": "api/z-index.html#distance_earth",
     "href": "api/z-index.html#distance_earth",
     "title": "Reference",
     "section": "distance_earth",
-    "text": "distance_earth\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.distance_earth is a Function.\n# 1 method for generic function \"distance_earth\" from SpatRasters:\n [1] distance_earth(p1::AbstractArray{FT}, p2::AbstractArray{FT}; R) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/Interp.jl:17",
+    "text": "distance_earth\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.distance_earth is a Function.\n# 1 method for generic function \"distance_earth\" from SpatRasters:\n [1] distance_earth(p1::AbstractArray{FT}, p2::AbstractArray{FT}; R) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/Interp.jl:17",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -474,7 +644,7 @@
     "href": "api/z-index.html#distance_norm",
     "title": "Reference",
     "section": "distance_norm",
-    "text": "distance_norm\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.distance_norm is a Function.\n# 1 method for generic function \"distance_norm\" from SpatRasters:\n [1] distance_norm(p1::AbstractArray{FT}, p2::AbstractArray{FT}; kw...) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/Interp.jl:8",
+    "text": "distance_norm\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.distance_norm is a Function.\n# 1 method for generic function \"distance_norm\" from SpatRasters:\n [1] distance_norm(p1::AbstractArray{FT}, p2::AbstractArray{FT}; kw...) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/Interp.jl:8",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -514,7 +684,7 @@
     "href": "api/z-index.html#find_neighbor",
     "title": "Reference",
     "section": "find_neighbor",
-    "text": "find_neighbor\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.find_neighbor is a Function.\n# 2 methods for generic function \"find_neighbor\" from SpatRasters:\n [1] find_neighbor(ra::SpatRaster, X; nmax, radius, do_angle)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/find_neighbor.jl:29\n [2] find_neighbor(point, tree; nmax, radius)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/find_neighbor.jl:21",
+    "text": "find_neighbor\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.find_neighbor is a Function.\n# 2 methods for generic function \"find_neighbor\" from SpatRasters:\n [1] find_neighbor(ra::SpatRaster, X; nmax, radius, do_angle)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/find_neighbor.jl:29\n [2] find_neighbor(point, tree; nmax, radius)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/find_neighbor.jl:21",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -524,7 +694,7 @@
     "href": "api/z-index.html#fliplr",
     "title": "Reference",
     "section": "fliplr",
-    "text": "fliplr\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.fliplr is a Function.\n# 2 methods for generic function \"fliplr\" from SpatRasters:\n [1] fliplr(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:14\n [2] fliplr(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:13",
+    "text": "fliplr\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.fliplr is a Function.\n# 2 methods for generic function \"fliplr\" from SpatRasters:\n [1] fliplr(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Ops.jl:14\n [2] fliplr(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Ops.jl:13",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -534,7 +704,7 @@
     "href": "api/z-index.html#flipud",
     "title": "Reference",
     "section": "flipud",
-    "text": "flipud\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.flipud is a Function.\n# 2 methods for generic function \"flipud\" from SpatRasters:\n [1] flipud(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:12\n [2] flipud(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:11",
+    "text": "flipud\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.flipud is a Function.\n# 2 methods for generic function \"flipud\" from SpatRasters:\n [1] flipud(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Ops.jl:12\n [2] flipud(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Ops.jl:11",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -604,7 +774,7 @@
     "href": "api/z-index.html#getgeotransform",
     "title": "Reference",
     "section": "getgeotransform",
-    "text": "getgeotransform\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.getgeotransform is a Function.\n# 1 method for generic function \"getgeotransform\" from SpatRasters:\n [1] getgeotransform(ra::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Ops.jl:2",
+    "text": "getgeotransform\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.getgeotransform is a Function.\n# 1 method for generic function \"getgeotransform\" from SpatRasters:\n [1] getgeotransform(ra::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Ops.jl:2",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -614,7 +784,7 @@
     "href": "api/z-index.html#gis2tau",
     "title": "Reference",
     "section": "gis2tau",
-    "text": "gis2tau\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.gis2tau is a Function.\n# 1 method for generic function \"gis2tau\" from SpatRasters:\n [1] gis2tau(A::AbstractArray)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:59",
+    "text": "gis2tau\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.gis2tau is a Function.\n# 1 method for generic function \"gis2tau\" from SpatRasters:\n [1] gis2tau(A::AbstractArray)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:59",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -624,7 +794,7 @@
     "href": "api/z-index.html#gis2wflow",
     "title": "Reference",
     "section": "gis2wflow",
-    "text": "gis2wflow\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.gis2wflow is a Function.\n# 1 method for generic function \"gis2wflow\" from SpatRasters:\n [1] gis2wflow(A::AbstractArray)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:50",
+    "text": "gis2wflow\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.gis2wflow is a Function.\n# 1 method for generic function \"gis2wflow\" from SpatRasters:\n [1] gis2wflow(A::AbstractArray)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:50",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -694,7 +864,17 @@
     "href": "api/z-index.html#interp_tps",
     "title": "Reference",
     "section": "interp_tps",
-    "text": "interp_tps\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.interp_tps is a Function.\n# 1 method for generic function \"interp_tps\" from SpatRasters:\n [1] interp_tps(X::AbstractMatrix, Y::AbstractArray, target::SpatRaster; λ, distance, progress, kw...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:156",
+    "text": "interp_tps\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.interp_tps is a Function.\n# 1 method for generic function \"interp_tps\" from SpatRasters:\n [1] interp_tps(X::AbstractMatrix, Y::AbstractArray, target::SpatRaster; λ, distance, progress, kw...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/interp_tps.jl:156",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#intersect",
+    "href": "api/z-index.html#intersect",
+    "title": "Reference",
+    "section": "intersect",
+    "text": "intersect\n\n\n\n\n\n\nintersect(s, itrs...)\n∩(s, itrs...)\nConstruct the set containing those elements which appear in all of the arguments.\nThe first argument controls what kind of container is returned. If this is an array, it maintains the order in which elements first appear.\nUnicode ∩ can be typed by writing \\cap then pressing tab in the Julia REPL, and in many editors. This is an infix operator, allowing s ∩ itr.\nSee also setdiff, isdisjoint, issubset, issetequal.\n\nAs of Julia 1.8 intersect returns a result with the eltype of the type-promoted eltypes of the two inputs\n\n\nExamples\njulia&gt; intersect([1, 2, 3], [3, 4, 5])\n1-element Vector{Int64}:\n 3\n\njulia&gt; intersect([1, 4, 4, 5, 6], [6, 4, 6, 7, 8])\n2-element Vector{Int64}:\n 4\n 6\n\njulia&gt; intersect(1:16, 7:99)\n7:16\n\njulia&gt; (0, 0.0) ∩ (-0.0, 0)\n1-element Vector{Real}:\n 0\n\njulia&gt; intersect(Set([1, 2]), BitSet([2, 3]), 1.0:10.0)\nSet{Float64} with 1 element:\n  2.0\nintersect(h1::Rect, h2::Rect)\nPerform a intersection between two Rects.\nintersect(ss, others...)\nEach argument is a SortedSet with the same key and order type. The return variable is a new SortedSet that is the intersection of all the sets that are input. Time: O(cn log n), where n is the total number of items in all the arguments.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -704,7 +884,27 @@
     "href": "api/z-index.html#isscalar",
     "title": "Reference",
     "section": "isscalar",
-    "text": "isscalar\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.isscalar is a Function.\n# 2 methods for generic function \"isscalar\" from SpatRasters:\n [1] isscalar(::Nothing)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/tools_Ipaper.jl:4\n [2] isscalar(x)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/tools_Ipaper.jl:3",
+    "text": "isscalar\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.isscalar is a Function.\n# 2 methods for generic function \"isscalar\" from SpatRasters:\n [1] isscalar(::Nothing)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/tools_Ipaper.jl:4\n [2] isscalar(x)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/tools_Ipaper.jl:3",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#line_end",
+    "href": "api/z-index.html#line_end",
+    "title": "Reference",
+    "section": "line_end",
+    "text": "line_end\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.line_end is a Function.\n# 1 method for generic function \"line_end\" from SpatRasters:\n [1] line_end(line::Line)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/datatype.jl:28",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#line_start",
+    "href": "api/z-index.html#line_start",
+    "title": "Reference",
+    "section": "line_start",
+    "text": "line_start\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.line_start is a Function.\n# 1 method for generic function \"line_start\" from SpatRasters:\n [1] line_start(line::Line)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/datatype.jl:26",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -714,7 +914,7 @@
     "href": "api/z-index.html#make_rast",
     "title": "Reference",
     "section": "make_rast",
-    "text": "make_rast\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.make_rast is a Function.\n# 1 method for generic function \"make_rast\" from SpatRasters:\n [1] make_rast(; b, cellsize)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRaster.jl:67",
+    "text": "make_rast\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.make_rast is a Function.\n# 1 method for generic function \"make_rast\" from SpatRasters:\n [1] make_rast(; b, cellsize)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRaster.jl:72",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -744,7 +944,7 @@
     "href": "api/z-index.html#merge_var-1",
     "title": "Reference",
     "section": "merge_var!",
-    "text": "merge_var!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.merge_var! is a Function.\n# 1 method for generic function \"merge_var!\" from SpatRasters:\n [1] merge_var!(R::AbstractArray, f; var, box, cellsize)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_mosaic.jl:35",
+    "text": "merge_var!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.merge_var! is a Function.\n# 1 method for generic function \"merge_var!\" from SpatRasters:\n [1] merge_var!(R::AbstractArray, f; var, box, cellsize)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_mosaic.jl:35",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -774,7 +974,7 @@
     "href": "api/z-index.html#nband",
     "title": "Reference",
     "section": "nband",
-    "text": "nband\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.nband is a Function.\n# 1 method for generic function \"nband\" from SpatRasters:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRaster.jl:21",
+    "text": "nband\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.nband is a Function.\n# 1 method for generic function \"nband\" from SpatRasters:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRaster.jl:21",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1074,7 +1274,7 @@
     "href": "api/z-index.html#nlyr",
     "title": "Reference",
     "section": "nlyr",
-    "text": "nlyr\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.nband is a Function.\n# 1 method for generic function \"nband\" from SpatRasters:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRaster.jl:21",
+    "text": "nlyr\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.nband is a Function.\n# 1 method for generic function \"nband\" from SpatRasters:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRaster.jl:21",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1094,7 +1294,7 @@
     "href": "api/z-index.html#predict",
     "title": "Reference",
     "section": "predict",
-    "text": "predict\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.predict is a Function.\n# 1 method for generic function \"predict\" from SpatRasters:\n [1] predict(tps::SpatRasters.ThinPlateSpline, x2::AbstractMatrix{FT}; distance, progress) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:120",
+    "text": "predict\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.predict is a Function.\n# 1 method for generic function \"predict\" from SpatRasters:\n [1] predict(tps::SpatRasters.ThinPlateSpline, x2::AbstractMatrix{FT}; distance, progress) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/interp_tps.jl:120",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1104,7 +1304,7 @@
     "href": "api/z-index.html#range2bbox",
     "title": "Reference",
     "section": "range2bbox",
-    "text": "range2bbox\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.range2bbox is a Function.\n# 1 method for generic function \"range2bbox\" from SpatRasters:\n [1] range2bbox(r::AbstractVector)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/bbox.jl:68",
+    "text": "range2bbox\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.range2bbox is a Function.\n# 1 method for generic function \"range2bbox\" from SpatRasters:\n [1] range2bbox(r::AbstractVector)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/bbox.jl:68",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1124,7 +1324,7 @@
     "href": "api/z-index.html#read_gdal",
     "title": "Reference",
     "section": "read_gdal",
-    "text": "read_gdal\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatRasters:\n [1] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:35\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:22\n [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:13",
+    "text": "read_gdal\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatRasters:\n [1] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/IO.jl:35\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/IO.jl:22\n [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/IO.jl:13",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1144,7 +1344,7 @@
     "href": "api/z-index.html#resample_first",
     "title": "Reference",
     "section": "resample_first",
-    "text": "resample_first\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.resample_first is a Function.\n# 1 method for generic function \"resample_first\" from SpatRasters:\n [1] resample_first(r::AbstractArray; fact, deepcopy)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_resample.jl:6",
+    "text": "resample_first\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.resample_first is a Function.\n# 1 method for generic function \"resample_first\" from SpatRasters:\n [1] resample_first(r::AbstractArray; fact, deepcopy)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_resample.jl:6",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1164,7 +1364,7 @@
     "href": "api/z-index.html#rm_shp",
     "title": "Reference",
     "section": "rm_shp",
-    "text": "rm_shp\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.rm_shp is a Function.\n# 1 method for generic function \"rm_shp\" from SpatRasters:\n [1] rm_shp(f)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:95",
+    "text": "rm_shp\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.rm_shp is a Function.\n# 1 method for generic function \"rm_shp\" from SpatRasters:\n [1] rm_shp(f)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRasters.jl:99",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1224,7 +1424,7 @@
     "href": "api/z-index.html#st_bbox",
     "title": "Reference",
     "section": "st_bbox",
-    "text": "st_bbox\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_bbox is a Function.\n# 5 methods for generic function \"st_bbox\" from SpatRasters:\n [1] st_bbox(bs::Vector{bbox})\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:22\n [2] st_bbox(f::String)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:15\n [3] st_bbox(lon, lat)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:8\n [4] st_bbox(v::Vector{&lt;:Real})\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:4\n [5] st_bbox(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_bbox.jl:2",
+    "text": "st_bbox\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_bbox is a Function.\n# 6 methods for generic function \"st_bbox\" from SpatRasters:\n [1] st_bbox(bs::Vector{bbox})\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_bbox.jl:22\n [2] st_bbox(f::String)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_bbox.jl:15\n [3] st_bbox(lon, lat)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_bbox.jl:8\n [4] st_bbox(v::Vector{&lt;:Real})\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_bbox.jl:4\n [5] st_bbox(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_bbox.jl:2\n [6] st_bbox(line::Line)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/datatype.jl:36",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1234,7 +1434,7 @@
     "href": "api/z-index.html#st_cellsize",
     "title": "Reference",
     "section": "st_cellsize",
-    "text": "st_cellsize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_cellsize is a Function.\n# 3 methods for generic function \"st_cellsize\" from SpatRasters:\n [1] st_cellsize(f::AbstractString)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:51\n [2] st_cellsize(lon::AbstractVector, lat::AbstractVector)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:47\n [3] st_cellsize(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:45",
+    "text": "st_cellsize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_cellsize is a Function.\n# 3 methods for generic function \"st_cellsize\" from SpatRasters:\n [1] st_cellsize(f::AbstractString)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_dims.jl:51\n [2] st_cellsize(lon::AbstractVector, lat::AbstractVector)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_dims.jl:47\n [3] st_cellsize(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_dims.jl:45",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1244,7 +1444,7 @@
     "href": "api/z-index.html#st_coords",
     "title": "Reference",
     "section": "st_coords",
-    "text": "st_coords\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_coords is a Function.\n# 1 method for generic function \"st_coords\" from SpatRasters:\n [1] st_coords(ra::SpatRaster)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:77",
+    "text": "st_coords\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_coords is a Function.\n# 1 method for generic function \"st_coords\" from SpatRasters:\n [1] st_coords(ra::SpatRaster)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRasters.jl:81",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1254,7 +1454,7 @@
     "href": "api/z-index.html#st_crop",
     "title": "Reference",
     "section": "st_crop",
-    "text": "st_crop\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_crop is a Function.\n# 2 methods for generic function \"st_crop\" from SpatRasters:\n [1] st_crop(f::String, b::bbox)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_crop.jl:3\n [2] st_crop(ra::SpatRaster, b::bbox)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_crop.jl:5",
+    "text": "st_crop\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_crop is a Function.\n# 2 methods for generic function \"st_crop\" from SpatRasters:\n [1] st_crop(f::String, b::bbox)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_crop.jl:3\n [2] st_crop(ra::SpatRaster, b::bbox)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_crop.jl:5",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1264,7 +1464,7 @@
     "href": "api/z-index.html#st_dims",
     "title": "Reference",
     "section": "st_dims",
-    "text": "st_dims\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_dims is a Function.\n# 4 methods for generic function \"st_dims\" from SpatRasters:\n [1] st_dims(x::SpatRasters.FileNetCDF)\n     @ NetCDFTools ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:8\n [2] st_dims(x::SpatRasters.FileGDAL)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:32\n [3] st_dims(f::String)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:26\n [4] st_dims(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_dims.jl:24",
+    "text": "st_dims\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_dims is a Function.\n# 4 methods for generic function \"st_dims\" from SpatRasters:\n [1] st_dims(x::SpatRasters.FileNetCDF)\n     @ NetCDFTools ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:8\n [2] st_dims(x::SpatRasters.FileGDAL)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_dims.jl:32\n [3] st_dims(f::String)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_dims.jl:26\n [4] st_dims(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_dims.jl:24",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1274,7 +1474,7 @@
     "href": "api/z-index.html#st_extract",
     "title": "Reference",
     "section": "st_extract",
-    "text": "st_extract\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_extract is a Function.\n# 1 method for generic function \"st_extract\" from SpatRasters:\n [1] st_extract(ra::AbstractSpatRaster, points::Array{Tuple{T, T}, 1}; combine) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_extract.jl:69",
+    "text": "st_extract\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_extract is a Function.\n# 1 method for generic function \"st_extract\" from SpatRasters:\n [1] st_extract(ra::AbstractSpatRaster, points::Array{Tuple{T, T}, 1}; combine) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_extract.jl:75",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1284,7 +1484,7 @@
     "href": "api/z-index.html#st_location",
     "title": "Reference",
     "section": "st_location",
-    "text": "st_location\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_location is a Function.\n# 1 method for generic function \"st_location\" from SpatRasters:\n [1] st_location(ra::AbstractSpatRaster, points::Array{Tuple{T, T}, 1}; kw...) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_extract.jl:63",
+    "text": "st_location\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_location is a Function.\n# 2 methods for generic function \"st_location\" from SpatRasters:\n [1] st_location(ra::AbstractSpatRaster, points::Array{Tuple{T, T}, 1}; kw...) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_extract.jl:69\n [2] st_location(ra::AbstractSpatRaster, point::Tuple{T, T}; kw...) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_extract.jl:63",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1294,7 +1494,7 @@
     "href": "api/z-index.html#st_location_exact",
     "title": "Reference",
     "section": "st_location_exact",
-    "text": "st_location_exact\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_location_exact is a Function.\n# 1 method for generic function \"st_location_exact\" from SpatRasters:\n [1] st_location_exact(lon::AbstractVector, lat::AbstractVector, points::Array{Tuple{T, T}, 1}; rm_empty, cellsize, tol) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/st_extract.jl:12",
+    "text": "st_location_exact\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_location_exact is a Function.\n# 1 method for generic function \"st_location_exact\" from SpatRasters:\n [1] st_location_exact(lon::AbstractVector, lat::AbstractVector, points::Array{Tuple{T, T}, 1}; rm_empty, cellsize, tol) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/st_extract.jl:12",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1324,7 +1524,7 @@
     "href": "api/z-index.html#st_points",
     "title": "Reference",
     "section": "st_points",
-    "text": "st_points\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_points is a Function.\n# 1 method for generic function \"st_points\" from SpatRasters:\n [1] st_points(x::AbstractVector, y::AbstractVector)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:83",
+    "text": "st_points\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.st_points is a Function.\n# 1 method for generic function \"st_points\" from SpatRasters:\n [1] st_points(x::AbstractVector, y::AbstractVector)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRasters.jl:87",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1334,7 +1534,7 @@
     "href": "api/z-index.html#st_read",
     "title": "Reference",
     "section": "st_read",
-    "text": "st_read\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatRasters:\n [1] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:35\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:22\n [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/IO.jl:13",
+    "text": "st_read\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatRasters:\n [1] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/IO.jl:35\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/IO.jl:22\n [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/IO.jl:13",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1354,7 +1554,17 @@
     "href": "api/z-index.html#tau2gis",
     "title": "Reference",
     "section": "tau2gis",
-    "text": "tau2gis\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.tau2gis is a Function.\n# 1 method for generic function \"tau2gis\" from SpatRasters:\n [1] tau2gis(A::AbstractArray)\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/hydro/Hydro.jl:67",
+    "text": "tau2gis\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.tau2gis is a Function.\n# 1 method for generic function \"tau2gis\" from SpatRasters:\n [1] tau2gis(A::AbstractArray)\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/hydro/Hydro.jl:67",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/z-index.html#time2local",
+    "href": "api/z-index.html#time2local",
+    "title": "Reference",
+    "section": "time2local",
+    "text": "time2local\n\n\n\n\n\n\n北京时间修正到localtime",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1364,7 +1574,7 @@
     "href": "api/z-index.html#tps_kernel",
     "title": "Reference",
     "section": "tps_kernel",
-    "text": "tps_kernel\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.tps_kernel is a Function.\n# 2 methods for generic function \"tps_kernel\" from SpatRasters:\n [1] tps_kernel(x1::AbstractMatrix{FT}, x2::AbstractMatrix{FT}; distance) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:63\n [2] tps_kernel(x::AbstractMatrix{FT}; distance) where FT\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/interp_tps.jl:44",
+    "text": "tps_kernel\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.tps_kernel is a Function.\n# 2 methods for generic function \"tps_kernel\" from SpatRasters:\n [1] tps_kernel(x1::AbstractMatrix{FT}, x2::AbstractMatrix{FT}; distance) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/interp_tps.jl:63\n [2] tps_kernel(x::AbstractMatrix{FT}; distance) where FT\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/interp_tps.jl:44",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1384,7 +1594,7 @@
     "href": "api/z-index.html#weight_adw-1",
     "title": "Reference",
     "section": "weight_adw!",
-    "text": "weight_adw!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.weight_adw! is a Function.\n# 1 method for generic function \"weight_adw!\" from SpatRasters:\n [1] weight_adw!(neighbor::Neighbor{FT, N}; cdd, m) where {FT, N}\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/weights.jl:19",
+    "text": "weight_adw!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.weight_adw! is a Function.\n# 1 method for generic function \"weight_adw!\" from SpatRasters:\n [1] weight_adw!(neighbor::Neighbor{FT, N}; cdd, m) where {FT, N}\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/weights.jl:19",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1394,7 +1604,7 @@
     "href": "api/z-index.html#weight_idw",
     "title": "Reference",
     "section": "weight_idw!",
-    "text": "weight_idw!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.weight_idw! is a Function.\n# 1 method for generic function \"weight_idw!\" from SpatRasters:\n [1] weight_idw!(neighbor::Neighbor{FT, N}; m) where {FT, N}\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/Interp/weights.jl:4",
+    "text": "weight_idw!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.weight_idw! is a Function.\n# 1 method for generic function \"weight_idw!\" from SpatRasters:\n [1] weight_idw!(neighbor::Neighbor{FT, N}; m) where {FT, N}\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/Interp/weights.jl:4",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1444,7 +1654,7 @@
     "href": "api/z-index.html#xy2ij",
     "title": "Reference",
     "section": "xy2ij",
-    "text": "xy2ij\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.xy2ij is a Function.\n# 2 methods for generic function \"xy2ij\" from SpatRasters:\n [1] xy2ij(point::Tuple{T, T}, ra::SpatRaster) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:112\n [2] xy2ij(x::T, y::T, b::bbox, cellsize) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/4wIGt/src/SpatRasters.jl:101",
+    "text": "xy2ij\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatRasters.xy2ij is a Function.\n# 2 methods for generic function \"xy2ij\" from SpatRasters:\n [1] xy2ij(point::Tuple{T, T}, ra::SpatRaster) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRasters.jl:116\n [2] xy2ij(x::T, y::T, b::bbox, cellsize) where T&lt;:Real\n     @ ~/.julia/packages/SpatRasters/JMJ3M/src/SpatRasters.jl:105",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
