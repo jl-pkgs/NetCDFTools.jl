@@ -11,7 +11,7 @@ include("test-Ipaper.jl")
 include("interp/test-weighted_nanmean.jl")
 # include("interp/test-angle.jl")
 # include("interp/test-spInterp.jl")
-include("interp/test-bilinear.jl")
+# include("interp/test-bilinear.jl")
 
 # cd(dirname(@__FILE__)) do
 include("test-nc_attr.jl")

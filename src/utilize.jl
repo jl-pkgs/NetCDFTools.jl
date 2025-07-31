@@ -1,4 +1,4 @@
-export rm_empty, weighted_nanmean!, weighted_nanmean
+export weighted_nanmean!, weighted_nanmean
 import Ipaper: weighted_nanmean
 
 # byrow
@@ -34,6 +34,7 @@ function weighted_nanmean!(R::AbstractVector, mat::AbstractMatrix{T1}, w::Abstra
   return R
 end
 
-function rm_empty(list::Vector)
-  filter(x -> !isempty(x), list)
-end
+
+# function rm_empty(list::Vector)
+#   filter(x -> !isempty(x), list)
+# end
