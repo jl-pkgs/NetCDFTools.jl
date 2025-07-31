@@ -10,9 +10,9 @@ book:
     date: "2025-06-29"
     chapters:
         - index.md
-        - api/1-SpatRaster.qmd
+        - 1-SpatRaster.qmd
         # - api/2-spInterp.qmd
-        - api/z-index.qmd 
+        - z-index.qmd 
         - Reference.md
 
     navbar: 
