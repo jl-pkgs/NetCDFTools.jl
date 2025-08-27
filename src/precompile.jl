@@ -17,17 +17,6 @@ precompile(nc_calendar, (String,))
   @compile_workload begin
     info = CMIP.CMIPFiles_info(fs; detailed=false)
     info_s = CMIP.CMIPFiles_summary(info)
-
-    # compile bilinear
-    for T in (Float64, Float32)
-      lon = 70:5:140
-      lat = 15:5:55
-
-      Lon = 70:2.5:140
-      Lat = 15:2.5:55
-      Z = rand(T, length(lon), length(lat), 2)
-      r = bilinear(lon, lat, Z, Lon, Lat; na_rm=true)
-    end
   end
 end
 
