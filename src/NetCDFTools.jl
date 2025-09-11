@@ -19,7 +19,7 @@ import DataFrames: AbstractDataFrame, GroupedDataFrame
 
 # include("Ipaper/Ipaper.jl")
 using Ipaper
-@reexport using SpatRasters
+@reexport using SpatialRasterLite
 
 export exact_extract, coverage_fraction
 
