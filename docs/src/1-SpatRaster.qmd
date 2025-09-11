@@ -10,7 +10,7 @@ execute:
 #| echo: false
 #| output: false
 using DocumenterQuarto
-# using SpatRasters
+# using SpatialRasterLite
 ```
 
 # SpatRaster
