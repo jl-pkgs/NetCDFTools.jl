@@ -44,7 +44,7 @@
     "href": "z-index.html#abstractspatraster",
     "title": "Reference",
     "section": "",
-    "text": "No documentation found for public symbol.\n\nSummary\nabstract type AbstractSpatRaster{T, N}\n\n\nSubtypes\nSpatRaster{T, N}",
+    "text": "No documentation found for public binding SpatialRasterLite.AbstractSpatRaster.\n\nSummary\nabstract type AbstractSpatRaster{T, N}\n\n\nSubtypes\nSpatRaster{T, N}",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -54,7 +54,7 @@
     "href": "z-index.html#cmip",
     "title": "Reference",
     "section": "CMIP",
-    "text": "CMIP\n\n\n\n\n\n\nNo docstring or readme file found for public module NetCDFTools.CMIP.\n\nPublic names\nCMIPFiles_info, CMIPFiles_summary, Tem_C2F, Tem_F2C, build_url, filter_model, filter_url, get_date, get_date_nmiss, get_ensemble, get_freq, get_host, get_model, get_scenario, get_variable, heat_index, heat_index_q, is_r1i1p1f1, is_ssp, map_df, q2RH, str_year, tidy_docs",
+    "text": "CMIP\n\n\n\n\n\n\nNo docstring found for public module NetCDFTools.CMIP.\n\nPublic names\nCMIPFiles_info, CMIPFiles_summary, Tem_C2F, Tem_F2C, build_url, filter_model, filter_url, get_date, get_date_nmiss, get_ensemble, get_freq, get_host, get_model, get_scenario, get_variable, heat_index, heat_index_q, is_r1i1p1f1, is_ssp, map_df, q2RH, str_year, tidy_docs\n\nPackage description from README.md:\n\n\nNetCDFTools in Julia\n   \n\nDongdong Kong, CUG\n\n\n\nInstallation\nusing Pkg\nPkg.add(url = \"https://github.com/jl-pkgs/NetCDFTools.jl\")\n\nUsage\n\n检索CMIP6数据，获取下载url\nOpenDAP下载CMIP6数据\nCMIP6 QMD偏差矫正\nCMIP6 bilinear双线性插值\nnc文件拼接、聚合（一些仿cdo的函数，nccombine, ncsubset, nc_aggregate）\nnc文件处理",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -84,7 +84,7 @@
     "href": "z-index.html#mfvariable",
     "title": "Reference",
     "section": "MFVariable",
-    "text": "MFVariable\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct MFVariable{T, N}\n\n\nFields\nvars :: Array{CommonDataModel.CFVariable{T, N}, 1}",
+    "text": "MFVariable\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.MFVariable.\n\nSummary\nmutable struct MFVariable{T, N}\n\n\nFields\nvars :: Array{CommonDataModel.CFVariable{T, N}, 1}",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -104,7 +104,7 @@
     "href": "z-index.html#ncdim_time",
     "title": "Reference",
     "section": "NcDim_time",
-    "text": "NcDim_time\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.NcDim_time is a Function.\n# 2 methods for generic function \"NcDim_time\" from NetCDFTools:\n [1] NcDim_time(dates::Vector{Dates.Date})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:16\n [2] NcDim_time(dates::Vector{&lt;:Union{Dates.DateTime, CFTime.AbstractCFDateTime}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:7",
+    "text": "NcDim_time\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.NcDim_time.\nNetCDFTools.NcDim_time is a Function.\n# 2 methods for generic function \"NcDim_time\" from NetCDFTools:\n [1] NcDim_time(dates::Vector{Dates.Date})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:16\n [2] NcDim_time(dates::Vector{&lt;:Union{Dates.DateTime, CFTime.AbstractCFDateTime}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:7",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "z-index.html#ncdims",
     "title": "Reference",
     "section": "NcDims",
-    "text": "NcDims\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.NcDims is a Function.\n# 3 methods for generic function \"NcDims\" from NetCDFTools:\n [1] NcDims(b::bbox, cellsize, dates; reverse_lat)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:26\n [2] NcDims(ra::SpatRaster)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:31\n [3] NcDims(lon::AbstractVector, lat::AbstractVector, dates::AbstractVector)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:18",
+    "text": "NcDims\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.NcDims.\nNetCDFTools.NcDims is a Function.\n# 3 methods for generic function \"NcDims\" from NetCDFTools:\n [1] NcDims(b::bbox, cellsize, dates; reverse_lat)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:26\n [2] NcDims(lon::AbstractVector, lat::AbstractVector, dates::AbstractVector)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:18\n [3] NcDims(ra::SpatRaster)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncdim_def.jl:31",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "z-index.html#netcdftools",
     "title": "Reference",
     "section": "NetCDFTools",
-    "text": "NetCDFTools\n\n\n\n\n\n\nNo docstring found for public module NetCDFTools.\n\nPublic names\nAbstractSpatRaster, CMIP, GridChunks, MFDataset, MFVariable, NcDim, NcDim_time, NcDims, Point, Point3, QDM, QDM_chunk!, QDM_main, QDM_mov!, RasterSize, SVF, SVF_azimuth, SVF_azimuth_simple, SpatRaster, SpatialRasterLite, _st_location, _zip, angle_SolarDeclination, angle_SunAzimuth, angle_SunElevation, azimuth2deg, azimuth2slope, azimuth2xy, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, cellArea, check_dims, close, cor, coverage_fraction, dLine, deg2xy, dem_angle_MaxElevation, dem_slope, direction, direction_E, direction_N, earth_dist, exact_extract, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, get_bandName, get_chunk, getgeotransform, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, intersect, isscalar, line_end, line_start, make_rast, median, merge_var, merge_var!, meshgrid, names, nband, nc_agg, nc_agg_dir, nc_attr, nc_attr!, nc_attr_rm!, nc_bands, nc_calendar, nc_cellsize, nc_close, nc_combine, nc_crop, nc_date, nc_dim, nc_dims, nc_info, nc_open, nc_read, nc_read_all, nc_read_par, nc_subset, nc_write, nc_write!, ncdim_def, ncinfo, ncsave, ncvar_def, ncvar_dim, ncvar_info, nlayer, nlyr, ogr_info, range2bbox, rast, read_gdal, read_sf, resample_first, rm_shp, set_bandnames, split_chunk, split_date, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_mosaic, st_points, st_read, st_write, sun_shade, time2local, updateMask!, weighted_nanmean, weighted_nanmean!, write_gdal, write_sf\n\n\nDisplaying contents of readme found at /home/runner/work/NetCDFTools.jl/NetCDFTools.jl/README.md\n\n\nNetCDFTools in Julia\n   \n\nDongdong Kong, CUG\n\n\n\nInstallation\nusing Pkg\nPkg.add(url = \"https://github.com/jl-pkgs/NetCDFTools.jl\")\n\nUsage\n\n检索CMIP6数据，获取下载url\nOpenDAP下载CMIP6数据\nCMIP6 QMD偏差矫正\nCMIP6 bilinear双线性插值\nnc文件拼接、聚合（一些仿cdo的函数，nccombine, ncsubset, nc_aggregate）\nnc文件处理",
+    "text": "NetCDFTools\n\n\n\n\n\n\nNo docstring found for public module NetCDFTools.\n\nPublic names\nAbstractSpatRaster, CMIP, GridChunks, MFDataset, MFVariable, NcDim, NcDim_time, NcDims, Point, Point3, QDM, QDM_chunk!, QDM_main, QDM_mov!, RasterSize, SVF, SVF_azimuth, SVF_azimuth_simple, SpatRaster, SpatialRasterLite, _st_location, _zip, angle_SolarDeclination, angle_SunAzimuth, angle_SunElevation, azimuth2deg, azimuth2slope, azimuth2xy, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, cellArea, check_dims, close, cor, coverage_fraction, dLine, deg2xy, dem_angle_MaxElevation, dem_slope, direction, direction_E, direction_N, earth_dist, exact_extract, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, get_bandName, get_chunk, getgeotransform, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, intersect, isscalar, line_end, line_start, make_rast, median, merge_var, merge_var!, meshgrid, names, nband, nc_agg, nc_agg_dir, nc_attr, nc_attr!, nc_attr_rm!, nc_bands, nc_calendar, nc_cellsize, nc_close, nc_combine, nc_crop, nc_date, nc_dim, nc_dims, nc_info, nc_open, nc_read, nc_read_all, nc_read_par, nc_subset, nc_write, nc_write!, ncdim_def, ncinfo, ncsave, ncvar_def, ncvar_dim, ncvar_info, nlayer, nlyr, ogr_info, range2bbox, rast, read_gdal, read_sf, resample_first, rm_shp, set_bandnames, split_chunk, split_date, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_mosaic, st_points, st_read, st_write, sun_shade, time2local, updateMask!, weighted_nanmean, weighted_nanmean!, write_gdal, write_sf\n\nPackage description from README.md:\n\n\nNetCDFTools in Julia\n   \n\nDongdong Kong, CUG\n\n\n\nInstallation\nusing Pkg\nPkg.add(url = \"https://github.com/jl-pkgs/NetCDFTools.jl\")\n\nUsage\n\n检索CMIP6数据，获取下载url\nOpenDAP下载CMIP6数据\nCMIP6 QMD偏差矫正\nCMIP6 bilinear双线性插值\nnc文件拼接、聚合（一些仿cdo的函数，nccombine, ncsubset, nc_aggregate）\nnc文件处理",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -134,7 +134,7 @@
     "href": "z-index.html#point",
     "title": "Reference",
     "section": "Point",
-    "text": "Point\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct Point{T}\n\n\nFields\nx :: T\ny :: T\n\n\nSupertype Hierarchy\nPoint{T} &lt;: SpatialRasterLite.AbstractPoint{T} &lt;: Any",
+    "text": "Point\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.Point.\n\nSummary\nmutable struct Point{T}\n\n\nFields\nx :: T\ny :: T\n\n\nSupertype Hierarchy\nPoint{T} &lt;: SpatialRasterLite.AbstractPoint{T} &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "z-index.html#point3",
     "title": "Reference",
     "section": "Point3",
-    "text": "Point3\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct Point3{T}\n\n\nFields\nx :: T\ny :: T\nz :: T\n\n\nSupertype Hierarchy\nPoint3{T} &lt;: SpatialRasterLite.AbstractPoint{T} &lt;: Any",
+    "text": "Point3\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.Point3.\n\nSummary\nmutable struct Point3{T}\n\n\nFields\nx :: T\ny :: T\nz :: T\n\n\nSupertype Hierarchy\nPoint3{T} &lt;: SpatialRasterLite.AbstractPoint{T} &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "z-index.html#qdm_chunk",
     "title": "Reference",
     "section": "QDM_chunk!",
-    "text": "QDM_chunk!\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.QDM_chunk! is a Function.\n# 1 method for generic function \"QDM_chunk!\" from NetCDFTools:\n [1] QDM_chunk!(y_adj::AbstractVector{T}, y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; ny_win, type_adj) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/BiasCorrection/QDM.jl:61",
+    "text": "QDM_chunk!\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.QDM_chunk!.\nNetCDFTools.QDM_chunk! is a Function.\n# 1 method for generic function \"QDM_chunk!\" from NetCDFTools:\n [1] QDM_chunk!(y_adj::AbstractVector{T}, y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; ny_win, type_adj) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/BiasCorrection/QDM.jl:61",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -174,7 +174,7 @@
     "href": "z-index.html#qdm_main",
     "title": "Reference",
     "section": "QDM_main",
-    "text": "QDM_main\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.QDM_main is a Function.\n# 1 method for generic function \"QDM_main\" from NetCDFTools:\n [1] QDM_main(arr_obs::AbstractArray{T, 3}, arr_calib::AbstractArray{T, 3}, arr_pred::AbstractArray{T, 3}, dates; inds, fun!, ny_win, type_adj) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/BiasCorrection/QDM.jl:110",
+    "text": "QDM_main\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.QDM_main.\nNetCDFTools.QDM_main is a Function.\n# 1 method for generic function \"QDM_main\" from NetCDFTools:\n [1] QDM_main(arr_obs::AbstractArray{T, 3}, arr_calib::AbstractArray{T, 3}, arr_pred::AbstractArray{T, 3}, dates; inds, fun!, ny_win, type_adj) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/BiasCorrection/QDM.jl:110",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -184,7 +184,7 @@
     "href": "z-index.html#qdm_mov",
     "title": "Reference",
     "section": "QDM_mov!",
-    "text": "QDM_mov!\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.QDM_mov! is a Function.\n# 1 method for generic function \"QDM_mov!\" from NetCDFTools:\n [1] QDM_mov!(y_adj::AbstractVector{T}, y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; ny_win, type_adj) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/BiasCorrection/QDM.jl:74",
+    "text": "QDM_mov!\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.QDM_mov!.\nNetCDFTools.QDM_mov! is a Function.\n# 1 method for generic function \"QDM_mov!\" from NetCDFTools:\n [1] QDM_mov!(y_adj::AbstractVector{T}, y_obs::AbstractVector{T}, y_calib::AbstractVector{T}, y_pred::AbstractVector{T}, dates; ny_win, type_adj) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/BiasCorrection/QDM.jl:74",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -194,7 +194,7 @@
     "href": "z-index.html#rastersize",
     "title": "Reference",
     "section": "RasterSize",
-    "text": "RasterSize\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct RasterSize\n\n\nFields\nb        :: bbox\ncellsize :: Tuple{Float64, Float64}\nnx       :: Int64\nny       :: Int64",
+    "text": "RasterSize\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.RasterSize.\n\nSummary\nmutable struct RasterSize\n\n\nFields\nb        :: bbox\ncellsize :: Tuple{Float64, Float64}\nnx       :: Int64\nny       :: Int64",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -214,7 +214,7 @@
     "href": "z-index.html#svf_azimuth",
     "title": "Reference",
     "section": "SVF_azimuth",
-    "text": "SVF_azimuth\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.SVF_azimuth is a Function.\n# 1 method for generic function \"SVF_azimuth\" from SpatialRasterLite:\n [1] SVF_azimuth(Φ_sun::T, Φ_slope::T, β_slope::T, zenith_max::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/sky_view_factor.jl:5",
+    "text": "SVF_azimuth\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.SVF_azimuth.\nSpatialRasterLite.SVF_azimuth is a Function.\n# 1 method for generic function \"SVF_azimuth\" from SpatialRasterLite:\n [1] SVF_azimuth(Φ_sun::T, Φ_slope::T, β_slope::T, zenith_max::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/sky_view_factor.jl:5",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -224,7 +224,7 @@
     "href": "z-index.html#svf_azimuth_simple",
     "title": "Reference",
     "section": "SVF_azimuth_simple",
-    "text": "SVF_azimuth_simple\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.SVF_azimuth_simple is a Function.\n# 1 method for generic function \"SVF_azimuth_simple\" from SpatialRasterLite:\n [1] SVF_azimuth_simple(zenith_max::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/sky_view_factor.jl:15",
+    "text": "SVF_azimuth_simple\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.SVF_azimuth_simple.\nSpatialRasterLite.SVF_azimuth_simple is a Function.\n# 1 method for generic function \"SVF_azimuth_simple\" from SpatialRasterLite:\n [1] SVF_azimuth_simple(zenith_max::T) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/sky_view_factor.jl:15",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -244,7 +244,7 @@
     "href": "z-index.html#spatialrasterlite",
     "title": "Reference",
     "section": "SpatialRasterLite",
-    "text": "SpatialRasterLite\n\n\n\n\n\n\nNo docstring found for public module SpatialRasterLite.\n\nPublic names\nAbstractSpatRaster, Point, Point3, RasterSize, SVF, SVF_azimuth, SVF_azimuth_simple, SpatRaster, _st_location, angle_SolarDeclination, angle_SunAzimuth, angle_SunElevation, azimuth2deg, azimuth2slope, azimuth2xy, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, cellArea, cor, dLine, deg2xy, dem_angle_MaxElevation, dem_slope, direction, direction_E, direction_N, earth_dist, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, getgeotransform, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, intersect, isscalar, line_end, line_start, make_rast, median, merge_var, merge_var!, meshgrid, nband, nlayer, nlyr, ogr_info, range2bbox, rast, read_gdal, read_sf, resample_first, rm_shp, set_bandnames, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_mosaic, st_points, st_read, st_write, sun_shade, time2local, write_gdal, write_sf\n\n\nDisplaying contents of readme found at /home/runner/.julia/packages/SpatialRasterLite/KjK7z/README.md\n\n\nSpatialRasterLite.jl: Simple Spatial Rasters in Julia\n&lt;!–  –&gt;   \n\nDongdong Kong\n\nSpatRaster is a simple spatial raster with WGS84 projection, abbreviated as rast.\nDue to its simplicity, SpatialRasterLite.jl doesn’t rely on any other geospatial packages, which makes SpatialRasterLite.jl more lightweight than GeoArrays and Rasters.jl.\nSpatialRasterLite.jl used the class and function name of R language terra and sf packages.\njulia -e \"@time using SpatialRasterLite\"\n# 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)\n\nFunctions\nThis package is used to support spatial interpolations in SpatInterp.jl and MGWR.jl. They implemented: &lt;!– Interpolation (point to raster) –&gt;\n\nThin Plate Spline Interpolation (tps)\nAngular Distance Weighting Interpolation (adw)\nInverse Distance Weighting Interpolation (idw)\nNearest Interpolation (nearest)\nBilinear Interpolation\nIrregular Bilinear Interpolation, referred to pyresample\nMixed Geographically Weighted Regression\n\nTerrain\n\nSky view factor (SVF)\nsun shade\n\nmethods\n\nintersect (line & raster)",
+    "text": "SpatialRasterLite\n\n\n\n\n\n\nNo docstring found for public module SpatialRasterLite.\n\nPublic names\nAbstractSpatRaster, Point, Point3, RasterSize, SVF, SVF_azimuth, SVF_azimuth_simple, SpatRaster, _st_location, angle_SolarDeclination, angle_SunAzimuth, angle_SunElevation, azimuth2deg, azimuth2slope, azimuth2xy, bandnames, bbox, bbox2cellsize, bbox2dims, bbox2lims, bbox2ndim, bbox2range, bbox2vec, bbox_overlap, cellArea, cor, dLine, deg2xy, dem_angle_MaxElevation, dem_slope, direction, direction_E, direction_N, earth_dist, fliplr, flipud, gdal_info, gdal_nodata, gdal_polygonize, gdalinfo, getgeotransform, guanshan_dem, guanshan_flowdir_cpp, guanshan_flowdir_gis, in_bbox, intersect, isscalar, line_end, line_start, make_rast, median, merge_var, merge_var!, meshgrid, nband, nlayer, nlyr, ogr_info, range2bbox, rast, read_gdal, read_sf, resample_first, rm_shp, set_bandnames, st_bbox, st_cellsize, st_coords, st_crop, st_dims, st_extract, st_location, st_location_exact, st_mosaic, st_points, st_read, st_write, sun_shade, time2local, write_gdal, write_sf\n\nPackage description from README.md:\n\n\nSpatialRasterLite.jl: Simple Spatial Rasters in Julia\n&lt;!–  –&gt;   \n\nDongdong Kong\n\nSpatRaster is a simple spatial raster with WGS84 projection, abbreviated as rast.\nDue to its simplicity, SpatialRasterLite.jl doesn’t rely on any other geospatial packages, which makes SpatialRasterLite.jl more lightweight than GeoArrays and Rasters.jl.\nSpatialRasterLite.jl used the class and function name of R language terra and sf packages.\njulia -e \"@time using SpatialRasterLite\"\n# 0.053372 seconds (50.83 k allocations: 3.506 MiB, 8.44% compilation time)\n\nFunctions\nThis package is used to support spatial interpolations in SpatInterp.jl and MGWR.jl. They implemented: &lt;!– Interpolation (point to raster) –&gt;\n\nThin Plate Spline Interpolation (tps)\nAngular Distance Weighting Interpolation (adw)\nInverse Distance Weighting Interpolation (idw)\nNearest Interpolation (nearest)\nBilinear Interpolation\nIrregular Bilinear Interpolation, referred to pyresample\nMixed Geographically Weighted Regression\n\nTerrain\n\nSky view factor (SVF)\nsun shade\n\nmethods\n\nintersect (line & raster)",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -264,7 +264,7 @@
     "href": "z-index.html#zip",
     "title": "Reference",
     "section": "_zip",
-    "text": "_zip\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools._zip is a Function.\n# 1 method for generic function \"_zip\" from NetCDFTools:\n [1] _zip(inds)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_crop.jl:24",
+    "text": "_zip\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools._zip.\nNetCDFTools._zip is a Function.\n# 1 method for generic function \"_zip\" from NetCDFTools:\n [1] _zip(inds)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize/nc_crop.jl:24",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -314,7 +314,7 @@
     "href": "z-index.html#azimuth2slope",
     "title": "Reference",
     "section": "azimuth2slope",
-    "text": "azimuth2slope\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.azimuth2slope is a Function.\n# 1 method for generic function \"azimuth2slope\" from SpatialRasterLite:\n [1] azimuth2slope(ψ)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/angle.jl:23",
+    "text": "azimuth2slope\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.azimuth2slope.\nSpatialRasterLite.azimuth2slope is a Function.\n# 1 method for generic function \"azimuth2slope\" from SpatialRasterLite:\n [1] azimuth2slope(ψ)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/angle.jl:23",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -324,7 +324,7 @@
     "href": "z-index.html#azimuth2xy",
     "title": "Reference",
     "section": "azimuth2xy",
-    "text": "azimuth2xy\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.azimuth2xy is a Function.\n# 1 method for generic function \"azimuth2xy\" from SpatialRasterLite:\n [1] azimuth2xy(Φ::Real; verbose)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/angle.jl:25",
+    "text": "azimuth2xy\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.azimuth2xy.\nSpatialRasterLite.azimuth2xy is a Function.\n# 1 method for generic function \"azimuth2xy\" from SpatialRasterLite:\n [1] azimuth2xy(Φ::Real; verbose)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/angle.jl:25",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -334,7 +334,7 @@
     "href": "z-index.html#bandnames",
     "title": "Reference",
     "section": "bandnames",
-    "text": "bandnames\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bandnames is a Function.\n# 0 methods for generic function \"bandnames\" from SpatialRasterLite",
+    "text": "bandnames\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bandnames.\nSpatialRasterLite.bandnames is a Function.\n# 0 methods for generic function \"bandnames\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -354,7 +354,7 @@
     "href": "z-index.html#bbox2cellsize",
     "title": "Reference",
     "section": "bbox2cellsize",
-    "text": "bbox2cellsize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bbox2cellsize is a Function.\n# 1 method for generic function \"bbox2cellsize\" from SpatialRasterLite:\n [1] bbox2cellsize(b::bbox, size)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:19",
+    "text": "bbox2cellsize\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bbox2cellsize.\nSpatialRasterLite.bbox2cellsize is a Function.\n# 1 method for generic function \"bbox2cellsize\" from SpatialRasterLite:\n [1] bbox2cellsize(b::bbox, size)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:19",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -374,7 +374,7 @@
     "href": "z-index.html#bbox2lims",
     "title": "Reference",
     "section": "bbox2lims",
-    "text": "bbox2lims\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bbox2lims is a Function.\n# 1 method for generic function \"bbox2lims\" from SpatialRasterLite:\n [1] bbox2lims(b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:65",
+    "text": "bbox2lims\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bbox2lims.\nSpatialRasterLite.bbox2lims is a Function.\n# 1 method for generic function \"bbox2lims\" from SpatialRasterLite:\n [1] bbox2lims(b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:65",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -384,7 +384,7 @@
     "href": "z-index.html#bbox2ndim",
     "title": "Reference",
     "section": "bbox2ndim",
-    "text": "bbox2ndim\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bbox2ndim is a Function.\n# 1 method for generic function \"bbox2ndim\" from SpatialRasterLite:\n [1] bbox2ndim(b; size, cellsize)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:48",
+    "text": "bbox2ndim\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bbox2ndim.\nSpatialRasterLite.bbox2ndim is a Function.\n# 1 method for generic function \"bbox2ndim\" from SpatialRasterLite:\n [1] bbox2ndim(b; size, cellsize)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:48",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -394,7 +394,7 @@
     "href": "z-index.html#bbox2range",
     "title": "Reference",
     "section": "bbox2range",
-    "text": "bbox2range\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bbox2range is a Function.\n# 1 method for generic function \"bbox2range\" from SpatialRasterLite:\n [1] bbox2range(b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:62",
+    "text": "bbox2range\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bbox2range.\nSpatialRasterLite.bbox2range is a Function.\n# 1 method for generic function \"bbox2range\" from SpatialRasterLite:\n [1] bbox2range(b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:62",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -404,7 +404,7 @@
     "href": "z-index.html#bbox2vec",
     "title": "Reference",
     "section": "bbox2vec",
-    "text": "bbox2vec\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bbox2vec is a Function.\n# 1 method for generic function \"bbox2vec\" from SpatialRasterLite:\n [1] bbox2vec(b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:64",
+    "text": "bbox2vec\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bbox2vec.\nSpatialRasterLite.bbox2vec is a Function.\n# 1 method for generic function \"bbox2vec\" from SpatialRasterLite:\n [1] bbox2vec(b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:64",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -414,7 +414,7 @@
     "href": "z-index.html#bbox_overlap",
     "title": "Reference",
     "section": "bbox_overlap",
-    "text": "bbox_overlap\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.bbox_overlap is a Function.\n# 1 method for generic function \"bbox_overlap\" from SpatialRasterLite:\n [1] bbox_overlap(b::bbox, box::bbox; size, cellsize, reverse_lat, zip)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:69",
+    "text": "bbox_overlap\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.bbox_overlap.\nSpatialRasterLite.bbox_overlap is a Function.\n# 1 method for generic function \"bbox_overlap\" from SpatialRasterLite:\n [1] bbox_overlap(b::bbox, box::bbox; size, cellsize, reverse_lat, zip)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:69",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -424,7 +424,7 @@
     "href": "z-index.html#cellarea",
     "title": "Reference",
     "section": "cellArea",
-    "text": "cellArea\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.cellArea is a Function.\n# 1 method for generic function \"cellArea\" from SpatialRasterLite:\n [1] cellArea(x, y, cellsize)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatialRasterLite.jl:109",
+    "text": "cellArea\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.cellArea.\nSpatialRasterLite.cellArea is a Function.\n# 1 method for generic function \"cellArea\" from SpatialRasterLite:\n [1] cellArea(x, y, cellsize)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatialRasterLite.jl:109",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -434,7 +434,7 @@
     "href": "z-index.html#check_dims",
     "title": "Reference",
     "section": "check_dims",
-    "text": "check_dims\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.check_dims is a Function.\n# 2 methods for generic function \"check_dims\" from NetCDFTools:\n [1] check_dims(dims::Vector{NcDim})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncsave.jl:13\n [2] check_dims(dims::NamedTuple)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncsave.jl:12",
+    "text": "check_dims\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.check_dims.\nNetCDFTools.check_dims is a Function.\n# 2 methods for generic function \"check_dims\" from NetCDFTools:\n [1] check_dims(dims::Vector{NcDim})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncsave.jl:13\n [2] check_dims(dims::NamedTuple)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/ncsave.jl:12",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -444,7 +444,7 @@
     "href": "z-index.html#close",
     "title": "Reference",
     "section": "close",
-    "text": "close\n\n\n\n\n\n\nclose(stream)\nClose an I/O stream. Performs a flush first.\nclose(c::Channel[, excp::Exception])\nClose a channel. An exception (optionally given by excp), is thrown by:\n\nput! on a closed channel.\ntake! and fetch on an empty, closed channel.\n\nclose(lock::LockMonitor)\nRelease a pidfile lock.\nBase.close(socket::Socket)\nclose(ds::NCDataset)\nClose the NCDataset ds. All pending changes will be written to the disk.",
+    "text": "close\n\n\n\n\n\n\nclose(c::Channel[, excp::Exception])\nClose a channel. An exception (optionally given by excp), is thrown by:\n\nput! on a closed channel.\ntake! and fetch on an empty, closed channel.\n\nclose(stream)\nClose an I/O stream. Performs a flush first.\nclose(lock::LockMonitor)\nRelease a pidfile lock.\nBase.close(socket::Socket)\nclose(ds::NCDataset)\nClose the NCDataset ds. All pending changes will be written to the disk.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -464,7 +464,7 @@
     "href": "z-index.html#coverage_fraction",
     "title": "Reference",
     "section": "coverage_fraction",
-    "text": "coverage_fraction\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.coverage_fraction is a Function.\n# 0 methods for generic function \"coverage_fraction\" from NetCDFTools",
+    "text": "coverage_fraction\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.coverage_fraction.\nNetCDFTools.coverage_fraction is a Function.\n# 0 methods for generic function \"coverage_fraction\" from NetCDFTools",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -484,7 +484,7 @@
     "href": "z-index.html#deg2xy",
     "title": "Reference",
     "section": "deg2xy",
-    "text": "deg2xy\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.deg2xy is a Function.\n# 1 method for generic function \"deg2xy\" from SpatialRasterLite:\n [1] deg2xy(θ::Real)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/angle.jl:36",
+    "text": "deg2xy\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.deg2xy.\nSpatialRasterLite.deg2xy is a Function.\n# 1 method for generic function \"deg2xy\" from SpatialRasterLite:\n [1] deg2xy(θ::Real)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/angle.jl:36",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -494,7 +494,7 @@
     "href": "z-index.html#dem_angle_maxelevation",
     "title": "Reference",
     "section": "dem_angle_MaxElevation",
-    "text": "dem_angle_MaxElevation\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.dem_angle_MaxElevation is a Function.\n# 2 methods for generic function \"dem_angle_MaxElevation\" from SpatialRasterLite:\n [1] dem_angle_MaxElevation(elev::SpatRaster; δψ, radian)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/dem_slope.jl:37\n [2] dem_angle_MaxElevation(elev::SpatRaster, p0::Point{T}; δψ, radian, rastersize) where T\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/dem_slope.jl:18",
+    "text": "dem_angle_MaxElevation\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.dem_angle_MaxElevation.\nSpatialRasterLite.dem_angle_MaxElevation is a Function.\n# 2 methods for generic function \"dem_angle_MaxElevation\" from SpatialRasterLite:\n [1] dem_angle_MaxElevation(elev::SpatRaster, p0::Point{T}; δψ, radian, rastersize) where T\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/dem_slope.jl:18\n [2] dem_angle_MaxElevation(elev::SpatRaster; δψ, radian)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/dem_slope.jl:37",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -514,7 +514,7 @@
     "href": "z-index.html#direction",
     "title": "Reference",
     "section": "direction",
-    "text": "direction\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.direction is a Function.\n# 1 method for generic function \"direction\" from SpatialRasterLite:\n [1] direction(x::T, y::T) where T\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/angle.jl:54",
+    "text": "direction\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.direction.\nSpatialRasterLite.direction is a Function.\n# 1 method for generic function \"direction\" from SpatialRasterLite:\n [1] direction(x::T, y::T) where T\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/angle.jl:54",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -524,7 +524,7 @@
     "href": "z-index.html#direction_e",
     "title": "Reference",
     "section": "direction_E",
-    "text": "direction_E\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.direction_E is a Function.\n# 1 method for generic function \"direction_E\" from SpatialRasterLite:\n [1] direction_E(x::Real; eps)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/angle.jl:44",
+    "text": "direction_E\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.direction_E.\nSpatialRasterLite.direction_E is a Function.\n# 1 method for generic function \"direction_E\" from SpatialRasterLite:\n [1] direction_E(x::Real; eps)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/angle.jl:44",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -534,7 +534,7 @@
     "href": "z-index.html#direction_n",
     "title": "Reference",
     "section": "direction_N",
-    "text": "direction_N\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.direction_N is a Function.\n# 1 method for generic function \"direction_N\" from SpatialRasterLite:\n [1] direction_N(y::Real; eps)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/angle.jl:49",
+    "text": "direction_N\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.direction_N.\nSpatialRasterLite.direction_N is a Function.\n# 1 method for generic function \"direction_N\" from SpatialRasterLite:\n [1] direction_N(y::Real; eps)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/angle.jl:49",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -554,7 +554,7 @@
     "href": "z-index.html#exact_extract",
     "title": "Reference",
     "section": "exact_extract",
-    "text": "exact_extract\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.exact_extract is a Function.\n# 0 methods for generic function \"exact_extract\" from NetCDFTools",
+    "text": "exact_extract\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.exact_extract.\nNetCDFTools.exact_extract is a Function.\n# 0 methods for generic function \"exact_extract\" from NetCDFTools",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -564,7 +564,7 @@
     "href": "z-index.html#fliplr",
     "title": "Reference",
     "section": "fliplr",
-    "text": "fliplr\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.fliplr is a Function.\n# 2 methods for generic function \"fliplr\" from SpatialRasterLite:\n [1] fliplr(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/Ops.jl:14\n [2] fliplr(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/Ops.jl:13",
+    "text": "fliplr\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.fliplr.\nSpatialRasterLite.fliplr is a Function.\n# 2 methods for generic function \"fliplr\" from SpatialRasterLite:\n [1] fliplr(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/Ops.jl:13\n [2] fliplr(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/Ops.jl:14",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -574,7 +574,7 @@
     "href": "z-index.html#flipud",
     "title": "Reference",
     "section": "flipud",
-    "text": "flipud\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.flipud is a Function.\n# 2 methods for generic function \"flipud\" from SpatialRasterLite:\n [1] flipud(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/Ops.jl:12\n [2] flipud(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/Ops.jl:11",
+    "text": "flipud\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.flipud.\nSpatialRasterLite.flipud is a Function.\n# 2 methods for generic function \"flipud\" from SpatialRasterLite:\n [1] flipud(x::AbstractMatrix{T}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/Ops.jl:11\n [2] flipud(x::AbstractArray{T, 3}) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/Ops.jl:12",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -584,7 +584,7 @@
     "href": "z-index.html#gdal_info",
     "title": "Reference",
     "section": "gdal_info",
-    "text": "gdal_info\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.gdal_info is a Function.\n# 0 methods for generic function \"gdal_info\" from SpatialRasterLite",
+    "text": "gdal_info\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.gdal_info.\nSpatialRasterLite.gdal_info is a Function.\n# 0 methods for generic function \"gdal_info\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -594,7 +594,7 @@
     "href": "z-index.html#gdal_nodata",
     "title": "Reference",
     "section": "gdal_nodata",
-    "text": "gdal_nodata\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.gdal_nodata is a Function.\n# 0 methods for generic function \"gdal_nodata\" from SpatialRasterLite",
+    "text": "gdal_nodata\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.gdal_nodata.\nSpatialRasterLite.gdal_nodata is a Function.\n# 0 methods for generic function \"gdal_nodata\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -604,7 +604,7 @@
     "href": "z-index.html#gdal_polygonize",
     "title": "Reference",
     "section": "gdal_polygonize",
-    "text": "gdal_polygonize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.gdal_polygonize is a Function.\n# 0 methods for generic function \"gdal_polygonize\" from SpatialRasterLite",
+    "text": "gdal_polygonize\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.gdal_polygonize.\nSpatialRasterLite.gdal_polygonize is a Function.\n# 0 methods for generic function \"gdal_polygonize\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -614,7 +614,7 @@
     "href": "z-index.html#gdalinfo",
     "title": "Reference",
     "section": "gdalinfo",
-    "text": "gdalinfo\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.gdalinfo is a Function.\n# 0 methods for generic function \"gdalinfo\" from SpatialRasterLite",
+    "text": "gdalinfo\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.gdalinfo.\nSpatialRasterLite.gdalinfo is a Function.\n# 0 methods for generic function \"gdalinfo\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -624,7 +624,7 @@
     "href": "z-index.html#get_bandname",
     "title": "Reference",
     "section": "get_bandName",
-    "text": "get_bandName\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.get_bandName is a Function.\n# 3 methods for generic function \"get_bandName\" from NetCDFTools:\n [1] get_bandName(file, band::Symbol)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:63\n [2] get_bandName(file, band::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:62\n [3] get_bandName(file, band::Integer)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:61",
+    "text": "get_bandName\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.get_bandName.\nNetCDFTools.get_bandName is a Function.\n# 3 methods for generic function \"get_bandName\" from NetCDFTools:\n [1] get_bandName(file, band::Symbol)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:63\n [2] get_bandName(file, band::Integer)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:61\n [3] get_bandName(file, band::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:62",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -634,7 +634,7 @@
     "href": "z-index.html#get_chunk",
     "title": "Reference",
     "section": "get_chunk",
-    "text": "get_chunk\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.get_chunk is a Function.\n# 1 method for generic function \"get_chunk\" from NetCDFTools:\n [1] get_chunk(m::MFDataset, k; InVars)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/struct_MFDataset.jl:92",
+    "text": "get_chunk\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.get_chunk.\nNetCDFTools.get_chunk is a Function.\n# 1 method for generic function \"get_chunk\" from NetCDFTools:\n [1] get_chunk(m::MFDataset, k; InVars)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/struct_MFDataset.jl:92",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -644,7 +644,7 @@
     "href": "z-index.html#getgeotransform",
     "title": "Reference",
     "section": "getgeotransform",
-    "text": "getgeotransform\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.getgeotransform is a Function.\n# 1 method for generic function \"getgeotransform\" from SpatialRasterLite:\n [1] getgeotransform(ra::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/Ops.jl:2",
+    "text": "getgeotransform\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.getgeotransform.\nSpatialRasterLite.getgeotransform is a Function.\n# 1 method for generic function \"getgeotransform\" from SpatialRasterLite:\n [1] getgeotransform(ra::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/Ops.jl:2",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -654,7 +654,7 @@
     "href": "z-index.html#guanshan_dem",
     "title": "Reference",
     "section": "guanshan_dem",
-    "text": "guanshan_dem\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.guanshan_dem is of type String.\n\nSummary\nmutable struct String\n\n\nSupertype Hierarchy\nString &lt;: AbstractString &lt;: Any",
+    "text": "guanshan_dem\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.guanshan_dem.\nSpatialRasterLite.guanshan_dem is of type String.\n\nSummary\nmutable struct String\n\n\nSupertype Hierarchy\nString &lt;: AbstractString &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -664,7 +664,7 @@
     "href": "z-index.html#guanshan_flowdir_cpp",
     "title": "Reference",
     "section": "guanshan_flowdir_cpp",
-    "text": "guanshan_flowdir_cpp\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.guanshan_flowdir_cpp is of type String.\n\nSummary\nmutable struct String\n\n\nSupertype Hierarchy\nString &lt;: AbstractString &lt;: Any",
+    "text": "guanshan_flowdir_cpp\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.guanshan_flowdir_cpp.\nSpatialRasterLite.guanshan_flowdir_cpp is of type String.\n\nSummary\nmutable struct String\n\n\nSupertype Hierarchy\nString &lt;: AbstractString &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -674,7 +674,7 @@
     "href": "z-index.html#guanshan_flowdir_gis",
     "title": "Reference",
     "section": "guanshan_flowdir_gis",
-    "text": "guanshan_flowdir_gis\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.guanshan_flowdir_gis is of type String.\n\nSummary\nmutable struct String\n\n\nSupertype Hierarchy\nString &lt;: AbstractString &lt;: Any",
+    "text": "guanshan_flowdir_gis\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.guanshan_flowdir_gis.\nSpatialRasterLite.guanshan_flowdir_gis is of type String.\n\nSummary\nmutable struct String\n\n\nSupertype Hierarchy\nString &lt;: AbstractString &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -694,7 +694,7 @@
     "href": "z-index.html#intersect",
     "title": "Reference",
     "section": "intersect",
-    "text": "intersect\n\n\n\n\n\n\nintersect(s, itrs...)\n∩(s, itrs...)\nConstruct the set containing those elements which appear in all of the arguments.\nThe first argument controls what kind of container is returned. If this is an array, it maintains the order in which elements first appear.\nUnicode ∩ can be typed by writing \\cap then pressing tab in the Julia REPL, and in many editors. This is an infix operator, allowing s ∩ itr.\nSee also setdiff, isdisjoint, issubset, issetequal.\n\nAs of Julia 1.8 intersect returns a result with the eltype of the type-promoted eltypes of the two inputs\n\n\nExamples\njulia&gt; intersect([1, 2, 3], [3, 4, 5])\n1-element Vector{Int64}:\n 3\n\njulia&gt; intersect([1, 4, 4, 5, 6], [6, 4, 6, 7, 8])\n2-element Vector{Int64}:\n 4\n 6\n\njulia&gt; intersect(1:16, 7:99)\n7:16\n\njulia&gt; (0, 0.0) ∩ (-0.0, 0)\n1-element Vector{Real}:\n 0\n\njulia&gt; intersect(Set([1, 2]), BitSet([2, 3]), 1.0:10.0)\nSet{Float64} with 1 element:\n  2.0\nintersect(h1::Rect, h2::Rect)\nPerform a intersection between two Rects.\nintersect(ss, others...)\nEach argument is a SortedSet with the same key and order type. The return variable is a new SortedSet that is the intersection of all the sets that are input. Time: O(cn log n), where n is the total number of items in all the arguments.",
+    "text": "intersect\n\n\n\n\n\n\nintersect(s, itrs...)\n∩(s, itrs...)\nConstruct the set containing those elements which appear in all of the arguments.\nThe first argument controls what kind of container is returned. If this is an array, it maintains the order in which elements first appear.\nUnicode ∩ can be typed by writing \\cap then pressing tab in the Julia REPL, and in many editors. This is an infix operator, allowing s ∩ itr.\nSee also setdiff, isdisjoint, issubset, issetequal.\n\nAs of Julia 1.8 intersect returns a result with the eltype of the type-promoted eltypes of the two inputs\n\n\nExamples\njulia&gt; intersect([1, 2, 3], [3, 4, 5])\n1-element Vector{Int64}:\n 3\n\njulia&gt; intersect([1, 4, 4, 5, 6], [6, 4, 6, 7, 8])\n2-element Vector{Int64}:\n 4\n 6\n\njulia&gt; intersect(1:16, 7:99)\n7:16\n\njulia&gt; (0, 0.0) ∩ (-0.0, 0)\n1-element Vector{Real}:\n 0\n\njulia&gt; intersect(Set([1, 2]), BitSet([2, 3]), 1.0:10.0)\nSet{Float64} with 1 element:\n  2.0\nintersect(h1::Rect, h2::Rect)\nPerform a intersection between two Rects.\nBase.intersect(ss::SortedSet, others...)\nIntersect SortedSets with other SortedSets or other iterables and return the intersection as a new SortedSet. Time: O(cn), where n is the total number of items in all the arguments if all the arguments are SortedSets of the same type and same order object. Otherwise, the time is O(cn log n)",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -704,7 +704,7 @@
     "href": "z-index.html#isscalar",
     "title": "Reference",
     "section": "isscalar",
-    "text": "isscalar\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.isscalar is a Function.\n# 2 methods for generic function \"isscalar\" from SpatialRasterLite:\n [1] isscalar(::Nothing)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/tools_Ipaper.jl:4\n [2] isscalar(x)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/tools_Ipaper.jl:3",
+    "text": "isscalar\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.isscalar.\nSpatialRasterLite.isscalar is a Function.\n# 2 methods for generic function \"isscalar\" from SpatialRasterLite:\n [1] isscalar(::Nothing)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/tools_Ipaper.jl:4\n [2] isscalar(x)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/tools_Ipaper.jl:3",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -714,7 +714,7 @@
     "href": "z-index.html#line_end",
     "title": "Reference",
     "section": "line_end",
-    "text": "line_end\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.line_end is a Function.\n# 1 method for generic function \"line_end\" from SpatialRasterLite:\n [1] line_end(line::dLine)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/datatype.jl:69",
+    "text": "line_end\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.line_end.\nSpatialRasterLite.line_end is a Function.\n# 1 method for generic function \"line_end\" from SpatialRasterLite:\n [1] line_end(line::dLine)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/datatype.jl:69",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -724,7 +724,7 @@
     "href": "z-index.html#line_start",
     "title": "Reference",
     "section": "line_start",
-    "text": "line_start\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.line_start is a Function.\n# 1 method for generic function \"line_start\" from SpatialRasterLite:\n [1] line_start(line::dLine)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/datatype.jl:67",
+    "text": "line_start\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.line_start.\nSpatialRasterLite.line_start is a Function.\n# 1 method for generic function \"line_start\" from SpatialRasterLite:\n [1] line_start(line::dLine)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/datatype.jl:67",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -734,7 +734,7 @@
     "href": "z-index.html#make_rast",
     "title": "Reference",
     "section": "make_rast",
-    "text": "make_rast\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.make_rast is a Function.\n# 1 method for generic function \"make_rast\" from SpatialRasterLite:\n [1] make_rast(; b, cellsize, FT)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatRaster.jl:72",
+    "text": "make_rast\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.make_rast.\nSpatialRasterLite.make_rast is a Function.\n# 1 method for generic function \"make_rast\" from SpatialRasterLite:\n [1] make_rast(; b, cellsize, FT)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatRaster.jl:72",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -744,7 +744,7 @@
     "href": "z-index.html#median",
     "title": "Reference",
     "section": "median",
-    "text": "median\n\n\n\n\n\n\nmedian(itr)\nCompute the median of all elements in a collection. For an even number of elements no exact median element exists, so the result is equivalent to calculating mean of two median elements.\n\n\n\n\n\n\nNote\n\n\n\nIf itr contains NaN or missing values, the result is also NaN or missing (missing takes precedence if itr contains both). Use the skipmissing function to omit missing entries and compute the median of non-missing values.\n\n\n\nExamples\njulia&gt; using Statistics\n\njulia&gt; median([1, 2, 3])\n2.0\n\njulia&gt; median([1, 2, 3, 4])\n2.5\n\njulia&gt; median([1, 2, missing, 4])\nmissing\n\njulia&gt; median(skipmissing([1, 2, missing, 4]))\n2.0\nmedian(A::AbstractArray; dims)\nCompute the median of an array along the given dimensions.\n\n\nExamples\njulia&gt; using Statistics\n\njulia&gt; median([1 2; 3 4], dims=1)\n1×2 Matrix{Float64}:\n 2.0  3.0\nmedian(v::AbstractVector{&lt;:Real}, w::AbstractWeights)\nCompute the weighted median of v with weights w (of type AbstractWeights). See the documentation for quantile for more details.\nmedian(d::UnivariateDistribution)\nReturn the median value of distribution d. The median is the smallest x in the support of d for which cdf(d, x) ≥ 1/2. Corresponding to this definition as 1/2-quantile, a fallback is provided calling the quantile function.\nmedian(d::MvLogNormal)\nReturn the median vector of the lognormal distribution. which is strictly smaller than the mean.",
+    "text": "median\n\n\n\n\n\n\nmedian(itr)\nCompute the median of all elements in a collection. For an even number of elements no exact median element exists, so the result is equivalent to calculating mean of two median elements.\n\n\n\n\n\n\nNoteNote\n\n\n\nIf itr contains NaN or missing values, the result is also NaN or missing (missing takes precedence if itr contains both). Use the skipmissing function to omit missing entries and compute the median of non-missing values.\n\n\n\nExamples\njulia&gt; using Statistics\n\njulia&gt; median([1, 2, 3])\n2.0\n\njulia&gt; median([1, 2, 3, 4])\n2.5\n\njulia&gt; median([1, 2, missing, 4])\nmissing\n\njulia&gt; median(skipmissing([1, 2, missing, 4]))\n2.0\nmedian(A::AbstractArray; dims)\nCompute the median of an array along the given dimensions.\n\n\nExamples\njulia&gt; using Statistics\n\njulia&gt; median([1 2; 3 4], dims=1)\n1×2 Matrix{Float64}:\n 2.0  3.0\nmedian(v::AbstractVector{&lt;:Real}, w::AbstractWeights)\nCompute the weighted median of v with weights w (of type AbstractWeights). See the documentation for quantile for more details.\nmedian(d::UnivariateDistribution)\nReturn the median value of distribution d. The median is the smallest x in the support of d for which cdf(d, x) ≥ 1/2. Corresponding to this definition as 1/2-quantile, a fallback is provided calling the quantile function.\nmedian(d::MvLogNormal)\nReturn the median vector of the lognormal distribution. which is strictly smaller than the mean.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -764,7 +764,7 @@
     "href": "z-index.html#merge_var-1",
     "title": "Reference",
     "section": "merge_var!",
-    "text": "merge_var!\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.merge_var! is a Function.\n# 1 method for generic function \"merge_var!\" from SpatialRasterLite:\n [1] merge_var!(R::AbstractArray, f; var, box, cellsize)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_mosaic.jl:35",
+    "text": "merge_var!\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.merge_var!.\nSpatialRasterLite.merge_var! is a Function.\n# 1 method for generic function \"merge_var!\" from SpatialRasterLite:\n [1] merge_var!(R::AbstractArray, f; var, box, cellsize)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_mosaic.jl:35",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -774,7 +774,7 @@
     "href": "z-index.html#meshgrid",
     "title": "Reference",
     "section": "meshgrid",
-    "text": "meshgrid\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.meshgrid is a Function.\n# 1 method for generic function \"meshgrid\" from SpatialRasterLite:\n [1] meshgrid(x, y)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/tools_Ipaper.jl:7",
+    "text": "meshgrid\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.meshgrid.\nSpatialRasterLite.meshgrid is a Function.\n# 1 method for generic function \"meshgrid\" from SpatialRasterLite:\n [1] meshgrid(x, y)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/tools_Ipaper.jl:7",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -784,7 +784,7 @@
     "href": "z-index.html#names",
     "title": "Reference",
     "section": "names",
-    "text": "names\n\n\n\n\n\n\nnames(x::Module; all::Bool = false, imported::Bool = false)\nGet a vector of the public names of a Module, excluding deprecated names. If all is true, then the list also includes non-public names defined in the module, deprecated names, and compiler-generated names. If imported is true, then names explicitly imported from other modules are also included. Names are returned in sorted order.\nAs a special case, all names defined in Main are considered “public”, since it is not idiomatic to explicitly mark names from Main as public.\n\n\n\n\n\n\nNote\n\n\n\nsym ∈ names(SomeModule) does not imply isdefined(SomeModule, sym). names will return symbols marked with public or export, even if they are not defined in the module.\n\n\nSee also: Base.isexported, Base.ispublic, Base.@locals, @__MODULE__.\nnames(df::AbstractDataFrame, cols=:)\nnames(df::DataFrameRow, cols=:)\nnames(df::GroupedDataFrame, cols=:)\nnames(df::DataFrameRows, cols=:)\nnames(df::DataFrameColumns, cols=:)\nnames(df::GroupKey)\nReturn a freshly allocated Vector{String} of names of columns contained in df.\nIf cols is passed then restrict returned column names to those matching the selector (this is useful in particular with regular expressions, Cols, Not, and Between). cols can be:\n\nany column selector (Symbol, string or integer; :, Cols, All, Between, Not, a regular expression, or a vector of Symbols, strings or integers); these column selectors are documented in the General rules section of the Indexing part of the DataFrames.jl manual\na Type, in which case names of columns whose eltype is a subtype of T are returned\na Function predicate taking the column name as a string and returning true for columns that should be kept\n\nSee also propertynames which returns a Vector{Symbol} (except for GroupedDataFrame in which case use Symbol.(names(df))).\n\nExamples\njulia&gt; df = DataFrame(x1=[1, missing, missing], x2=[3, 2, 4], x3=[3, missing, 2], x4=Union{Int, Missing}[2, 4, 4])\n3×4 DataFrame\n Row │ x1       x2     x3       x4\n     │ Int64?   Int64  Int64?   Int64?\n─────┼─────────────────────────────────\n   1 │       1      3        3       2\n   2 │ missing      2  missing       4\n   3 │ missing      4        2       4\n\njulia&gt; names(df)\n4-element Vector{String}:\n \"x1\"\n \"x2\"\n \"x3\"\n \"x4\"\n\njulia&gt; names(df, Int) # pick columns whose element type is Int\n1-element Vector{String}:\n \"x2\"\n\njulia&gt; names(df, x -&gt; x[end] == '2') # pick columns for which last character in their name is '2'\n1-element Vector{String}:\n \"x2\"\n\njulia&gt; fun(col) = sum(skipmissing(col)) &gt;= 10\nfun (generic function with 1 method)\n\njulia&gt; names(df, fun.(eachcol(df))) # pick columns for which sum of their elements is at least 10\n1-element Vector{String}:\n \"x4\"\n\njulia&gt; names(df, eltype.(eachcol(df)) .&gt;: Missing) # pick columns that allow missing values\n3-element Vector{String}:\n \"x1\"\n \"x3\"\n \"x4\"\n\njulia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain missing values\n2-element Vector{String}:\n \"x1\"\n \"x3\"",
+    "text": "names\n\n\n\n\n\n\nnames(x::Module; all::Bool=false, imported::Bool=false, usings::Bool=false) -&gt; Vector{Symbol}\nGet a vector of the public names of a Module, excluding deprecated names. If all is true, then the list also includes non-public names defined in the module, deprecated names, and compiler-generated names. If imported is true, then names explicitly imported from other modules are also included. If usings is true, then names explicitly imported via using are also included. Names are returned in sorted order.\nAs a special case, all names defined in Main are considered “public”, since it is not idiomatic to explicitly mark names from Main as public.\n\n\n\n\n\n\nNoteNote\n\n\n\nsym ∈ names(SomeModule) does not imply isdefined(SomeModule, sym). names may return symbols marked with public or export, even if they are not defined in the module.\n\n\n\n\n\n\n\n\nWarningWarning\n\n\n\nnames may return duplicate names. The duplication happens, e.g. if an imported name conflicts with an already existing identifier.\n\n\nSee also: Base.isexported, Base.ispublic, Base.@locals, @__MODULE__.\nnames(df::AbstractDataFrame, cols=:)\nnames(df::DataFrameRow, cols=:)\nnames(df::GroupedDataFrame, cols=:)\nnames(df::DataFrameRows, cols=:)\nnames(df::DataFrameColumns, cols=:)\nnames(df::GroupKey)\nReturn a freshly allocated Vector{String} of names of columns contained in df.\nIf cols is passed then restrict returned column names to those matching the selector (this is useful in particular with regular expressions, Cols, Not, and Between). cols can be:\n\nany column selector (Symbol, string or integer; :, Cols, All, Between, Not, a regular expression, or a vector of Symbols, strings or integers); these column selectors are documented in the General rules section of the Indexing part of the DataFrames.jl manual\na Type, in which case names of columns whose eltype is a subtype of T are returned\na Function predicate taking the column name as a string and returning true for columns that should be kept\n\nSee also propertynames which returns a Vector{Symbol} (except for GroupedDataFrame in which case use Symbol.(names(df))).\n\nExamples\njulia&gt; df = DataFrame(x1=[1, missing, missing], x2=[3, 2, 4], x3=[3, missing, 2], x4=Union{Int, Missing}[2, 4, 4])\n3×4 DataFrame\n Row │ x1       x2     x3       x4\n     │ Int64?   Int64  Int64?   Int64?\n─────┼─────────────────────────────────\n   1 │       1      3        3       2\n   2 │ missing      2  missing       4\n   3 │ missing      4        2       4\n\njulia&gt; names(df)\n4-element Vector{String}:\n \"x1\"\n \"x2\"\n \"x3\"\n \"x4\"\n\njulia&gt; names(df, Int) # pick columns whose element type is Int\n1-element Vector{String}:\n \"x2\"\n\njulia&gt; names(df, x -&gt; x[end] == '2') # pick columns for which last character in their name is '2'\n1-element Vector{String}:\n \"x2\"\n\njulia&gt; fun(col) = sum(skipmissing(col)) &gt;= 10\nfun (generic function with 1 method)\n\njulia&gt; names(df, fun.(eachcol(df))) # pick columns for which sum of their elements is at least 10\n1-element Vector{String}:\n \"x4\"\n\njulia&gt; names(df, eltype.(eachcol(df)) .&gt;: Missing) # pick columns that allow missing values\n3-element Vector{String}:\n \"x1\"\n \"x3\"\n \"x4\"\n\njulia&gt; names(df, any.(ismissing, eachcol(df))) # pick columns that contain missing values\n2-element Vector{String}:\n \"x1\"\n \"x3\"",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -794,7 +794,7 @@
     "href": "z-index.html#nband",
     "title": "Reference",
     "section": "nband",
-    "text": "nband\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.nband is a Function.\n# 1 method for generic function \"nband\" from SpatialRasterLite:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatRaster.jl:21",
+    "text": "nband\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.nband.\nSpatialRasterLite.nband is a Function.\n# 1 method for generic function \"nband\" from SpatialRasterLite:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatRaster.jl:21",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -824,7 +824,7 @@
     "href": "z-index.html#nc_attr",
     "title": "Reference",
     "section": "nc_attr",
-    "text": "nc_attr\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_attr is a Function.\n# 5 methods for generic function \"nc_attr\" from NetCDFTools:\n [1] nc_attr(f::AbstractString, key::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:51\n [2] nc_attr(f::AbstractString, keys::Vector)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:37\n [3] nc_attr(fs::Vector{&lt;:AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:34\n [4] nc_attr(f::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:28\n [5] nc_attr(nc::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:24",
+    "text": "nc_attr\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_attr.\nNetCDFTools.nc_attr is a Function.\n# 5 methods for generic function \"nc_attr\" from NetCDFTools:\n [1] nc_attr(nc::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:24\n [2] nc_attr(f::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:28\n [3] nc_attr(fs::Vector{&lt;:AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:34\n [4] nc_attr(f::AbstractString, keys::Vector)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:37\n [5] nc_attr(f::AbstractString, key::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:51",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -844,7 +844,7 @@
     "href": "z-index.html#nc_attr_rm",
     "title": "Reference",
     "section": "nc_attr_rm!",
-    "text": "nc_attr_rm!\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_attr_rm! is a Function.\n# 2 methods for generic function \"nc_attr_rm!\" from NetCDFTools:\n [1] nc_attr_rm!(f::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:64\n [2] nc_attr_rm!(f::Union{AbstractString, Vector{&lt;:AbstractString}}, keys::Vector{&lt;:AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:56",
+    "text": "nc_attr_rm!\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_attr_rm!.\nNetCDFTools.nc_attr_rm! is a Function.\n# 2 methods for generic function \"nc_attr_rm!\" from NetCDFTools:\n [1] nc_attr_rm!(f::Union{AbstractString, Vector{&lt;:AbstractString}}, keys::Vector{&lt;:AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:56\n [2] nc_attr_rm!(f::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_attr.jl:64",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -854,7 +854,7 @@
     "href": "z-index.html#nc_bands",
     "title": "Reference",
     "section": "nc_bands",
-    "text": "nc_bands\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_bands is a Function.\n# 2 methods for generic function \"nc_bands\" from NetCDFTools:\n [1] nc_bands(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:55\n [2] nc_bands(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:38",
+    "text": "nc_bands\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_bands.\nNetCDFTools.nc_bands is a Function.\n# 2 methods for generic function \"nc_bands\" from NetCDFTools:\n [1] nc_bands(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:38\n [2] nc_bands(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:55",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -864,7 +864,7 @@
     "href": "z-index.html#nc_calendar",
     "title": "Reference",
     "section": "nc_calendar",
-    "text": "nc_calendar\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_calendar is a Function.\n# 1 method for generic function \"nc_calendar\" from NetCDFTools:\n [1] nc_calendar(file::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:17",
+    "text": "nc_calendar\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_calendar.\nNetCDFTools.nc_calendar is a Function.\n# 1 method for generic function \"nc_calendar\" from NetCDFTools:\n [1] nc_calendar(file::AbstractString)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:17",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -884,7 +884,7 @@
     "href": "z-index.html#nc_close",
     "title": "Reference",
     "section": "nc_close",
-    "text": "nc_close\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_close is a Function.\n# 2 methods for generic function \"nc_close\" from NetCDFTools:\n [1] nc_close(m::MFDataset)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/struct_MFDataset.jl:31\n [2] nc_close(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:34",
+    "text": "nc_close\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_close.\nNetCDFTools.nc_close is a Function.\n# 2 methods for generic function \"nc_close\" from NetCDFTools:\n [1] nc_close(m::MFDataset)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/struct_MFDataset.jl:31\n [2] nc_close(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:34",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -914,7 +914,7 @@
     "href": "z-index.html#nc_date",
     "title": "Reference",
     "section": "nc_date",
-    "text": "nc_date\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_date is a Function.\n# 4 methods for generic function \"nc_date\" from NetCDFTools:\n [1] nc_date(m::MFDataset)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:20\n [2] nc_date(fs::Vector{&lt;:AbstractString}; period)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:13\n [3] nc_date(file::AbstractString; period)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:3\n [4] nc_date(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:1",
+    "text": "nc_date\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_date.\nNetCDFTools.nc_date is a Function.\n# 4 methods for generic function \"nc_date\" from NetCDFTools:\n [1] nc_date(m::MFDataset)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:20\n [2] nc_date(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:1\n [3] nc_date(file::AbstractString; period)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:3\n [4] nc_date(fs::Vector{&lt;:AbstractString}; period)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_date.jl:13",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -924,7 +924,7 @@
     "href": "z-index.html#nc_dim",
     "title": "Reference",
     "section": "nc_dim",
-    "text": "nc_dim\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_dim is a Function.\n# 2 methods for generic function \"nc_dim\" from NetCDFTools:\n [1] nc_dim(file::Union{AbstractString, Vector{&lt;:AbstractString}}, name::Union{Regex, AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:91\n [2] nc_dim(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset}, name::Union{Regex, AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:77",
+    "text": "nc_dim\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_dim.\nNetCDFTools.nc_dim is a Function.\n# 2 methods for generic function \"nc_dim\" from NetCDFTools:\n [1] nc_dim(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset}, name::Union{Regex, AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:77\n [2] nc_dim(file::Union{AbstractString, Vector{&lt;:AbstractString}}, name::Union{Regex, AbstractString})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:91",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -934,7 +934,7 @@
     "href": "z-index.html#nc_dims",
     "title": "Reference",
     "section": "nc_dims",
-    "text": "nc_dims\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_dims is a Function.\n# 2 methods for generic function \"nc_dims\" from NetCDFTools:\n [1] nc_dims(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:102\n [2] nc_dims(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:97",
+    "text": "nc_dims\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_dims.\nNetCDFTools.nc_dims is a Function.\n# 2 methods for generic function \"nc_dims\" from NetCDFTools:\n [1] nc_dims(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:97\n [2] nc_dims(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:102",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -944,7 +944,7 @@
     "href": "z-index.html#nc_info",
     "title": "Reference",
     "section": "nc_info",
-    "text": "nc_info\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_info is a Function.\n# 2 methods for generic function \"nc_info\" from NetCDFTools:\n [1] nc_info(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:71\n [2] nc_info(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:66",
+    "text": "nc_info\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_info.\nNetCDFTools.nc_info is a Function.\n# 2 methods for generic function \"nc_info\" from NetCDFTools:\n [1] nc_info(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:66\n [2] nc_info(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:71",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -974,7 +974,7 @@
     "href": "z-index.html#nc_read_all",
     "title": "Reference",
     "section": "nc_read_all",
-    "text": "nc_read_all\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_read_all is a Function.\n# 1 method for generic function \"nc_read_all\" from NetCDFTools:\n [1] nc_read_all(f; bands, kw...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_read_extra.jl:15",
+    "text": "nc_read_all\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_read_all.\nNetCDFTools.nc_read_all is a Function.\n# 1 method for generic function \"nc_read_all\" from NetCDFTools:\n [1] nc_read_all(f; bands, kw...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_read_extra.jl:15",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -984,7 +984,7 @@
     "href": "z-index.html#nc_read_par",
     "title": "Reference",
     "section": "nc_read_par",
-    "text": "nc_read_par\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_read_par is a Function.\n# 1 method for generic function \"nc_read_par\" from NetCDFTools:\n [1] nc_read_par(fs, args...; progress, kw...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_read_extra.jl:10",
+    "text": "nc_read_par\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_read_par.\nNetCDFTools.nc_read_par is a Function.\n# 1 method for generic function \"nc_read_par\" from NetCDFTools:\n [1] nc_read_par(fs, args...; progress, kw...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_read_extra.jl:10",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1034,7 +1034,7 @@
     "href": "z-index.html#ncinfo",
     "title": "Reference",
     "section": "ncinfo",
-    "text": "ncinfo\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.nc_info is a Function.\n# 2 methods for generic function \"nc_info\" from NetCDFTools:\n [1] nc_info(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:71\n [2] nc_info(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:66",
+    "text": "ncinfo\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.nc_info.\nNetCDFTools.nc_info is a Function.\n# 2 methods for generic function \"nc_info\" from NetCDFTools:\n [1] nc_info(ds::Union{CommonDataModel.MFDataset, NCDatasets.NCDataset})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:66\n [2] nc_info(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:71",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1064,7 +1064,7 @@
     "href": "z-index.html#ncvar_dim",
     "title": "Reference",
     "section": "ncvar_dim",
-    "text": "ncvar_dim\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.ncvar_dim is a Function.\n# 4 methods for generic function \"ncvar_dim\" from NetCDFTools:\n [1] ncvar_dim(file::Union{AbstractString, Vector{&lt;:AbstractString}}, varname::Union{Nothing, String}; kwargs...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:157\n [2] ncvar_dim(file::Union{AbstractString, Vector{&lt;:AbstractString}}; ...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:157\n [3] ncvar_dim(ds::NCDatasets.NCDataset, varname::Union{Nothing, String}; varid)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:146\n [4] ncvar_dim(ds::NCDatasets.NCDataset; ...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:146",
+    "text": "ncvar_dim\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.ncvar_dim.\nNetCDFTools.ncvar_dim is a Function.\n# 4 methods for generic function \"ncvar_dim\" from NetCDFTools:\n [1] ncvar_dim(ds::NCDatasets.NCDataset; ...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:146\n [2] ncvar_dim(ds::NCDatasets.NCDataset, varname::Union{Nothing, String}; varid)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:146\n [3] ncvar_dim(file::Union{AbstractString, Vector{&lt;:AbstractString}}; ...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:157\n [4] ncvar_dim(file::Union{AbstractString, Vector{&lt;:AbstractString}}, varname::Union{Nothing, String}; kwargs...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_dim.jl:157",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1074,7 +1074,7 @@
     "href": "z-index.html#ncvar_info",
     "title": "Reference",
     "section": "ncvar_info",
-    "text": "ncvar_info\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.ncvar_info is a Function.\n# 2 methods for generic function \"ncvar_info\" from NetCDFTools:\n [1] ncvar_info(file::Union{AbstractString, Vector{&lt;:AbstractString}}, band)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:78\n [2] ncvar_info(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:78",
+    "text": "ncvar_info\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.ncvar_info.\nNetCDFTools.ncvar_info is a Function.\n# 2 methods for generic function \"ncvar_info\" from NetCDFTools:\n [1] ncvar_info(file::Union{AbstractString, Vector{&lt;:AbstractString}})\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:78\n [2] ncvar_info(file::Union{AbstractString, Vector{&lt;:AbstractString}}, band)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/nc_info.jl:78",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1084,7 +1084,7 @@
     "href": "z-index.html#nlayer",
     "title": "Reference",
     "section": "nlayer",
-    "text": "nlayer\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.nlayer is a Function.\n# 0 methods for generic function \"nlayer\" from SpatialRasterLite",
+    "text": "nlayer\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.nlayer.\nSpatialRasterLite.nlayer is a Function.\n# 0 methods for generic function \"nlayer\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1094,7 +1094,7 @@
     "href": "z-index.html#nlyr",
     "title": "Reference",
     "section": "nlyr",
-    "text": "nlyr\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.nband is a Function.\n# 1 method for generic function \"nband\" from SpatialRasterLite:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatRaster.jl:21",
+    "text": "nlyr\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.nband.\nSpatialRasterLite.nband is a Function.\n# 1 method for generic function \"nband\" from SpatialRasterLite:\n [1] nband(ra::SpatRaster{T, N}) where {T, N}\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatRaster.jl:21",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1104,7 +1104,7 @@
     "href": "z-index.html#ogr_info",
     "title": "Reference",
     "section": "ogr_info",
-    "text": "ogr_info\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.ogr_info is a Function.\n# 0 methods for generic function \"ogr_info\" from SpatialRasterLite",
+    "text": "ogr_info\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.ogr_info.\nSpatialRasterLite.ogr_info is a Function.\n# 0 methods for generic function \"ogr_info\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1114,7 +1114,7 @@
     "href": "z-index.html#range2bbox",
     "title": "Reference",
     "section": "range2bbox",
-    "text": "range2bbox\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.range2bbox is a Function.\n# 1 method for generic function \"range2bbox\" from SpatialRasterLite:\n [1] range2bbox(r::AbstractVector)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/bbox.jl:67",
+    "text": "range2bbox\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.range2bbox.\nSpatialRasterLite.range2bbox is a Function.\n# 1 method for generic function \"range2bbox\" from SpatialRasterLite:\n [1] range2bbox(r::AbstractVector)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/bbox.jl:67",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1124,7 +1124,7 @@
     "href": "z-index.html#rast",
     "title": "Reference",
     "section": "rast",
-    "text": "rast\n\n\n\n\n\n\nNo documentation found for public symbol.\n\nSummary\nmutable struct SpatRaster{T, N}\n\n\nFields\nA        :: AbstractArray{T, N}\nb        :: bbox\ncellsize :: Tuple{Real, Real}\nlon      :: AbstractVector{&lt;:Real}\nlat      :: AbstractVector{&lt;:Real}\ntime     :: Union{Nothing, AbstractVector}\nbands    :: Union{Nothing, AbstractVector{String}}\nname     :: String\nnodata   :: Union{Nothing, AbstractArray{T, 1}}\n\n\nSupertype Hierarchy\nSpatRaster{T, N} &lt;: AbstractSpatRaster{T, N} &lt;: Any",
+    "text": "rast\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.rast.\n\nSummary\nmutable struct SpatRaster{T, N}\n\n\nFields\nA        :: AbstractArray{T, N}\nb        :: bbox\ncellsize :: Tuple{Real, Real}\nlon      :: AbstractVector{&lt;:Real}\nlat      :: AbstractVector{&lt;:Real}\ntime     :: Union{Nothing, AbstractVector}\nbands    :: Union{Nothing, AbstractVector{String}}\nname     :: String\nnodata   :: Union{Nothing, AbstractArray{T, 1}}\n\n\nSupertype Hierarchy\nSpatRaster{T, N} &lt;: AbstractSpatRaster{T, N} &lt;: Any",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1134,7 +1134,7 @@
     "href": "z-index.html#read_gdal",
     "title": "Reference",
     "section": "read_gdal",
-    "text": "read_gdal\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatialRasterLite:\n [1] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/IO.jl:35\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/IO.jl:22\n [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/IO.jl:13",
+    "text": "read_gdal\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.read_gdal.\nSpatialRasterLite.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatialRasterLite:\n [1] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/IO.jl:13\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/IO.jl:22\n [3] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/IO.jl:35",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1144,7 +1144,7 @@
     "href": "z-index.html#read_sf",
     "title": "Reference",
     "section": "read_sf",
-    "text": "read_sf\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.read_sf is a Function.\n# 0 methods for generic function \"read_sf\" from SpatialRasterLite",
+    "text": "read_sf\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.read_sf.\nSpatialRasterLite.read_sf is a Function.\n# 0 methods for generic function \"read_sf\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1154,7 +1154,7 @@
     "href": "z-index.html#resample_first",
     "title": "Reference",
     "section": "resample_first",
-    "text": "resample_first\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.resample_first is a Function.\n# 1 method for generic function \"resample_first\" from SpatialRasterLite:\n [1] resample_first(r::AbstractArray; fact, deepcopy)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_resample.jl:6",
+    "text": "resample_first\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.resample_first.\nSpatialRasterLite.resample_first is a Function.\n# 1 method for generic function \"resample_first\" from SpatialRasterLite:\n [1] resample_first(r::AbstractArray; fact, deepcopy)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_resample.jl:6",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1164,7 +1164,7 @@
     "href": "z-index.html#rm_shp",
     "title": "Reference",
     "section": "rm_shp",
-    "text": "rm_shp\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.rm_shp is a Function.\n# 1 method for generic function \"rm_shp\" from SpatialRasterLite:\n [1] rm_shp(f)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatialRasterLite.jl:103",
+    "text": "rm_shp\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.rm_shp.\nSpatialRasterLite.rm_shp is a Function.\n# 1 method for generic function \"rm_shp\" from SpatialRasterLite:\n [1] rm_shp(f)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatialRasterLite.jl:103",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1174,7 +1174,7 @@
     "href": "z-index.html#set_bandnames",
     "title": "Reference",
     "section": "set_bandnames",
-    "text": "set_bandnames\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.set_bandnames is a Function.\n# 0 methods for generic function \"set_bandnames\" from SpatialRasterLite",
+    "text": "set_bandnames\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.set_bandnames.\nSpatialRasterLite.set_bandnames is a Function.\n# 0 methods for generic function \"set_bandnames\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1194,7 +1194,7 @@
     "href": "z-index.html#split_date",
     "title": "Reference",
     "section": "split_date",
-    "text": "split_date\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.split_date is a Function.\n# 1 method for generic function \"split_date\" from NetCDFTools:\n [1] split_date(dates; ny_win, kw...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:42",
+    "text": "split_date\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.split_date.\nNetCDFTools.split_date is a Function.\n# 1 method for generic function \"split_date\" from NetCDFTools:\n [1] split_date(dates; ny_win, kw...)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:42",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1204,7 +1204,7 @@
     "href": "z-index.html#st_bbox",
     "title": "Reference",
     "section": "st_bbox",
-    "text": "st_bbox\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_bbox is a Function.\n# 6 methods for generic function \"st_bbox\" from SpatialRasterLite:\n [1] st_bbox(bs::Vector{bbox})\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_bbox.jl:22\n [2] st_bbox(f::String)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_bbox.jl:15\n [3] st_bbox(lon, lat)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_bbox.jl:8\n [4] st_bbox(v::Vector{&lt;:Real})\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_bbox.jl:4\n [5] st_bbox(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_bbox.jl:2\n [6] st_bbox(line::dLine)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/datatype.jl:77",
+    "text": "st_bbox\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_bbox.\nSpatialRasterLite.st_bbox is a Function.\n# 6 methods for generic function \"st_bbox\" from SpatialRasterLite:\n [1] st_bbox(f::String)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_bbox.jl:15\n [2] st_bbox(bs::Vector{bbox})\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_bbox.jl:22\n [3] st_bbox(lon, lat)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_bbox.jl:8\n [4] st_bbox(line::dLine)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/datatype.jl:77\n [5] st_bbox(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_bbox.jl:2\n [6] st_bbox(v::Vector{&lt;:Real})\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_bbox.jl:4",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1214,7 +1214,7 @@
     "href": "z-index.html#st_cellsize",
     "title": "Reference",
     "section": "st_cellsize",
-    "text": "st_cellsize\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_cellsize is a Function.\n# 3 methods for generic function \"st_cellsize\" from SpatialRasterLite:\n [1] st_cellsize(f::AbstractString)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_dims.jl:51\n [2] st_cellsize(lon::AbstractVector, lat::AbstractVector)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_dims.jl:47\n [3] st_cellsize(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_dims.jl:45",
+    "text": "st_cellsize\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_cellsize.\nSpatialRasterLite.st_cellsize is a Function.\n# 3 methods for generic function \"st_cellsize\" from SpatialRasterLite:\n [1] st_cellsize(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_dims.jl:45\n [2] st_cellsize(lon::AbstractVector, lat::AbstractVector)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_dims.jl:47\n [3] st_cellsize(f::AbstractString)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_dims.jl:51",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1224,7 +1224,7 @@
     "href": "z-index.html#st_coords",
     "title": "Reference",
     "section": "st_coords",
-    "text": "st_coords\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_coords is a Function.\n# 1 method for generic function \"st_coords\" from SpatialRasterLite:\n [1] st_coords(ra::SpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatialRasterLite.jl:83",
+    "text": "st_coords\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_coords.\nSpatialRasterLite.st_coords is a Function.\n# 1 method for generic function \"st_coords\" from SpatialRasterLite:\n [1] st_coords(ra::SpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatialRasterLite.jl:83",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1234,7 +1234,7 @@
     "href": "z-index.html#st_crop",
     "title": "Reference",
     "section": "st_crop",
-    "text": "st_crop\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_crop is a Function.\n# 2 methods for generic function \"st_crop\" from SpatialRasterLite:\n [1] st_crop(f::String, b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_crop.jl:3\n [2] st_crop(ra::SpatRaster, b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_crop.jl:5",
+    "text": "st_crop\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_crop.\nSpatialRasterLite.st_crop is a Function.\n# 2 methods for generic function \"st_crop\" from SpatialRasterLite:\n [1] st_crop(f::String, b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_crop.jl:3\n [2] st_crop(ra::SpatRaster, b::bbox)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_crop.jl:5",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1244,7 +1244,7 @@
     "href": "z-index.html#st_dims",
     "title": "Reference",
     "section": "st_dims",
-    "text": "st_dims\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_dims is a Function.\n# 5 methods for generic function \"st_dims\" from SpatialRasterLite:\n [1] st_dims(x::SpatialRasterLite.FileNetCDF)\n     @ NetCDFTools ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:8\n [2] st_dims(x::SpatialRasterLite.FileGDAL)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_dims.jl:32\n [3] st_dims(f::String)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_dims.jl:26\n [4] st_dims(rastersize::RasterSize)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatRaster.jl:202\n [5] st_dims(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_dims.jl:24",
+    "text": "st_dims\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_dims.\nSpatialRasterLite.st_dims is a Function.\n# 5 methods for generic function \"st_dims\" from SpatialRasterLite:\n [1] st_dims(x::SpatialRasterLite.FileNetCDF)\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/MFDataset/MFDataset.jl:8\n [2] st_dims(rastersize::RasterSize)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatRaster.jl:202\n [3] st_dims(f::String)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_dims.jl:26\n [4] st_dims(x::SpatialRasterLite.FileGDAL)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_dims.jl:32\n [5] st_dims(r::AbstractSpatRaster)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_dims.jl:24",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1254,7 +1254,7 @@
     "href": "z-index.html#st_extract",
     "title": "Reference",
     "section": "st_extract",
-    "text": "st_extract\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_extract is a Function.\n# 2 methods for generic function \"st_extract\" from SpatialRasterLite:\n [1] st_extract(ra::AbstractSpatRaster, points::Vector{P}; combine) where {T&lt;:Real, P&lt;:Union{Tuple{T, T}, Point{T}}}\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_extract.jl:28\n [2] st_extract(ra::AbstractSpatRaster{FT}, point::P) where {FT, T, P&lt;:Union{Tuple{T, T}, Point{T}}}\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_extract.jl:19",
+    "text": "st_extract\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_extract.\nSpatialRasterLite.st_extract is a Function.\n# 2 methods for generic function \"st_extract\" from SpatialRasterLite:\n [1] st_extract(ra::AbstractSpatRaster{FT}, point::P) where {FT, T, P&lt;:Union{Tuple{T, T}, Point{T}}}\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_extract.jl:19\n [2] st_extract(ra::AbstractSpatRaster, points::Vector{P}; combine) where {T&lt;:Real, P&lt;:Union{Tuple{T, T}, Point{T}}}\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_extract.jl:28",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1264,7 +1264,7 @@
     "href": "z-index.html#st_location-1",
     "title": "Reference",
     "section": "st_location",
-    "text": "st_location\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_location is a Function.\n# 2 methods for generic function \"st_location\" from SpatialRasterLite:\n [1] st_location(ra::AbstractSpatRaster, args...; kw...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_location.jl:41\n [2] st_location(rastersize::RasterSize, points::Vector{P}; rm_empty) where {T&lt;:Real, P&lt;:Union{Tuple{T, T}, Point{T}}}\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_location.jl:33",
+    "text": "st_location\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_location.\nSpatialRasterLite.st_location is a Function.\n# 2 methods for generic function \"st_location\" from SpatialRasterLite:\n [1] st_location(rastersize::RasterSize, points::Vector{P}; rm_empty) where {T&lt;:Real, P&lt;:Union{Tuple{T, T}, Point{T}}}\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_location.jl:33\n [2] st_location(ra::AbstractSpatRaster, args...; kw...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_location.jl:41",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1274,7 +1274,7 @@
     "href": "z-index.html#st_location_exact",
     "title": "Reference",
     "section": "st_location_exact",
-    "text": "st_location_exact\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_location_exact is a Function.\n# 1 method for generic function \"st_location_exact\" from SpatialRasterLite:\n [1] st_location_exact(lon::AbstractVector, lat::AbstractVector, points::Array{Tuple{T, T}, 1}; rm_empty, cellsize, tol) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/st_location.jl:48",
+    "text": "st_location_exact\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_location_exact.\nSpatialRasterLite.st_location_exact is a Function.\n# 1 method for generic function \"st_location_exact\" from SpatialRasterLite:\n [1] st_location_exact(lon::AbstractVector, lat::AbstractVector, points::Array{Tuple{T, T}, 1}; rm_empty, cellsize, tol) where T&lt;:Real\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/st_location.jl:48",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1294,7 +1294,7 @@
     "href": "z-index.html#st_points",
     "title": "Reference",
     "section": "st_points",
-    "text": "st_points\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.st_points is a Function.\n# 2 methods for generic function \"st_points\" from SpatialRasterLite:\n [1] st_points(X::AbstractMatrix{T}) where T\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatialRasterLite.jl:93\n [2] st_points(x::AbstractVector, y::AbstractVector)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/SpatialRasterLite.jl:89",
+    "text": "st_points\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.st_points.\nSpatialRasterLite.st_points is a Function.\n# 2 methods for generic function \"st_points\" from SpatialRasterLite:\n [1] st_points(x::AbstractVector, y::AbstractVector)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatialRasterLite.jl:89\n [2] st_points(X::AbstractMatrix{T}) where T\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/SpatialRasterLite.jl:93",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1304,7 +1304,7 @@
     "href": "z-index.html#st_read",
     "title": "Reference",
     "section": "st_read",
-    "text": "st_read\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatialRasterLite:\n [1] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/IO.jl:35\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/IO.jl:22\n [3] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/IO.jl:13",
+    "text": "st_read\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.read_gdal.\nSpatialRasterLite.read_gdal is a Function.\n# 3 methods for generic function \"read_gdal\" from SpatialRasterLite:\n [1] read_gdal(files::Vector{&lt;:AbstractString}, options...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/IO.jl:13\n [2] read_gdal(file::AbstractString, indices, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/IO.jl:22\n [3] read_gdal(file::AbstractString, b::bbox, options...)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/IO.jl:35",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1314,7 +1314,7 @@
     "href": "z-index.html#st_write",
     "title": "Reference",
     "section": "st_write",
-    "text": "st_write\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.write_gdal is a Function.\n# 0 methods for generic function \"write_gdal\" from SpatialRasterLite",
+    "text": "st_write\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.write_gdal.\nSpatialRasterLite.write_gdal is a Function.\n# 0 methods for generic function \"write_gdal\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1324,7 +1324,7 @@
     "href": "z-index.html#sun_shade",
     "title": "Reference",
     "section": "sun_shade",
-    "text": "sun_shade\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.sun_shade is a Function.\n# 1 method for generic function \"sun_shade\" from SpatialRasterLite:\n [1] sun_shade(α::SpatRaster, time::Dates.DateTime; δψ)\n     @ ~/.julia/packages/SpatialRasterLite/KjK7z/src/terrain/sun_shade.jl:3",
+    "text": "sun_shade\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.sun_shade.\nSpatialRasterLite.sun_shade is a Function.\n# 1 method for generic function \"sun_shade\" from SpatialRasterLite:\n [1] sun_shade(α::SpatRaster, time::Dates.DateTime; δψ)\n     @ ~/.julia/packages/SpatialRasterLite/0UocH/src/terrain/sun_shade.jl:3",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1344,7 +1344,7 @@
     "href": "z-index.html#updatemask",
     "title": "Reference",
     "section": "updateMask!",
-    "text": "updateMask!\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.updateMask! is a Function.\n# 3 methods for generic function \"updateMask!\" from NetCDFTools:\n [1] updateMask!(A::AbstractArray{T, 3}, mask::BitMatrix) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:60\n [2] updateMask!(A::AbstractMatrix{T}, mask::BitMatrix) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:54\n [3] updateMask!(A::AbstractArray{T, N}, mask::BitMatrix) where {T&lt;:Real, N}\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:72",
+    "text": "updateMask!\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.updateMask!.\nNetCDFTools.updateMask! is a Function.\n# 3 methods for generic function \"updateMask!\" from NetCDFTools:\n [1] updateMask!(A::AbstractMatrix{T}, mask::BitMatrix) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:54\n [2] updateMask!(A::AbstractArray{T, 3}, mask::BitMatrix) where T&lt;:Real\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:60\n [3] updateMask!(A::AbstractArray{T, N}, mask::BitMatrix) where {T&lt;:Real, N}\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/tools.jl:72",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1354,7 +1354,7 @@
     "href": "z-index.html#weighted_nanmean",
     "title": "Reference",
     "section": "weighted_nanmean",
-    "text": "weighted_nanmean\n\n\n\n\n\n\nNo documentation found for public symbol.\nIpaper.weighted_nanmean is a Function.\n# 2 methods for generic function \"weighted_nanmean\" from Ipaper:\n [1] weighted_nanmean(mat::AbstractMatrix{T1}, w::AbstractVector{T2}) where {T1, T2}\n     @ NetCDFTools ~/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize.jl:5\n [2] weighted_nanmean(x::AbstractVector{Tx}, w::AbstractVector{Tw}) where {Tx, Tw}\n     @ ~/.julia/packages/Ipaper/Uk9EG/src/Statistics/NaNStatistics.jl:28",
+    "text": "weighted_nanmean\n\n\n\n\n\n\nNo documentation found for public binding Ipaper.weighted_nanmean.\nIpaper.weighted_nanmean is a Function.\n# 2 methods for generic function \"weighted_nanmean\" from Ipaper:\n [1] weighted_nanmean(mat::AbstractMatrix{T1}, w::AbstractVector{T2}) where {T1, T2}\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize.jl:5\n [2] weighted_nanmean(x::AbstractVector{Tx}, w::AbstractVector{Tw}) where {Tx, Tw}\n     @ ~/.julia/packages/Ipaper/vCPJR/src/Statistics/NaNStatistics.jl:28",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1364,7 +1364,7 @@
     "href": "z-index.html#weighted_nanmean-1",
     "title": "Reference",
     "section": "weighted_nanmean!",
-    "text": "weighted_nanmean!\n\n\n\n\n\n\nNo documentation found for public symbol.\nNetCDFTools.weighted_nanmean! is a Function.\n# 1 method for generic function \"weighted_nanmean!\" from NetCDFTools:\n [1] weighted_nanmean!(R::AbstractVector, mat::AbstractMatrix{T1}, w::AbstractVector{T2}) where {T1, T2}\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize.jl:11",
+    "text": "weighted_nanmean!\n\n\n\n\n\n\nNo documentation found for public binding NetCDFTools.weighted_nanmean!.\nNetCDFTools.weighted_nanmean! is a Function.\n# 1 method for generic function \"weighted_nanmean!\" from NetCDFTools:\n [1] weighted_nanmean!(R::AbstractVector, mat::AbstractMatrix{T1}, w::AbstractVector{T2}) where {T1, T2}\n     @ ~/work/NetCDFTools.jl/NetCDFTools.jl/src/utilize.jl:11",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1374,7 +1374,7 @@
     "href": "z-index.html#write_gdal",
     "title": "Reference",
     "section": "write_gdal",
-    "text": "write_gdal\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.write_gdal is a Function.\n# 0 methods for generic function \"write_gdal\" from SpatialRasterLite",
+    "text": "write_gdal\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.write_gdal.\nSpatialRasterLite.write_gdal is a Function.\n# 0 methods for generic function \"write_gdal\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -1384,7 +1384,7 @@
     "href": "z-index.html#write_sf",
     "title": "Reference",
     "section": "write_sf",
-    "text": "write_sf\n\n\n\n\n\n\nNo documentation found for public symbol.\nSpatialRasterLite.write_sf is a Function.\n# 0 methods for generic function \"write_sf\" from SpatialRasterLite",
+    "text": "write_sf\n\n\n\n\n\n\nNo documentation found for public binding SpatialRasterLite.write_sf.\nSpatialRasterLite.write_sf is a Function.\n# 0 methods for generic function \"write_sf\" from SpatialRasterLite",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference</span>"
     ]
